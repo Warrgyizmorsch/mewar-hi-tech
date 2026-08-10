@@ -6,8 +6,15 @@ import CareersTable from "./CareersTable";
 export const dynamic = "force-dynamic";
 
 export default async function AdminCareers() {
-  await connectToDatabase();
-  const applications = await Career.find().sort({ createdAt: -1 });
+  let applications: any[] = [];
+  try {
+    const conn = await connectToDatabase();
+    if (conn) {
+      applications = await Career.find().sort({ createdAt: -1 });
+    }
+  } catch (err) {
+    console.error("Failed to load career applications:", err);
+  }
 
   return (
     <div className="space-y-6">

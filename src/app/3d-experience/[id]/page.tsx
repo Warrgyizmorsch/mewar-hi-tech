@@ -46,12 +46,12 @@ function ProductViewerContent({ id }: { id: string }) {
       {/* Header */}
       <header className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between p-6 bg-gradient-to-b from-black/80 to-transparent pointer-events-none">
         <div className="flex items-center gap-6 pointer-events-auto">
-          <a href="/3d-experience">
+          <Link href="/3d-experience">
             <button className="flex items-center gap-2 bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full backdrop-blur-md transition-colors text-white">
               <ArrowLeft size={18} />
               <span className="text-sm font-medium">Back to Showroom</span>
             </button>
-          </a>
+          </Link>
           <div className="flex items-center gap-3">
             <h1 className="text-xl md:text-2xl font-bold text-white tracking-wide uppercase font-oswald">
               {activeProduct.name}

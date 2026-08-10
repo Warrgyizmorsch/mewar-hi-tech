@@ -22,7 +22,13 @@ export async function POST(req: NextRequest) {
     }
 
     // Connect to database
-    await connectToDatabase();
+    const conn = await connectToDatabase();
+    if (!conn) {
+      return NextResponse.json(
+        { message: "Database connection failed. Please try again later." },
+        { status: 503 }
+      );
+    }
 
     const enquiry = new Enquiry({
       name: body.name,

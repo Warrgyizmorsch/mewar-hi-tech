@@ -156,6 +156,7 @@ export default function VideoShowcase() {
             >
               <video
                 src="/videos/home-page.mp4"
+                poster="/images/video_thumbnail.webp"
                 controls
                 autoPlay
                 className="w-full h-full object-contain"

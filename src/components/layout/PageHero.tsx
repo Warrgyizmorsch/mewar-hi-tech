@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface PageHeroProps {
   label: string;
@@ -19,10 +20,12 @@ const PageHero: React.FC<PageHeroProps> = ({
     <section className="relative pt-36 pb-20 lg:pt-48 lg:pb-28 bg-secondary overflow-hidden select-none border-b-4 border-border">
       {/* Background image */}
       <div className="absolute inset-0">
-        <img
+        <Image
           src={image}
           alt=""
-          className="w-full h-full object-cover opacity-20"
+          fill
+          priority
+          className="object-cover opacity-20"
         />
       </div>
 

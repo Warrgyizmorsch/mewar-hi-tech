@@ -4,6 +4,7 @@ import React from "react";
 import { Wrench, Factory, ClipboardCheck, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import Container from "../ui/Container";
 
 import MobileCarousel from "@/components/ui/MobileCarousel";
@@ -81,10 +82,12 @@ export default function WhyKingsonSection() {
                   className="block group w-full"
                 >
                   <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-lg min-h-[300px] flex flex-col justify-end">
-                    <img
+                    <Image
                       src={card.image}
                       alt={card.title}
-                      className="absolute inset-0 w-full h-full object-cover"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#020817] via-[#020817]/80 to-transparent opacity-90" />
                     <div className="relative z-10 p-6 flex flex-col gap-4">
@@ -123,10 +126,12 @@ export default function WhyKingsonSection() {
                   className="relative rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:shadow-2xl transition-all duration-300 min-h-[300px] lg:min-h-[340px] flex flex-col justify-end"
                 >
                   {/* Background Image */}
-                  <img
+                  <Image
                     src={card.image}
                     alt={card.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
 
                   {/* Dark gradient overlay (bottom heavy) */}

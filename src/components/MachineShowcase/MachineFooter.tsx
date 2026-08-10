@@ -37,14 +37,14 @@ export const MachineFooter: React.FC<MachineFooterProps> = ({
 
       {/* Expanded Description and CTA Link (Native CSS Grid Accordion) */}
       <div
-        className={`grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+        className={`grid transition-[grid-template-rows] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
           isHovered ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         }`}
       >
         <div className="overflow-hidden">
           <div
             className={`mt-3.5 space-y-4 transition-all duration-200 ease-out ${
-              isHovered ? "opacity-100 translate-y-0 delay-[50ms]" : "opacity-0 translate-y-4"
+              isHovered ? "opacity-100 translate-y-0 [transition-delay:50ms]" : "opacity-0 translate-y-4"
             }`}
           >
             <p className="text-white/80 text-[11px] font-semibold leading-relaxed text-left max-w-sm select-none">

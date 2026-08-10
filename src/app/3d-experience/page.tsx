@@ -4,6 +4,7 @@ import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Preload, Environment, OrbitControls } from "@react-three/drei";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import Loader from "@/components/3d/Loader";
 import Showroom from "@/components/3d/Showroom";
@@ -16,16 +17,16 @@ export default function ExperiencePage() {
         {/* Header Overlay */}
         <header className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between p-6 pointer-events-none">
           <div className="flex items-center gap-4 pointer-events-auto">
-            <a 
+            <Link 
               href="/"
               className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-white text-sm font-medium transition-colors backdrop-blur-md"
             >
               <ArrowLeft size={16} />
               Back to Website
-            </a>
+            </Link>
           </div>
           <div className="pointer-events-auto">
-            <img src="/logos/logo-dark.png" alt="Mewar Hi-Tech" className="h-10 opacity-80" />
+            <Image src="/logos/logo-dark.png" alt="Mewar Hi-Tech" width={200} height={40} className="h-10 w-auto object-contain opacity-80" />
           </div>
         </header>
 

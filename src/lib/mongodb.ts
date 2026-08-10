@@ -19,9 +19,10 @@ async function connectToDatabase() {
   const MONGODB_URI = process.env.MONGODB_URI;
 
   if (!MONGODB_URI) {
-    throw new Error(
-      "Please define the MONGODB_URI environment variable inside .env.local or Vercel Environment Variables"
+    console.warn(
+      "MONGODB_URI environment variable is missing inside .env.local or Vercel Environment Variables"
     );
+    return null;
   }
 
   if (cached.conn) {
@@ -35,18 +36,22 @@ async function connectToDatabase() {
 
     const opts = {
       bufferCommands: false,
+      serverSelectionTimeoutMS: 5000,
     };
 
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-      return mongoose;
-    });
+    cached.promise = mongoose
+      .connect(MONGODB_URI, opts)
+      .then((m) => m)
+      .catch((err) => {
+        cached.promise = null;
+        console.warn("MongoDB Connection Failed (Handled):", err.message || err);
+        return null;
+      });
   }
 
-  try {
-    cached.conn = await cached.promise;
-  } catch (e) {
+  cached.conn = await cached.promise;
+  if (!cached.conn) {
     cached.promise = null;
-    throw e;
   }
 
   return cached.conn;

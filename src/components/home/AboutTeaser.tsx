@@ -3,6 +3,7 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import Container from "../ui/Container";
 import BlobButton from "@/components/ui/BlobButton";
 
@@ -15,9 +16,11 @@ const AboutTeaser: React.FC = () => {
           {/* 1. Trophy Graphic & Divider */}
           <div className="flex items-center gap-8 shrink-0">
             <div className="w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center relative">
-              <img
+              <Image
                 src="/images/gold_trophy.webp"
                 alt="3D Gold Trophy"
+                width={200}
+                height={224}
                 className="h-40 sm:h-56 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,184,0,0.15)] dark:drop-shadow-[0_0_15px_rgba(255,184,0,0.25)]"
               />
             </div>
@@ -59,9 +62,11 @@ const AboutTeaser: React.FC = () => {
             
             {/* Reddot Winner */}
             <div className="text-center flex flex-col items-center">
-              <img
+              <Image
                 src="/images/reddot_badge.webp"
                 alt="Red Dot Winner 2023"
+                width={112}
+                height={112}
                 className="w-24 h-24 sm:w-28 sm:h-28 object-contain dark:opacity-90"
               />
               <p className="text-[10px] text-muted-foreground/80 uppercase tracking-widest font-bold mt-1">
@@ -74,9 +79,11 @@ const AboutTeaser: React.FC = () => {
 
             {/* iF Gold Award */}
             <div className="text-center flex flex-col items-center">
-              <img
+              <Image
                 src="/images/if_gold_badge.webp"
                 alt="iF Gold Award 2023"
+                width={112}
+                height={112}
                 className="w-24 h-24 sm:w-28 sm:h-28 object-contain dark:opacity-90"
               />
               <p className="text-[10px] text-muted-foreground/80 uppercase tracking-widest font-bold mt-1">
@@ -89,9 +96,11 @@ const AboutTeaser: React.FC = () => {
 
             {/* EquipmentWatch */}
             <div className="text-center flex flex-col items-center">
-              <img
+              <Image
                 src="/images/equipment_watch_badge.webp"
                 alt="EquipmentWatch Highest Retained Value 2023"
+                width={112}
+                height={112}
                 className="w-24 h-24 sm:w-28 sm:h-28 object-contain dark:opacity-90"
               />
               <p className="text-[9px] text-muted-foreground/80 uppercase tracking-widest font-bold mt-1">

@@ -120,7 +120,7 @@ export default function MultiCardCarousel({
                 width: `calc((100% - ${(visibleCount - 1) * gap}px) / ${visibleCount})`,
               }}
             >
-              <div className="group relative rounded-xl overflow-hidden bg-card border border-border shadow-xl h-[320px] sm:h-[380px] flex flex-col justify-end transition-all duration-300 hover:border-primary/60 hover:shadow-2xl">
+              <div className="group relative rounded-xl overflow-hidden bg-card border border-border shadow-xl min-h-[320px] sm:min-h-[380px] h-full flex flex-col justify-end transition-all duration-300 hover:border-primary/60 hover:shadow-2xl">
                 {/* Image */}
                 <img
                   src={slide.src}

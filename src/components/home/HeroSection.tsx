@@ -41,6 +41,8 @@ const HeroSection: React.FC = () => {
           muted
           loop
           playsInline
+          poster="/images/video_thumbnail.webp"
+          preload="none"
           className="w-full h-full object-cover object-center"
         >
           <source src="/videos/home-page.mp4" type="video/mp4" />

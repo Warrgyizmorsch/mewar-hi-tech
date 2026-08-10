@@ -5,8 +5,15 @@ import Newsletter from "@/models/Newsletter";
 export const dynamic = "force-dynamic";
 
 export default async function AdminNewsletters() {
-  await connectToDatabase();
-  const subscribers = await Newsletter.find().sort({ createdAt: -1 });
+  let subscribers: any[] = [];
+  try {
+    const conn = await connectToDatabase();
+    if (conn) {
+      subscribers = await Newsletter.find().sort({ createdAt: -1 });
+    }
+  } catch (err) {
+    console.error("Failed to load newsletter subscribers:", err);
+  }
 
   return (
     <div className="space-y-6">

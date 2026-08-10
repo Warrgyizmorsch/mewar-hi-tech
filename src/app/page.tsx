@@ -22,8 +22,10 @@ export default function Home() {
     <div>
       <Header />
       <main>
-        <h1 className="sr-only">Mewar Hi-Tech - Heavy Duty Crushing &amp; Screening Equipment</h1>
-        
+        <h1 className="sr-only">
+          Mewar Hi-Tech - Heavy Duty Crushing &amp; Screening Equipment
+        </h1>
+
         {/* 1. Hero: BUILT TO CRUSH. MADE TO LAST. */}
         <HeroSection />
 
@@ -64,7 +66,7 @@ export default function Home() {
         <AboutTeaser />
 
         {/* 16. Technical Downloads Center & Video Popup */}
-          <FlagshipProductsGrid />
+        <FlagshipProductsGrid />
       </main>
       <Footer />
     </div>

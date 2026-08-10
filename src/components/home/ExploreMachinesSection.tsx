@@ -11,7 +11,6 @@ const ExploreMachinesSection: React.FC = () => {
   return (
     <section className="bg-muted py-6 lg:py-8 select-none text-left border-b border-border/10">
       <Container>
-        
         {/* Section Header */}
         <div className="max-w-3xl mb-8 text-center mx-auto space-y-2">
           <div className="flex items-center justify-center gap-3 mb-2">
@@ -21,10 +20,11 @@ const ExploreMachinesSection: React.FC = () => {
             </span>
           </div>
           <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
-            EXPLORE <span className="text-primary inline-block">OUR MACHINES</span>
+            EXPLORE{" "}
+            <span className="text-primary inline-block">OUR MACHINES</span>
           </h2>
         </div>
-        
+
         {/* Main Cards Showcase (Full-Width) */}
         <div className="w-full">
           <MachineShowcase />
@@ -42,7 +42,6 @@ const ExploreMachinesSection: React.FC = () => {
             </BlobButton>
           </Link>
         </div>
-
       </Container>
     </section>
   );

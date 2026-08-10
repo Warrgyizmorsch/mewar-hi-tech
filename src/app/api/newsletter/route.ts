@@ -10,7 +10,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: "Email is required" }, { status: 400 });
     }
 
-    await connectToDatabase();
+    const conn = await connectToDatabase();
+    if (!conn) {
+      return NextResponse.json(
+        { message: "Database connection failed. Please try again later." },
+        { status: 503 }
+      );
+    }
 
     const existingSubscriber = await Newsletter.findOne({ email: body.email });
     if (existingSubscriber) {

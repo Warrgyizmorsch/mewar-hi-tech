@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   MapPin, 
@@ -79,10 +80,12 @@ export default function CaseStudiesSection() {
               >
                 <div>
                   <div className="relative aspect-[16/10] overflow-hidden bg-muted">
-                    <img
+                    <Image
                       src={study.image}
                       alt={study.title}
-                      className="w-full h-full object-cover"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover"
                     />
                     <div className="absolute top-3 left-3 bg-primary text-primary-foreground text-[10px] font-bold tracking-wider px-3 py-1 rounded-md uppercase shadow-md">
                       {study.category}
@@ -141,10 +144,12 @@ export default function CaseStudiesSection() {
               <div>
                 {/* Top Image Container with Badge */}
                 <div className="relative aspect-[16/10] overflow-hidden bg-muted">
-                  <img
+                  <Image
                     src={study.image}
                     alt={study.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   {/* Category Pill Tag */}
                   <div className="absolute top-3 left-3 bg-primary text-primary-foreground text-[10px] font-bold tracking-wider px-3 py-1 rounded-md uppercase shadow-md">
@@ -233,10 +238,12 @@ export default function CaseStudiesSection() {
 
               {/* Modal Banner */}
               <div className="relative aspect-[16/8] bg-muted overflow-hidden">
-                <img
+                <Image
                   src={selectedStudy.image}
                   alt={selectedStudy.title}
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-6 sm:p-8">
                   <span className="bg-primary text-primary-foreground text-xs font-bold tracking-wider px-3 py-1 rounded-md uppercase self-start mb-2">

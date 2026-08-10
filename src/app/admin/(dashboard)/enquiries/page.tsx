@@ -6,8 +6,15 @@ import EnquiriesTable from "./EnquiriesTable";
 export const dynamic = "force-dynamic";
 
 export default async function AdminEnquiries() {
-  await connectToDatabase();
-  const enquiries = await Enquiry.find().sort({ createdAt: -1 });
+  let enquiries: any[] = [];
+  try {
+    const conn = await connectToDatabase();
+    if (conn) {
+      enquiries = await Enquiry.find().sort({ createdAt: -1 });
+    }
+  } catch (err) {
+    console.error("Failed to load enquiries:", err);
+  }
 
   return (
     <div className="space-y-6">

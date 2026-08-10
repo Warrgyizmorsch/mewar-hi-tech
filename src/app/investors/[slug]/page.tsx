@@ -622,7 +622,7 @@ export default function InvestorPage({ params }: PageProps) {
                       Complete compliance filings of SEBI (Listing Obligations and Disclosure Requirements) Regulations, 2015.
                     </p>
                     
-                    <div className="max-h-[500px] overflow-y-auto border border-border/80 rounded-xl overflow-hidden scrollbar-thin">
+                    <div className="max-h-[500px] overflow-auto border border-border/80 rounded-xl scrollbar-thin">
                       <table className="w-full text-left border-collapse text-xs">
                         <thead>
                           <tr className="bg-muted border-b border-border/80 text-[10px] uppercase tracking-wider font-bold text-muted-foreground">

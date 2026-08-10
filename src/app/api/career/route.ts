@@ -35,7 +35,13 @@ export async function POST(req: NextRequest) {
     const resumeUrl = `/uploads/resumes/${filename}`;
 
     // Save to DB
-    await connectToDatabase();
+    const conn = await connectToDatabase();
+    if (!conn) {
+      return NextResponse.json(
+        { message: "Database connection failed. Please try again later." },
+        { status: 503 }
+      );
+    }
     
     const careerApp = new Career({
       name,

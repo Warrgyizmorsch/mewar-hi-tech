@@ -73,7 +73,7 @@ export const MachineShowcase: React.FC = () => {
       {/* 2. Tablet Layout (md to lg) - Grid Layout */}
       <div className="hidden md:grid lg:hidden grid-cols-2 gap-5 w-full">
         {CATEGORIES.map((cat, idx) => (
-          <div key={cat.title} className="h-[420px] w-full">
+          <div key={cat.title} className="h-[400px] w-full">
             <MachineCard
               category={cat}
               index={idx}

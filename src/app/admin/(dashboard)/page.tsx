@@ -4,17 +4,29 @@ import connectToDatabase from "@/lib/mongodb";
 import Enquiry from "@/models/Enquiry";
 import Career from "@/models/Career";
 import Newsletter from "@/models/Newsletter";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminDashboard() {
-  await connectToDatabase();
-  
-  const totalEnquiries = await Enquiry.countDocuments();
-  const totalCareers = await Career.countDocuments();
-  const totalNewsletters = await Newsletter.countDocuments();
+  let totalEnquiries = 0;
+  let totalCareers = 0;
+  let totalNewsletters = 0;
+  let recentEnquiries: any[] = [];
+  let dbError = false;
 
-  const recentEnquiries = await Enquiry.find().sort({ createdAt: -1 }).limit(5);
+  try {
+    const conn = await connectToDatabase();
+    if (conn) {
+      totalEnquiries = await Enquiry.countDocuments();
+      totalCareers = await Career.countDocuments();
+      totalNewsletters = await Newsletter.countDocuments();
+      recentEnquiries = await Enquiry.find().sort({ createdAt: -1 }).limit(5);
+    }
+  } catch (error) {
+    console.error("MongoDB Connection Error in Admin Dashboard:", error);
+    dbError = true;
+  }
 
   const stats = [
     { label: "Total Enquiries", value: totalEnquiries, icon: MessageSquare, color: "text-blue-600", bg: "bg-blue-50" },
@@ -65,7 +77,7 @@ export default async function AdminDashboard() {
          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
             <div className="flex justify-between items-center mb-6">
                <h3 className="text-lg font-bold text-[#2B3674]">Recent Enquiries</h3>
-               <a href="/admin/enquiries" className="text-xs text-blue-600 font-bold hover:underline">View All</a>
+               <Link href="/admin/enquiries" className="text-xs text-blue-600 font-bold hover:underline">View All</Link>
             </div>
             
             <div className="space-y-4">
