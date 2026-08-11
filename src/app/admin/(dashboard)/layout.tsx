@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, Users, MessageSquare, Mail, LogOut } from "lucide-react";
+import { LayoutDashboard, Users, MessageSquare, Mail, LogOut, FileText } from "lucide-react";
 import { toast } from "react-toastify";
 
 export default function AdminDashboardLayout({ children }: { children: React.ReactNode }) {
@@ -25,6 +25,7 @@ export default function AdminDashboardLayout({ children }: { children: React.Rea
     { label: "Enquiries", href: "/admin/enquiries", icon: MessageSquare },
     { label: "Careers", href: "/admin/careers", icon: Users },
     { label: "Newsletters", href: "/admin/newsletters", icon: Mail },
+    { label: "Blogs", href: "/admin/blogs", icon: FileText },
   ];
 
   return (

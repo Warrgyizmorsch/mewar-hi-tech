@@ -2,8 +2,18 @@
 const nextConfig = {
   reactStrictMode: true,
   distDir: process.env.NEXT_DIST_DIR || '.next',
-  eslint: {
-    ignoreDuringBuilds: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+
+      {
+        protocol: "http",
+        hostname: "**",
+      },
+    ],
   },
 };
 

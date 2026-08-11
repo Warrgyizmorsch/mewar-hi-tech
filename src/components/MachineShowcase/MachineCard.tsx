@@ -45,7 +45,7 @@ export const MachineCard: React.FC<MachineCardProps> = ({
       tabIndex={0}
       role="button"
       aria-label={`Explore our ${category.title} solutions`}
-      className="relative h-full min-h-[400px] lg:min-h-0 lg:h-[480px] bg-white dark:bg-[#0A1A3B] rounded-xl overflow-hidden cursor-pointer select-none border-2 border-border shadow-md group outline-none focus-visible:ring-2 focus-visible:ring-primary flex flex-col transition-[flex] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
+      className="relative h-full min-h-[400px] lg:min-h-0 lg:h-[480px] bg-white dark:bg-[#0A1A3B] rounded-xl overflow-hidden cursor-pointer select-none border-2 border-border shadow-md group outline-none focus-visible:ring-2 focus-visible:ring-primary flex flex-col transition-[flex] duration-300 ease-out"
       style={{
         flex: `${isHovered ? 2.2 : isAnyHovered ? 0.8 : 1} 1 0%`,
       }}

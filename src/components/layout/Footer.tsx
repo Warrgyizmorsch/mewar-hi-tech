@@ -15,6 +15,7 @@ const footerColumns = [
       { label: "Events", to: "/events" },
       { label: "Career", to: "/careers" },
       { label: "Contact", to: "/contact" },
+      { label: "Blog", to: "/blogs" },
       { label: "Privacy Policy", to: "/privacy-policy" },
     ],
   },

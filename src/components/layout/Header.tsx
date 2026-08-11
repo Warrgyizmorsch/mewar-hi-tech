@@ -95,6 +95,7 @@ const navItems: NavItem[] = [
     ],
   },
   { label: "Investors", to: "/investors" },
+  { label: "Blog", to: "/blogs" },
   { label: "Contact", to: "/contact" },
 ];
 
