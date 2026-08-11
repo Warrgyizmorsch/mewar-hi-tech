@@ -297,7 +297,7 @@ export default function BlogDetailPage() {
                   <Tag size={14} />
                   {blog.category}
                 </div>
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-heading text-foreground leading-tight">
+                <h1 className="heading-secondary font-heading text-foreground leading-tight">
                   {blog.title}
                 </h1>
                 
@@ -462,11 +462,11 @@ export default function BlogDetailPage() {
 
       {/* FAQs Section at Bottom */}
       {blog.faqs && blog.faqs.length > 0 && (
-        <section className="bg-muted py-12 lg:py-16 xl:py-20 border-t border-border/30">
+        <section className="bg-muted section-padding lg:section-padding xl:section-padding border-t border-border/30">
           <Container>
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-10">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-3 lg:mb-4 font-heading">Frequently Asked Questions</h2>
+                <h2 className="heading-secondary text-foreground mb-3 lg:mb-4 font-heading">Frequently Asked Questions</h2>
                 <p className="text-muted-foreground text-[13px] sm:text-sm lg:text-base">Helpful answers to common questions about our articles and academic guidance.</p>
               </div>
               <div className="space-y-4">
@@ -519,12 +519,12 @@ export default function BlogDetailPage() {
 
       {/* Related Blogs Section */}
       {relatedBlogs && relatedBlogs.length > 0 && (
-        <section className="py-12 lg:py-16 bg-background border-t border-border/30">
+        <section className="section-padding lg:section-padding bg-background border-t border-border/30">
           <Container>
             <div className="max-w-7xl mx-auto">
               <div className="flex items-center justify-between mb-8 lg:mb-10">
                 <div>
-                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground font-heading">Related Articles</h2>
+                  <h2 className="heading-secondary text-foreground font-heading">Related Articles</h2>
                   <p className="text-muted-foreground mt-2 text-[13px] sm:text-sm">More from {blog.category}</p>
                 </div>
                 <Link href={`/blogs?category=${encodeURIComponent(blog.category)}`} className="hidden sm:inline-flex items-center gap-2 text-primary font-bold hover:underline text-sm">
@@ -560,7 +560,7 @@ export default function BlogDetailPage() {
         </section>
       )}
 
-      <section className="py-12 lg:py-16 bg-background">
+      <section className="section-padding lg:section-padding bg-background">
         <Container>
           <div className="bg-muted rounded-3xl p-6 lg:p-8 xl:p-10 flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-8 shadow-sm border border-border">
             

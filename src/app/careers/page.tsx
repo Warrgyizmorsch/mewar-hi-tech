@@ -239,17 +239,17 @@ export default function CareersPage() {
         />
 
         {/* ── 2. Culture & Facilities Multi-Card Slider Carousel ── */}
-        <section className="py-14 bg-muted/40 border-b border-border">
+        <section className="section-padding bg-muted/40 border-b border-border">
           <Container className="space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
               <div>
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                  <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                  <span className="text-primary eyebrow">
                     WORKPLACE &amp; ENGINEERING ENVIRONMENT
                   </span>
                 </div>
-                <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
+                <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
                   LIFE AT <span className="text-primary inline-block">MEWAR HI-TECH</span>
                 </h2>
               </div>
@@ -263,7 +263,7 @@ export default function CareersPage() {
         </section>
 
         {/* ── 3. Intro & Theme-Aware Career Illustration Section ── */}
-        <section className="py-16 lg:py-24 bg-background border-b border-border">
+        <section className="section-padding bg-background border-b border-border">
           <Container className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             {/* Left Column: Vision & Culture */}
@@ -277,11 +277,11 @@ export default function CareersPage() {
               <div>
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                  <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                  <span className="text-primary eyebrow">
                     ENGINEERING &amp; GROWTH
                   </span>
                 </div>
-                <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white leading-tight">
+                <h2 className="heading-primary text-[#0A1A3B] dark:text-white leading-tight">
                   WHY WORK WITH <span className="text-primary inline-block">MEWAR HI-TECH?</span>
                 </h2>
               </div>
@@ -354,17 +354,17 @@ export default function CareersPage() {
         </section>
 
         {/* ── 4. Current Job Openings Section ── */}
-        <section className="py-16 lg:py-24 bg-muted/40 border-b border-border">
+        <section className="section-padding bg-muted/40 border-b border-border">
           <Container className="space-y-10">
             
             <div className="max-w-3xl space-y-2">
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                <span className="text-primary eyebrow">
                   IMMEDIATE HIRING
                 </span>
               </div>
-              <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
+              <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
                 CURRENT <span className="text-primary inline-block">JOB OPENINGS</span>
               </h2>
               <p className="text-xs sm:text-sm text-muted-foreground font-semibold">
@@ -434,7 +434,7 @@ export default function CareersPage() {
         </section>
 
         {/* ── 5. Resume Application Form & Direct Contact Section ── */}
-        <section id="career-apply" className="py-16 lg:py-24 bg-background border-b border-border">
+        <section id="career-apply" className="section-padding bg-background border-b border-border">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
               
@@ -449,11 +449,11 @@ export default function CareersPage() {
                 <div>
                   <div className="flex items-center gap-3 mb-2">
                     <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                    <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                    <span className="text-primary eyebrow">
                       DIRECT RESUME SUBMISSION
                     </span>
                   </div>
-                  <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white leading-tight">
+                  <h2 className="heading-primary text-[#0A1A3B] dark:text-white leading-tight">
                     APPLY WITH YOUR <span className="text-primary inline-block">DETAILED RESUME</span>
                   </h2>
                   <p className="text-muted-foreground text-sm mt-2 leading-relaxed font-medium">
@@ -526,11 +526,11 @@ export default function CareersPage() {
                   <div>
                     <div className="flex items-center gap-3 mb-2">
                       <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                      <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                      <span className="text-primary eyebrow">
                         ONLINE JOB APPLICATION
                       </span>
                     </div>
-                    <h3 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
+                    <h3 className="heading-primary text-[#0A1A3B] dark:text-white">
                       SUBMIT <span className="text-primary inline-block">YOUR PROFILE</span>
                     </h3>
                   </div>

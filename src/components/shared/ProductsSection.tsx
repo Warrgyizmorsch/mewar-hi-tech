@@ -67,7 +67,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
 }) => {
   const items = limit ? PRODUCTS.slice(0, limit) : PRODUCTS;
   return (
-    <section className="py-16 lg:py-24 bg-background select-none">
+    <section className="section-padding bg-background select-none">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -78,11 +78,11 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
         >
           <div className="flex items-center gap-3 mb-2">
             <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-            <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+            <span className="text-primary eyebrow">
               ENGINEERED FOR PERFORMANCE
             </span>
           </div>
-          <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white mt-3">
+          <h2 className="heading-primary text-[#0A1A3B] dark:text-white mt-3">
             {title}
           </h2>
         </motion.div>

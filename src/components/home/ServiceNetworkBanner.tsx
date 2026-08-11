@@ -30,13 +30,13 @@ const ServiceNetworkBanner: React.FC = () => {
           {/* Subtitle */}
           <div className="flex items-center gap-3 mb-2">
             <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-            <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+            <span className="text-primary eyebrow">
               GLOBAL SUPPORT
             </span>
           </div>
 
           {/* Title */}
-          <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-white leading-tight">
+          <h2 className="heading-primary text-white leading-tight">
             Built for Low Maintenance and Reliable Performance
           </h2>
 

@@ -48,18 +48,18 @@ const FlagshipProductsGrid: React.FC = () => {
   };
 
   return (
-    <section id="brochures" className="bg-background py-12 lg:py-16 text-left select-none border-t border-border/80">
+    <section id="brochures" className="bg-background section-padding lg:section-padding text-left select-none border-t border-border/80">
       <Container className="space-y-12">
         
         {/* Section Header */}
         <div className="mx-auto text-center space-y-3">
           <div className="flex items-center justify-center gap-3 mb-2">
             <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-            <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+            <span className="text-primary eyebrow">
               DOWNLOAD RESOURCES
             </span>
           </div>
-          <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
+          <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
             TECHNICAL <span className="text-primary">DOCUMENTATION &amp; BROCHURES</span>
           </h2>
           <p className="text-sm text-muted-foreground font-medium max-w-xl mx-auto leading-relaxed">
@@ -183,7 +183,7 @@ const FlagshipProductsGrid: React.FC = () => {
           <div className="flex-grow space-y-2">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-              <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+              <span className="text-primary eyebrow">
                 SEE IT IN ACTION
               </span>
             </div>

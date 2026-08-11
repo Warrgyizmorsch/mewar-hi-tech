@@ -9,7 +9,7 @@ import BlobButton from "@/components/ui/BlobButton";
 const YellowDealerBanner: React.FC = () => {
   return (
     <section
-      className="relative py-12 select-none overflow-hidden bg-primary border-y border-primary-hover/30 shadow-sm"
+      className="relative section-padding select-none overflow-hidden bg-primary border-y border-primary-hover/30 shadow-sm"
       style={{
         backgroundImage: `
           url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 30c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-20 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-20c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm20 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z' fill='%23d89b00' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E"),

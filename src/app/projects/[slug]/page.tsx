@@ -104,18 +104,18 @@ export default function ProjectDetailPage({ params }: PageProps) {
         />
 
         {/* Project Gallery Grid */}
-        <section className="py-16 lg:py-24 bg-background">
+        <section className="section-padding bg-background">
           <Container>
             {/* Header info */}
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
               <div className="space-y-2 text-left">
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                  <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                  <span className="text-primary eyebrow">
                     INSTALLATION PORTFOLIO
                   </span>
                 </div>
-                <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
+                <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
                   {project.title} <span className="text-primary inline-block">GALLERY</span>
                 </h2>
               </div>

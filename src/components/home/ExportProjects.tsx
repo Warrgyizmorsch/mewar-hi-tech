@@ -127,7 +127,7 @@ export default function ExportProjects() {
   const remainingExports = EXPORT_PROJECTS_DATA.slice(1);
 
   return (
-    <section className="py-6 lg:py-8 bg-background border-b border-border/60 relative overflow-hidden select-none">
+    <section className="section-padding-sm bg-background border-b border-border/60 relative overflow-hidden select-none">
       {/* Decorative Global Map Accent Background */}
       <div className="absolute top-1/3 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -138,11 +138,11 @@ export default function ExportProjects() {
           <div className="space-y-3 text-left">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-              <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+              <span className="text-primary eyebrow">
                 INTERNATIONAL EXPORTS & PROJECTS
               </span>
             </div>
-            <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
+            <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
               EXPORT PROJECTS <span className="text-primary inline-block">(TANZANIA)</span>
             </h2>
             <p className="text-sm text-muted-foreground font-medium max-w-xl leading-relaxed">

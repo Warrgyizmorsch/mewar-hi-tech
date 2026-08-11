@@ -64,7 +64,7 @@ const ALL_FEATURE_IMAGES = [...TOP_IMAGES, ...BOTTOM_IMAGES];
 
 export default function WhyChooseUs() {
   return (
-    <section className="bg-background text-foreground py-10 lg:py-14 relative overflow-hidden select-none border-y border-border/80">
+    <section className="bg-background text-foreground section-padding-sm relative overflow-hidden select-none border-y border-border/80">
       <Container className="relative z-10 space-y-6 sm:space-y-4">
         {/* Top Section: Split Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-start">
@@ -73,11 +73,11 @@ export default function WhyChooseUs() {
             <div className="space-y-4">
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                <span className="text-primary eyebrow">
                   WHY CHOOSE US
                 </span>
               </div>
-              <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.05] tracking-tight uppercase text-[#0A1A3B] dark:text-white">
+              <h2 className="heading-primary leading-[1.05] text-[#0A1A3B] dark:text-white">
                 ENGINEERED TO{" "}
                 <span className="text-primary block">DELIVER MORE.</span>
               </h2>
@@ -139,7 +139,7 @@ export default function WhyChooseUs() {
 
                   {/* Bottom Text Bar */}
                   <div className="absolute bottom-0 left-0 right-0 bg-[#0A1A3B] border-t border-white/10 p-2.5 sm:p-3">
-                    <h3 className="text-white text-[10px] sm:text-xs font-bold uppercase tracking-widest text-center">
+                    <h3 className="text-white text-[10px] sm:eyebrow inline- text-center">
                       {img.title}
                     </h3>
                   </div>
@@ -163,7 +163,7 @@ export default function WhyChooseUs() {
                   className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-[#0A1A3B] border-t border-white/10 p-3">
-                  <h3 className="text-white text-xs font-bold uppercase tracking-widest text-center">
+                  <h3 className="text-white eyebrow inline- text-center">
                     {img.title}
                   </h3>
                 </div>
@@ -191,7 +191,7 @@ export default function WhyChooseUs() {
 
               {/* Bottom Text Bar */}
               <div className="absolute bottom-0 left-0 right-0 bg-[#0A1A3B] border-t border-white/10 p-2.5 sm:p-3">
-                <h3 className="text-white text-[10px] sm:text-xs font-bold uppercase tracking-widest text-center">
+                <h3 className="text-white text-[10px] sm:eyebrow inline- text-center">
                   {img.title}
                 </h3>
               </div>

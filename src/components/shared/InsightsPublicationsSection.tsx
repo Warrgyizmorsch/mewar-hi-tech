@@ -54,7 +54,7 @@ const exhibitions = [
 
 const InsightsPublicationsSection: React.FC = () => {
   return (
-    <section className="py-16 lg:py-24 bg-background select-none border-t border-border/30 space-y-20">
+    <section className="section-padding bg-background select-none border-t border-border/30 space-y-20">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
         
         {/* Sub-section 1: Insights */}
@@ -63,11 +63,11 @@ const InsightsPublicationsSection: React.FC = () => {
             <div>
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                <span className="text-primary eyebrow">
                   OUR NEWS
                 </span>
               </div>
-              <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white leading-none">
+              <h2 className="heading-primary text-[#0A1A3B] dark:text-white leading-none">
                 Insights Worth{" "}
                 <span className="text-primary inline-block">Exploring</span>
               </h2>
@@ -127,7 +127,7 @@ const InsightsPublicationsSection: React.FC = () => {
           {/* Sub-section 2: Publications (Cols 1-7) */}
           <div className="lg:col-span-7 space-y-8">
             <div className="flex items-end justify-between flex-wrap gap-4">
-              <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white tracking-wide">
+              <h2 className="heading-primary text-[#0A1A3B] dark:text-white tracking-wide">
                 OUR <span className="text-primary inline-block">PUBLICATIONS</span>
               </h2>
               <Link href="/about">
@@ -166,7 +166,7 @@ const InsightsPublicationsSection: React.FC = () => {
 
           {/* Sub-section 3: Upcoming Exhibitions (Cols 8-12) */}
           <div className="lg:col-span-5 space-y-8">
-            <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white tracking-wide">
+            <h2 className="heading-primary text-[#0A1A3B] dark:text-white tracking-wide">
               UPCOMING <span className="text-primary inline-block">EXHIBITIONS</span>
             </h2>
 

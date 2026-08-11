@@ -8,7 +8,7 @@ import BlobButton from "@/components/ui/BlobButton";
 
 const CTASection: React.FC = () => {
   return (
-    <section className="relative py-20 lg:py-28 bg-secondary overflow-hidden select-none">
+    <section className="relative section-padding bg-secondary overflow-hidden select-none">
       <div className="absolute inset-0 opacity-10">
         <img
           src="/images/backgorund.webp"
@@ -20,7 +20,7 @@ const CTASection: React.FC = () => {
         className="relative max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-10"
       >
         <div className="text-left space-y-4 max-w-2xl">
-          <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-white tracking-tight font-bold">
+          <h2 className="heading-primary text-white">
             NEED INDUSTRIAL <span className="text-primary inline-block">SOLUTIONS?</span>
           </h2>
           <div className="w-16 h-1.5 bg-primary rounded-none" />

@@ -185,7 +185,7 @@ export default function ServicesPage() {
         />
 
         {/* 2. SLA & Guarantees Trust Banner */}
-        <section className="py-10 bg-card border-b border-border/80 relative overflow-hidden">
+        <section className="section-padding-sm bg-card border-b border-border/80 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 pointer-events-none" />
           <div className="max-w-[1720px] mx-auto px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -219,7 +219,7 @@ export default function ServicesPage() {
         </section>
 
         {/* 3. Overview Section */}
-        <section className="py-16 lg:py-20 bg-background border-b border-border/60">
+        <section className="section-padding bg-background border-b border-border/60">
           <div className="max-w-[1720px] mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               
@@ -228,11 +228,11 @@ export default function ServicesPage() {
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 mb-2">
                     <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                    <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                    <span className="text-primary eyebrow">
                       OUR OPERATIONAL ASSURANCE
                     </span>
                   </div>
-                  <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white leading-tight">
+                  <h2 className="heading-primary text-[#0A1A3B] dark:text-white leading-tight">
                     RELIABLE SERVICE BUILT <span className="text-primary inline-block">AROUND YOUR UPTIME</span>
                   </h2>
                 </div>
@@ -274,16 +274,16 @@ export default function ServicesPage() {
         </section>
 
         {/* 4. Complete 3-Stage Service Lifecycle */}
-        <section className="py-16 lg:py-20 bg-muted/30 border-b border-border/60">
+        <section className="section-padding bg-muted/30 border-b border-border/60">
           <div className="max-w-[1720px] mx-auto px-6 lg:px-8">
             <div className="max-w-3xl mb-14 text-left space-y-3">
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                <span className="text-primary eyebrow">
                   END-TO-END ENGAGEMENT
                 </span>
               </div>
-              <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
+              <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
                 OUR 3-STAGE <span className="text-primary inline-block">SERVICE LIFECYCLE</span>
               </h2>
             </div>
@@ -340,16 +340,16 @@ export default function ServicesPage() {
         </section>
 
         {/* 5. Capabilities Tabs with links to slug pages */}
-        <section className="py-16 lg:py-24 bg-background border-b border-border/60">
+        <section className="section-padding bg-background border-b border-border/60">
           <div className="max-w-[1720px] mx-auto px-6 lg:px-8">
             <div className="max-w-3xl mb-12 text-left space-y-3">
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                <span className="text-primary eyebrow">
                   CORE CAPABILITIES
                 </span>
               </div>
-              <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
+              <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
                 SPECIALIZED <span className="text-primary inline-block">SERVICE OFFERINGS</span>
               </h2>
             </div>
@@ -435,7 +435,7 @@ export default function ServicesPage() {
         </section>
 
         {/* 6. Form Section */}
-        <section className="py-16 lg:py-24 bg-muted/30 border-b border-border/60">
+        <section className="section-padding bg-muted/30 border-b border-border/60">
           <div className="max-w-[1720px] mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
               
@@ -444,11 +444,11 @@ export default function ServicesPage() {
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 mb-2">
                     <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                    <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                    <span className="text-primary eyebrow">
                       IMMEDIATE ASSISTANCE
                     </span>
                   </div>
-                  <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
+                  <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
                     REACH OUR AFTER-SALES <span className="text-primary inline-block">TECHNICAL DESK</span>
                   </h2>
                 </div>
@@ -490,11 +490,11 @@ export default function ServicesPage() {
                   <div className="space-y-2 mb-8">
                     <div className="flex items-center gap-3 mb-2">
                       <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                      <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                      <span className="text-primary eyebrow">
                         REQUEST TECHNICAL VISIT
                       </span>
                     </div>
-                    <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
+                    <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
                       LOG A <span className="text-primary inline-block">SERVICE TICKET</span>
                     </h2>
                   </div>

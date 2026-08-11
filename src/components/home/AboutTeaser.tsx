@@ -9,7 +9,7 @@ import BlobButton from "@/components/ui/BlobButton";
 
 const AboutTeaser: React.FC = () => {
   return (
-    <section className="bg-card text-foreground py-6 lg:py-8 select-none text-left border-y border-border overflow-hidden">
+    <section className="bg-card text-foreground section-padding-sm select-none text-left border-y border-border overflow-hidden">
       <Container>
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-0">
           
@@ -31,11 +31,11 @@ const AboutTeaser: React.FC = () => {
           <div className="flex-grow lg:px-4 space-y-3 max-w-2xl text-center lg:text-left">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-              <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+              <span className="text-primary eyebrow">
                 AWARD WINNING
               </span>
             </div>
-            <h2 className="font-sans text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#0A1A3B] dark:text-white uppercase leading-tight">
+            <h2 className="heading-secondary text-[#0A1A3B] dark:text-white leading-tight">
               RECOGNIZED EXCELLENCE.  <span className="text-primary inline-block">TRUSTED WORLDWIDE.</span> 
             </h2>
             <p className="text-xs text-muted-foreground font-medium leading-relaxed">

@@ -85,7 +85,7 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
 
             {/* Header */}
             <div className="space-y-1 pr-6">
-              <div className="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-widest">
+              <div className="flex items-center gap-2 text-primary eyebrow inline-">
                 <FileText size={15} />
                 <span>Brochure Request</span>
               </div>

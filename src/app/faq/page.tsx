@@ -90,7 +90,7 @@ export default function FAQPage() {
           image="/images/infrastructure-2.jpg"
         />
 
-        <section className="py-16 bg-background relative overflow-hidden">
+        <section className="section-padding bg-background relative overflow-hidden">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
               
@@ -100,7 +100,7 @@ export default function FAQPage() {
                   
                   {/* Categories List */}
                   <div>
-                    <h3 className="font-sans font-bold text-xs uppercase tracking-widest text-primary mb-4 pl-2">
+                    <h3 className="eyebrow inline- text-primary mb-4 pl-2">
                       FAQ Categories
                     </h3>
                     <div className="space-y-2">

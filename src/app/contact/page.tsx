@@ -91,7 +91,7 @@ export default function Contact() {
         />
 
         {/* ── 2. Modern Contact Information & Enquiry Form Section ── */}
-        <section className="py-16 lg:py-24 bg-background border-b border-border">
+        <section className="section-padding bg-background border-b border-border">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
               
@@ -105,11 +105,11 @@ export default function Contact() {
                 <div>
                   <div className="flex items-center gap-3 mb-2">
                     <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                    <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                    <span className="text-primary eyebrow">
                       MOBILE CRUSHER MANUFACTURERS
                     </span>
                   </div>
-                  <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white leading-tight">
+                  <h2 className="heading-primary text-[#0A1A3B] dark:text-white leading-tight">
                     DIRECT CONTACT <span className="text-primary inline-block">DETAILS</span>
                   </h2>
                   <p className="text-muted-foreground text-sm mt-2 leading-relaxed">
@@ -243,11 +243,11 @@ export default function Contact() {
                   <div>
                     <div className="flex items-center gap-3 mb-2">
                       <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                      <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                      <span className="text-primary eyebrow">
                         QUICK ASSISTANCE
                       </span>
                     </div>
-                    <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
+                    <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
                       ENQUIRY <span className="text-primary inline-block">NOW</span>
                     </h2>
                     <p className="text-xs text-muted-foreground font-semibold mt-1">
@@ -391,18 +391,18 @@ export default function Contact() {
         </section>
 
         {/* ── 3. Interactive Map & Address Section at Bottom ── */}
-        <section className="py-16 lg:py-20 bg-muted/40 border-b border-border select-none">
+        <section className="section-padding bg-muted/40 border-b border-border select-none">
           <Container className="space-y-8">
             
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                  <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                  <span className="text-primary eyebrow">
                     VISIT OUR PLANT
                   </span>
                 </div>
-                <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
+                <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
                   PLANT LOCATION &amp; <span className="text-primary inline-block">INTERACTIVE MAP</span>
                 </h2>
               </div>

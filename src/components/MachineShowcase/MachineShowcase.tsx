@@ -119,7 +119,7 @@ export const MachineShowcase: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex justify-center md:hidden mt-2">
+      {/* <div className="flex justify-center md:hidden mt-2">
         <Link
           href="/products"
           className="text-foreground font-bold hover:text-primary transition-colors flex items-center gap-1 text-sm border-b-2 border-primary pb-0.5"
@@ -127,7 +127,7 @@ export const MachineShowcase: React.FC = () => {
           <span>Explore All Machines</span>
           <ArrowRight size={16} className="text-primary stroke-[2.5]" />
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 };

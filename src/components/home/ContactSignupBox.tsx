@@ -18,7 +18,7 @@ const ContactSignupBox: React.FC = () => {
   };
 
   return (
-    <section className="py-8 lg:py-10 bg-background select-none border-t border-border/30">
+    <section className="section-padding-sm bg-background select-none border-t border-border/30">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
         
         {/* Left Column: Newsletter Signup (Cols 1-7) */}

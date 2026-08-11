@@ -37,7 +37,7 @@ export default function AdminDashboardLayout({ children }: { children: React.Rea
              <img src="/logos/logo.png" alt="Logo" className="h-10 bg-white p-1 rounded object-contain" />
              <div>
                 <h2 className="font-bold tracking-wider leading-tight text-sm uppercase text-[#FFB800]">Mewar</h2>
-                <span className="text-[10px] text-white/50 uppercase tracking-widest font-semibold">Admin Panel</span>
+                <span className="eyebrow text-white/50">Admin Panel</span>
              </div>
           </Link>
         </div>

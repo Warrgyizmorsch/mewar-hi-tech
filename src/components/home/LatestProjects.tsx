@@ -130,7 +130,7 @@ export default function LatestProjects() {
   const remainingProjects = LATEST_PROJECTS_DATA.slice(1);
 
   return (
-    <section className="py-6 lg:py-8 bg-background border-b border-border/60 relative overflow-hidden select-none">
+    <section className="section-padding-sm bg-background border-b border-border/60 relative overflow-hidden select-none">
       {/* Background Decorative Glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -141,11 +141,11 @@ export default function LatestProjects() {
           <div className="space-y-3 text-left">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-              <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+              <span className="text-primary eyebrow">
                 PROVEN FIELD EXCELLENCE
               </span>
             </div>
-            <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
+            <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
               LATEST PROJECTS & <span className="text-primary inline-block">INSTALLATIONS</span>
             </h2>
             <p className="text-sm text-muted-foreground font-medium max-w-xl leading-relaxed">

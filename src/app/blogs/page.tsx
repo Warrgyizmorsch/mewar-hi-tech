@@ -227,7 +227,7 @@ export default function Blogs() {
 
         {loading ? (
           /* Loading Skeleton */
-          <section className="py-12 lg:py-20">
+          <section className="section-padding">
             <Container>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -250,7 +250,7 @@ export default function Blogs() {
           </section>
         ) : blogs.length === 0 ? (
           /* Empty State */
-          <section className="py-20">
+          <section className="section-padding">
             <Container>
               <div className="text-center space-y-4">
                 <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center mx-auto">
@@ -276,7 +276,7 @@ export default function Blogs() {
           <>
             {/* Featured Article */}
             {featuredPost && (
-              <section className="py-8 lg:py-14">
+              <section className="section-padding-sm">
                 <Container>
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -306,7 +306,7 @@ export default function Blogs() {
                         <div className="lg:col-span-2 p-6 sm:p-8 lg:p-10 flex flex-col justify-center space-y-4 lg:space-y-5">
                           <div className="flex items-center gap-2">
                             <div className="w-6 h-[2.5px] bg-primary rounded-full" />
-                            <span className="text-primary font-bold text-[10px] sm:text-xs uppercase tracking-widest">
+                            <span className="text-primary eyebrow">
                               FEATURED ARTICLE
                             </span>
                           </div>
@@ -347,13 +347,13 @@ export default function Blogs() {
 
             {/* Blog Grid */}
             {gridPosts.length > 0 && (
-              <section className="py-8 lg:py-14 bg-muted/30">
+              <section className="section-padding-sm bg-muted/30">
                 <Container>
                   {/* Section Header */}
                   <div className="text-center space-y-3 mb-10">
                     <div className="flex items-center justify-center gap-3 mb-2">
                       <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                      <span className="text-primary font-bold text-xs uppercase tracking-widest font-sans">
+                      <span className="text-primary eyebrow inline-">
                         LATEST ARTICLES
                       </span>
                     </div>
@@ -486,7 +486,7 @@ export default function Blogs() {
         )}
 
         {/* Newsletter Section */}
-        <section className="py-12 lg:py-20 bg-secondary text-secondary-foreground relative overflow-hidden">
+        <section className="section-padding bg-secondary text-secondary-foreground relative overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <Image
               src="/images/backgorund.webp"
@@ -500,11 +500,11 @@ export default function Blogs() {
               <div className="space-y-4 text-center lg:text-left">
                 <div className="flex items-center gap-2 justify-center lg:justify-start">
                   <div className="w-6 h-[2.5px] bg-primary rounded-full" />
-                  <span className="text-primary font-bold text-[10px] sm:text-xs uppercase tracking-widest">
+                  <span className="text-primary eyebrow">
                     STAY UPDATED
                   </span>
                 </div>
-                <h2 className="common-heading text-2xl sm:text-3xl lg:text-4xl text-white">
+                <h2 className="common-heading heading-secondary text-white">
                   SUBSCRIBE TO OUR{" "}
                   <span className="text-primary">NEWSLETTER</span>
                 </h2>

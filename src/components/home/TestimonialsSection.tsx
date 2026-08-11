@@ -66,7 +66,7 @@ const TESTIMONIALS_DATA: Testimonial[] = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="py-10 lg:py-14 bg-muted/30 border-b border-border relative overflow-hidden select-none">
+    <section className="section-padding-sm bg-muted/30 border-b border-border relative overflow-hidden select-none">
       <Container className="relative z-10">
         
         {/* Section Header */}
@@ -74,11 +74,11 @@ export default function TestimonialsSection() {
           <div className="space-y-3 text-left">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-              <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+              <span className="text-primary eyebrow">
                 VERIFIED CLIENT REVIEWS
               </span>
             </div>
-            <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl text-[#0A1A3B] dark:text-white font-bold tracking-tight uppercase">
+            <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
               TRUSTED BY <span className="text-primary inline-block">INDUSTRY LEADERS</span>
             </h2>
             <p className="text-sm text-muted-foreground font-medium max-w-xl leading-relaxed">

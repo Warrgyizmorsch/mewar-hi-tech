@@ -166,7 +166,7 @@ export default function ServiceSlugPage({ params }: PageProps) {
         />
 
         {/* 2. Top Trust Indicators Strip */}
-        <section className="py-8 bg-card border-b border-border/80 relative overflow-hidden">
+        <section className="section-padding-sm bg-card border-b border-border/80 relative overflow-hidden">
           <Container className="relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center divide-y md:divide-y-0 md:divide-x divide-border/60">
               <div className="flex items-center gap-3 px-4 pt-4 md:pt-0 first:pt-0">
@@ -195,13 +195,13 @@ export default function ServiceSlugPage({ params }: PageProps) {
         </section>
 
         {/* 3. Introduction Section */}
-        <section className="py-12 bg-background border-b border-border/60">
+        <section className="section-padding bg-background border-b border-border/60">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
               
               {/* Left Column: Description & Contacts */}
               <div className="lg:col-span-7 space-y-6 text-left">
-                <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
+                <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
                   OVERVIEW &amp; <span className="text-primary inline-block">COMMITMENT</span>
                 </h2>
                 <p className="text-muted-foreground text-sm leading-relaxed font-semibold">
@@ -274,7 +274,7 @@ export default function ServiceSlugPage({ params }: PageProps) {
 
         {/* 4. Page Specific Details: Bullet Sections (For After Sales) */}
         {pageData.sections && (
-          <section className="py-12 bg-muted/20 border-b border-border/60">
+          <section className="section-padding bg-muted/20 border-b border-border/60">
             <Container>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {pageData.sections.map((sect, sidx) => (
@@ -310,18 +310,18 @@ export default function ServiceSlugPage({ params }: PageProps) {
 
         {/* 5. Dynamic Page Galleries (For Spare Parts & Erection) */}
         {galleryImages.length > 0 && (
-          <section className="py-12 bg-muted/20 border-b border-border/60">
+          <section className="section-padding bg-muted/20 border-b border-border/60">
             <Container>
               
               {/* Header */}
               <div className="max-w-3xl mb-10 text-left space-y-2">
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                  <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                  <span className="text-primary eyebrow">
                     VISUAL DIRECTORY
                   </span>
                 </div>
-                <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
+                <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
                   {pageData.galleryTitle}
                 </h2>
               </div>
@@ -352,7 +352,7 @@ export default function ServiceSlugPage({ params }: PageProps) {
         )}
 
         {/* 6. Form Section */}
-        <section className="py-12 bg-background border-b border-border/60">
+        <section className="section-padding bg-background border-b border-border/60">
           <Container className="text-left">
             <div className="p-8 lg:p-12 rounded-xl bg-card border border-border/80 flex flex-col md:flex-row md:items-center justify-between gap-8 shadow-sm">
               <div className="space-y-3">

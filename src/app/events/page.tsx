@@ -184,17 +184,17 @@ export default function EventsPage() {
         />
 
         {/* ── 2. Commitment & Value Pillars ── */}
-        <section className="py-16 lg:py-20 bg-background border-b border-border">
+        <section className="section-padding bg-background border-b border-border">
           <Container className="space-y-12">
             
             <div className="max-w-3xl space-y-3">
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                <span className="text-primary eyebrow">
                   OUR GLOBAL EXHIBITIONS
                 </span>
               </div>
-              <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white leading-tight">
+              <h2 className="heading-primary text-[#0A1A3B] dark:text-white leading-tight">
                 ENGINEERING VALUE &amp; <span className="text-primary inline-block">GLOBAL TRADE FAIRS</span>
               </h2>
               <p className="text-muted-foreground text-sm sm:text-base leading-relaxed font-normal">
@@ -246,18 +246,18 @@ export default function EventsPage() {
         </section>
 
         {/* ── 3. Exhibitions Gallery & Filter Tabs ── */}
-        <section className="py-16 lg:py-24 bg-muted/40 border-b border-border">
+        <section className="section-padding bg-muted/40 border-b border-border">
           <Container className="space-y-10">
             
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div>
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                  <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                  <span className="text-primary eyebrow">
                     PHOTO SHOWCASE
                   </span>
                 </div>
-                <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
+                <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
                   EXHIBITION <span className="text-primary inline-block">GALLERY ({filteredEvents.length})</span>
                 </h2>
               </div>
@@ -342,7 +342,7 @@ export default function EventsPage() {
         </section>
 
         {/* ── 4. Next Exhibition Meeting CTA Section ── */}
-        <section className="py-16 lg:py-20 bg-background border-b border-border">
+        <section className="section-padding bg-background border-b border-border">
           <Container>
             <div className="p-8 sm:p-12 rounded-xl bg-secondary text-secondary-foreground shadow-2xl border border-border/30 relative overflow-hidden flex flex-col lg:flex-row lg:items-center justify-between gap-8">
               <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
@@ -350,11 +350,11 @@ export default function EventsPage() {
               <div className="space-y-3 max-w-2xl">
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                  <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                  <span className="text-primary eyebrow">
                     CONNECT WITH OUR ENGINEERS
                   </span>
                 </div>
-                <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-white">
+                <h2 className="heading-primary text-white">
                   MEET US AT THE NEXT <span className="text-primary inline-block">GLOBAL INDUSTRIAL EXPO</span>
                 </h2>
                 <p className="text-xs sm:text-sm text-gray-300 font-medium leading-relaxed">

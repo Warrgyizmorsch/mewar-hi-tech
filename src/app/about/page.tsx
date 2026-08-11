@@ -174,17 +174,17 @@ export default function About() {
         />
 
         {/* ── 2. Interactive Multi-Card Image Showcase / Carousel ── */}
-        <section className="py-14 bg-muted/40 border-b border-border">
+        <section className="section-padding bg-muted/40 border-b border-border">
           <div className="max-w-[1720px] mx-auto px-6 lg:px-8 space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
               <div>
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                  <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                  <span className="text-primary eyebrow">
                     FACTORY &amp; ENGINEERING SHOWCASE
                   </span>
                 </div>
-                <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
+                <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
                   MANUFACTURING <span className="text-primary inline-block">FACILITY GALLERY</span>
                 </h2>
               </div>
@@ -198,7 +198,7 @@ export default function About() {
         </section>
 
         {/* ── 3. 100% In-House Manufacturing Section ── */}
-        <section className="py-16 lg:py-24 bg-background border-b border-border">
+        <section className="section-padding bg-background border-b border-border">
           <div className="max-w-[1720px] mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               
@@ -209,11 +209,11 @@ export default function About() {
                 <div>
                   <div className="flex items-center gap-3 mb-2">
                     <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                    <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                    <span className="text-primary eyebrow">
                       CRUSHER MANUFACTURING PIONEERS
                     </span>
                   </div>
-                  <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white leading-tight">
+                  <h2 className="heading-primary text-[#0A1A3B] dark:text-white leading-tight">
                     100% IN-HOUSE &amp; <span className="text-primary inline-block">HI-TECH MANUFACTURING</span>
                   </h2>
                 </div>
@@ -284,7 +284,7 @@ export default function About() {
         </section>
 
         {/* ── 4. Robust Design & Quality Policy Section ── */}
-        <section className="py-16 lg:py-24 bg-muted border-b border-border">
+        <section className="section-padding bg-muted border-b border-border">
           <div className="max-w-[1720px] mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
@@ -295,11 +295,11 @@ export default function About() {
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 mb-2">
                     <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                    <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                    <span className="text-primary eyebrow">
                       ENGINEERING MASTERY
                     </span>
                   </div>
-                  <h3 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
+                  <h3 className="heading-primary text-[#0A1A3B] dark:text-white">
                     A POWERFUL &amp; <span className="text-primary inline-block">ROBUST DESIGN</span>
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -343,11 +343,11 @@ export default function About() {
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 mb-2">
                     <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                    <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                    <span className="text-primary eyebrow">
                       ZERO COMPROMISE
                     </span>
                   </div>
-                  <h3 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
+                  <h3 className="heading-primary text-[#0A1A3B] dark:text-white">
                     QUALITY <span className="text-primary inline-block">POLICY</span>
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -378,7 +378,7 @@ export default function About() {
         </section>
 
         {/* ── 5. 3D Model Viewer & Team Experts ── */}
-        <section className="py-16 lg:py-24 bg-background border-b border-border">
+        <section className="section-padding bg-background border-b border-border">
           <div className="max-w-[1720px] mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             {/* 3D Model Viewer Container */}
@@ -414,11 +414,11 @@ export default function About() {
               <div>
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                  <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                  <span className="text-primary eyebrow">
                     HUMAN EXCELLENCE &amp; EXPERTISE
                   </span>
                 </div>
-                <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white leading-tight">
+                <h2 className="heading-primary text-[#0A1A3B] dark:text-white leading-tight">
                   A TEAM DEDICATED <span className="text-primary inline-block">OF EXPERTS</span>
                 </h2>
               </div>
@@ -445,17 +445,17 @@ export default function About() {
         </section>
 
         {/* ── 6. Advanced In-House Machinery & Equipment Capabilities ── */}
-        <section className="py-16 lg:py-24 bg-secondary text-secondary-foreground border-b border-border/20">
+        <section className="section-padding bg-secondary text-secondary-foreground border-b border-border/20">
           <div className="max-w-[1720px] mx-auto px-6 lg:px-8 space-y-12">
             
             <div className="text-center max-w-3xl mx-auto space-y-3">
               <div className="flex items-center justify-center gap-3 mb-2">
                 <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                <span className="text-primary eyebrow">
                   RESPECT, MISSION &amp; PHILOSOPHY
                 </span>
               </div>
-              <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-white">
+              <h2 className="heading-primary text-white">
                 OUR 100% IN-HOUSE <span className="text-primary inline-block">PRECISION EQUIPMENT</span>
               </h2>
               <p className="text-secondary-foreground/70 text-sm sm:text-base font-medium">
@@ -501,7 +501,7 @@ export default function About() {
         </section>
 
         {/* ── 7. Our Mission & Team Photo Celebration Section ── */}
-        <section className="py-16 lg:py-24 bg-background border-b border-border">
+        <section className="section-padding bg-background border-b border-border">
           <div className="max-w-[1720px] mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               
@@ -516,11 +516,11 @@ export default function About() {
                 <div>
                   <div className="flex items-center gap-3 mb-2">
                     <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                    <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                    <span className="text-primary eyebrow">
                       OUR SHARED VISION
                     </span>
                   </div>
-                  <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white leading-tight">
+                  <h2 className="heading-primary text-[#0A1A3B] dark:text-white leading-tight">
                     WE THRIVE ONLY WHEN <span className="text-primary inline-block">OUR ASSOCIATES DO</span>
                   </h2>
                 </div>

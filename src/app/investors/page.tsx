@@ -214,7 +214,7 @@ function InvestorTabsContent() {
         />
 
         {/* 2. Top Assurances Indicators Strip */}
-        <section className="py-8 bg-card border-b border-border/80 relative overflow-hidden">
+        <section className="section-padding-sm bg-card border-b border-border/80 relative overflow-hidden">
           <Container className="relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center divide-y md:divide-y-0 md:divide-x divide-border/60">
               <div className="flex items-center gap-3 px-4 pt-4 md:pt-0 first:pt-0">
@@ -243,7 +243,7 @@ function InvestorTabsContent() {
         </section>
 
         {/* 3. Main Content Grid */}
-        <section className="py-12 bg-background">
+        <section className="section-padding bg-background">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               

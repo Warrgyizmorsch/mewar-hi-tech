@@ -39,7 +39,7 @@ const CARDS_DATA = [
 export default function WhyKingsonSection() {
   return (
     <section
-      className="py-10 lg:py-14 text-white select-none relative"
+      className="section-padding-sm text-white select-none relative"
       style={{
         backgroundImage: "url('/images/construction_bg.webp')",
         backgroundSize: "cover",
@@ -55,11 +55,11 @@ export default function WhyKingsonSection() {
         <div className="max-w-4xl mb-12 text-left space-y-3">
           <div className="flex items-center gap-3 mb-2">
             <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-            <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+            <span className="text-primary eyebrow">
               WHY PARTNER WITH US
             </span>
           </div>
-          <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-white">
+          <h2 className="heading-primary text-white">
             SUPPLIERS OF HEAVY DUTY{" "}
             <span className="text-primary block">CRUSHING PLANTS</span>
           </h2>

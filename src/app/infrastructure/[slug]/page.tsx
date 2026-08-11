@@ -169,7 +169,7 @@ export default function InfrastructureDetailPage({ params }: PageProps) {
         />
 
         {/* Content Section */}
-        <section className="py-16 lg:py-24 bg-background">
+        <section className="section-padding bg-background">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
               
@@ -178,11 +178,11 @@ export default function InfrastructureDetailPage({ params }: PageProps) {
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 mb-2">
                     <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                    <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                    <span className="text-primary eyebrow">
                       TECHNICAL SPECIFICATIONS
                     </span>
                   </div>
-                  <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
+                  <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
                     ABOUT OUR <span className="text-primary inline-block">{config.title}</span>
                   </h2>
                 </div>

@@ -53,7 +53,7 @@ const HeroSection: React.FC = () => {
 
 
       {/* Bottom Horizontal Highlight Strip (Puzzolana Style) */}
-      <div className="absolute bottom-0 left-0 w-full z-20 pb-8 pt-12 bg-gradient-to-t from-black/80 to-transparent">
+      <div className="hidden lg:block absolute bottom-0 left-0 w-full z-20 pb-8 pt-12 bg-gradient-to-t from-black/80 to-transparent">
         <div className="max-w-[1720px] mx-auto px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-8 xl:gap-12">
             {highlights.map((item, idx) => (

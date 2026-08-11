@@ -295,7 +295,7 @@ export default function ProductDetailPage({ params }: PageProps) {
               {/* Subheading Badge & Accent Divider */}
               <div className="flex items-center gap-3 pt-1">
                 <div className="w-10 h-[3px] bg-primary rounded-full" />
-                <p className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-primary">
+                <p className="text-[10px] sm:eyebrow inline- text-primary">
                   Engineered for Maximum Tonnage &bull; Built to Last
                 </p>
               </div>
@@ -380,7 +380,7 @@ export default function ProductDetailPage({ params }: PageProps) {
         </section>
 
         {/* ── 2. QUICK INFO METRIC STRIP ── */}
-        <section className="relative z-30 bg-[#0F1216] border-b border-border/10 py-8">
+        <section className="relative z-30 bg-[#0F1216] border-b border-border/10 section-padding-sm">
           <Container>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {quickMetrics.map((item, idx) => {
@@ -410,7 +410,7 @@ export default function ProductDetailPage({ params }: PageProps) {
         </section>
 
         {/* ── 3. EQUIPMENT OVERVIEW & FEATURES SECTION ── */}
-        <section className="py-14 lg:py-28 bg-background border-b border-border">
+        <section className="section-padding bg-background border-b border-border">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
               
@@ -425,7 +425,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                 <div>
                   <div className="flex items-center gap-3 mb-2">
                     <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                    <span className="text-primary font-bold text-[11px] sm:text-sm uppercase tracking-widest block font-sans">
+                    <span className="text-primary eyebrow">
                       EQUIPMENT NARRATIVE &bull; OVERVIEW
                     </span>
                   </div>
@@ -527,13 +527,13 @@ export default function ProductDetailPage({ params }: PageProps) {
         </section>
 
         {/* ── 4. INDUSTRIAL APPLICATIONS SHOWCASE ── */}
-        <section className="py-14 lg:py-24 bg-muted/30 border-b border-border">
+        <section className="section-padding bg-muted/30 border-b border-border">
           <Container className="space-y-12">
             
             <div className="max-w-2xl space-y-3 text-left">
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                <span className="text-primary font-bold text-[11px] sm:text-sm uppercase tracking-widest block font-sans">
+                <span className="text-primary eyebrow">
                   TARGET OPERATIONS &bull; APPLICATIONS
                 </span>
               </div>
@@ -598,13 +598,13 @@ export default function ProductDetailPage({ params }: PageProps) {
 
         {/* ── 5. DYNAMIC MEDIA SHOWCASE (GALLERY & VIDEO) ── */}
         {(allImages.length > 1 || product.video) && (
-          <section className="py-14 lg:py-28 bg-background border-b border-border">
+          <section className="section-padding bg-background border-b border-border">
             <Container className="space-y-8 lg:space-y-12">
               
               <div className="max-w-3xl space-y-2 text-left">
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                  <span className="text-primary font-bold text-[11px] sm:text-sm uppercase tracking-widest block font-sans">
+                  <span className="text-primary eyebrow">
                     VISUAL MEDIA &bull; TECHNICAL ASSETS
                   </span>
                 </div>
@@ -709,13 +709,13 @@ export default function ProductDetailPage({ params }: PageProps) {
 
         {/* ── 6. TECHNICAL SPECIFICATIONS TABLE ── */}
         {product.specsTable && (
-          <section className="py-14 lg:py-28 bg-muted/20 border-b border-border">
+          <section className="section-padding bg-muted/20 border-b border-border">
             <Container className="space-y-10">
               
               <div className="max-w-3xl space-y-2 text-left">
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                  <span className="text-primary font-bold text-[11px] sm:text-sm uppercase tracking-widest block font-sans">
+                  <span className="text-primary eyebrow">
                     ENGINEERING MATRIX &bull; TECHNICAL DATA
                   </span>
                 </div>
@@ -797,13 +797,13 @@ export default function ProductDetailPage({ params }: PageProps) {
         )}
 
         {/* ── 7. DOCUMENTATION & DOWNLOADS ── */}
-        <section className="py-12 lg:py-24 bg-background border-b border-border">
+        <section className="section-padding bg-background border-b border-border">
           <Container className="space-y-10">
             
             <div className="max-w-2xl space-y-2 text-left">
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                <span className="text-primary font-bold text-[11px] sm:text-sm uppercase tracking-widest block font-sans">
+                <span className="text-primary eyebrow">
                   TECHNICAL DOCUMENTATION
                 </span>
               </div>
@@ -888,7 +888,7 @@ export default function ProductDetailPage({ params }: PageProps) {
         </section>
 
         {/* ── 8. REDESIGNED ENGINEERING INQUIRY FORM ── */}
-        <section id="quote-section" className="py-14 lg:py-28 bg-muted/30 border-b border-border">
+        <section id="quote-section" className="section-padding bg-muted/30 border-b border-border">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
               
@@ -897,7 +897,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 mb-2">
                     <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                    <span className="text-primary font-bold text-[11px] sm:text-sm uppercase tracking-widest block font-sans">
+                    <span className="text-primary eyebrow">
                       DIRECT FACTORY QUOTE REQUEST
                     </span>
                   </div>
@@ -949,7 +949,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                   <div className="absolute top-0 right-0 w-48 h-48 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
                   <div>
-                    <span className="text-primary font-bold text-[10px] sm:text-xs uppercase tracking-widest block mb-1">
+                    <span className="text-primary eyebrow mb-1">
                       Technical Enquiry
                     </span>
                     <h3 className="common-heading text-lg sm:text-2xl text-foreground font-bold">
@@ -1059,14 +1059,14 @@ export default function ProductDetailPage({ params }: PageProps) {
 
         {/* ── 9. RELATED PRODUCTS CAROUSEL / GRID ── */}
         {relatedProducts.length > 0 && (
-          <section className="py-14 lg:py-28 bg-background border-b border-border">
+          <section className="section-padding bg-background border-b border-border">
             <Container className="space-y-8 lg:space-y-12">
               
               <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 text-left">
                 <div className="space-y-2">
                   <div className="flex items-center gap-3 mb-2">
                     <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                    <span className="text-primary font-bold text-[11px] sm:text-sm uppercase tracking-widest block font-sans">
+                    <span className="text-primary eyebrow">
                       PRODUCT PORTFOLIO
                     </span>
                   </div>

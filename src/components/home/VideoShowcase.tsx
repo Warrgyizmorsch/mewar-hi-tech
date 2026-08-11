@@ -17,7 +17,7 @@ export default function VideoShowcase() {
   }, []);
 
   return (
-    <section className="pt-8 pb-8 lg:pb-10 bg-background relative overflow-hidden">
+    <section className="section-padding-sm bg-background relative overflow-hidden">
       {/* Optional decorative background elements */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none" />
 
@@ -28,12 +28,12 @@ export default function VideoShowcase() {
             <div className="space-y-3 text-left">
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+                <span className="text-primary eyebrow">
                   INDUSTRIAL FOOTPRINTS
                 </span>
               </div>
 
-              <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white leading-tight">
+              <h2 className="heading-primary text-[#0A1A3B] dark:text-white leading-tight">
                 HEAVY ENGINEERING{" "}
                 <span className="text-primary inline-block">OPERATIONS</span>
               </h2>
@@ -110,7 +110,7 @@ export default function VideoShowcase() {
 
               {/* Bottom label */}
               <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between z-10 translate-y-2 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                <div className="bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 text-xs font-bold uppercase tracking-widest text-white flex items-center gap-2">
+                <div className="bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 eyebrow inline- text-white flex items-center gap-2">
                   <Play size={14} className="fill-current" />
                   Click to Watch Tour
                 </div>

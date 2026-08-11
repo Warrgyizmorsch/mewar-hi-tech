@@ -7,12 +7,12 @@ interface PlaceholderSectionProps {
 
 const PlaceholderSection: React.FC<PlaceholderSectionProps> = ({ pageName }) => {
   return (
-    <section className="py-24 lg:py-32 bg-background select-none">
+    <section className="section-padding bg-background select-none">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <div className="w-16 h-16 rounded-full bg-card border border-border flex items-center justify-center mx-auto mb-6 shadow-sm">
           <Construction size={28} className="text-primary" />
         </div>
-        <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white mb-3">
+        <h2 className="heading-primary text-[#0A1A3B] dark:text-white mb-3">
           COMING <span className="text-primary inline-block">SOON</span>
         </h2>
         <p className="text-muted-foreground text-sm font-medium">

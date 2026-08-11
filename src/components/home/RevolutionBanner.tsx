@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 const RevolutionBanner: React.FC = () => {
   return (
     <section
-      className="relative py-24 overflow-hidden select-none bg-secondary border-b border-border/10"
+      className="relative section-padding overflow-hidden select-none bg-secondary border-b border-border/10"
       style={{
         backgroundImage: `
           linear-gradient(rgba(244, 180, 0, 0.02) 1px, transparent 1px),

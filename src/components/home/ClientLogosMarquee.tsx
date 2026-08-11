@@ -35,11 +35,11 @@ const logoImages = [
 
 const ClientLogosMarquee: React.FC = () => {
   return (
-    <section className="py-8 lg:py-10 bg-background select-none border-y border-border/30 overflow-hidden">
+    <section className="section-padding-sm bg-background select-none border-y border-border/30 overflow-hidden">
       <Container>
         {/* Header */}
         <div className="flex items-center justify-center mb-8 md:mb-12">
-          <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold uppercase tracking-tight text-[#0A1A3B] dark:text-white text-center">
+          <h2 className="heading-primary text-[#0A1A3B] dark:text-white text-center">
             TRUSTED BY <span className="text-primary inline-block">INDUSTRY LEADERS</span>
           </h2>
         </div>

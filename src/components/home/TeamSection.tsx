@@ -46,7 +46,7 @@ export default function TeamSection() {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
   return (
-    <section className="relative py-8 sm:py-10 bg-[#FBFAF7] dark:bg-[#0B1020] text-foreground transition-colors duration-300 border-t border-b border-border/80 overflow-hidden select-none">
+    <section className="relative section-padding-sm bg-[#FBFAF7] dark:bg-[#0B1020] text-foreground transition-colors duration-300 border-t border-b border-border/80 overflow-hidden select-none">
       {/* Background Masked Grid & Gradient Orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
@@ -65,12 +65,12 @@ export default function TeamSection() {
         <div className="flex flex-col items-center justify-center text-center space-y-3 mb-8 lg:mb-10 px-4 mt-4">
           <div className="flex items-center justify-center gap-3 mb-2">
             <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-            <span className="text-primary font-bold text-[16px] sm:text-sm uppercase tracking-widest block font-sans">
+            <span className="text-primary eyebrow">
               OUR TEAM. YOUR SUPPORT.
             </span>
           </div>
 
-          <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0A1A3B] dark:text-white uppercase tracking-tight">
+          <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
             EXECUTIVE LEADERSHIP{" "}
             <span className="text-primary inline-block">DIRECTORY</span>
           </h2>

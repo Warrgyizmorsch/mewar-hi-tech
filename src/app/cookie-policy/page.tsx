@@ -21,7 +21,7 @@ export default function CookiePolicyPage() {
           image="/images/infrastructure-2.jpg"
         />
 
-        <section className="py-16 bg-background">
+        <section className="section-padding bg-background">
           <Container>
             <div className="max-w-4xl mx-auto space-y-12">
             
