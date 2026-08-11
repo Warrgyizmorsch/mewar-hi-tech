@@ -58,9 +58,7 @@ export default function BlogDetailPage() {
 
   // Form State
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
-    phone: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -214,27 +212,34 @@ export default function BlogDetailPage() {
     }
   };
 
-  const handleEnquirySubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    try {
-      const res = await fetch("/api/enquiry", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-      if (res.ok) {
-        toast.success("Enquiry submitted successfully!");
-        setFormData({ name: "", email: "", phone: "" });
-      } else {
-        toast.error("Failed to submit enquiry.");
-      }
-    } catch {
-      toast.error("Failed to submit enquiry.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!formData.email) return;
+        setIsSubmitting(true);
+    
+        try {
+          const res = await fetch("/api/newsletter", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email: formData.email }),
+          });
+    
+          const data = await res.json().catch(() => ({}));
+    
+          if (!res.ok) {
+            throw new Error(data.message || "Failed to subscribe");
+          }
+    
+          toast.success("Successfully subscribed to newsletter!");
+          setFormData({ email: "" });
+        } catch (error: any) {
+          toast.error(error.message || "Failed to subscribe. Please try again.");
+        } finally {
+          setIsSubmitting(false);
+        }
+      };
 
   if (loading) {
     return (
@@ -583,7 +588,7 @@ export default function BlogDetailPage() {
 
             {/* Right: Form */}
             <div className="w-full lg:w-auto shrink-0">
-              <form onSubmit={handleEnquirySubmit} className="flex flex-col sm:flex-row gap-3 w-full max-w-md ml-auto">
+              <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3 w-full max-w-md ml-auto">
                 <input
                   type="email"
                   value={formData.email}

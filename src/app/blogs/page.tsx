@@ -144,27 +144,33 @@ export default function Blogs() {
   };
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newsletterEmail.trim()) return;
-    setSubscribing(true);
-    try {
-      const res = await fetch("/api/newsletter", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: newsletterEmail }),
-      });
-      if (res.ok) {
-        toast.success("Successfully subscribed to our newsletter!");
+      e.preventDefault();
+      if (!newsletterEmail) return;
+      setSubscribing(true);
+  
+      try {
+        const res = await fetch("/api/newsletter", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email: newsletterEmail }),
+        });
+  
+        const data = await res.json().catch(() => ({}));
+  
+        if (!res.ok) {
+          throw new Error(data.message || "Failed to subscribe");
+        }
+  
+        toast.success("Successfully subscribed to newsletter!");
         setNewsletterEmail("");
-      } else {
-        toast.error("Failed to subscribe. Please try again.");
+      } catch (error: any) {
+        toast.error(error.message || "Failed to subscribe. Please try again.");
+      } finally {
+        setSubscribing(false);
       }
-    } catch {
-      toast.error("Failed to subscribe. Please try again.");
-    } finally {
-      setSubscribing(false);
-    }
-  };
+    };
 
   const formatDate = (dateStr: string) => {
     return new Date(dateStr).toLocaleDateString("en-US", {
