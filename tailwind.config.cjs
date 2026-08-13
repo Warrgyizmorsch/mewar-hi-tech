@@ -15,7 +15,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['var(--font-inter)', 'sans-serif'],
+        sans: ['var(--font-rubik)', 'sans-serif'],
         heading: ['var(--font-oswald)', 'sans-serif'],
       },
       colors: {
@@ -103,20 +103,6 @@ module.exports = {
         lg: "var(--shadow-lg)",
         xl: "var(--shadow-xl)",
         "2xl": "var(--shadow-2xl)"
-      },
-      fontFamily: {
-        sans: [
-          "'Inter'",
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif"
-        ],
-        heading: [
-          "'Teko'",
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif"
-        ]
       }
     }
   },

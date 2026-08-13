@@ -59,10 +59,10 @@ const InsightsPublicationsSection: React.FC = () => {
         
         {/* Sub-section 1: Insights */}
         <div className="space-y-10">
-          <div className="flex items-end justify-between flex-wrap gap-4">
+          <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-4 text-center md:text-left">
             <div>
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+              <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
+                <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                 <span className="text-primary eyebrow">
                   OUR NEWS
                 </span>

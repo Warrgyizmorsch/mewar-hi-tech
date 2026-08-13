@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useState, useEffect } from "react";
+import React, { use, useState, useEffect, useRef } from "react";
 import { notFound } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -129,6 +129,26 @@ export default function InfrastructureDetailPage({ params }: PageProps) {
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
+  const bulletsCarouselRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Only auto-slide on mobile screens (less than 768px where grid isn't active)
+      if (window.innerWidth >= 768) return;
+      
+      if (bulletsCarouselRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = bulletsCarouselRef.current;
+        if (scrollLeft + clientWidth >= scrollWidth - 20) {
+          bulletsCarouselRef.current.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          bulletsCarouselRef.current.scrollBy({ left: window.innerWidth * 0.85, behavior: "smooth" });
+        }
+      }
+    }, 2500);
+    
+    return () => clearInterval(interval);
+  }, []);
+
   const handlePrev = (e?: React.MouseEvent) => {
     e?.stopPropagation();
     if (lightboxIndex !== null) {
@@ -174,10 +194,10 @@ export default function InfrastructureDetailPage({ params }: PageProps) {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
               
               {/* Left Column: Description & Bullet details */}
-              <div className="lg:col-span-7 space-y-8 text-left">
+              <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
                 <div className="space-y-4">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                  <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                    <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                     <span className="text-primary eyebrow">
                       TECHNICAL SPECIFICATIONS
                     </span>
@@ -195,11 +215,14 @@ export default function InfrastructureDetailPage({ params }: PageProps) {
 
                 {/* Optional Casting/Technical Bullet Lists */}
                 {config.bullets && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+                  <div 
+                    ref={bulletsCarouselRef}
+                    className="flex overflow-x-auto md:grid md:grid-cols-2 gap-4 md:gap-6 pt-4 pb-4 md:pb-0 snap-x snap-mandatory hide-scrollbar -mx-6 px-6 md:mx-0 md:px-0"
+                  >
                     {config.bullets.map((bulletGroup) => (
                       <div
                         key={bulletGroup.sectionTitle}
-                        className="p-6 rounded-xl bg-muted/40 border border-border/80 space-y-3.5"
+                        className="w-[85vw] md:w-auto shrink-0 snap-center p-6 rounded-xl bg-muted/40 border border-border/80 space-y-3.5"
                       >
                         <h4 className="font-heading text-xs font-bold uppercase text-foreground tracking-wider border-b border-border/60 pb-2">
                           {bulletGroup.sectionTitle}

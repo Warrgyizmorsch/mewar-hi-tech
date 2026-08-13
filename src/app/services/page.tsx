@@ -224,10 +224,10 @@ export default function ServicesPage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               
               {/* Left Column: Copy */}
-              <div className="lg:col-span-7 space-y-6 text-left">
+              <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
                 <div className="space-y-3">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                  <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                    <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                     <span className="text-primary eyebrow">
                       OUR OPERATIONAL ASSURANCE
                     </span>
@@ -276,9 +276,9 @@ export default function ServicesPage() {
         {/* 4. Complete 3-Stage Service Lifecycle */}
         <section className="section-padding bg-muted/30 border-b border-border/60">
           <div className="max-w-[1720px] mx-auto px-6 lg:px-8">
-            <div className="max-w-3xl mb-14 text-left space-y-3">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+            <div className="max-w-3xl mb-14 text-center md:text-left space-y-3 mx-auto md:mx-0">
+              <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
+                <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                 <span className="text-primary eyebrow">
                   END-TO-END ENGAGEMENT
                 </span>
@@ -342,9 +342,9 @@ export default function ServicesPage() {
         {/* 5. Capabilities Tabs with links to slug pages */}
         <section className="section-padding bg-background border-b border-border/60">
           <div className="max-w-[1720px] mx-auto px-6 lg:px-8">
-            <div className="max-w-3xl mb-12 text-left space-y-3">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+            <div className="max-w-3xl mb-12 text-center md:text-left space-y-3 mx-auto md:mx-0">
+              <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
+                <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                 <span className="text-primary eyebrow">
                   CORE CAPABILITIES
                 </span>
@@ -440,10 +440,10 @@ export default function ServicesPage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
               
               {/* Info Box */}
-              <div className="lg:col-span-5 bg-card border border-border/80 p-8 lg:p-10 rounded-xl flex flex-col justify-between text-left space-y-8 shadow-sm">
+              <div className="lg:col-span-5 bg-card border border-border/80 p-8 lg:p-10 rounded-xl flex flex-col justify-between text-center lg:text-left space-y-8 shadow-sm">
                 <div className="space-y-4">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                  <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                    <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                     <span className="text-primary eyebrow">
                       IMMEDIATE ASSISTANCE
                     </span>
@@ -488,8 +488,8 @@ export default function ServicesPage() {
               <div className="lg:col-span-7 bg-card border border-border/80 p-8 lg:p-10 rounded-xl text-left shadow-sm flex flex-col justify-between">
                 <div>
                   <div className="space-y-2 mb-8">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                    <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                      <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                       <span className="text-primary eyebrow">
                         REQUEST TECHNICAL VISIT
                       </span>

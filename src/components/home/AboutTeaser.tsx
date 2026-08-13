@@ -29,8 +29,8 @@ const AboutTeaser: React.FC = () => {
 
           {/* 2. Text Copy Panel & Divider */}
           <div className="flex-grow lg:px-4 space-y-3 max-w-2xl text-center lg:text-left">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+            <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+              <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
               <span className="text-primary eyebrow">
                 AWARD WINNING
               </span>

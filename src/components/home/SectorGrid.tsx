@@ -11,9 +11,9 @@ import {
   ZoomOut,
   MapPin,
   Camera,
-  ChevronDown,
 } from "lucide-react";
 import BlobButton from "@/components/ui/BlobButton";
+import SelectionDropdown from "@/components/ui/SelectionDropdown";
 import Container from "../ui/Container";
 
 const SectorGrid: React.FC = () => {
@@ -49,9 +49,9 @@ const SectorGrid: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Left Form Panel */}
-          <div className="lg:col-span-5 py-4 bg-background flex flex-col justify-center h-full">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+          <div className="lg:col-span-5 py-4 bg-background flex flex-col justify-center h-full text-center lg:text-left">
+            <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+              <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
               <span className="text-primary eyebrow">
                 FIND YOUR PERFECT MACHINE
               </span>
@@ -67,31 +67,21 @@ const SectorGrid: React.FC = () => {
                 <div>
                   <label className="block text-[11px] text-muted-foreground mb-2 uppercase tracking-wider">Application</label>
                   <div className="relative">
-                    <select
+                    <SelectionDropdown
                       value={application}
-                      onChange={(e) => setApplication(e.target.value)}
-                      className="w-full appearance-none border-2 border-border rounded-lg text-sm bg-background text-foreground py-3 pl-4 pr-10 focus:outline-none focus:ring-0 focus:border-primary font-semibold transition-colors cursor-pointer"
-                    >
-                      <option>Quarry</option>
-                      <option>Mining</option>
-                      <option>Recycling</option>
-                    </select>
-                    <ChevronDown size={16} className="absolute right-3.5 top-3.5 text-muted-foreground pointer-events-none" />
+                      onChange={setApplication}
+                      options={["Quarry", "Mining", "Recycling"]}
+                    />
                   </div>
                 </div>
                 <div>
                   <label className="block text-[11px] text-muted-foreground mb-2 uppercase tracking-wider">Material</label>
                   <div className="relative">
-                    <select
+                    <SelectionDropdown
                       value={material}
-                      onChange={(e) => setMaterial(e.target.value)}
-                      className="w-full appearance-none border-2 border-border rounded-lg text-sm bg-background text-foreground py-3 pl-4 pr-10 focus:outline-none focus:ring-0 focus:border-primary font-semibold transition-colors cursor-pointer"
-                    >
-                      <option>Hard Rock</option>
-                      <option>Gravel</option>
-                      <option>Concrete</option>
-                    </select>
-                    <ChevronDown size={16} className="absolute right-3.5 top-3.5 text-muted-foreground pointer-events-none" />
+                      onChange={setMaterial}
+                      options={["Hard Rock", "Gravel", "Concrete"]}
+                    />
                   </div>
                 </div>
               </div>
@@ -99,31 +89,21 @@ const SectorGrid: React.FC = () => {
                 <div>
                   <label className="block text-[11px] text-muted-foreground mb-2 uppercase tracking-wider">Output Capacity</label>
                   <div className="relative">
-                    <select
+                    <SelectionDropdown
                       value={capacity}
-                      onChange={(e) => setCapacity(e.target.value)}
-                      className="w-full appearance-none border-2 border-border rounded-lg text-sm bg-background text-foreground py-3 pl-4 pr-10 focus:outline-none focus:ring-0 focus:border-primary font-semibold transition-colors cursor-pointer"
-                    >
-                      <option>150 - 300 TPH</option>
-                      <option>300 - 500 TPH</option>
-                      <option>500+ TPH</option>
-                    </select>
-                    <ChevronDown size={16} className="absolute right-3.5 top-3.5 text-muted-foreground pointer-events-none" />
+                      onChange={setCapacity}
+                      options={["150 - 300 TPH", "300 - 500 TPH", "500+ TPH"]}
+                    />
                   </div>
                 </div>
                 <div>
                   <label className="block text-[11px] text-muted-foreground mb-2 uppercase tracking-wider">Power Source</label>
                   <div className="relative">
-                    <select
+                    <SelectionDropdown
                       value={power}
-                      onChange={(e) => setPower(e.target.value)}
-                      className="w-full appearance-none border-2 border-border rounded-lg text-sm bg-background text-foreground py-3 pl-4 pr-10 focus:outline-none focus:ring-0 focus:border-primary font-semibold transition-colors cursor-pointer"
-                    >
-                      <option>Electric</option>
-                      <option>Diesel</option>
-                      <option>Hybrid</option>
-                    </select>
-                    <ChevronDown size={16} className="absolute right-3.5 top-3.5 text-muted-foreground pointer-events-none" />
+                      onChange={setPower}
+                      options={["Electric", "Diesel", "Hybrid"]}
+                    />
                   </div>
                 </div>
               </div>

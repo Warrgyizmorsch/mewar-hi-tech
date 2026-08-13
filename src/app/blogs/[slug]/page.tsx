@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -55,6 +55,23 @@ export default function BlogDetailPage() {
   const [loading, setLoading] = useState(true);
   const [activeHeading, setActiveHeading] = useState<string>("");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const relatedArticlesRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (window.innerWidth >= 768) return;
+      if (relatedArticlesRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = relatedArticlesRef.current;
+        if (scrollLeft + clientWidth >= scrollWidth - 20) {
+          relatedArticlesRef.current.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          relatedArticlesRef.current.scrollBy({ left: window.innerWidth * 0.85, behavior: "smooth" });
+        }
+      }
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
 
   // Form State
   const [formData, setFormData] = useState({
@@ -531,9 +548,16 @@ export default function BlogDetailPage() {
                   View All <ArrowLeft size={16} className="rotate-180" />
                 </Link>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              <div 
+                ref={relatedArticlesRef}
+                className="flex overflow-x-auto gap-5 sm:gap-6 lg:gap-8 pb-4 snap-x snap-mandatory hide-scrollbar -mx-6 px-6 sm:mx-0 sm:px-0 text-left cursor-grab active:cursor-grabbing"
+              >
                 {relatedBlogs.map((post, index) => (
-                  <Link key={index} href={`/blogs/${post.slug}`} className="group block bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all border border-border flex flex-col h-full">
+                  <Link 
+                    key={index} 
+                    href={`/blogs/${post.slug}`} 
+                    className="w-[85vw] sm:w-[320px] lg:w-[360px] xl:w-[400px] shrink-0 snap-center group block bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/50 transition-all duration-300 border border-border flex flex-col justify-between"
+                  >
                     <div className="relative aspect-[4/3] overflow-hidden bg-muted">
                       <Image src={post.coverImage} alt={post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                       <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm">

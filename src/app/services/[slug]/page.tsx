@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useState, useEffect } from "react";
+import React, { use, useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -144,6 +144,30 @@ export default function ServiceSlugPage({ params }: PageProps) {
   const pageData = PAGES_DATA[slug] || PAGES_DATA["after-sales"];
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
+  const trustStripRef = useRef<HTMLDivElement>(null);
+  const sectionsCarouselRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (window.innerWidth >= 768) return;
+      
+      const refs = [trustStripRef, sectionsCarouselRef];
+      
+      refs.forEach(ref => {
+        if (ref.current) {
+          const { scrollLeft, scrollWidth, clientWidth } = ref.current;
+          if (scrollLeft + clientWidth >= scrollWidth - 20) {
+            ref.current.scrollTo({ left: 0, behavior: "smooth" });
+          } else {
+            ref.current.scrollBy({ left: window.innerWidth * 0.85, behavior: "smooth" });
+          }
+        }
+      });
+    }, 2500);
+    
+    return () => clearInterval(interval);
+  }, []);
+
   // Generate local gallery files if needed
   const galleryImages: string[] = [];
   if (pageData.galleryPrefix && pageData.galleryCount) {
@@ -165,25 +189,27 @@ export default function ServiceSlugPage({ params }: PageProps) {
           image={pageData.heroImage}
         />
 
-        {/* 2. Top Trust Indicators Strip */}
         <section className="section-padding-sm bg-card border-b border-border/80 relative overflow-hidden">
           <Container className="relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center divide-y md:divide-y-0 md:divide-x divide-border/60">
-              <div className="flex items-center gap-3 px-4 pt-4 md:pt-0 first:pt-0">
+            <div 
+              ref={trustStripRef}
+              className="flex overflow-x-auto md:grid md:grid-cols-3 gap-0 md:gap-6 items-center divide-x-0 md:divide-x divide-border/60 pb-2 md:pb-0 snap-x snap-mandatory hide-scrollbar -mx-4 px-4 md:mx-0 md:px-0"
+            >
+              <div className="shrink-0 snap-center w-[85vw] md:w-auto p-4 md:p-0 flex items-center justify-center gap-3">
                 <ShieldCheck size={20} className="text-primary shrink-0 stroke-[2.2]" />
                 <div className="text-left">
                   <span className="block text-xs font-bold uppercase text-foreground">Guaranteed Quality</span>
                   <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Repair, Replace &amp; Return</span>
                 </div>
               </div>
-              <div className="flex items-center gap-3 px-4 pt-4 md:pt-0">
+              <div className="shrink-0 snap-center w-[85vw] md:w-auto p-4 md:p-0 flex items-center justify-center gap-3">
                 <Clock size={20} className="text-primary shrink-0 stroke-[2.2]" />
                 <div className="text-left">
                   <span className="block text-xs font-bold uppercase text-foreground">48-Hr SLA response</span>
                   <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Anywhere in India</span>
                 </div>
               </div>
-              <div className="flex items-center gap-3 px-4 pt-4 md:pt-0">
+              <div className="shrink-0 snap-center w-[85vw] md:w-auto p-4 md:p-0 flex items-center justify-center gap-3">
                 <Award size={20} className="text-primary shrink-0 stroke-[2.2]" />
                 <div className="text-left">
                   <span className="block text-xs font-bold uppercase text-foreground">ISO Certified</span>
@@ -273,40 +299,96 @@ export default function ServiceSlugPage({ params }: PageProps) {
         </section>
 
         {/* 4. Page Specific Details: Bullet Sections (For After Sales) */}
-        {pageData.sections && (
-          <section className="section-padding bg-muted/20 border-b border-border/60">
-            <Container>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {pageData.sections.map((sect, sidx) => (
-                  <div
-                    key={sidx}
-                    className="p-6 rounded-xl bg-card border border-border/80 flex flex-col justify-between text-left space-y-4 shadow-xs"
-                  >
-                    <div className="space-y-3">
-                      <h3 className="font-bold text-base text-foreground font-heading">
-                        {sect.title}
-                      </h3>
-                      <p className="text-xs text-muted-foreground font-semibold leading-relaxed">
-                        {sect.desc}
-                      </p>
-                    </div>
+        {pageData.sections && (() => {
+          const withoutBullets = pageData.sections.filter(s => !s.bullets);
+          const withBullets = pageData.sections.filter(s => s.bullets);
 
-                    {sect.bullets && (
-                      <ul className="space-y-2 pt-3 border-t border-border/60">
-                        {sect.bullets.map((b, bi) => (
-                          <li key={bi} className="flex items-start gap-2 text-xs font-bold text-foreground/90 leading-snug">
-                            <CheckCircle2 size={13} className="text-primary shrink-0 mt-0.5 stroke-[2.5]" />
-                            <span>{b}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+          return (
+            <section className="section-padding bg-muted/20 border-b border-border/60">
+              <Container>
+                {/* Mobile: vertical stack */}
+                <div className="flex flex-col md:hidden gap-4">
+                  {pageData.sections.map((sect, sidx) => (
+                    <div
+                      key={sidx}
+                      className="p-6 rounded-xl bg-card border border-border/80 flex flex-col justify-start text-left space-y-4 shadow-xs"
+                    >
+                      <div className="space-y-3">
+                        <h3 className="font-bold text-base text-foreground font-heading">
+                          {sect.title}
+                        </h3>
+                        <p className="text-xs text-muted-foreground font-semibold leading-relaxed">
+                          {sect.desc}
+                        </p>
+                      </div>
+                      {sect.bullets && (
+                        <ul className="space-y-2 pt-3 border-t border-border/60">
+                          {sect.bullets.map((b, bi) => (
+                            <li key={bi} className="flex items-start gap-2 text-xs font-bold text-foreground/90 leading-snug">
+                              <CheckCircle2 size={13} className="text-primary shrink-0 mt-0.5 stroke-[2.5]" />
+                              <span>{b}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Desktop: smart 2-column layout — short cards left, tall card right */}
+                <div className="hidden md:grid md:grid-cols-2 gap-8">
+                  {/* Left column: cards without bullets stacked */}
+                  <div className="flex flex-col gap-6">
+                    {withoutBullets.map((sect, sidx) => (
+                      <div
+                        key={sidx}
+                        className="flex-1 p-6 rounded-xl bg-card border border-border/80 flex flex-col justify-start text-left space-y-4 shadow-xs hover:shadow-md hover:border-primary/30 transition-all duration-300"
+                      >
+                        <div className="space-y-3">
+                          <h3 className="font-bold text-base text-foreground font-heading">
+                            {sect.title}
+                          </h3>
+                          <p className="text-xs text-muted-foreground font-semibold leading-relaxed">
+                            {sect.desc}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </Container>
-          </section>
-        )}
+
+                  {/* Right column: card with bullets */}
+                  <div className="flex flex-col">
+                    {withBullets.map((sect, sidx) => (
+                      <div
+                        key={sidx}
+                        className="flex-1 p-6 rounded-xl bg-card border border-border/80 flex flex-col justify-start text-left space-y-4 shadow-xs hover:shadow-md hover:border-primary/30 transition-all duration-300"
+                      >
+                        <div className="space-y-3">
+                          <h3 className="font-bold text-base text-foreground font-heading">
+                            {sect.title}
+                          </h3>
+                          <p className="text-xs text-muted-foreground font-semibold leading-relaxed">
+                            {sect.desc}
+                          </p>
+                        </div>
+                        {sect.bullets && (
+                          <ul className="space-y-2 pt-3 border-t border-border/60">
+                            {sect.bullets.map((b, bi) => (
+                              <li key={bi} className="flex items-start gap-2 text-xs font-bold text-foreground/90 leading-snug">
+                                <CheckCircle2 size={13} className="text-primary shrink-0 mt-0.5 stroke-[2.5]" />
+                                <span>{b}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </Container>
+            </section>
+          );
+        })()}
 
         {/* 5. Dynamic Page Galleries (For Spare Parts & Erection) */}
         {galleryImages.length > 0 && (
@@ -314,9 +396,9 @@ export default function ServiceSlugPage({ params }: PageProps) {
             <Container>
               
               {/* Header */}
-              <div className="max-w-3xl mb-10 text-left space-y-2">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+              <div className="max-w-3xl mb-10 text-center md:text-left space-y-2 mx-auto md:mx-0">
+                <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
+                  <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                   <span className="text-primary eyebrow">
                     VISUAL DIRECTORY
                   </span>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useState } from "react";
+import React, { use, useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -68,6 +68,45 @@ export default function ProductDetailPage({ params }: PageProps) {
 
   // Active Main Image in Gallery Section
   const [selectedGalleryIndex, setSelectedGalleryIndex] = useState(0);
+
+  const featuresCarouselRef = useRef<HTMLDivElement>(null);
+  const applicationsCarouselRef = useRef<HTMLDivElement>(null);
+  const brochuresCarouselRef = useRef<HTMLDivElement>(null);
+  const quoteCarouselRef = useRef<HTMLDivElement>(null);
+  const relatedCarouselRef = useRef<HTMLDivElement>(null);
+  const statsCarouselRef = useRef<HTMLDivElement>(null);
+
+  // Auto-play all sliders on mobile
+  useEffect(() => {
+    const refs = [
+      featuresCarouselRef,
+      applicationsCarouselRef,
+      brochuresCarouselRef,
+      quoteCarouselRef,
+      relatedCarouselRef,
+      statsCarouselRef
+    ];
+
+    const interval = setInterval(() => {
+      // Only auto-slide on mobile screens (less than 640px)
+      if (window.innerWidth >= 640) return;
+      
+      refs.forEach(ref => {
+        if (ref.current) {
+          const { scrollLeft, scrollWidth, clientWidth } = ref.current;
+          // If we reached the end, snap back to start
+          if (scrollLeft + clientWidth >= scrollWidth - 20) {
+            ref.current.scrollTo({ left: 0, behavior: "smooth" });
+          } else {
+            // Scroll by approx one card width
+            ref.current.scrollBy({ left: window.innerWidth * 0.85, behavior: "smooth" });
+          }
+        }
+      });
+    }, 2500); // Auto slide every 2.5 seconds
+    
+    return () => clearInterval(interval);
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -235,7 +274,7 @@ export default function ProductDetailPage({ params }: PageProps) {
     <div className="bg-background min-h-screen text-foreground select-none flex flex-col justify-between">
       <Header />
 
-      <main className="flex-grow pb-[72px] sm:pb-0">
+      <main className="flex-grow">
         
         {/* ── 1. PREMIUM INDUSTRIAL HERO SECTION ── */}
         <section className="relative z-20 bg-[#0B0D0F] text-white pt-24 pb-16 lg:pt-36 lg:pb-32 overflow-hidden border-b border-border/10">
@@ -382,13 +421,16 @@ export default function ProductDetailPage({ params }: PageProps) {
         {/* ── 2. QUICK INFO METRIC STRIP ── */}
         <section className="relative z-30 bg-[#0F1216] border-b border-border/10 section-padding-sm">
           <Container>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            <div 
+              ref={statsCarouselRef}
+              className="flex overflow-x-auto sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 pb-4 sm:pb-0 snap-x snap-mandatory hide-scrollbar -mx-6 px-6 sm:mx-0 sm:px-0"
+            >
               {quickMetrics.map((item, idx) => {
                 const IconComponent = item.icon;
                 return (
                   <div
                     key={idx}
-                    className="p-3.5 sm:p-5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-primary/40 transition-all duration-300 text-left space-y-2 group"
+                    className="w-[85vw] sm:w-auto shrink-0 snap-center p-3.5 sm:p-5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-primary/40 transition-all duration-300 text-left space-y-2 group"
                   >
                     <div className="flex items-center justify-between">
                       <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
@@ -420,11 +462,11 @@ export default function ProductDetailPage({ params }: PageProps) {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="lg:col-span-7 space-y-6 text-left"
+                className="lg:col-span-7 space-y-6 text-center lg:text-left"
               >
                 <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                  <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                    <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                     <span className="text-primary eyebrow">
                       EQUIPMENT NARRATIVE &bull; OVERVIEW
                     </span>
@@ -443,11 +485,14 @@ export default function ProductDetailPage({ params }: PageProps) {
                   <h3 className="common-heading text-sm uppercase tracking-wider text-foreground">
                     Core Design Highlights &amp; Mechanisms:
                   </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5">
+                  <div 
+                    ref={featuresCarouselRef}
+                    className="flex overflow-x-auto sm:grid sm:grid-cols-2 gap-3 sm:gap-3.5 pb-4 sm:pb-0 snap-x snap-mandatory hide-scrollbar -mx-6 px-6 sm:mx-0 sm:px-0"
+                  >
                     {product.features.map((feature, idx) => (
                       <div
                         key={idx}
-                        className="flex items-start gap-3 p-3 sm:p-4 rounded-xl bg-card border border-border/80 shadow-sm"
+                        className="w-[85vw] sm:w-auto shrink-0 snap-center flex items-start gap-3 p-3 sm:p-4 rounded-xl bg-card border border-border/80 shadow-sm"
                       >
                         <CheckCircle2 size={14} className="text-primary shrink-0 mt-0.5" />
                         <span className="text-[11px] sm:text-xs text-muted-foreground font-semibold leading-relaxed">
@@ -530,9 +575,9 @@ export default function ProductDetailPage({ params }: PageProps) {
         <section className="section-padding bg-muted/30 border-b border-border">
           <Container className="space-y-12">
             
-            <div className="max-w-2xl space-y-3 text-left">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+            <div className="max-w-2xl space-y-3 text-center md:text-left mx-auto md:mx-0">
+              <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
+                <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                 <span className="text-primary eyebrow">
                   TARGET OPERATIONS &bull; APPLICATIONS
                 </span>
@@ -545,13 +590,16 @@ export default function ProductDetailPage({ params }: PageProps) {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 text-left">
+            <div 
+              ref={applicationsCarouselRef}
+              className="flex overflow-x-auto sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 pb-6 sm:pb-0 snap-x snap-mandatory hide-scrollbar -mx-6 px-6 sm:mx-0 sm:px-0 text-left"
+            >
               {applications.map((app, idx) => {
                 const IconComponent = app.icon;
                 return (
                   <div
                     key={idx}
-                    className="p-4 sm:p-6 rounded-xl bg-card border border-border shadow-sm hover:border-primary/50 hover:shadow-md transition-all duration-300 space-y-3 sm:space-y-4 group"
+                    className="w-[85vw] sm:w-auto shrink-0 snap-center p-4 sm:p-6 rounded-xl bg-card border border-border shadow-sm hover:border-primary/50 hover:shadow-md transition-all duration-300 space-y-3 sm:space-y-4 group"
                   >
                     <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                       <IconComponent size={20} />
@@ -569,7 +617,7 @@ export default function ProductDetailPage({ params }: PageProps) {
               })}
 
               {/* Extra Summary Card */}
-              <div className="p-4 sm:p-6 rounded-xl bg-primary text-primary-foreground shadow-lg flex flex-col justify-between space-y-3 sm:space-y-4 text-left">
+              <div className="w-[85vw] sm:w-auto shrink-0 snap-center p-4 sm:p-6 rounded-xl bg-primary text-primary-foreground shadow-lg flex flex-col justify-between space-y-3 sm:space-y-4 text-left">
                 <div className="space-y-2">
                   <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center text-white">
                     <Sparkles size={20} />
@@ -601,9 +649,9 @@ export default function ProductDetailPage({ params }: PageProps) {
           <section className="section-padding bg-background border-b border-border">
             <Container className="space-y-8 lg:space-y-12">
               
-              <div className="max-w-3xl space-y-2 text-left">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+              <div className="max-w-3xl space-y-2 text-center md:text-left mx-auto md:mx-0">
+                <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
+                  <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                   <span className="text-primary eyebrow">
                     VISUAL MEDIA &bull; TECHNICAL ASSETS
                   </span>
@@ -712,9 +760,9 @@ export default function ProductDetailPage({ params }: PageProps) {
           <section className="section-padding bg-muted/20 border-b border-border">
             <Container className="space-y-10">
               
-              <div className="max-w-3xl space-y-2 text-left">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+              <div className="max-w-3xl space-y-2 text-center md:text-left mx-auto md:mx-0">
+                <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
+                  <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                   <span className="text-primary eyebrow">
                     ENGINEERING MATRIX &bull; TECHNICAL DATA
                   </span>
@@ -800,9 +848,9 @@ export default function ProductDetailPage({ params }: PageProps) {
         <section className="section-padding bg-background border-b border-border">
           <Container className="space-y-10">
             
-            <div className="max-w-2xl space-y-2 text-left">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+            <div className="max-w-2xl space-y-2 text-center md:text-left mx-auto md:mx-0">
+              <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
+                <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                 <span className="text-primary eyebrow">
                   TECHNICAL DOCUMENTATION
                 </span>
@@ -812,10 +860,13 @@ export default function ProductDetailPage({ params }: PageProps) {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-left">
+            <div 
+              ref={brochuresCarouselRef}
+              className="flex overflow-x-auto sm:grid sm:grid-cols-3 gap-4 sm:gap-6 pb-6 sm:pb-0 snap-x snap-mandatory hide-scrollbar -mx-6 px-6 sm:mx-0 sm:px-0 text-left"
+            >
               
               {/* Card 1: Main Product Brochure */}
-              <div className="p-4 sm:p-6 rounded-xl bg-card border border-border shadow-sm hover:border-primary/50 transition-all space-y-3 sm:space-y-4 flex flex-col justify-between">
+              <div className="w-[85vw] sm:w-auto shrink-0 snap-center p-4 sm:p-6 rounded-xl bg-card border border-border shadow-sm hover:border-primary/50 transition-all space-y-3 sm:space-y-4 flex flex-col justify-between">
                 <div className="space-y-3">
                   <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary border border-primary/20 flex items-center justify-center">
                     <FileText size={22} />
@@ -830,15 +881,15 @@ export default function ProductDetailPage({ params }: PageProps) {
                 <BlobButton
                   onClick={() => window.dispatchEvent(new Event("open-brochure-modal"))}
                   variant="secondary"
-                  className="!w-full !py-2.5 sm:!py-3 !text-[10px] sm:!text-xs !font-bold !uppercase !tracking-wider flex items-center justify-center gap-2"
+                  className="!w-full !px-2 !py-2.5 sm:!py-3 !text-[10px] xl:!text-[11px] !font-bold !uppercase !tracking-wider flex flex-col xl:flex-row items-center justify-center gap-1.5 text-center leading-tight"
                 >
-                  <Download size={14} />
+                  <Download size={16} className="shrink-0 mb-0.5 xl:mb-0" />
                   <span>Download Catalog (PDF)</span>
                 </BlobButton>
               </div>
 
               {/* Card 2: Technical Data Sheet */}
-              <div className="p-4 sm:p-6 rounded-xl bg-card border border-border shadow-sm hover:border-primary/50 transition-all space-y-3 sm:space-y-4 flex flex-col justify-between">
+              <div className="w-[85vw] sm:w-auto shrink-0 snap-center p-4 sm:p-6 rounded-xl bg-card border border-border shadow-sm hover:border-primary/50 transition-all space-y-3 sm:space-y-4 flex flex-col justify-between">
                 <div className="space-y-3">
                   <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary border border-primary/20 flex items-center justify-center">
                     <Cpu size={22} />
@@ -853,32 +904,32 @@ export default function ProductDetailPage({ params }: PageProps) {
                 <BlobButton
                   onClick={() => window.dispatchEvent(new Event("open-brochure-modal"))}
                   variant="secondary"
-                  className="!w-full !py-2.5 sm:!py-3 !text-[10px] sm:!text-xs !font-bold !uppercase !tracking-wider flex items-center justify-center gap-2"
+                  className="!w-full !px-2 !py-2.5 sm:!py-3 !text-[10px] xl:!text-[11px] !font-bold !uppercase !tracking-wider flex flex-col xl:flex-row items-center justify-center gap-1.5 text-center leading-tight"
                 >
-                  <Download size={14} />
+                  <Download size={16} className="shrink-0 mb-0.5 xl:mb-0" />
                   <span>Request Spec Sheet</span>
                 </BlobButton>
               </div>
 
-              {/* Card 3: Foundation Layout Guide */}
-              <div className="p-4 sm:p-6 rounded-xl bg-card border border-border shadow-sm hover:border-primary/50 transition-all space-y-3 sm:space-y-4 flex flex-col justify-between">
+              {/* Card 3: Civil Foundations */}
+              <div className="w-[85vw] sm:w-auto shrink-0 snap-center p-4 sm:p-6 rounded-xl bg-card border border-border shadow-sm hover:border-primary/50 transition-all space-y-3 sm:space-y-4 flex flex-col justify-between">
                 <div className="space-y-3">
                   <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary border border-primary/20 flex items-center justify-center">
-                    <Building2 size={22} />
+                    <Layers size={22} />
                   </div>
                   <h3 className="common-heading text-sm sm:text-base text-foreground font-bold">
-                    Foundation &amp; Plant Layout
+                    Civil Foundation Layouts
                   </h3>
                   <p className="text-xs text-muted-foreground font-semibold leading-relaxed">
-                    General arrangement drawings and foundation structural load guidelines.
+                    Detailed AutoCAD diagrams for base foundations and anchor bolt placements.
                   </p>
                 </div>
                 <BlobButton
                   onClick={() => document.getElementById("quote-section")?.scrollIntoView({ behavior: "smooth" })}
                   variant="secondary"
-                  className="!w-full !py-2.5 sm:!py-3 !text-[10px] sm:!text-xs !font-bold !uppercase !tracking-wider flex items-center justify-center gap-2"
+                  className="!w-full !px-2 !py-2.5 sm:!py-3 !text-[10px] xl:!text-[11px] !font-bold !uppercase !tracking-wider flex flex-col xl:flex-row items-center justify-center gap-1.5 text-center leading-tight"
                 >
-                  <FileCheck size={14} />
+                  <FileCheck size={16} className="shrink-0 mb-0.5 xl:mb-0" />
                   <span>Request CAD Layout</span>
                 </BlobButton>
               </div>
@@ -893,10 +944,10 @@ export default function ProductDetailPage({ params }: PageProps) {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
               
               {/* Info Column */}
-              <div className="lg:col-span-5 flex flex-col justify-between space-y-5 sm:space-y-8 text-left">
+              <div className="lg:col-span-5 flex flex-col justify-between space-y-5 sm:space-y-8 text-center lg:text-left">
                 <div className="space-y-4">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                  <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                    <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                     <span className="text-primary eyebrow">
                       DIRECT FACTORY QUOTE REQUEST
                     </span>
@@ -909,9 +960,12 @@ export default function ProductDetailPage({ params }: PageProps) {
                   </p>
                 </div>
 
-                <div className="space-y-4">
+                <div 
+                  ref={quoteCarouselRef}
+                  className="flex overflow-x-auto lg:flex-col gap-4 pb-4 lg:pb-0 snap-x snap-mandatory hide-scrollbar -mx-6 px-6 lg:mx-0 lg:px-0"
+                >
                   {/* Trust Badge 1 */}
-                  <div className="p-3.5 sm:p-5 rounded-xl bg-card border border-border shadow-sm flex items-start gap-4">
+                  <div className="w-[85vw] lg:w-auto shrink-0 snap-center p-3.5 sm:p-5 rounded-xl bg-card border border-border shadow-sm flex items-start gap-4">
                     <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
                       <Zap size={20} />
                     </div>
@@ -926,7 +980,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                   </div>
 
                   {/* Trust Badge 2 */}
-                  <div className="p-3.5 sm:p-5 rounded-xl bg-card border border-border shadow-sm flex items-start gap-4">
+                  <div className="w-[85vw] lg:w-auto shrink-0 snap-center p-3.5 sm:p-5 rounded-xl bg-card border border-border shadow-sm flex items-start gap-4">
                     <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
                       <PhoneCall size={20} />
                     </div>
@@ -1059,13 +1113,13 @@ export default function ProductDetailPage({ params }: PageProps) {
 
         {/* ── 9. RELATED PRODUCTS CAROUSEL / GRID ── */}
         {relatedProducts.length > 0 && (
-          <section className="section-padding bg-background border-b border-border">
+          <section className="pt-6 md:pt-8 lg:pt-10 pb-0 bg-background border-b border-border">
             <Container className="space-y-8 lg:space-y-12">
               
-              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 text-left">
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 text-center sm:text-left">
                 <div className="space-y-2">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                  <div className="flex items-center justify-center sm:justify-start gap-3 mb-2">
+                    <div className="hidden sm:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                     <span className="text-primary eyebrow">
                       PRODUCT PORTFOLIO
                     </span>
@@ -1084,12 +1138,15 @@ export default function ProductDetailPage({ params }: PageProps) {
                 </Link>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8 text-left">
+              <div 
+                ref={relatedCarouselRef}
+                className="flex overflow-x-auto gap-5 sm:gap-6 lg:gap-8 pb-4 snap-x snap-mandatory hide-scrollbar -mx-6 px-6 sm:mx-0 sm:px-0 text-left cursor-grab active:cursor-grabbing"
+              >
                 {relatedProducts.map((relItem) => (
                   <Link
                     key={relItem.slug}
                     href={`/products/${relItem.slug}`}
-                    className="group rounded-xl bg-card border border-border overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/50 transition-all duration-300 flex flex-col justify-between"
+                    className="w-[85vw] sm:w-[320px] lg:w-[360px] xl:w-[400px] shrink-0 snap-center group rounded-xl bg-card border border-border overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/50 transition-all duration-300 flex flex-col justify-between"
                   >
                     <div className="p-4 sm:p-6 bg-muted/30 border-b border-border flex items-center justify-center h-[160px] sm:h-[220px] relative overflow-hidden">
                       <img

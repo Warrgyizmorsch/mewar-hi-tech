@@ -198,24 +198,23 @@ export default function Blogs() {
 
         {/* Category Filter Bar */}
         <section className="border-b border-border/60 bg-background sticky top-0 z-30">
-          <Container className="py-4">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">
+          <Container className="py-3 sm:py-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+              <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground uppercase tracking-wider shrink-0">
                 <Filter size={15} className="text-primary" />
                 <span>Filter by Category:</span>
               </div>
 
-              <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-hide">
+              <div className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 hide-scrollbar w-full sm:w-auto -mx-4 px-4 sm:mx-0 sm:px-0">
                 {categories.map((cat) => (
                   <button
                     key={cat}
                     onClick={() => handleCategoryChange(cat)}
-                    className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all duration-200
-                      ${
-                        category === cat
-                          ? "bg-primary text-primary-foreground shadow-md"
-                          : "bg-muted text-foreground border border-border hover:border-primary/50"
-                      }`}
+                    className={`shrink-0 px-4 py-2 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                      category === cat
+                        ? "bg-primary text-primary-foreground shadow-xs"
+                        : "bg-card text-foreground border border-border/80 hover:border-primary/50"
+                    }`}
                   >
                     {cat === "all" ? "All" : cat}
                   </button>
@@ -352,7 +351,7 @@ export default function Blogs() {
                   {/* Section Header */}
                   <div className="text-center space-y-3 mb-10">
                     <div className="flex items-center justify-center gap-3 mb-2">
-                      <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                      <div className="hidden sm:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                       <span className="text-primary eyebrow inline-">
                         LATEST ARTICLES
                       </span>

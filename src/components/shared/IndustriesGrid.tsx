@@ -38,10 +38,10 @@ const IndustriesGrid: React.FC = () => {
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
         {/* Header */}
         <div
-          className="max-w-2xl mb-16"
+          className="max-w-2xl mb-16 text-center md:text-left mx-auto md:mx-0"
         >
-          <div className="flex items-center gap-3 mb-2">
-            <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+          <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
+            <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
             <span className="text-primary eyebrow">
               INDUSTRIES WE SERVE
             </span>

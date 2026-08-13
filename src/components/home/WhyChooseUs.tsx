@@ -69,10 +69,10 @@ export default function WhyChooseUs() {
         {/* Top Section: Split Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-start">
           {/* Left Column: Text & Icons */}
-          <div className="lg:col-span-5 space-y-8 lg:pr-6">
+          <div className="lg:col-span-5 space-y-8 lg:pr-6 text-center lg:text-left">
             <div className="space-y-4">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+              <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                 <span className="text-primary eyebrow">
                   WHY CHOOSE US
                 </span>

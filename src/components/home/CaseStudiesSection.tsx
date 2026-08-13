@@ -54,7 +54,7 @@ export default function CaseStudiesSection() {
         {/* Section Header */}
         <div className="mx-auto text-center space-y-3 mb-12">
           <div className="flex items-center justify-center gap-3 mb-2">
-            <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+            <div className="hidden sm:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
             <span className="text-primary eyebrow">
               RELATED CASE STUDIES
             </span>

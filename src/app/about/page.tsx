@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ShieldCheck,
@@ -143,6 +143,28 @@ const MACHINERY_LIST = [
 
 export default function About() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  // Auto-play machinery slider on mobile
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Only auto-slide on mobile screens (less than 640px)
+      if (window.innerWidth >= 640) return;
+      
+      if (carouselRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+        // If we reached the end, snap back to start
+        if (scrollLeft + clientWidth >= scrollWidth - 20) {
+          carouselRef.current.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          // Scroll by approx one card width
+          carouselRef.current.scrollBy({ left: window.innerWidth * 0.85, behavior: "smooth" });
+        }
+      }
+    }, 2500); // Auto slide every 2.5 seconds
+    
+    return () => clearInterval(interval);
+  }, []);
 
   // Auto-play slider
   useEffect(() => {
@@ -176,10 +198,10 @@ export default function About() {
         {/* ── 2. Interactive Multi-Card Image Showcase / Carousel ── */}
         <section className="section-padding bg-muted/40 border-b border-border">
           <div className="max-w-[1720px] mx-auto px-6 lg:px-8 space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 text-center sm:text-left">
               <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                <div className="flex items-center justify-center sm:justify-start gap-3 mb-2">
+                  <div className="hidden sm:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                   <span className="text-primary eyebrow">
                     FACTORY &amp; ENGINEERING SHOWCASE
                   </span>
@@ -204,11 +226,11 @@ export default function About() {
               
               {/* Left Column: Text Content */}
               <div
-                className="lg:col-span-7 space-y-6"
+                className="lg:col-span-7 space-y-6 text-center lg:text-left"
               >
                 <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                  <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                    <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                     <span className="text-primary eyebrow">
                       CRUSHER MANUFACTURING PIONEERS
                     </span>
@@ -293,8 +315,8 @@ export default function About() {
                 className="p-8 lg:p-10 rounded-none bg-card border-2 border-border shadow-xl space-y-6 flex flex-col justify-between"
               >
                 <div className="space-y-4">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                  <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                    <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                     <span className="text-primary eyebrow">
                       ENGINEERING MASTERY
                     </span>
@@ -341,8 +363,8 @@ export default function About() {
                 className="p-8 lg:p-10 rounded-none bg-card border-2 border-border shadow-xl space-y-6 flex flex-col justify-between"
               >
                 <div className="space-y-4">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                  <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                    <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                     <span className="text-primary eyebrow">
                       ZERO COMPROMISE
                     </span>
@@ -409,11 +431,11 @@ export default function About() {
 
             {/* Team Dedicated of Experts Content */}
             <div
-              className="lg:col-span-6 space-y-6"
+              className="lg:col-span-6 space-y-6 text-center lg:text-left"
             >
               <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                  <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                   <span className="text-primary eyebrow">
                     HUMAN EXCELLENCE &amp; EXPERTISE
                   </span>
@@ -450,7 +472,7 @@ export default function About() {
             
             <div className="text-center max-w-3xl mx-auto space-y-3">
               <div className="flex items-center justify-center gap-3 mb-2">
-                <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                <div className="hidden sm:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                 <span className="text-primary eyebrow">
                   RESPECT, MISSION &amp; PHILOSOPHY
                 </span>
@@ -463,8 +485,11 @@ export default function About() {
               </p>
             </div>
 
-            {/* Machinery Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Machinery Grid / Slider on Mobile */}
+            <div 
+              ref={carouselRef}
+              className="flex overflow-x-auto sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 pb-6 sm:pb-0 snap-x snap-mandatory hide-scrollbar -mx-6 px-6 sm:mx-0 sm:px-0"
+            >
               {MACHINERY_LIST.map((item, idx) => {
                 const IconComp = item.icon;
                 return (
@@ -474,7 +499,7 @@ export default function About() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: idx * 0.05 }}
-                    className="p-6 rounded-xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 space-y-4 flex flex-col justify-between"
+                    className="w-[85vw] sm:w-auto shrink-0 snap-center p-6 rounded-xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 space-y-4 flex flex-col justify-between"
                   >
                     <div className="space-y-3">
                       <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
@@ -511,11 +536,11 @@ export default function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="lg:col-span-6 space-y-6"
+                className="lg:col-span-6 space-y-6 text-center lg:text-left"
               >
                 <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                  <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                    <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                     <span className="text-primary eyebrow">
                       OUR SHARED VISION
                     </span>

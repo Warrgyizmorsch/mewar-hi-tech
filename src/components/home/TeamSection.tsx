@@ -64,7 +64,7 @@ export default function TeamSection() {
         {/* Header Section */}
         <div className="flex flex-col items-center justify-center text-center space-y-3 mb-8 lg:mb-10 px-4 mt-4">
           <div className="flex items-center justify-center gap-3 mb-2">
-            <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+            <div className="hidden sm:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
             <span className="text-primary eyebrow">
               OUR TEAM. YOUR SUPPORT.
             </span>

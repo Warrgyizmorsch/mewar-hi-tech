@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Container from "@/components/ui/Container";
+import SelectionDropdown from "@/components/ui/SelectionDropdown";
 import { CASE_STUDIES, CaseStudy } from "@/data/case-studies-data";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
@@ -69,13 +70,28 @@ export default function CaseStudiesPage() {
         <Container className="pt-12">
 
           {/* Filter Tab Bar */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10 pb-6 border-b border-border/60">
-            <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-10 pb-6 border-b border-border/60">
+            <div className="flex w-full md:w-auto items-center gap-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">
               <Filter size={15} className="text-primary" />
               <span>Filter Projects:</span>
             </div>
 
-            <div className="flex items-center p-1 rounded-2xl bg-muted border border-border/80 shadow-inner">
+            {/* Mobile Dropdown */}
+            <div className="w-full md:hidden">
+              <SelectionDropdown
+                value={filter}
+                onChange={(val) => setFilter(val as any)}
+                options={[
+                  { value: "all", label: `All Projects (${CASE_STUDIES.length})` },
+                  { value: "national", label: `National (India) (${CASE_STUDIES.filter(s => s.type === "national").length})` },
+                  { value: "international", label: `International (${CASE_STUDIES.filter(s => s.type === "international").length})` }
+                ]}
+                className="text-xs font-semibold"
+              />
+            </div>
+
+            {/* Desktop Pill Buttons */}
+            <div className="hidden md:flex items-center p-1 rounded-2xl bg-muted border border-border/80 shadow-inner">
               <button
                 onClick={() => setFilter("all")}
                 className={`px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 ${

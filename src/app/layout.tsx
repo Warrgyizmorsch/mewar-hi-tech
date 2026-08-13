@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import Script from 'next/script';
 import { ThemeProvider } from '@/components/ui/ThemeContext';
 
-import { Inter, Oswald } from 'next/font/google';
+import { Rubik, Oswald } from 'next/font/google';
 
 import '@radix-ui/themes/styles.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -16,9 +16,9 @@ import { ExperienceProvider } from '@/components/3d/ExperienceManager';
 import FloatingButton from '@/components/3d/FloatingButton';
 import ModelViewerScript from '@/components/ModelViewerScript';
 
-const inter = Inter({ 
+const rubik = Rubik({ 
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-rubik',
   display: 'swap',
 });
 
@@ -42,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${oswald.variable}`} suppressHydrationWarning>
+    <html lang="en" data-scroll-behavior="smooth" className={`${rubik.variable} ${oswald.variable}`} suppressHydrationWarning>
       <body className="min-h-screen font-sans" suppressHydrationWarning>
 
         <Script id="chunk-load-error-handler" strategy="beforeInteractive">

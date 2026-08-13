@@ -5,6 +5,7 @@ import Enquiry from "@/models/Enquiry";
 import Career from "@/models/Career";
 import Newsletter from "@/models/Newsletter";
 import Link from "next/link";
+import DashboardFilter from "@/components/admin/DashboardFilter";
 
 export const dynamic = "force-dynamic";
 
@@ -63,10 +64,7 @@ export default async function AdminDashboard() {
          <div className="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col">
             <div className="flex justify-between items-center mb-6">
                <h3 className="text-lg font-bold text-[#2B3674]">Activity Overview</h3>
-               <select className="bg-gray-50 border border-gray-200 text-sm rounded-lg px-3 py-1 outline-none text-gray-600 font-medium">
-                  <option>Monthly</option>
-                  <option>Weekly</option>
-               </select>
+               <DashboardFilter />
             </div>
             <div className="flex-1 min-h-[300px] flex items-center justify-center border-2 border-dashed border-gray-100 rounded-xl bg-gray-50/50">
                <p className="text-gray-400 font-medium text-sm">Chart Data Visualization Area</p>

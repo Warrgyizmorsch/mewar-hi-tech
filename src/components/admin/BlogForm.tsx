@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import { Save, ArrowLeft, Image as ImageIcon } from "lucide-react";
 import BlobButton from "@/components/ui/BlobButton";
+import SelectionDropdown from "@/components/ui/SelectionDropdown";
 import Link from "next/link";
 import "react-quill-new/dist/quill.snow.css";
 import { toast } from "react-toastify";
@@ -382,18 +383,13 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
               <label className="text-sm font-bold text-muted-foreground uppercase tracking-wider">
                 Category
               </label>
-              <select
+              <SelectionDropdown
                 value={formData.category}
-                onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                className="w-full px-4 py-2 bg-background border border-border rounded-lg text-foreground focus:outline-none focus:border-primary"
-              >
-                <option value="">Select a category...</option>
-                {categories.map((cat) => (
-                  <option key={cat} value={cat}>
-                    {cat}
-                  </option>
-                ))}
-              </select>
+                onChange={(val) => setFormData({ ...formData, category: val })}
+                options={categories}
+                placeholder="Select a category..."
+                className="w-full text-foreground"
+              />
               <div className="text-xs text-muted-foreground text-center my-1">OR</div>
               <input
                 type="text"

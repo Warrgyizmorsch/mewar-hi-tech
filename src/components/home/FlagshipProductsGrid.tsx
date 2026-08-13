@@ -54,7 +54,7 @@ const FlagshipProductsGrid: React.FC = () => {
         {/* Section Header */}
         <div className="mx-auto text-center space-y-3">
           <div className="flex items-center justify-center gap-3 mb-2">
-            <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+            <div className="hidden sm:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
             <span className="text-primary eyebrow">
               DOWNLOAD RESOURCES
             </span>
@@ -180,9 +180,9 @@ const FlagshipProductsGrid: React.FC = () => {
 
         {/* Video Banner Card */}
         <div className="bg-card p-6 sm:p-8 rounded-2xl flex flex-col lg:flex-row lg:items-center justify-between gap-6 border border-border/80 shadow-sm hover:shadow-md transition-shadow">
-          <div className="flex-grow space-y-2">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+          <div className="flex-grow space-y-2 text-center lg:text-left">
+            <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+              <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
               <span className="text-primary eyebrow">
                 SEE IT IN ACTION
               </span>

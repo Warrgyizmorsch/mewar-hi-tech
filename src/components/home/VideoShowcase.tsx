@@ -25,9 +25,9 @@ export default function VideoShowcase() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Text Block */}
           <div className="lg:col-span-5 flex flex-col justify-center space-y-6">
-            <div className="space-y-3 text-left">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+            <div className="space-y-3 text-center lg:text-left">
+              <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                 <span className="text-primary eyebrow">
                   INDUSTRIAL FOOTPRINTS
                 </span>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Calendar,
@@ -21,6 +21,7 @@ import PageHero from "@/components/layout/PageHero";
 import Container from "@/components/ui/Container";
 import BlobButton from "@/components/ui/BlobButton";
 import Link from "next/link";
+import SelectionDropdown from "@/components/ui/SelectionDropdown";
 
 interface EventItem {
   id: number;
@@ -140,6 +141,28 @@ const CATEGORIES = ["All", "India Expos", "International Expos"] as const;
 export default function EventsPage() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  // Auto-play mobile slider
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Only auto-slide on mobile screens (less than 768px - md breakpoint)
+      if (window.innerWidth >= 768) return;
+      
+      if (carouselRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+        // If we reached the end, snap back to start
+        if (scrollLeft + clientWidth >= scrollWidth - 20) {
+          carouselRef.current.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          // Scroll by approx one card width
+          carouselRef.current.scrollBy({ left: window.innerWidth * 0.85, behavior: "smooth" });
+        }
+      }
+    }, 2500); // Auto slide every 2.5 seconds
+    
+    return () => clearInterval(interval);
+  }, []);
 
   const filteredEvents =
     activeCategory === "All"
@@ -187,9 +210,9 @@ export default function EventsPage() {
         <section className="section-padding bg-background border-b border-border">
           <Container className="space-y-12">
             
-            <div className="max-w-3xl space-y-3">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+            <div className="max-w-3xl space-y-3 text-center md:text-left mx-auto md:mx-0">
+              <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
+                <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                 <span className="text-primary eyebrow">
                   OUR GLOBAL EXHIBITIONS
                 </span>
@@ -203,9 +226,12 @@ export default function EventsPage() {
             </div>
 
             {/* Quality Commitment Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div 
+              ref={carouselRef}
+              className="flex overflow-x-auto md:grid md:grid-cols-3 gap-6 pb-6 md:pb-0 snap-x snap-mandatory hide-scrollbar -mx-6 px-6 md:mx-0 md:px-0"
+            >
               
-              <div className="p-6 rounded-xl bg-card border border-border shadow-sm space-y-3 hover:border-primary/50 transition-colors">
+              <div className="w-[85vw] md:w-auto shrink-0 snap-center p-6 rounded-xl bg-card border border-border shadow-sm space-y-3 hover:border-primary/50 transition-colors">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
                   <ShieldCheck size={24} />
                 </div>
@@ -217,7 +243,7 @@ export default function EventsPage() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-xl bg-card border border-border shadow-sm space-y-3 hover:border-primary/50 transition-colors">
+              <div className="w-[85vw] md:w-auto shrink-0 snap-center p-6 rounded-xl bg-card border border-border shadow-sm space-y-3 hover:border-primary/50 transition-colors">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
                   <Globe2 size={24} />
                 </div>
@@ -229,7 +255,7 @@ export default function EventsPage() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-xl bg-card border border-border shadow-sm space-y-3 hover:border-primary/50 transition-colors">
+              <div className="w-[85vw] md:w-auto shrink-0 snap-center p-6 rounded-xl bg-card border border-border shadow-sm space-y-3 hover:border-primary/50 transition-colors">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
                   <CheckCircle2 size={24} />
                 </div>
@@ -249,26 +275,36 @@ export default function EventsPage() {
         <section className="section-padding bg-muted/40 border-b border-border">
           <Container className="space-y-10">
             
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-              <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+            <div className="flex flex-col items-center justify-center text-center gap-6">
+              <div className="flex flex-col items-center justify-center">
+                <div className="flex items-center justify-center gap-3 mb-2">
+                  <div className="hidden sm:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                   <span className="text-primary eyebrow">
                     PHOTO SHOWCASE
                   </span>
+                  <div className="hidden sm:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                 </div>
                 <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
                   EXHIBITION <span className="text-primary inline-block">GALLERY ({filteredEvents.length})</span>
                 </h2>
               </div>
 
-              {/* Category Filter Pills */}
-              <div className="flex flex-wrap gap-2">
+              {/* Category Filter Mobile Dropdown */}
+              <div className="w-full sm:hidden max-w-sm mx-auto">
+                <SelectionDropdown
+                  value={activeCategory}
+                  onChange={setActiveCategory}
+                  options={CATEGORIES.map(cat => ({ value: cat, label: cat }))}
+                />
+              </div>
+
+              {/* Category Filter Desktop Pills */}
+              <div className="hidden sm:flex flex-wrap justify-center gap-2">
                 {CATEGORIES.map((cat) => (
                   <button
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
-                    className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
+                    className={`px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
                       activeCategory === cat
                         ? "bg-primary text-white shadow-lg shadow-primary/25 scale-105"
                         : "bg-card border border-border text-muted-foreground hover:text-foreground hover:bg-muted"
@@ -347,9 +383,9 @@ export default function EventsPage() {
             <div className="p-8 sm:p-12 rounded-xl bg-secondary text-secondary-foreground shadow-2xl border border-border/30 relative overflow-hidden flex flex-col lg:flex-row lg:items-center justify-between gap-8">
               <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
-              <div className="space-y-3 max-w-2xl">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+              <div className="space-y-3 max-w-2xl text-center lg:text-left mx-auto lg:mx-0">
+                <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                  <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                   <span className="text-primary eyebrow">
                     CONNECT WITH OUR ENGINEERS
                   </span>

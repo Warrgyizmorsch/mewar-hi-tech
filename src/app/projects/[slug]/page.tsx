@@ -108,9 +108,9 @@ export default function ProjectDetailPage({ params }: PageProps) {
           <Container>
             {/* Header info */}
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
-              <div className="space-y-2 text-left">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+              <div className="space-y-2 text-center md:text-left">
+                <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
+                  <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                   <span className="text-primary eyebrow">
                     INSTALLATION PORTFOLIO
                   </span>

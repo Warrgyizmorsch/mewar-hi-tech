@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import {
   FileText,
@@ -174,6 +174,23 @@ function InvestorTabsContent() {
   const [activeTab, setActiveTab] = useState(initialTabFromQuery);
   const [searchTerm, setSearchTerm] = useState("");
 
+  const assurancesRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (window.innerWidth >= 768) return;
+      if (assurancesRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = assurancesRef.current;
+        if (scrollLeft + clientWidth >= scrollWidth - 20) {
+          assurancesRef.current.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          assurancesRef.current.scrollBy({ left: window.innerWidth * 0.85, behavior: "smooth" });
+        }
+      }
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
+
   useEffect(() => {
     const tabParam = searchParams.get("tab");
     if (tabParam && INVESTOR_MENU.some((item) => item.slug === tabParam)) {
@@ -216,22 +233,25 @@ function InvestorTabsContent() {
         {/* 2. Top Assurances Indicators Strip */}
         <section className="section-padding-sm bg-card border-b border-border/80 relative overflow-hidden">
           <Container className="relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center divide-y md:divide-y-0 md:divide-x divide-border/60">
-              <div className="flex items-center gap-3 px-4 pt-4 md:pt-0 first:pt-0">
+            <div 
+              ref={assurancesRef}
+              className="flex overflow-x-auto md:grid md:grid-cols-3 gap-0 md:gap-6 items-center divide-x-0 md:divide-x divide-border/60 pb-2 md:pb-0 snap-x snap-mandatory hide-scrollbar -mx-4 px-4 md:mx-0 md:px-0"
+            >
+              <div className="shrink-0 snap-center w-[85vw] md:w-auto p-4 md:p-0 flex items-center justify-center gap-3">
                 <ShieldCheck size={20} className="text-primary shrink-0 stroke-[2.2]" />
                 <div className="text-left font-sans">
                   <span className="block text-xs font-bold uppercase text-foreground">Verified Governance</span>
                   <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">SEBI LODR Compliance</span>
                 </div>
               </div>
-              <div className="flex items-center gap-3 px-4 pt-4 md:pt-0">
+              <div className="shrink-0 snap-center w-[85vw] md:w-auto p-4 md:p-0 flex items-center justify-center gap-3">
                 <Clock size={20} className="text-primary shrink-0 stroke-[2.2]" />
                 <div className="text-left font-sans">
                   <span className="block text-xs font-bold uppercase text-foreground">Continuous Filing</span>
                   <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Quarterly &amp; Annual Filings</span>
                 </div>
               </div>
-              <div className="flex items-center gap-3 px-4 pt-4 md:pt-0">
+              <div className="shrink-0 snap-center w-[85vw] md:w-auto p-4 md:p-0 flex items-center justify-center gap-3">
                 <Award size={20} className="text-primary shrink-0 stroke-[2.2]" />
                 <div className="text-left font-sans">
                   <span className="block text-xs font-bold uppercase text-foreground">ISO Certified</span>
@@ -245,10 +265,39 @@ function InvestorTabsContent() {
         {/* 3. Main Content Grid */}
         <section className="section-padding bg-background">
           <Container>
+
+            {/* Mobile/Tablet: Horizontal Scrollable Tab Bar */}
+            <div className="lg:hidden mb-6">
+              <span className="text-[10px] font-bold text-primary uppercase tracking-widest block mb-3 font-sans">
+                Investor Categories
+              </span>
+              <div className="flex overflow-x-auto gap-2 pb-3 hide-scrollbar -mx-1 px-1">
+                {INVESTOR_MENU.map((menuItem) => {
+                  const Icon = menuItem.icon;
+                  const isActive = menuItem.slug === activeTab;
+                  return (
+                    <button
+                      type="button"
+                      key={menuItem.slug}
+                      onClick={() => handleTabChange(menuItem.slug)}
+                      className={`shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-full text-[11px] font-bold transition-all duration-300 cursor-pointer whitespace-nowrap ${
+                        isActive
+                          ? "bg-primary text-primary-foreground shadow-sm"
+                          : "bg-card border border-border/80 text-muted-foreground hover:text-foreground hover:border-foreground/30"
+                      }`}
+                    >
+                      <Icon size={14} className="shrink-0" />
+                      <span className="font-sans">{menuItem.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               
-              {/* Left Sidebar (Cols 1-4) - Instant Client-Side Tab Switching without Reload */}
-              <div className="lg:col-span-4 bg-card border border-border/85 rounded-xl p-5 space-y-2 shadow-xs">
+              {/* Left Sidebar (Cols 1-4) - Desktop Only */}
+              <div className="hidden lg:block lg:col-span-4 bg-card border border-border/85 rounded-xl p-5 space-y-2 shadow-xs">
                 <span className="text-[10px] font-bold text-primary uppercase tracking-widest block pl-3 mb-2 font-sans">
                   Investor Categories
                 </span>
@@ -297,7 +346,7 @@ function InvestorTabsContent() {
 
                 {/* CORPORATE GOVERNANCE PANEL */}
                 {activeTab === "corporate-governance" && (
-                  <div className="bg-card border border-border/80 p-8 rounded-xl space-y-6 shadow-sm">
+                  <div className="bg-card border border-border/80 p-5 sm:p-8 rounded-xl space-y-6 shadow-sm">
                     <h3 className="common-heading text-xl sm:text-2xl font-bold text-foreground uppercase tracking-tight">
                       Corporate Governance Policies
                     </h3>
@@ -308,15 +357,15 @@ function InvestorTabsContent() {
                       {CORPORATE_GOVERNANCE_DATA.map((item, idx) => (
                         <div
                           key={idx}
-                          className="flex items-center justify-between p-4 bg-background border border-border/60 rounded-xl hover:border-primary/45 transition-colors"
+                          className="flex items-center justify-between gap-3 p-4 bg-background border border-border/60 rounded-xl hover:border-primary/45 transition-colors"
                         >
-                          <div className="flex items-center gap-3">
+                          <div className="flex items-center gap-3 min-w-0 flex-1">
                             <CheckCircle2 size={16} className="text-primary shrink-0 stroke-[2.5]" />
                             <span className="text-xs font-bold text-foreground leading-tight">{item.title}</span>
                           </div>
                           <BlobButton href={item.link}
                             variant="secondary"
-                            className="!py-2 !px-4 text-[10px] font-bold uppercase tracking-wider shrink-0"
+                            className="!py-2 !px-3 sm:!px-4 text-[10px] font-bold uppercase tracking-wider shrink-0"
                           >
                             <span className="flex items-center gap-1.5">
                               <span>Click Here</span>
@@ -331,7 +380,7 @@ function InvestorTabsContent() {
 
                 {/* SHAREHOLDING PATTERN PANEL */}
                 {activeTab === "shareholding-pattern" && (
-                  <div className="bg-card border border-border/80 p-8 rounded-xl space-y-6 shadow-sm">
+                  <div className="bg-card border border-border/80 p-5 sm:p-8 rounded-xl space-y-6 shadow-sm">
                     <h3 className="common-heading text-xl sm:text-2xl font-bold text-foreground uppercase tracking-tight">
                       Shareholding Patterns
                     </h3>
@@ -339,12 +388,12 @@ function InvestorTabsContent() {
                       {filterList(SHAREHOLDING_DATA).map((item, idx) => (
                         <div
                           key={idx}
-                          className="flex items-center justify-between p-4 bg-background border border-border/60 rounded-xl"
+                          className="flex items-center justify-between gap-3 p-4 bg-background border border-border/60 rounded-xl"
                         >
-                          <span className="text-xs font-bold text-foreground">{item.quarter}</span>
+                          <span className="text-xs font-bold text-foreground min-w-0 flex-1">{item.quarter}</span>
                           <BlobButton href={item.link}
                             variant="secondary"
-                            className="!py-2 !px-4 text-[10px] font-bold uppercase tracking-wider"
+                            className="!py-2 !px-3 sm:!px-4 text-[10px] font-bold uppercase tracking-wider shrink-0"
                           >
                             <span className="flex items-center gap-1.5">
                               <span>Click Here</span>
@@ -359,7 +408,7 @@ function InvestorTabsContent() {
 
                 {/* SHAREHOLDERS MEETINGS PANEL */}
                 {activeTab === "shareholders-meetings" && (
-                  <div className="bg-card border border-border/80 p-8 rounded-xl space-y-6 shadow-sm">
+                  <div className="bg-card border border-border/80 p-5 sm:p-8 rounded-xl space-y-6 shadow-sm">
                     <h3 className="common-heading text-xl sm:text-2xl font-bold text-foreground uppercase tracking-tight">
                       Shareholders Meetings &amp; Resolutions
                     </h3>
@@ -367,12 +416,12 @@ function InvestorTabsContent() {
                       {filterList(SHAREHOLDERS_MEETINGS_DATA).map((item, idx) => (
                         <div
                           key={idx}
-                          className="flex items-center justify-between p-4 bg-background border border-border/60 rounded-xl"
+                          className="flex items-center justify-between gap-3 p-4 bg-background border border-border/60 rounded-xl"
                         >
-                          <span className="text-xs font-bold text-foreground leading-snug">{item.title}</span>
+                          <span className="text-xs font-bold text-foreground leading-snug min-w-0 flex-1">{item.title}</span>
                           <BlobButton href={item.link}
                             variant="secondary"
-                            className="!py-2 !px-4 text-[10px] font-bold uppercase tracking-wider"
+                            className="!py-2 !px-3 sm:!px-4 text-[10px] font-bold uppercase tracking-wider shrink-0"
                           >
                             <span className="flex items-center gap-1.5">
                               <span>Click Here</span>
@@ -387,7 +436,7 @@ function InvestorTabsContent() {
 
                 {/* BOARD MEETINGS PANEL */}
                 {activeTab === "board-meeting" && (
-                  <div className="bg-card border border-border/80 p-8 rounded-xl space-y-6 shadow-sm">
+                  <div className="bg-card border border-border/80 p-5 sm:p-8 rounded-xl space-y-6 shadow-sm">
                     <h3 className="common-heading text-xl sm:text-2xl font-bold text-foreground uppercase tracking-tight">
                       Board Meetings Notices &amp; Outcomes
                     </h3>
@@ -395,12 +444,12 @@ function InvestorTabsContent() {
                       {filterList(BOARD_MEETINGS_DATA).map((item, idx) => (
                         <div
                           key={idx}
-                          className="flex items-center justify-between p-4 bg-background border border-border/60 rounded-xl"
+                          className="flex items-center justify-between gap-3 p-4 bg-background border border-border/60 rounded-xl"
                         >
-                          <span className="text-xs font-bold text-foreground leading-snug">{item.title}</span>
+                          <span className="text-xs font-bold text-foreground leading-snug min-w-0 flex-1">{item.title}</span>
                           <BlobButton href={item.link}
                             variant="secondary"
-                            className="!py-2 !px-4 text-[10px] font-bold uppercase tracking-wider"
+                            className="!py-2 !px-3 sm:!px-4 text-[10px] font-bold uppercase tracking-wider shrink-0"
                           >
                             <span className="flex items-center gap-1.5">
                               <span>Click Here</span>
@@ -415,7 +464,7 @@ function InvestorTabsContent() {
 
                 {/* FINANCIAL RESULTS PANEL */}
                 {activeTab === "financial-results" && (
-                  <div className="bg-card border border-border/80 p-8 rounded-xl space-y-6 shadow-sm">
+                  <div className="bg-card border border-border/80 p-5 sm:p-8 rounded-xl space-y-6 shadow-sm">
                     <h3 className="common-heading text-xl sm:text-2xl font-bold text-foreground uppercase tracking-tight">
                       Financial Performance Results
                     </h3>
@@ -423,12 +472,12 @@ function InvestorTabsContent() {
                       {filterList(FINANCIAL_RESULTS_DATA).map((item, idx) => (
                         <div
                           key={idx}
-                          className="flex items-center justify-between p-4 bg-background border border-border/60 rounded-xl"
+                          className="flex items-center justify-between gap-3 p-4 bg-background border border-border/60 rounded-xl"
                         >
-                          <span className="text-xs font-bold text-foreground leading-relaxed">{item.title}</span>
+                          <span className="text-xs font-bold text-foreground leading-relaxed min-w-0 flex-1">{item.title}</span>
                           <BlobButton href={item.link}
                             variant="secondary"
-                            className="!py-2 !px-4 text-[10px] font-bold uppercase tracking-wider"
+                            className="!py-2 !px-3 sm:!px-4 text-[10px] font-bold uppercase tracking-wider shrink-0"
                           >
                             <span className="flex items-center gap-1.5">
                               <span>Click Here</span>
@@ -443,7 +492,7 @@ function InvestorTabsContent() {
 
                 {/* ANNUAL REPORTS PANEL */}
                 {activeTab === "annual-reports" && (
-                  <div className="bg-card border border-border/80 p-8 rounded-xl space-y-6 shadow-sm">
+                  <div className="bg-card border border-border/80 p-5 sm:p-8 rounded-xl space-y-6 shadow-sm">
                     <h3 className="common-heading text-xl sm:text-2xl font-bold text-foreground uppercase tracking-tight">
                       Annual Reports Directory
                     </h3>
@@ -476,7 +525,7 @@ function InvestorTabsContent() {
 
                 {/* ANNUAL RETURNS PANEL */}
                 {activeTab === "annual-returns" && (
-                  <div className="bg-card border border-border/80 p-8 rounded-xl space-y-6 shadow-sm">
+                  <div className="bg-card border border-border/80 p-5 sm:p-8 rounded-xl space-y-6 shadow-sm">
                     <h3 className="common-heading text-xl sm:text-2xl font-bold text-foreground uppercase tracking-tight">
                       Annual Returns (MGT-7) Filings
                     </h3>
@@ -509,7 +558,7 @@ function InvestorTabsContent() {
 
                 {/* SHAREHOLDER INFORMATION PANEL */}
                 {activeTab === "shareholder-information" && (
-                  <div className="bg-card border border-border/80 p-8 rounded-xl space-y-6 shadow-sm">
+                  <div className="bg-card border border-border/80 p-5 sm:p-8 rounded-xl space-y-6 shadow-sm">
                     <h3 className="common-heading text-xl sm:text-2xl font-bold text-foreground uppercase tracking-tight">
                       Shareholder Information &amp; Scrutinizer Reports
                     </h3>
@@ -585,7 +634,7 @@ function InvestorTabsContent() {
 
                 {/* INVESTOR CONTACTS PANEL */}
                 {activeTab === "investor-contacts" && (
-                  <div className="bg-card border border-border/80 p-8 rounded-xl space-y-6 shadow-sm">
+                  <div className="bg-card border border-border/80 p-5 sm:p-8 rounded-xl space-y-6 shadow-sm">
                     <h3 className="common-heading text-xl sm:text-2xl font-bold text-foreground uppercase tracking-tight">
                       Investor Contacts &amp; Redressal
                     </h3>
@@ -612,7 +661,7 @@ function InvestorTabsContent() {
 
                 {/* DISCLOSURE REGULATION 46 PANEL */}
                 {activeTab === "disclosure-regulation-46" && (
-                  <div className="bg-card border border-border/80 p-8 rounded-xl space-y-6 shadow-sm">
+                  <div className="bg-card border border-border/80 p-5 sm:p-8 rounded-xl space-y-6 shadow-sm">
                     <h3 className="common-heading text-xl sm:text-2xl font-bold text-foreground uppercase tracking-tight">
                       SEBI LODR Regulation 46 Disclosures
                     </h3>

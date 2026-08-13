@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "react-toastify";
 import {
@@ -25,6 +25,7 @@ import PageHero from "@/components/layout/PageHero";
 import MultiCardCarousel from "@/components/ui/MultiCardCarousel";
 import BlobButton from "@/components/ui/BlobButton";
 import Container from "@/components/ui/Container";
+import SelectionDropdown from "@/components/ui/SelectionDropdown";
 import { useTheme } from "@/components/ui/ThemeContext";
 
 // Slider Images Data
@@ -140,6 +141,28 @@ export default function CareersPage() {
     experience: "",
     message: "",
   });
+  const benefitsCarouselRef = useRef<HTMLDivElement>(null);
+
+  // Auto-play benefits slider on mobile
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Only auto-slide on mobile screens (less than 640px)
+      if (window.innerWidth >= 640) return;
+      
+      if (benefitsCarouselRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = benefitsCarouselRef.current;
+        // If we reached the end, snap back to start
+        if (scrollLeft + clientWidth >= scrollWidth - 20) {
+          benefitsCarouselRef.current.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          // Scroll by approx one card width
+          benefitsCarouselRef.current.scrollBy({ left: window.innerWidth * 0.85, behavior: "smooth" });
+        }
+      }
+    }, 2500); // Auto slide every 2.5 seconds
+    
+    return () => clearInterval(interval);
+  }, []);
 
   // Theme-aware illustration image
   const careerIllustration =
@@ -241,10 +264,10 @@ export default function CareersPage() {
         {/* ── 2. Culture & Facilities Multi-Card Slider Carousel ── */}
         <section className="section-padding bg-muted/40 border-b border-border">
           <Container className="space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 text-center sm:text-left">
               <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                <div className="flex items-center justify-center sm:justify-start gap-3 mb-2">
+                  <div className="hidden sm:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                   <span className="text-primary eyebrow">
                     WORKPLACE &amp; ENGINEERING ENVIRONMENT
                   </span>
@@ -272,11 +295,11 @@ export default function CareersPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-7 space-y-6"
+              className="lg:col-span-7 space-y-6 text-center lg:text-left"
             >
               <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                  <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                   <span className="text-primary eyebrow">
                     ENGINEERING &amp; GROWTH
                   </span>
@@ -290,8 +313,11 @@ export default function CareersPage() {
                 At Mewar Hitech, you&apos;ll work with the country&apos;s most talented engineers and dedicated workforce and thought leaders to shape the future of the industry.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <div className="p-4 rounded-xl bg-card border border-border space-y-2">
+              <div 
+                ref={benefitsCarouselRef}
+                className="flex overflow-x-auto sm:grid sm:grid-cols-2 gap-4 pt-2 pb-4 sm:pb-0 snap-x snap-mandatory hide-scrollbar -mx-6 px-6 sm:mx-0 sm:px-0"
+              >
+                <div className="w-[85vw] sm:w-auto shrink-0 snap-center p-4 rounded-xl bg-card border border-border space-y-2">
                   <div className="flex items-center gap-2 text-primary font-bold text-sm uppercase">
                     <Sparkles size={18} />
                     <span>Cutting-Edge Tech</span>
@@ -301,7 +327,7 @@ export default function CareersPage() {
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-card border border-border space-y-2">
+                <div className="w-[85vw] sm:w-auto shrink-0 snap-center p-4 rounded-xl bg-card border border-border space-y-2">
                   <div className="flex items-center gap-2 text-primary font-bold text-sm uppercase">
                     <Users size={18} />
                     <span>Collaborative Staff</span>
@@ -311,7 +337,7 @@ export default function CareersPage() {
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-card border border-border space-y-2">
+                <div className="w-[85vw] sm:w-auto shrink-0 snap-center p-4 rounded-xl bg-card border border-border space-y-2">
                   <div className="flex items-center gap-2 text-primary font-bold text-sm uppercase">
                     <Award size={18} />
                     <span>Recognized Excellence</span>
@@ -321,7 +347,7 @@ export default function CareersPage() {
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-card border border-border space-y-2">
+                <div className="w-[85vw] sm:w-auto shrink-0 snap-center p-4 rounded-xl bg-card border border-border space-y-2">
                   <div className="flex items-center gap-2 text-primary font-bold text-sm uppercase">
                     <CheckCircle2 size={18} />
                     <span>Career Advancement</span>
@@ -357,9 +383,9 @@ export default function CareersPage() {
         <section className="section-padding bg-muted/40 border-b border-border">
           <Container className="space-y-10">
             
-            <div className="max-w-3xl space-y-2">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+            <div className="max-w-3xl space-y-2 text-center md:text-left mx-auto md:mx-0">
+              <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
+                <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                 <span className="text-primary eyebrow">
                   IMMEDIATE HIRING
                 </span>
@@ -444,11 +470,11 @@ export default function CareersPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="lg:col-span-5 flex flex-col justify-between h-full space-y-6"
+                className="lg:col-span-5 flex flex-col justify-between h-full space-y-6 text-center lg:text-left"
               >
                 <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                  <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                    <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                     <span className="text-primary eyebrow">
                       DIRECT RESUME SUBMISSION
                     </span>
@@ -524,8 +550,8 @@ export default function CareersPage() {
                   <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
                   <div>
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                    <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                      <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                       <span className="text-primary eyebrow">
                         ONLINE JOB APPLICATION
                       </span>
@@ -595,18 +621,13 @@ export default function CareersPage() {
                         <label htmlFor="position" className="block text-[11px] font-bold uppercase tracking-wider text-muted-foreground mb-1.5">
                           Position Applied For *
                         </label>
-                        <select
+                        <SelectionDropdown
                           id="position"
                           value={selectedJob}
-                          onChange={(e) => setSelectedJob(e.target.value)}
-                          className="w-full rounded-xl border border-border px-4 py-2.5 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition-all font-semibold text-foreground"
-                        >
-                          {OPENINGS.map((j) => (
-                            <option key={j.id} value={j.title}>
-                              {j.title}
-                            </option>
-                          ))}
-                        </select>
+                          onChange={setSelectedJob}
+                          options={OPENINGS.map(j => j.title)}
+                          className="w-full text-xs font-semibold"
+                        />
                       </div>
                     </div>
 

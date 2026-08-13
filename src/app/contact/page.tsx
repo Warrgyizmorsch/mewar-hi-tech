@@ -100,11 +100,11 @@ export default function Contact() {
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
-                className="lg:col-span-5 flex flex-col justify-between h-full space-y-6"
+                className="lg:col-span-5 flex flex-col justify-between h-full space-y-6 text-center lg:text-left"
               >
                 <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                  <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                    <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                     <span className="text-primary eyebrow">
                       MOBILE CRUSHER MANUFACTURERS
                     </span>
@@ -241,8 +241,8 @@ export default function Contact() {
                   <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
                   <div>
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                    <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                      <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                       <span className="text-primary eyebrow">
                         QUICK ASSISTANCE
                       </span>
@@ -394,10 +394,10 @@ export default function Contact() {
         <section className="section-padding bg-muted/40 border-b border-border select-none">
           <Container className="space-y-8">
             
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-center sm:text-left">
               <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                <div className="flex items-center justify-center sm:justify-start gap-3 mb-2">
+                  <div className="hidden sm:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                   <span className="text-primary eyebrow">
                     VISIT OUR PLANT
                   </span>
