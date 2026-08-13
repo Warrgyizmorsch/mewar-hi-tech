@@ -18,6 +18,8 @@ import {
   Sparkles,
   Users,
   Award,
+  Filter,
+  Search,
 } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -27,6 +29,8 @@ import BlobButton from "@/components/ui/BlobButton";
 import Container from "@/components/ui/Container";
 import SelectionDropdown from "@/components/ui/SelectionDropdown";
 import { useTheme } from "@/components/ui/ThemeContext";
+import ApplicationModal from "@/components/ui/ApplicationModal";
+import JobFilterSlider from "@/components/ui/JobFilterSlider";
 
 // Slider Images Data
 const CULTURE_SLIDES = [
@@ -88,50 +92,23 @@ const CULTURE_SLIDES = [
   },
 ];
 
-// Open Positions Data from Original Site Content
-const OPENINGS = [
-  {
-    id: "hr-exec",
-    title: "HR Executive",
-    dept: "Human Resources",
-    exp: "3 Years in Manufacturing Industry HR",
-    edu: "HR Graduate Required",
-    loc: "Sukher Industrial Area, Udaipur",
-    type: "Full-Time",
-  },
-  {
-    id: "mkt-exec",
-    title: "Marketing Executive",
-    dept: "Sales & Marketing",
-    exp: "2 Years in Construction Equipment Sales Required",
-    edu: "Commerce Graduate Preferred",
-    loc: "Sukher Industrial Area, Udaipur",
-    type: "Full-Time",
-  },
-  {
-    id: "prod-sup",
-    title: "Production Supervisor",
-    dept: "Manufacturing & Engineering",
-    exp: "5 Years in Manufacturing Industry Required",
-    edu: "Diploma or Graduation in Mechanical Engineering",
-    loc: "Sukher Industrial Area, Udaipur",
-    type: "Full-Time",
-  },
-  {
-    id: "pur-mgr",
-    title: "Purchase Manager",
-    dept: "Procurement & Supply Chain",
-    exp: "5 Years in Manufacturing Industry",
-    edu: "Commerce Graduation Required",
-    loc: "Sukher Industrial Area, Udaipur",
-    type: "Full-Time",
-  },
-];
 
 export default function CareersPage() {
   const { theme } = useTheme();
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [selectedJob, setSelectedJob] = useState<string>("HR Executive");
+  const [jobs, setJobs] = useState<any[]>([]);
+  const [loadingJobs, setLoadingJobs] = useState(true);
+  const [selectedJob, setSelectedJob] = useState<string>("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+  const [filters, setFilters] = useState({
+    department: [] as string[],
+    experience: [] as string[],
+    education: [] as string[],
+  });
   const [submitting, setSubmitting] = useState(false);
   const [fileName, setFileName] = useState<string>("");
   const [formData, setFormData] = useState({
@@ -164,25 +141,16 @@ export default function CareersPage() {
     return () => clearInterval(interval);
   }, []);
 
-  // Theme-aware illustration image
-  const careerIllustration =
-    theme === "dark" ? "/images/career-dark.webp" : "/images/career-light.webp";
-
-  // Auto-play slide timer
+  // Handle clicking outside search suggestions
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % CULTURE_SLIDES.length);
-    }, 5000);
-    return () => clearInterval(timer);
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setShowSuggestions(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % CULTURE_SLIDES.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + CULTURE_SLIDES.length) % CULTURE_SLIDES.length);
-  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -247,6 +215,67 @@ export default function CareersPage() {
       setSubmitting(false);
     }
   };
+
+  // Fetch Jobs
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const res = await fetch("/api/jobs?activeOnly=true");
+        const data = await res.json();
+        if (data.success) {
+          setJobs(data.data);
+          if (data.data.length > 0) {
+            setSelectedJob(data.data[0].title);
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch jobs:", error);
+      } finally {
+        setLoadingJobs(false);
+      }
+    };
+    fetchJobs();
+  }, []);
+
+  const filteredJobs = jobs.filter((job) => {
+    if (filters.department.length > 0 && !filters.department.includes(job.department)) return false;
+    if (filters.experience.length > 0 && !filters.experience.includes(job.experience)) return false;
+    if (filters.education.length > 0 && !filters.education.includes(job.education)) return false;
+    
+    if (searchQuery.trim() !== "") {
+      const q = searchQuery.toLowerCase();
+      if (
+        !job.title.toLowerCase().includes(q) &&
+        !job.department.toLowerCase().includes(q) &&
+        !job.location.toLowerCase().includes(q)
+      ) {
+        return false;
+      }
+    }
+    
+    return true;
+  });
+
+  // Theme-aware illustration image
+  const careerIllustration =
+    theme === "dark" ? "/images/career-dark.webp" : "/images/career-light.webp";
+
+  // Auto-play slide timer
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % CULTURE_SLIDES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % CULTURE_SLIDES.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + CULTURE_SLIDES.length) % CULTURE_SLIDES.length);
+  };
+
 
   return (
     <div className="bg-background min-h-screen text-foreground select-none flex flex-col justify-between">
@@ -383,77 +412,169 @@ export default function CareersPage() {
         <section className="section-padding bg-muted/40 border-b border-border">
           <Container className="space-y-10">
             
-            <div className="max-w-3xl space-y-2 text-center md:text-left mx-auto md:mx-0">
-              <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
-                <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                <span className="text-primary eyebrow">
-                  IMMEDIATE HIRING
-                </span>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+              <div className="max-w-3xl space-y-2 text-center md:text-left mx-auto md:mx-0">
+                <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
+                  <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
+                  <span className="text-primary eyebrow">
+                    IMMEDIATE HIRING
+                  </span>
+                </div>
+                <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
+                  CURRENT <span className="text-primary inline-block">JOB OPENINGS</span>
+                </h2>
+                <p className="text-xs sm:text-sm text-muted-foreground font-semibold">
+                  Explore available roles at our Sukher manufacturing plant and corporate office in Udaipur.
+                </p>
               </div>
-              <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
-                CURRENT <span className="text-primary inline-block">JOB OPENINGS</span>
-              </h2>
-              <p className="text-xs sm:text-sm text-muted-foreground font-semibold">
-                Explore available roles at our Sukher manufacturing plant and corporate office in Udaipur.
-              </p>
+
+              <div className="flex flex-col sm:flex-row justify-center md:justify-end items-center gap-3 w-full md:w-auto">
+                
+                {/* Search Bar with Suggestions */}
+                <div className="relative w-full sm:w-64" ref={searchRef}>
+                  <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                    <Search size={16} className="text-muted-foreground" />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Search jobs by title, department..."
+                    value={searchQuery}
+                    onChange={(e) => {
+                      setSearchQuery(e.target.value);
+                      setShowSuggestions(true);
+                    }}
+                    onFocus={() => setShowSuggestions(true)}
+                    className="w-full pl-9 pr-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:border-primary text-xs font-semibold transition-colors"
+                  />
+                  
+                  {/* Suggestions Dropdown */}
+                  <AnimatePresence>
+                    {showSuggestions && searchQuery.trim() !== "" && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 5 }}
+                        className="absolute top-full left-0 right-0 mt-2 bg-card border border-border rounded-xl shadow-lg z-50 overflow-hidden max-h-60 overflow-y-auto"
+                      >
+                        {filteredJobs.length > 0 ? (
+                          <ul className="py-2">
+                            {filteredJobs.map((job) => (
+                              <li key={job._id || job.id}>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    setSearchQuery(job.title);
+                                    setShowSuggestions(false);
+                                  }}
+                                  className="w-full text-left px-4 py-2 hover:bg-muted/50 transition-colors flex flex-col gap-0.5"
+                                >
+                                  <span className="text-sm font-bold text-foreground">{job.title}</span>
+                                  <span className="text-[10px] uppercase text-primary font-semibold tracking-wider">{job.department}</span>
+                                </button>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <div className="p-4 text-center text-xs text-muted-foreground">
+                            No related jobs found.
+                          </div>
+                        )}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                <button
+                  onClick={() => setIsFilterOpen(true)}
+                  className="w-full sm:w-auto px-6 py-3 rounded-xl bg-background border border-border hover:border-primary text-foreground text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-sm shrink-0"
+                >
+                  <Filter size={16} className="text-primary" />
+                  Filters
+                  {(filters.department.length > 0 || filters.experience.length > 0 || filters.education.length > 0) && (
+                    <span className="bg-primary text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full ml-1">
+                      {filters.department.length + filters.experience.length + filters.education.length}
+                    </span>
+                  )}
+                </button>
+              </div>
             </div>
 
             {/* Openings Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {OPENINGS.map((job, idx) => (
-                <motion.div
-                  key={job.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.08 }}
-                  className="p-6 lg:p-8 rounded-xl bg-card border border-border shadow-md hover:border-primary/50 transition-all duration-300 space-y-5 flex flex-col justify-between"
-                >
-                  <div className="space-y-4">
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <span className="text-[11px] font-bold text-primary uppercase tracking-wider block mb-1">
-                          {job.dept}
+              {loadingJobs ? (
+                // Loading Skeleton
+                [1, 2, 3, 4].map((i) => (
+                  <div key={i} className="p-6 lg:p-8 rounded-xl bg-card border border-border shadow-md space-y-5 animate-pulse">
+                    <div className="h-4 bg-muted rounded w-1/3 mb-2" />
+                    <div className="h-6 bg-muted rounded w-2/3 mb-4" />
+                    <div className="h-4 bg-muted rounded w-1/4 mb-4" />
+                    <div className="space-y-2 pt-4 border-t border-border/60">
+                      <div className="h-4 bg-muted rounded w-full" />
+                      <div className="h-4 bg-muted rounded w-5/6" />
+                      <div className="h-4 bg-muted rounded w-4/6" />
+                    </div>
+                  </div>
+                ))
+              ) : filteredJobs.length === 0 ? (
+                <div className="col-span-1 md:col-span-2 text-center py-10 bg-card border border-border rounded-xl">
+                  <p className="text-muted-foreground font-semibold">No job openings match your selected filters. Please try adjusting them.</p>
+                </div>
+              ) : (
+                filteredJobs.map((job, idx) => (
+                  <motion.div
+                    key={job._id || job.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: idx * 0.08 }}
+                    className="p-6 lg:p-8 rounded-xl bg-card border border-border shadow-md hover:border-primary/50 transition-all duration-300 space-y-5 flex flex-col justify-between"
+                  >
+                    <div className="space-y-4">
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <span className="text-[11px] font-bold text-primary uppercase tracking-wider block mb-1">
+                            {job.department}
+                          </span>
+                          <h3 className="common-heading text-xl text-foreground tracking-wide">
+                            {job.title}
+                          </h3>
+                        </div>
+                        <span className="px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 text-[10px] font-bold uppercase tracking-wider shrink-0">
+                          {job.type}
                         </span>
-                        <h3 className="common-heading text-xl text-foreground tracking-wide">
-                          {job.title}
-                        </h3>
                       </div>
-                      <span className="px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 text-[10px] font-bold uppercase tracking-wider shrink-0">
-                        {job.type}
-                      </span>
+
+                      <div className="space-y-2 text-xs text-muted-foreground font-medium border-t border-border/60 pt-4">
+                        <div className="flex items-start gap-2.5">
+                          <Clock size={16} className="text-primary shrink-0 mt-0.5" />
+                          <span><strong>Experience:</strong> {job.experience}</span>
+                        </div>
+                        <div className="flex items-start gap-2.5">
+                          <GraduationCap size={16} className="text-primary shrink-0 mt-0.5" />
+                          <span><strong>Qualification:</strong> {job.education}</span>
+                        </div>
+                        <div className="flex items-start gap-2.5">
+                          <MapPin size={16} className="text-primary shrink-0 mt-0.5" />
+                          <span><strong>Location:</strong> {job.location}</span>
+                        </div>
+                      </div>
                     </div>
 
-                    <div className="space-y-2 text-xs text-muted-foreground font-medium border-t border-border/60 pt-4">
-                      <div className="flex items-start gap-2.5">
-                        <Clock size={16} className="text-primary shrink-0 mt-0.5" />
-                        <span><strong>Experience:</strong> {job.exp}</span>
-                      </div>
-                      <div className="flex items-start gap-2.5">
-                        <GraduationCap size={16} className="text-primary shrink-0 mt-0.5" />
-                        <span><strong>Qualification:</strong> {job.edu}</span>
-                      </div>
-                      <div className="flex items-start gap-2.5">
-                        <MapPin size={16} className="text-primary shrink-0 mt-0.5" />
-                        <span><strong>Location:</strong> {job.loc}</span>
-                      </div>
+                    <div className="pt-2">
+                      <BlobButton
+                        onClick={() => {
+                          setSelectedJob(job.title);
+                          setIsModalOpen(true);
+                        }}
+                        className="w-full py-3 px-4 rounded-xl bg-muted/70 hover:bg-primary hover:text-white text-foreground transition-colors duration-200 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 border border-border"
+                      >
+                        <Briefcase size={14} />
+                        <span>Apply For Position</span>
+                      </BlobButton>
                     </div>
-                  </div>
-
-                  <div className="pt-2">
-                    <BlobButton
-                      onClick={() => {
-                        setSelectedJob(job.title);
-                        document.getElementById("career-apply")?.scrollIntoView({ behavior: "smooth" });
-                      }}
-                      className="w-full py-3 px-4 rounded-xl bg-muted/70 hover:bg-primary hover:text-white text-foreground transition-colors duration-200 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 border border-border"
-                    >
-                      <Briefcase size={14} />
-                      <span>Apply For Position</span>
-                    </BlobButton>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                ))
+              )}
             </div>
 
           </Container>
@@ -472,7 +593,7 @@ export default function CareersPage() {
                 transition={{ duration: 0.6 }}
                 className="lg:col-span-5 flex flex-col justify-between h-full space-y-6 text-center lg:text-left"
               >
-                <div>
+                <div className="space-y-3">
                   <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
                     <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                     <span className="text-primary eyebrow">
@@ -482,57 +603,58 @@ export default function CareersPage() {
                   <h2 className="heading-primary text-[#0A1A3B] dark:text-white leading-tight">
                     APPLY WITH YOUR <span className="text-primary inline-block">DETAILED RESUME</span>
                   </h2>
-                  <p className="text-muted-foreground text-sm mt-2 leading-relaxed font-medium">
+                  <p className="text-muted-foreground text-sm leading-relaxed font-medium">
                     Interested candidates can apply online using the form or email their resume directly to our recruitment manager.
                   </p>
                 </div>
 
-                <div className="p-6 lg:p-8 rounded-xl bg-card border border-border shadow-lg space-y-6 flex-1 flex flex-col justify-center">
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
-                        <Mail size={20} />
-                      </div>
-                      <div>
-                        <h4 className="common-heading text-base text-foreground">
-                          Email Your CV
-                        </h4>
-                        <a
-                          href="mailto:vsr@kingsoncrusher.com"
-                          className="text-xs font-bold text-primary hover:underline block mt-0.5"
-                        >
-                          vsr@kingsoncrusher.com
-                        </a>
-                      </div>
+                <div className="flex flex-col gap-3.5 sm:gap-4">
+                  {/* Card 1: Email */}
+                  <div className="p-4 sm:p-5 rounded-xl bg-card border border-border shadow-xs hover:border-primary/40 transition-colors flex items-start gap-4 text-left">
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
+                      <Mail size={20} />
                     </div>
-
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
-                        <Phone size={20} />
-                      </div>
-                      <div>
-                        <h4 className="common-heading text-base text-foreground">
-                          Telephone Contact
-                        </h4>
-                        <span className="text-xs font-bold text-muted-foreground block mt-0.5">
-                          0294-2440234
-                        </span>
-                      </div>
+                    <div>
+                      <h4 className="common-heading text-sm text-foreground font-bold">
+                        Email Your CV
+                      </h4>
+                      <a
+                        href="mailto:vsr@kingsoncrusher.com"
+                        className="text-xs font-bold text-primary hover:underline block mt-0.5"
+                      >
+                        vsr@kingsoncrusher.com
+                      </a>
                     </div>
+                  </div>
 
-                    <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0 mt-0.5">
-                        <MapPin size={20} />
-                      </div>
-                      <div>
-                        <h4 className="common-heading text-base text-foreground">
-                          HR &amp; Plant Address
-                        </h4>
-                        <p className="text-xs text-muted-foreground font-medium leading-relaxed mt-0.5">
-                          <strong>Mewar Hi-Tech Engineering Ltd.</strong><br />
-                          Hawa Magri, Sukher Industrial Area, NH 8, Sukher, Udaipur - 313001, Rajasthan, India
-                        </p>
-                      </div>
+                  {/* Card 2: Phone */}
+                  <div className="p-4 sm:p-5 rounded-xl bg-card border border-border shadow-xs hover:border-primary/40 transition-colors flex items-start gap-4 text-left">
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
+                      <Phone size={20} />
+                    </div>
+                    <div>
+                      <h4 className="common-heading text-sm text-foreground font-bold">
+                        Telephone Contact
+                      </h4>
+                      <span className="text-xs font-bold text-muted-foreground block mt-0.5">
+                        0294-2440234
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Card 3: Address */}
+                  <div className="p-4 sm:p-5 rounded-xl bg-card border border-border shadow-xs hover:border-primary/40 transition-colors flex items-start gap-4 text-left">
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0 mt-0.5">
+                      <MapPin size={20} />
+                    </div>
+                    <div>
+                      <h4 className="common-heading text-sm text-foreground font-bold">
+                        HR &amp; Plant Address
+                      </h4>
+                      <p className="text-xs text-muted-foreground font-medium leading-relaxed mt-0.5">
+                        <strong>Mewar Hi-Tech Engineering Ltd.</strong><br />
+                        Hawa Magri, Sukher Industrial Area, NH 8, Sukher, Udaipur - 313001, Rajasthan, India
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -546,7 +668,7 @@ export default function CareersPage() {
                 transition={{ duration: 0.6 }}
                 className="lg:col-span-7 flex flex-col h-full"
               >
-                <div className="p-8 lg:p-10 rounded-xl bg-card border border-border shadow-2xl space-y-6 relative overflow-hidden flex flex-col justify-between h-full">
+                <div className="px-5 py-4 sm:px-7 sm:py-5 lg:px-8 lg:py-6 rounded-xl bg-card border border-border shadow-2xl space-y-4 relative overflow-hidden flex flex-col justify-between h-full">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
                   <div>
@@ -625,8 +747,9 @@ export default function CareersPage() {
                           id="position"
                           value={selectedJob}
                           onChange={setSelectedJob}
-                          options={OPENINGS.map(j => j.title)}
+                          options={jobs.length > 0 ? jobs.map(j => j.title) : ["Open Application"]}
                           className="w-full text-xs font-semibold"
+                          buttonClassName="border rounded-xl px-4 py-2.5 text-xs bg-muted/40 focus:bg-background"
                         />
                       </div>
                     </div>
@@ -692,6 +815,22 @@ export default function CareersPage() {
           </Container>
         </section>
       </main>
+
+      <ApplicationModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        jobs={jobs}
+        selectedJobTitle={selectedJob}
+        setSelectedJobTitle={setSelectedJob}
+      />
+
+      <JobFilterSlider
+        isOpen={isFilterOpen}
+        onClose={() => setIsFilterOpen(false)}
+        jobs={jobs}
+        filters={filters}
+        setFilters={setFilters}
+      />
 
       <Footer />
     </div>

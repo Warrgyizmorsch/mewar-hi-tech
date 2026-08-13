@@ -230,7 +230,7 @@ export default function ServiceSlugPage({ params }: PageProps) {
                 <h2 className="heading-primary text-[#0A1A3B] dark:text-white">
                   OVERVIEW &amp; <span className="text-primary inline-block">COMMITMENT</span>
                 </h2>
-                <p className="text-muted-foreground text-sm leading-relaxed font-semibold">
+                <p className="text-muted-foreground text-center text-sm leading-relaxed font-semibold">
                   {pageData.intro}
                 </p>
 

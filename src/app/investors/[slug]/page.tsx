@@ -318,7 +318,7 @@ export default function InvestorPage({ params }: PageProps) {
                           </div>
                           <BlobButton href={item.link}
                             variant="secondary"
-                            className="!py-2 !px-4 text-[10px] font-bold uppercase tracking-wider shrink-0"
+                            className="!py-2 !px-4 !text-[9px] !font-medium uppercase tracking-wider whitespace-nowrap shrink-0"
                           >
                             <span className="flex items-center gap-1.5">
                               <span>Click Here</span>
@@ -346,7 +346,7 @@ export default function InvestorPage({ params }: PageProps) {
                           <span className="text-xs font-bold text-foreground">{item.quarter}</span>
                           <BlobButton href={item.link}
                             variant="secondary"
-                            className="!py-2 !px-4 text-[10px] font-bold uppercase tracking-wider"
+                            className="!py-2 !px-4 !text-[9px] !font-medium uppercase tracking-wider whitespace-nowrap"
                           >
                             <span className="flex items-center gap-1.5">
                               <span>Click Here</span>
@@ -374,7 +374,7 @@ export default function InvestorPage({ params }: PageProps) {
                           <span className="text-xs font-bold text-foreground leading-snug">{item.title}</span>
                           <BlobButton href={item.link}
                             variant="secondary"
-                            className="!py-2 !px-4 text-[10px] font-bold uppercase tracking-wider"
+                            className="!py-2 !px-4 !text-[9px] !font-medium uppercase tracking-wider whitespace-nowrap"
                           >
                             <span className="flex items-center gap-1.5">
                               <span>Click Here</span>
@@ -402,7 +402,7 @@ export default function InvestorPage({ params }: PageProps) {
                           <span className="text-xs font-bold text-foreground leading-snug">{item.title}</span>
                           <BlobButton href={item.link}
                             variant="secondary"
-                            className="!py-2 !px-4 text-[10px] font-bold uppercase tracking-wider"
+                            className="!py-2 !px-4 !text-[9px] !font-medium uppercase tracking-wider whitespace-nowrap"
                           >
                             <span className="flex items-center gap-1.5">
                               <span>Click Here</span>
@@ -430,7 +430,7 @@ export default function InvestorPage({ params }: PageProps) {
                           <span className="text-xs font-bold text-foreground leading-relaxed">{item.title}</span>
                           <BlobButton href={item.link}
                             variant="secondary"
-                            className="!py-2 !px-4 text-[10px] font-bold uppercase tracking-wider"
+                            className="!py-2 !px-4 !text-[9px] !font-medium uppercase tracking-wider whitespace-nowrap"
                           >
                             <span className="flex items-center gap-1.5">
                               <span>Click Here</span>
@@ -466,7 +466,7 @@ export default function InvestorPage({ params }: PageProps) {
                           </div>
                           <BlobButton href={item.link}
                             variant="secondary"
-                            className="!py-1.5 !px-3 text-[9px] font-bold uppercase tracking-wider shrink-0"
+                            className="!py-1.5 !px-3 !text-[9px] !font-medium uppercase tracking-wider whitespace-nowrap shrink-0"
                           >
                             <span>View</span>
                           </BlobButton>
@@ -499,7 +499,7 @@ export default function InvestorPage({ params }: PageProps) {
                           </div>
                           <BlobButton href={item.link}
                             variant="secondary"
-                            className="!py-1.5 !px-3 text-[9px] font-bold uppercase tracking-wider shrink-0"
+                            className="!py-1.5 !px-3 !text-[9px] !font-medium uppercase tracking-wider whitespace-nowrap shrink-0"
                           >
                             <span>View</span>
                           </BlobButton>
@@ -536,7 +536,7 @@ export default function InvestorPage({ params }: PageProps) {
                             ].map((doc, idx) => (
                               <div key={idx} className="flex items-center justify-between text-xs font-bold py-1">
                                 <span className="text-foreground leading-snug">{doc.title}</span>
-                                <BlobButton href={doc.link} variant="secondary" className="!py-1 !px-2.5 text-[9px] font-bold uppercase tracking-wider shrink-0">
+                                <BlobButton href={doc.link} variant="secondary" className="!py-1 !px-2.5 !text-[9px] !font-medium uppercase tracking-wider whitespace-nowrap shrink-0">
                                   <span>Open File</span>
                                 </BlobButton>
                               </div>
@@ -557,7 +557,7 @@ export default function InvestorPage({ params }: PageProps) {
                             ].map((doc, idx) => (
                               <div key={idx} className="flex items-center justify-between text-xs font-bold py-1">
                                 <span className="text-foreground leading-snug">{doc.title}</span>
-                                <BlobButton href={doc.link} variant="secondary" className="!py-1 !px-2.5 text-[9px] font-bold uppercase tracking-wider shrink-0">
+                                <BlobButton href={doc.link} variant="secondary" className="!py-1 !px-2.5 !text-[9px] !font-medium uppercase tracking-wider whitespace-nowrap shrink-0">
                                   <span>Open File</span>
                                 </BlobButton>
                               </div>
@@ -577,7 +577,7 @@ export default function InvestorPage({ params }: PageProps) {
                             <span className="text-[9px] font-bold text-muted-foreground uppercase mt-0.5 block">Statutory Downloads</span>
                           </div>
                         </div>
-                        <BlobButton variant="secondary" className="!py-1.5 !px-3 text-[9px] font-bold uppercase tracking-wider">
+                        <BlobButton variant="secondary" className="!py-1.5 !px-3 !text-[9px] !font-medium uppercase tracking-wider whitespace-nowrap">
                           <span>View Files</span>
                         </BlobButton>
                       </div>
@@ -600,7 +600,7 @@ export default function InvestorPage({ params }: PageProps) {
                         <BlobButton
                           href="/investors-data/investor_contact/Investor Contact.pdf"
                           variant="secondary"
-                          className="!py-2 !px-4 text-[10px] font-bold uppercase tracking-wider"
+                          className="!py-2 !px-4 !text-[9px] !font-medium uppercase tracking-wider whitespace-nowrap"
                         >
                           <span className="flex items-center gap-1.5">
                             <span>Click Here</span>
@@ -641,7 +641,7 @@ export default function InvestorPage({ params }: PageProps) {
                                   <BlobButton
                                     href={item.link}
                                     variant="secondary"
-                                    className="!py-1 !px-2.5 !text-[9px] font-bold uppercase tracking-wider"
+                                    className="!py-1 !px-2.5 !text-[9px] !font-medium uppercase tracking-wider whitespace-nowrap"
                                   >
                                     <span>Click Here</span>
                                   </BlobButton>

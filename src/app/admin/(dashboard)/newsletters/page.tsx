@@ -37,7 +37,9 @@ export default async function AdminNewsletters() {
               {subscribers.map((sub) => (
                 <tr key={String(sub._id)} className="hover:bg-gray-50/50 transition-colors">
                   <td className="px-6 py-4 font-bold text-[#2B3674]">{sub.email}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{new Date(sub.createdAt).toLocaleDateString()}</td>
+                  <td className="px-6 py-4 whitespace-nowrap" suppressHydrationWarning>
+                    {sub.createdAt ? new Date(sub.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }) : "-"}
+                  </td>
                 </tr>
               ))}
               {subscribers.length === 0 && (

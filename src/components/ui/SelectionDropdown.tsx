@@ -14,6 +14,7 @@ export interface SelectionDropdownProps {
   options: string[] | DropdownOption[];
   placeholder?: string;
   className?: string;
+  buttonClassName?: string;
   id?: string;
 }
 
@@ -23,6 +24,7 @@ export default function SelectionDropdown({
   options,
   placeholder = "Select an option",
   className = "",
+  buttonClassName,
   id,
 }: SelectionDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -58,16 +60,19 @@ export default function SelectionDropdown({
     };
   }, [isOpen]);
 
+  const defaultButtonClass = "border-2 rounded-lg text-xs md:text-sm py-2.5 px-2 md:py-3 md:px-4";
+  const btnClass = buttonClassName || defaultButtonClass;
+
   return (
     <div className={`relative w-full ${className}`} ref={dropdownRef} id={id}>
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full flex items-center justify-between appearance-none border-2 rounded-lg text-sm bg-background py-3 pl-4 pr-4 transition-colors font-semibold focus:outline-none ${
+        className={`w-full flex items-center justify-between appearance-none bg-background transition-colors font-semibold focus:outline-none ${btnClass} ${
           isOpen ? "border-primary text-foreground" : "border-border text-foreground hover:border-muted-foreground/40"
         }`}
       >
-        <span className={!selectedOption ? "text-muted-foreground" : ""}>
+        <span className={`truncate text-left whitespace-nowrap mr-2 ${!selectedOption ? "text-muted-foreground" : ""}`}>
           {selectedOption ? selectedOption.label : placeholder}
         </span>
         <ChevronDown

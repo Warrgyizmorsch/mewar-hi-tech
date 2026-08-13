@@ -46,10 +46,10 @@ const SectorGrid: React.FC = () => {
   return (
     <section className="section-padding bg-background text-foreground select-none text-left">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-16 items-center">
           
           {/* Left Form Panel */}
-          <div className="lg:col-span-5 py-4 bg-background flex flex-col justify-center h-full text-center lg:text-left">
+          <div className="lg:col-span-5  bg-background flex flex-col justify-center h-full text-center lg:text-left">
             <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
               <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
               <span className="text-primary eyebrow">

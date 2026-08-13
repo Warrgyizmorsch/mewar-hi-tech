@@ -124,6 +124,17 @@
     white-space: nowrap;
     border-width: 0;
   }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 }
 
 @layer components {
@@ -136,7 +147,7 @@
   }
 
   .eyebrow {
-    @apply font-sans font-bold uppercase tracking-widest block text-[10px] md:text-xs lg:text-sm;
+    @apply font-heading font-bold uppercase tracking-widest block text-[10px] md:text-xs lg:text-sm;
   }
 
   .section-padding {

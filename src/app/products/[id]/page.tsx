@@ -276,26 +276,26 @@ export default function ProductDetailPage({ params }: PageProps) {
 
       <main className="flex-grow">
         
-        {/* ── 1. PREMIUM INDUSTRIAL HERO SECTION ── */}
-        <section className="relative z-20 bg-[#0B0D0F] text-white pt-24 pb-16 lg:pt-36 lg:pb-32 overflow-hidden border-b border-border/10">
+        {/* ── 1. PREMIUM DUAL-THEME INDUSTRIAL HERO SECTION ── */}
+        <section className="relative z-20 bg-slate-50 dark:bg-[#0B0D0F] text-foreground dark:text-white pt-24 pb-10 lg:pt-32 lg:pb-12 overflow-hidden border-b border-border/60 dark:border-border/10 transition-colors duration-300">
           
-          {/* Subtle Background Mesh & Light Lighting */}
-          <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/20 via-[#0D1015] to-[#07080A] pointer-events-none" />
+          {/* Theme-Aware Radial Glow & Background Mesh */}
+          <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-slate-100/50 to-slate-50 dark:from-primary/20 dark:via-[#0D1015] dark:to-[#07080A] pointer-events-none transition-colors duration-300" />
           <div 
-            className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
+            className="absolute inset-0 z-0 opacity-[0.04] dark:opacity-[0.03] pointer-events-none"
             style={{
-              backgroundImage: "radial-gradient(#fff 1px, transparent 1px)",
+              backgroundImage: "radial-gradient(currentColor 1px, transparent 1px)",
               backgroundSize: "24px 24px",
             }}
           />
 
-          {/* Decorative Subtle Accent Line */}
+          {/* Decorative Primary Accent Line */}
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-80" />
 
           {/* Main Hero Container */}
           <Container className="relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            {/* Left Column: Breadcrumb, Titles, CTAs */}
+            {/* Left Column: Breadcrumb, Titles, Description & CTAs */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -304,7 +304,7 @@ export default function ProductDetailPage({ params }: PageProps) {
             >
               
               {/* Breadcrumb Navigation */}
-              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-[10px] sm:text-[11px] font-bold text-gray-400 uppercase tracking-wider">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-[10px] sm:text-[11px] font-bold text-muted-foreground dark:text-gray-400 uppercase tracking-wider">
                 <Link href="/" className="hover:text-primary transition-colors flex items-center gap-1">
                   <Home size={12} />
                   <span>Home</span>
@@ -318,52 +318,53 @@ export default function ProductDetailPage({ params }: PageProps) {
               </div>
 
               {/* Sub-Category Badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/25 text-primary text-[10px] font-bold uppercase tracking-widest">
-                <Sparkles size={12} />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/25 text-primary text-[10px] sm:text-[11px] font-bold uppercase tracking-widest shadow-sm">
+                <Sparkles size={13} />
                 <span>{product.category} &bull; {product.subCategory}</span>
               </div>
 
               {/* Dynamic Styled Product Title */}
-              <h1 className="common-heading text-2xl sm:text-4xl lg:text-[56px] leading-[1.1] tracking-tight font-bold">
-                <span className="text-white">{firstHalf} </span>
+              <h1 className="common-heading text-3xl sm:text-4xl lg:text-[54px] leading-[1.1] tracking-tight font-bold">
+                <span className="text-foreground dark:text-white">{firstHalf} </span>
                 {secondHalf && (
                   <span className="text-primary block mt-1">{secondHalf}</span>
                 )}
               </h1>
 
-              {/* Subheading Badge & Accent Divider */}
+              {/* Tagline & Accent Divider */}
               <div className="flex items-center gap-3 pt-1">
-                <div className="w-10 h-[3px] bg-primary rounded-full" />
-                <p className="text-[10px] sm:eyebrow inline- text-primary">
+                <div className="w-10 h-[3px] bg-primary rounded-full shrink-0" />
+                <p className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-primary">
                   Engineered for Maximum Tonnage &bull; Built to Last
                 </p>
               </div>
 
               {/* Intro Text Description */}
-              <p className="text-xs sm:text-sm text-gray-300 font-semibold leading-relaxed max-w-xl">
-                Heavy-duty industrial crushing and material handling system designed for high reduction ratios, maximum continuous uptime, and reliable operating efficiency.
+              <p className="text-xs sm:text-sm text-muted-foreground dark:text-gray-300 font-medium leading-relaxed max-w-xl">
+                Heavy-duty industrial crushing and material handling system designed for high reduction ratios, maximum continuous uptime, and reliable operating efficiency in extreme quarry conditions.
               </p>
 
               {/* Quick Specifications Tags */}
               <div className="flex flex-wrap gap-2 pt-1">
                 {product.subCategory && (
-                  <span className="text-[10px] font-bold bg-white/5 border border-white/10 text-gray-300 px-3 py-1 rounded-lg">
+                  <span className="text-[10px] font-bold bg-muted/80 dark:bg-white/5 border border-border/80 dark:border-white/10 text-foreground dark:text-gray-300 px-3 py-1.5 rounded-lg shadow-xs">
                     Class: {product.subCategory}
                   </span>
                 )}
-                <span className="text-[10px] font-bold bg-white/5 border border-white/10 text-gray-300 px-3 py-1 rounded-lg">
+                <span className="text-[10px] font-bold bg-muted/80 dark:bg-white/5 border border-border/80 dark:border-white/10 text-foreground dark:text-gray-300 px-3 py-1.5 rounded-lg shadow-xs">
                   Heavy Steel Body
                 </span>
-                <span className="text-[10px] font-bold bg-white/5 border border-white/10 text-gray-300 px-3 py-1 rounded-lg">
+                <span className="text-[10px] font-bold bg-muted/80 dark:bg-white/5 border border-border/80 dark:border-white/10 text-foreground dark:text-gray-300 px-3 py-1.5 rounded-lg shadow-xs">
                   Continuous Lubrication
                 </span>
               </div>
 
-              <div className="flex flex-wrap gap-4 pt-4">
+              {/* Action Buttons */}
+              <div className="flex flex-wrap gap-3 sm:gap-4 pt-4">
                 <BlobButton
                   onClick={() => document.getElementById("quote-section")?.scrollIntoView({ behavior: "smooth" })}
                   variant="primary"
-                  className="!w-full sm:!w-auto !px-6 sm:!px-8 !h-[44px] sm:!h-[50px] !text-[10px] sm:!text-xs !font-bold !uppercase !tracking-wider flex items-center justify-center gap-2 whitespace-nowrap shadow-lg !text-primary-foreground"
+                  className="!w-full sm:!w-auto !px-6 sm:!px-8 !h-[46px] sm:!h-[52px] !text-[11px] sm:!text-xs !font-bold !uppercase !tracking-wider flex items-center justify-center gap-2 whitespace-nowrap shadow-lg shadow-primary/20 !text-primary-foreground"
                 >
                   <FileText size={16} />
                   <span>Request Engineering Quote</span>
@@ -373,7 +374,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                 <BlobButton
                   onClick={() => window.dispatchEvent(new Event("open-brochure-modal"))}
                   variant="secondary"
-                  className="!w-full sm:!w-auto !px-5 sm:!px-7 !h-[44px] sm:!h-[50px] !text-[10px] sm:!text-xs !font-bold !uppercase !tracking-wider flex items-center justify-center gap-2 whitespace-nowrap !border-white/30 !text-white hover:!bg-white hover:!text-black"
+                  className="!w-full sm:!w-auto !px-5 sm:!px-7 !h-[46px] sm:!h-[52px] !text-[11px] sm:!text-xs !font-bold !uppercase !tracking-wider flex items-center justify-center gap-2 whitespace-nowrap border-border dark:border-white/30 text-foreground dark:text-white hover:bg-foreground hover:text-background dark:hover:bg-white dark:hover:text-black transition-colors"
                 >
                   <Download size={16} />
                   <span>Download Spec Sheet</span>
@@ -381,35 +382,80 @@ export default function ProductDetailPage({ params }: PageProps) {
               </div>
             </motion.div>
 
-            {/* Right Column: Hero Floating Image Showcase */}
+            {/* Right Column: Hero Showcase with Floating Glassmorphic Spec Badges */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="lg:col-span-5 relative flex items-center justify-center"
+              className="lg:col-span-5 relative flex items-center justify-center pt-6 lg:pt-0"
             >
-              {/* Soft Radial Ambient Lighting */}
-              <div className="absolute w-[320px] h-[320px] lg:w-[450px] lg:h-[450px] bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
+              {/* Soft Radial Ambient Stage Lighting */}
+              <div className="absolute w-[300px] h-[300px] lg:w-[450px] lg:h-[450px] bg-primary/15 dark:bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
 
-              {/* Main Hero Machine Image directly shown */}
+              {/* Floating Spec Badge 1: Top-Left */}
+              <motion.div 
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="hidden md:flex absolute top-2 -left-4 lg:-left-8 z-20 items-center gap-2.5 p-3 rounded-2xl bg-white/80 dark:bg-white/10 border border-border/60 dark:border-white/15 backdrop-blur-md shadow-xl shadow-black/5 dark:shadow-black/40 text-foreground dark:text-white"
+              >
+                <div className="w-8 h-8 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center text-primary shrink-0">
+                  <ShieldCheck size={16} />
+                </div>
+                <div>
+                  <div className="text-xs font-bold leading-tight">500 TPH Capacity</div>
+                  <div className="text-[10px] text-muted-foreground dark:text-gray-400 font-medium">High Reduction</div>
+                </div>
+              </motion.div>
+
+              {/* Floating Spec Badge 2: Top-Right */}
+              <motion.div 
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                className="hidden md:flex absolute top-10 -right-2 lg:-right-6 z-20 items-center gap-2.5 p-3 rounded-2xl bg-white/80 dark:bg-white/10 border border-border/60 dark:border-white/15 backdrop-blur-md shadow-xl shadow-black/5 dark:shadow-black/40 text-foreground dark:text-white"
+              >
+                <div className="w-8 h-8 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center text-primary shrink-0">
+                  <Award size={16} />
+                </div>
+                <div>
+                  <div className="text-xs font-bold leading-tight">Mn Steel Jaw</div>
+                  <div className="text-[10px] text-muted-foreground dark:text-gray-400 font-medium">Reinforced Chassis</div>
+                </div>
+              </motion.div>
+
+              {/* Floating Spec Badge 3: Bottom-Left */}
+              <motion.div 
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="hidden md:flex absolute bottom-4 -left-2 lg:-left-6 z-20 items-center gap-2.5 p-3 rounded-2xl bg-white/80 dark:bg-white/10 border border-border/60 dark:border-white/15 backdrop-blur-md shadow-xl shadow-black/5 dark:shadow-black/40 text-foreground dark:text-white"
+              >
+                <div className="w-8 h-8 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center text-primary shrink-0">
+                  <Zap size={16} />
+                </div>
+                <div>
+                  <div className="text-xs font-bold leading-tight">Auto Oil Pump</div>
+                  <div className="text-[10px] text-muted-foreground dark:text-gray-400 font-medium">Low Maintenance</div>
+                </div>
+              </motion.div>
+
+              {/* Main Machine Image Stage */}
               <div 
-                className="relative z-10 w-full group flex items-center justify-center cursor-pointer" 
+                className="relative z-10 w-full group flex items-center justify-center cursor-pointer px-4 sm:px-0" 
                 onClick={() => {
                   setSelectedGalleryIndex(0);
                   setLightboxOpen(true);
                 }}
-                title="View Full Resolution"
+                title="Click to view full resolution"
               >
                 <img
                   src={product.mainImage}
                   alt={product.name}
-                  className="max-h-[300px] sm:max-h-[500px] lg:max-h-[600px] w-auto object-contain transition-transform duration-700 ease-out group-hover:scale-105 filter drop-shadow-[0_30px_40px_rgba(0,0,0,0.6)]"
+                  className="max-h-[280px] sm:max-h-[460px] lg:max-h-[550px] w-auto object-contain transition-transform duration-700 ease-out group-hover:scale-105 filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] dark:drop-shadow-[0_30px_45px_rgba(0,0,0,0.7)]"
                 />
                 
-                {/* Hover Expand Icon */}
-                <div className="absolute bottom-0 right-0 sm:bottom-4 sm:right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
-                    <Maximize2 size={20} />
+                {/* Hover Expand Badge */}
+                <div className="absolute bottom-2 right-4 sm:bottom-4 sm:right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="w-11 h-11 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
+                    <Maximize2 size={18} />
                   </div>
                 </div>
               </div>
@@ -418,8 +464,8 @@ export default function ProductDetailPage({ params }: PageProps) {
           </Container>
         </section>
 
-        {/* ── 2. QUICK INFO METRIC STRIP ── */}
-        <section className="relative z-30 bg-[#0F1216] border-b border-border/10 section-padding-sm">
+        {/* ── 2. DUAL-THEME QUICK INFO METRIC STRIP ── */}
+        <section className="relative z-30 bg-muted/40 dark:bg-[#0F1216] border-b border-border/60 dark:border-border/10 py-5 lg:py-6 transition-colors duration-300">
           <Container>
             <div 
               ref={statsCarouselRef}
@@ -430,18 +476,20 @@ export default function ProductDetailPage({ params }: PageProps) {
                 return (
                   <div
                     key={idx}
-                    className="w-[85vw] sm:w-auto shrink-0 snap-center p-3.5 sm:p-5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-primary/40 transition-all duration-300 text-left space-y-2 group"
+                    className="w-[85vw] sm:w-auto shrink-0 snap-center p-4 sm:p-5 rounded-2xl bg-card/90 dark:bg-white/[0.03] border border-border/80 dark:border-white/10 hover:border-primary/50 transition-all duration-300 text-left space-y-2 group shadow-xs hover:shadow-md"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                      <span className="text-[10px] font-bold text-muted-foreground dark:text-gray-400 uppercase tracking-widest">
                         {item.label}
                       </span>
-                      <IconComponent size={18} className="text-primary group-hover:scale-110 transition-transform" />
+                      <div className="w-8 h-8 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                        <IconComponent size={16} />
+                      </div>
                     </div>
-                    <div className="text-sm sm:text-base font-bold text-white tracking-wide">
+                    <div className="text-sm sm:text-base font-bold text-foreground dark:text-white tracking-wide">
                       {item.value}
                     </div>
-                    <div className="text-[10px] font-semibold text-primary/90">
+                    <div className="text-[10px] font-semibold text-primary">
                       &bull; {item.sub}
                     </div>
                   </div>
@@ -452,7 +500,7 @@ export default function ProductDetailPage({ params }: PageProps) {
         </section>
 
         {/* ── 3. EQUIPMENT OVERVIEW & FEATURES SECTION ── */}
-        <section className="section-padding bg-background border-b border-border">
+        <section className="py-10 lg:py-14 bg-background border-b border-border">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
               
@@ -572,7 +620,7 @@ export default function ProductDetailPage({ params }: PageProps) {
         </section>
 
         {/* ── 4. INDUSTRIAL APPLICATIONS SHOWCASE ── */}
-        <section className="section-padding bg-muted/30 border-b border-border">
+        <section className="py-10 lg:py-14 bg-muted/30 border-b border-border">
           <Container className="space-y-12">
             
             <div className="max-w-2xl space-y-3 text-center md:text-left mx-auto md:mx-0">
@@ -599,46 +647,64 @@ export default function ProductDetailPage({ params }: PageProps) {
                 return (
                   <div
                     key={idx}
-                    className="w-[85vw] sm:w-auto shrink-0 snap-center p-4 sm:p-6 rounded-xl bg-card border border-border shadow-sm hover:border-primary/50 hover:shadow-md transition-all duration-300 space-y-3 sm:space-y-4 group"
+                    className="w-[85vw] sm:w-auto shrink-0 snap-center p-5 sm:p-6 rounded-xl bg-card border border-border shadow-sm hover:border-primary/50 hover:shadow-md transition-all duration-300 flex flex-col justify-between space-y-4 group"
                   >
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                      <IconComponent size={20} />
+                    <div className="space-y-3">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                        <IconComponent size={20} />
+                      </div>
+                      <div className="space-y-1.5">
+                        <h3 className="common-heading text-sm sm:text-base text-foreground font-bold">
+                          {app.title}
+                        </h3>
+                        <p className="text-xs text-muted-foreground font-semibold leading-relaxed">
+                          {app.desc}
+                        </p>
+                      </div>
                     </div>
-                    <div className="space-y-1.5">
-                      <h3 className="common-heading text-sm sm:text-base text-foreground font-bold">
-                        {app.title}
-                      </h3>
-                      <p className="text-xs text-muted-foreground font-semibold leading-relaxed">
-                        {app.desc}
-                      </p>
+
+                    <div className="pt-2 border-t border-border/50">
+                      <BlobButton
+                        onClick={() => document.getElementById("quote-section")?.scrollIntoView({ behavior: "smooth" })}
+                        variant="secondary"
+                        className="!w-full !py-2.5 !text-[11px] !font-bold !uppercase !tracking-wider flex items-center justify-center gap-1.5"
+                      >
+                        <span>Inquire For Sector</span>
+                        <ArrowRight size={13} />
+                      </BlobButton>
                     </div>
                   </div>
                 );
               })}
 
               {/* Extra Summary Card */}
-              <div className="w-[85vw] sm:w-auto shrink-0 snap-center p-4 sm:p-6 rounded-xl bg-primary text-primary-foreground shadow-lg flex flex-col justify-between space-y-3 sm:space-y-4 text-left">
-                <div className="space-y-2">
-                  <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center text-white">
+              <div className="w-[85vw] sm:w-auto shrink-0 snap-center p-5 sm:p-6 rounded-xl bg-primary text-primary-foreground shadow-lg flex flex-col justify-between space-y-4 text-left">
+                <div className="space-y-3">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/20 flex items-center justify-center text-white">
                     <Sparkles size={20} />
                   </div>
-                  <h3 className="common-heading text-lg font-bold uppercase text-white">
-                    Custom Plant Setup?
-                  </h3>
-                  <p className="text-xs font-semibold text-white/90 leading-relaxed">
-                    Our team provides custom engineering flowsheet designs for complete circuit integration.
-                  </p>
+                  <div className="space-y-1.5">
+                    <h3 className="common-heading text-sm sm:text-base font-bold uppercase text-white">
+                      Custom Plant Setup?
+                    </h3>
+                    <p className="text-xs font-semibold text-white/90 leading-relaxed">
+                      Our team provides custom engineering flowsheet designs for complete circuit integration.
+                    </p>
+                  </div>
                 </div>
-                <BlobButton
-                  onClick={() => document.getElementById("quote-section")?.scrollIntoView({ behavior: "smooth" })}
-                  variant="primary"
-                  className="!w-full !py-3.5 !text-xs !font-bold !uppercase !tracking-wider"
-                >
-                  <span className="flex items-center justify-center gap-2 whitespace-nowrap">
-                    <span>Consult An Engineer</span>
-                    <ArrowRight size={15} />
-                  </span>
-                </BlobButton>
+
+                <div className="pt-2 border-t border-white/20">
+                  <BlobButton
+                    onClick={() => document.getElementById("quote-section")?.scrollIntoView({ behavior: "smooth" })}
+                    variant="primary"
+                    className="!w-full !py-2.5 !text-[11px] !font-bold !uppercase !tracking-wider"
+                  >
+                    <span className="flex items-center justify-center gap-1.5 whitespace-nowrap">
+                      <span>Consult An Engineer</span>
+                      <ArrowRight size={13} />
+                    </span>
+                  </BlobButton>
+                </div>
               </div>
             </div>
           </Container>
@@ -646,7 +712,7 @@ export default function ProductDetailPage({ params }: PageProps) {
 
         {/* ── 5. DYNAMIC MEDIA SHOWCASE (GALLERY & VIDEO) ── */}
         {(allImages.length > 1 || product.video) && (
-          <section className="section-padding bg-background border-b border-border">
+          <section className="py-10 lg:py-14 bg-background border-b border-border">
             <Container className="space-y-8 lg:space-y-12">
               
               <div className="max-w-3xl space-y-2 text-center md:text-left mx-auto md:mx-0">
@@ -757,7 +823,7 @@ export default function ProductDetailPage({ params }: PageProps) {
 
         {/* ── 6. TECHNICAL SPECIFICATIONS TABLE ── */}
         {product.specsTable && (
-          <section className="section-padding bg-muted/20 border-b border-border">
+          <section className="py-10 lg:py-14 bg-muted/20 border-b border-border">
             <Container className="space-y-10">
               
               <div className="max-w-3xl space-y-2 text-center md:text-left mx-auto md:mx-0">
@@ -845,7 +911,7 @@ export default function ProductDetailPage({ params }: PageProps) {
         )}
 
         {/* ── 7. DOCUMENTATION & DOWNLOADS ── */}
-        <section className="section-padding bg-background border-b border-border">
+        <section className="py-10 lg:py-14 bg-background border-b border-border">
           <Container className="space-y-10">
             
             <div className="max-w-2xl space-y-2 text-center md:text-left mx-auto md:mx-0">
@@ -939,20 +1005,20 @@ export default function ProductDetailPage({ params }: PageProps) {
         </section>
 
         {/* ── 8. REDESIGNED ENGINEERING INQUIRY FORM ── */}
-        <section id="quote-section" className="section-padding bg-muted/30 border-b border-border">
+        <section id="quote-section" className="py-10 lg:py-14 bg-muted/30 border-b border-border">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
               
               {/* Info Column */}
-              <div className="lg:col-span-5 flex flex-col justify-between space-y-5 sm:space-y-8 text-center lg:text-left">
-                <div className="space-y-4">
+              <div className="lg:col-span-5 flex flex-col justify-between h-full space-y-6 text-center lg:text-left">
+                <div className="space-y-3 sm:space-y-4">
                   <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
                     <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                     <span className="text-primary eyebrow">
                       DIRECT FACTORY QUOTE REQUEST
                     </span>
                   </div>
-                  <h2 className="font-sans text-xl sm:text-3xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white leading-tight">
+                  <h2 className="font-sans text-xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white leading-tight">
                     REQUEST PRICING &amp; CUSTOM FLOWSHEET <span className="text-primary inline-block">DESIGN</span>
                   </h2>
                   <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed font-semibold">
@@ -962,34 +1028,49 @@ export default function ProductDetailPage({ params }: PageProps) {
 
                 <div 
                   ref={quoteCarouselRef}
-                  className="flex overflow-x-auto lg:flex-col gap-4 pb-4 lg:pb-0 snap-x snap-mandatory hide-scrollbar -mx-6 px-6 lg:mx-0 lg:px-0"
+                  className="flex overflow-x-auto lg:flex-col gap-3.5 pb-4 lg:pb-0 snap-x snap-mandatory hide-scrollbar -mx-6 px-6 lg:mx-0 lg:px-0"
                 >
                   {/* Trust Badge 1 */}
-                  <div className="w-[85vw] lg:w-auto shrink-0 snap-center p-3.5 sm:p-5 rounded-xl bg-card border border-border shadow-sm flex items-start gap-4">
+                  <div className="w-[85vw] lg:w-auto shrink-0 snap-center p-3.5 sm:p-4 rounded-xl bg-card border border-border shadow-xs hover:border-primary/40 transition-colors flex items-start gap-3.5 text-left">
                     <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
                       <Zap size={20} />
                     </div>
                     <div>
-                      <h4 className="common-heading text-sm text-foreground font-bold">
+                      <h4 className="common-heading text-xs sm:text-sm text-foreground font-bold">
                         Instant Technical Consultation
                       </h4>
-                      <p className="text-xs text-muted-foreground font-semibold">
+                      <p className="text-[11px] sm:text-xs text-muted-foreground font-medium leading-normal mt-0.5">
                         Direct support on Closed Side Settings (CSS) and capacity selection.
                       </p>
                     </div>
                   </div>
 
                   {/* Trust Badge 2 */}
-                  <div className="w-[85vw] lg:w-auto shrink-0 snap-center p-3.5 sm:p-5 rounded-xl bg-card border border-border shadow-sm flex items-start gap-4">
+                  <div className="w-[85vw] lg:w-auto shrink-0 snap-center p-3.5 sm:p-4 rounded-xl bg-card border border-border shadow-xs hover:border-primary/40 transition-colors flex items-start gap-3.5 text-left">
                     <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
                       <PhoneCall size={20} />
                     </div>
                     <div>
-                      <h4 className="common-heading text-sm text-foreground font-bold">
+                      <h4 className="common-heading text-xs sm:text-sm text-foreground font-bold">
                         Direct Factory Support
                       </h4>
-                      <p className="text-xs text-muted-foreground font-semibold">
+                      <p className="text-[11px] sm:text-xs text-muted-foreground font-medium leading-normal mt-0.5">
                         Call us directly at +91 9001113333 or email sales@kingsoncrusher.com
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Trust Badge 3: Added Quality & Warranty Card */}
+                  <div className="w-[85vw] lg:w-auto shrink-0 snap-center p-3.5 sm:p-4 rounded-xl bg-card border border-border shadow-xs hover:border-primary/40 transition-colors flex items-start gap-3.5 text-left">
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
+                      <ShieldCheck size={20} />
+                    </div>
+                    <div>
+                      <h4 className="common-heading text-xs sm:text-sm text-foreground font-bold">
+                        ISO 9001 Quality &amp; Warranty
+                      </h4>
+                      <p className="text-[11px] sm:text-xs text-muted-foreground font-medium leading-normal mt-0.5">
+                        Full OEM factory warranty &amp; 24/7 technical dispatch for circuit integration.
                       </p>
                     </div>
                   </div>
@@ -999,7 +1080,7 @@ export default function ProductDetailPage({ params }: PageProps) {
 
               {/* Form Column */}
               <div className="lg:col-span-7">
-                <div className="p-5 sm:p-8 lg:p-10 rounded-xl bg-card border border-border shadow-xl space-y-4 sm:space-y-6 relative overflow-hidden flex flex-col justify-between h-full text-left">
+                <div className="px-5 py-4 sm:px-6 sm:py-5 lg:px-7 lg:py-5 rounded-xl bg-card border border-border shadow-xl space-y-3.5 sm:space-y-4 relative overflow-hidden flex flex-col justify-between h-full text-left">
                   <div className="absolute top-0 right-0 w-48 h-48 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
                   <div>

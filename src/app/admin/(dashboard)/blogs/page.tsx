@@ -164,12 +164,12 @@ export default async function AdminBlogs() {
                       <td className="px-4 py-3 text-muted-foreground hidden md:table-cell">
                         {blog.author?.name || "—"}
                       </td>
-                      <td className="px-4 py-3 text-muted-foreground text-xs hidden sm:table-cell">
-                        <span className="flex items-center gap-1">
+                      <td className="px-4 py-3 text-muted-foreground text-xs hidden sm:table-cell" suppressHydrationWarning>
+                        <span className="flex items-center gap-1" suppressHydrationWarning>
                           <Calendar size={11} />
-                          {new Date(
-                            blog.publishedAt || blog.createdAt
-                          ).toLocaleDateString()}
+                          {(blog.publishedAt || blog.createdAt) 
+                            ? new Date(blog.publishedAt || blog.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })
+                            : "-"}
                         </span>
                       </td>
                       <td className="px-4 py-3">

@@ -30,7 +30,9 @@ export default function CareersTable({ applications }: { applications: any[] }) 
                 </td>
                 <td className="px-6 py-4 font-semibold text-gray-700">{app.position}</td>
                 <td className="px-6 py-4 max-w-[200px] truncate" title={app.experience}>{app.experience || "-"}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{new Date(app.createdAt).toLocaleDateString()}</td>
+                <td className="px-6 py-4 whitespace-nowrap" suppressHydrationWarning>
+                  {app.createdAt ? new Date(app.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }) : "-"}
+                </td>
                 <td className="px-6 py-4 text-center">
                   <a 
                     href={app.resumeUrl} 

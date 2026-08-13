@@ -29,14 +29,33 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
 
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      const res = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.mobile,
+          company: formData.company || undefined,
+          message: formData.query || "Brochure request submitted via website popup.",
+          type: "Product",
+          productName: "Brochure Request",
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to submit enquiry");
+      }
+
       toast.success(
-        "Thank you! Mewar Hi-Tech Product Brochure has been sent to your email."
+        "Thank you! Your brochure enquiry has been submitted. Our team will reach out shortly."
       );
       setFormData({
         name: "",
@@ -46,7 +65,11 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
         query: "",
       });
       onClose();
-    }, 1000);
+    } catch (error: any) {
+      toast.error("Failed to send enquiry. Please try again later.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -84,13 +107,13 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
             </button>
 
             {/* Header */}
-            <div className="space-y-1 pr-6">
+            <div className="space-y-1 pr-6 text-left">
               <div className="flex items-center gap-2 text-primary eyebrow inline-">
                 <FileText size={15} />
                 <span>Brochure Request</span>
               </div>
               <h2 className="common-heading text-xl sm:text-2xl text-foreground">
-                Feel this form get brochure
+                Fill this form &amp; get brochure
               </h2>
               <p className="text-[11px] text-muted-foreground font-semibold">
                 Fill in your details below to instantly receive our technical catalog and machine specifications.

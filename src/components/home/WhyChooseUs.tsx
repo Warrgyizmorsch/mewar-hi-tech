@@ -81,7 +81,7 @@ export default function WhyChooseUs() {
                 ENGINEERED TO{" "}
                 <span className="text-primary block">DELIVER MORE.</span>
               </h2>
-              <p className="text-sm text-muted-foreground font-medium leading-relaxed max-w-md pt-2 text-justify">
+              <p className="text-sm text-muted-foreground font-medium leading-relaxed max-w-md pt-2 text-center">
                 At Mewar Hi-Tech, we deliver high-performance crushing
                 technology engineered for durability, maximum uptime, and
                 unmatched customer support across all sites. Here, every machine

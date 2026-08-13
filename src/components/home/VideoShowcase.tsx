@@ -38,7 +38,7 @@ export default function VideoShowcase() {
                 <span className="text-primary inline-block">OPERATIONS</span>
               </h2>
 
-              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed text-justify font-medium max-w-md">
+              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed text-center font-medium max-w-md">
                 Take a virtual tour of our heavy machinery assembly shop floor
                 and active quarry installations. Witness our crushers, feeders,
                 and conveyors executing high-throughput screening and size

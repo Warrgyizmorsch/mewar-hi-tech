@@ -83,8 +83,8 @@ export default async function AdminDashboard() {
                   <div key={String(enq._id)} className="flex flex-col border-b border-gray-100 pb-4 last:border-0 last:pb-0">
                      <div className="flex justify-between items-start">
                         <span className="font-bold text-sm text-[#2B3674] truncate">{enq.name}</span>
-                        <span className="text-[10px] text-gray-400 whitespace-nowrap ml-2">
-                           {new Date(enq.createdAt).toLocaleDateString()}
+                        <span className="text-[10px] text-gray-400 whitespace-nowrap ml-2" suppressHydrationWarning>
+                           {enq.createdAt ? new Date(enq.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }) : "-"}
                         </span>
                      </div>
                      <span className="text-xs text-gray-500 truncate max-w-full">
