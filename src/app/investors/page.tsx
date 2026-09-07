@@ -55,6 +55,7 @@ const SHAREHOLDING_DATA: any[] = [
 ];
 
 const SHAREHOLDERS_MEETINGS_DATA: any[] = [
+  { title: "Notice of 20th Annual General Meeting 2025-26", link: "/investors-data/shareholding_meeting_files/Notice_20th_AGM.pdf" },
   { title: "Notice of 19th Annual General Meeting 2024-25" },
   { title: "Notice of 18th AGM for the year 2023-24" , link: "/investors-data/document/shareholding_meeting_files/Outcome of 18th AGM 2023-24.pdf" },
   { title: "Outcome of 18th AGM for the year 2023-24" , link: "/investors-data/document/shareholding_meeting_files/Outcome of 18th AGM 2023-24.pdf" },
