@@ -12,7 +12,7 @@ const TRUST_BADGES = [
     icon: Award,
   },
   {
-    title: "NUMBER #1",
+    title: "NUMBER 1",
     subtitle: "SUPPLIER IN INDIA",
     icon: Trophy,
   },
