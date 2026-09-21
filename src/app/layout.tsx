@@ -28,11 +28,39 @@ const saira = Saira({
 });
 
 export const metadata: Metadata = {
-  title: "Mewar Hi-Tech - Heavy Duty Crushing & Screening Equipment",
+  metadataBase: new URL("https://www.mewarhitech.com"),
+  title: {
+    default: "Mewar Hi-Tech - Heavy Duty Crushing & Screening Equipment",
+    template: "%s | Mewar Hi-Tech",
+  },
   description:
     "Innovative crushing and screening solutions engineered to perform and built to last.",
+  applicationName: "Mewar Hi-Tech",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   icons: {
     icon: "/favicon.ico",
+  },
+  openGraph: {
+    title: "Mewar Hi-Tech",
+    description:
+      "Heavy-duty crushing, screening, and mineral processing equipment built for productivity and reliability.",
+    url: "https://www.mewarhitech.com",
+    siteName: "Mewar Hi-Tech",
+    type: "website",
+    locale: "en_IN",
   },
 };
 
