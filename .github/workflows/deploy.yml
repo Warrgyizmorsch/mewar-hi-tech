@@ -1,0 +1,53 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - deployment
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    name: Build & Deploy Next.js
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Build Next.js Application
+        run: npm run build
+
+      - name: Package Deployment Archive
+        run: |
+          tar -czf deploy.tar.gz .next public src package.json next.config.js server.js tsconfig.json postcss.config.cjs tailwind.config.cjs
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to Remote Server
+        run: |
+          scp -P ${{ secrets.SSH_PORT }} -i ~/.ssh/id_rsa deploy.tar.gz ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/${{ secrets.SSH_USER }}/deploy.tar.gz
+          ssh -p ${{ secrets.SSH_PORT }} -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+            set -e
+            cd /home/mewacjql/mewar
+            tar -xzf /home/mewacjql/deploy.tar.gz -C /home/mewacjql/mewar/
+            rm -f /home/mewacjql/deploy.tar.gz
+            chmod -R 755 /home/mewacjql/mewar/.next /home/mewacjql/mewar/public
+            source /home/mewacjql/nodevenv/mewar/22/bin/activate
+            npm install --omit=dev --legacy-peer-deps
+            mkdir -p /home/mewacjql/mewar/tmp
+            touch /home/mewacjql/mewar/tmp/restart.txt
+            echo "=== Deployment Completed Successfully ==="
+          EOF
