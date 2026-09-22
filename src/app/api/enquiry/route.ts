@@ -24,10 +24,11 @@ export async function POST(req: NextRequest) {
     // Connect to database
     const conn = await connectToDatabase();
     if (!conn) {
-      return NextResponse.json(
-        { message: "Database connection failed. Please try again later." },
-        { status: 503 }
-      );
+      const message = process.env.MONGODB_URI
+        ? "Database connection failed. Please try again later."
+        : "Database is not configured on this server. Add the MONGODB_URI environment variable in production.";
+
+      return NextResponse.json({ message }, { status: 503 });
     }
 
     const enquiry = new Enquiry({
