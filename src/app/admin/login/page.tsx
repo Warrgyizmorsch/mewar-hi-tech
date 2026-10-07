@@ -7,8 +7,8 @@ import BlobButton from "@/components/ui/BlobButton";
 import { Lock, Mail, Eye, EyeOff } from "lucide-react";
 
 export default function AdminLogin() {
-  const [email, setEmail] = useState("admin@mewar.com");
-  const [password, setPassword] = useState("Admin@123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();

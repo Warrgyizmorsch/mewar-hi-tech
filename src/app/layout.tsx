@@ -28,7 +28,7 @@ const saira = Saira({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.mewarhitech.com"),
+  metadataBase: new URL("https://mewarhitech.com"),
   title: {
     default: "Mewar Hi-Tech - Heavy Duty Crushing & Screening Equipment",
     template: "%s | Mewar Hi-Tech",
@@ -36,9 +36,6 @@ export const metadata: Metadata = {
   description:
     "Innovative crushing and screening solutions engineered to perform and built to last.",
   applicationName: "Mewar Hi-Tech",
-  alternates: {
-    canonical: "/",
-  },
   robots: {
     index: true,
     follow: true,
@@ -57,7 +54,7 @@ export const metadata: Metadata = {
     title: "Mewar Hi-Tech",
     description:
       "Heavy-duty crushing, screening, and mineral processing equipment built for productivity and reliability.",
-    url: "https://www.mewarhitech.com",
+    url: "https://mewarhitech.com",
     siteName: "Mewar Hi-Tech",
     type: "website",
     locale: "en_IN",
