@@ -35,8 +35,8 @@ const Counter: React.FC<{ stat: Stat }> = ({ stat }) => {
   return (
     <div className="text-center">
       <p ref={ref} className="common-heading text-4xl sm:text-5xl text-primary">
-        {display}
-        {stat.suffix}
+        <span className="sr-only">{stat.value}{stat.suffix}</span>
+        <span aria-hidden="true">{display}{stat.suffix}</span>
       </p>
       <p className="text-secondary-foreground/60 text-xs sm:text-sm mt-2 font-bold uppercase tracking-wider">
         {stat.label}

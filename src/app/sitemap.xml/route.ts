@@ -72,9 +72,6 @@ export async function GET() {
       (loc) => `
     <url>
       <loc>${loc}</loc>
-      <lastmod>${new Date().toISOString()}</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.8</priority>
     </url>`
     )
     .join("")}

@@ -28,7 +28,7 @@ const saira = Saira({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mewarhitech.com"),
+  metadataBase: new URL("https://www.mewarhitech.com"),
   title: {
     default: "Mewar Hi-Tech - Heavy Duty Crushing & Screening Equipment",
     template: "%s | Mewar Hi-Tech",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     title: "Mewar Hi-Tech",
     description:
       "Heavy-duty crushing, screening, and mineral processing equipment built for productivity and reliability.",
-    url: "https://mewarhitech.com",
+    url: "https://www.mewarhitech.com",
     siteName: "Mewar Hi-Tech",
     type: "website",
     locale: "en_IN",

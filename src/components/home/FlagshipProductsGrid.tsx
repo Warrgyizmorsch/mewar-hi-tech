@@ -212,7 +212,7 @@ const FlagshipProductsGrid: React.FC = () => {
             >
               <img
                 src="/images/video_thumbnail.webp"
-                alt="Video Thumbnail"
+                alt="Heavy Machinery Operation Video Preview Thumbnail"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors">
