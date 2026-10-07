@@ -59,3 +59,23 @@ export async function POST(req: NextRequest) {
   }
 }
 
+export async function DELETE(req: NextRequest) {
+  try {
+    const { ids } = await req.json();
+    if (!ids || !Array.isArray(ids) || ids.length === 0) {
+      return NextResponse.json({ message: "No IDs provided for deletion" }, { status: 400 });
+    }
+
+    const conn = await connectToDatabase();
+    if (!conn) {
+      return NextResponse.json({ message: "Database connection failed." }, { status: 503 });
+    }
+
+    await Enquiry.deleteMany({ _id: { $in: ids } });
+
+    return NextResponse.json({ message: "Enquiries deleted successfully" }, { status: 200 });
+  } catch (error: any) {
+    console.error("Enquiry deletion error:", error);
+    return NextResponse.json({ message: "Internal server error" }, { status: 500 });
+  }
+}
