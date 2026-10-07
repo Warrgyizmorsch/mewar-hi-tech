@@ -28,7 +28,7 @@ const CATEGORIES: MachineCategory[] = [
     desc: "Advanced aggregate processing solutions for easy washing and sizing.",
     image: "/images/sand-making-machine.webp",
     icon: ArrowLeftRight,
-    to: "/products",
+    to: "/products/sand-making-machine",
     exploreLabel: "Explore Sand Making",
   },
   {

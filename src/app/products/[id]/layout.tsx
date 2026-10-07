@@ -24,6 +24,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: `/products/${slug}`,
     },
+    openGraph: {
+      title: `${product.name} | Mewar Hi-Tech`,
+      description: product.introText,
+      url: `https://www.mewarhitech.com/products/${slug}`,
+      images: [{ url: product.mainImage || "/images/products/cone_crusher.jpg", width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.name} | Mewar Hi-Tech`,
+      description: product.introText,
+      images: [product.mainImage || "/images/products/cone_crusher.jpg"],
+    },
   };
 }
 

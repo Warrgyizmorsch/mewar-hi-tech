@@ -1,27 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /api/
-Disallow: /_next/
+Disallow: /admin
 
 Sitemap: https://www.mewarhitech.com/sitemap.xml
-
-User-agent: Googlebot
-Allow: /
-Disallow: /admin/
-Disallow: /api/
-
-User-agent: Bingbot
-Allow: /
-Disallow: /admin/
-Disallow: /api/
-
-User-agent: Twitterbot
-Allow: /
-Disallow: /admin/
-Disallow: /api/
-
-User-agent: facebookexternalhit
-Allow: /
-Disallow: /admin/
-Disallow: /api/

@@ -22,13 +22,28 @@ const footerColumns = [
   {
     title: "OUR PRODUCT",
     links: [
-      { label: "Double Toggle Oil Jaw Crusher", to: "/products/double-toggle-oil-jaw-crusher" },
-      { label: "Single Toggle Grease Jaw Crusher", to: "/products/single-toggle-grease-jaw-crusher" },
-      { label: "Double Toggle Grease Jaw Crusher", to: "/products/double-toggle-grease-jaw-crusher" },
+      {
+        label: "Double Toggle Oil Jaw Crusher",
+        to: "/products/double-toggle-oil-jaw-crusher",
+      },
+      {
+        label: "Single Toggle Grease Jaw Crusher",
+        to: "/products/single-toggle-grease-jaw-crusher",
+      },
+      {
+        label: "Double Toggle Grease Jaw Crusher",
+        to: "/products/double-toggle-grease-jaw-crusher",
+      },
       { label: "Cone Crusher", to: "/products/cone-crusher" },
       { label: "Roll Crusher", to: "/products/roll-crusher" },
-      { label: "Horizontal Shaft Impactor", to: "/products/horizontal-shaft-impactor" },
-      { label: "Vertical Shaft Impactor", to: "/products/vertical-shaft-impactor" },
+      {
+        label: "Horizontal Shaft Impactor",
+        to: "/products/horizontal-shaft-impactor",
+      },
+      {
+        label: "Vertical Shaft Impactor",
+        to: "/products/vertical-shaft-impactor",
+      },
       { label: "Sand Making Machine", to: "/products/sand-making-machine" },
       { label: "Vibrating Screen", to: "/products/vibrating-screen" },
       { label: "Vibro Feeder", to: "/products/vibro-feeder" },
@@ -85,10 +100,10 @@ const SocialYouTube = () => (
 );
 
 const socialLinks = [
-  { Icon: SocialLinkedIn, label: "LinkedIn" },
-  { Icon: SocialYouTube, label: "YouTube" },
-  { Icon: SocialFacebook, label: "Facebook" },
-  { Icon: SocialInstagram, label: "Instagram" },
+  // { Icon: SocialLinkedIn, label: "LinkedIn", href: "https://www.linkedin.com/company/mewar-hi-tech-engineering-ltd/" },
+  { Icon: SocialYouTube, label: "YouTube", href: "https://www.youtube.com/@MewarHitec" },
+  { Icon: SocialFacebook, label: "Facebook", href: "https://www.facebook.com/profile.php?id=61592863865884" },
+  { Icon: SocialInstagram, label: "Instagram", href: "https://www.instagram.com/mewarhitech/" },
 ];
 
 const Footer: React.FC = () => {
@@ -127,16 +142,18 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="bg-secondary text-secondary-foreground select-none">
-      
       {/* Upper Footer */}
       <div className="max-w-[1720px] mx-auto px-6 lg:px-8 py-12 flex flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap justify-between items-start gap-8 text-left">
-        
         {/* Column 1: Logo, Brand & Contact Info */}
         <div className="w-full sm:w-[45%] lg:w-[220px] space-y-5 shrink-0">
           <Link href="/" className="flex items-center gap-2">
-            <div className={`w-full h-[64px] rounded flex items-center justify-center shrink-0 overflow-hidden ${theme === "dark" ? "" : "bg-white border border-border shadow-sm"}`}>
+            <div
+              className={`w-full h-[64px] rounded flex items-center justify-center shrink-0 overflow-hidden ${theme === "dark" ? "" : "bg-white border border-border shadow-sm"}`}
+            >
               <img
-                src={theme === "dark" ? "/logos/logo-dark.png" : "/logos/logo.png"}
+                src={
+                  theme === "dark" ? "/logos/logo-dark.png" : "/logos/logo.png"
+                }
                 alt="Mewar Hi-Tech Logo"
                 className="w-full h-full object-contain"
               />
@@ -150,20 +167,32 @@ const Footer: React.FC = () => {
             </p>
 
             <div className="text-secondary-foreground/60 text-xs leading-relaxed space-y-2">
-              <p className="font-bold text-secondary-foreground">Contact Info</p>
+              <p className="font-bold text-secondary-foreground">
+                Contact Info
+              </p>
               <p>Mewar Hitech Engineering LTD.</p>
               <p>Hawa Magri Industrial Area, Sukher, Udaipur</p>
               <p>Contact No. 9001113333</p>
-              <p>Email Add. <a href="mailto:sales@kingsoncrusher.com" className="hover:text-primary transition-colors">sales@kingsoncrusher.com</a></p>
+              <p>
+                Email Add.{" "}
+                <a
+                  href="mailto:sales@kingsoncrusher.com"
+                  className="hover:text-primary transition-colors"
+                >
+                  sales@kingsoncrusher.com
+                </a>
+              </p>
             </div>
           </div>
-          
+
           {/* Social Icons */}
           <div className="flex items-center gap-2.5 pt-2">
-            {socialLinks.map(({ Icon, label }) => (
+            {socialLinks.map(({ Icon, label, href }) => (
               <a
                 key={label}
-                href="#"
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-7 h-7 rounded border border-secondary-foreground/10 bg-white/5 flex items-center justify-center text-secondary-foreground/75 hover:text-primary hover:border-primary transition-all duration-200"
                 aria-label={label}
               >
@@ -202,7 +231,10 @@ const Footer: React.FC = () => {
           <p className="text-secondary-foreground/60 text-xs leading-relaxed">
             Stay updated with the latest news, products, and solutions.
           </p>
-          <form onSubmit={handleNewsletterSubmit} className="flex items-center gap-0 mt-2">
+          <form
+            onSubmit={handleNewsletterSubmit}
+            className="flex items-center gap-0 mt-2"
+          >
             <input
               type="email"
               value={email}
@@ -221,33 +253,52 @@ const Footer: React.FC = () => {
               {submitting ? (
                 <span className="w-3.5 h-3.5 border-2 border-white/20 border-t-white rounded-full animate-spin block"></span>
               ) : (
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               )}
             </button>
           </form>
         </div>
-
       </div>
 
       {/* Bottom Bar Divider */}
       <div className="border-t border-secondary-foreground/5">
         <div className="max-w-[1720px] mx-auto px-6 lg:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] text-secondary-foreground/50">
-          
           {/* Copyright & Sub Links */}
           <div className="flex flex-wrap gap-3 md:gap-5 items-center justify-center md:justify-start">
-            <p>Copyright &copy; {new Date().getFullYear()} Mewar Hi-Tech. All rights reserved.</p>
+            <p>
+              Copyright &copy; {new Date().getFullYear()} Mewar Hi-Tech. All
+              rights reserved.
+            </p>
             <span className="text-secondary-foreground/20">|</span>
-            <Link href="/privacy-policy" className="hover:text-secondary-foreground transition-colors">
+            <Link
+              href="/privacy-policy"
+              className="hover:text-secondary-foreground transition-colors"
+            >
               Privacy Policy
             </Link>
             <span className="text-secondary-foreground/20">|</span>
-            <Link href="/terms-of-use" className="hover:text-secondary-foreground transition-colors">
+            <Link
+              href="/terms-of-use"
+              className="hover:text-secondary-foreground transition-colors"
+            >
               Terms of Use
             </Link>
             <span className="text-secondary-foreground/20">|</span>
-            <Link href="/cookie-policy" className="hover:text-secondary-foreground transition-colors">
+            <Link
+              href="/cookie-policy"
+              className="hover:text-secondary-foreground transition-colors"
+            >
               Cookie Settings
             </Link>
           </div>
@@ -259,7 +310,6 @@ const Footer: React.FC = () => {
             </span>
             <div className="w-12 h-[2px] bg-primary rounded-full hidden md:block"></div>
           </div>
-
         </div>
       </div>
     </footer>

@@ -22,9 +22,10 @@ const PageHero: React.FC<PageHeroProps> = ({
       <div className="absolute inset-0">
         <Image
           src={image}
-          alt=""
+          alt={title || "Hero Background"}
           fill
           priority
+          sizes="100vw"
           className="object-cover opacity-20"
         />
       </div>

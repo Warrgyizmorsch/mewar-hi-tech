@@ -65,9 +65,9 @@ const HeroSection: React.FC = () => {
                   transition={{ duration: 0.5, delay: 0.4 + (idx * 0.1) }}
                   className="flex flex-col items-center lg:items-start text-center lg:text-left"
                 >
-                  <h3 className="text-white font-bold text-lg lg:text-xl xl:text-[22px] uppercase whitespace-nowrap mb-1 tracking-wide drop-shadow-md">
+                  <h2 className="text-white font-bold text-lg lg:text-xl xl:text-[22px] uppercase whitespace-nowrap mb-1 tracking-wide drop-shadow-md">
                     {item.title}
-                  </h3>
+                  </h2>
                   <p className="text-gray-300 text-sm lg:text-[15px] tracking-wide drop-shadow-sm">
                     {item.subtitle}
                   </p>

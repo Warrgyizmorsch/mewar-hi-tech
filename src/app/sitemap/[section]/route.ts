@@ -8,16 +8,10 @@ const BASE_URL =
 
 const productUrls = PRODUCTS_DATA.map((product) => ({
   loc: `${BASE_URL}/products/${product.slug}`,
-  lastmod: new Date().toISOString(),
-  changefreq: "monthly",
-  priority: "0.8",
 }));
 
 const blogUrls = BLOG_POSTS.filter((post) => post.published).map((post) => ({
   loc: `${BASE_URL}/blogs/${post.slug}`,
-  lastmod: new Date(post.publishedAt).toISOString(),
-  changefreq: "monthly",
-  priority: "0.7",
 }));
 
 const sectionData: Record<string, { loc: string[] }> = {
@@ -83,9 +77,6 @@ export async function GET(
       (loc) => `
     <url>
       <loc>${loc}</loc>
-      <lastmod>${new Date().toISOString()}</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.8</priority>
     </url>`
     )
     .join("")}
