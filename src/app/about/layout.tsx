@@ -1,22 +1,20 @@
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "About Us | Mewar Hi-Tech",
-  description: "Manufacturer of Crushing, Screening and Size Reduction Equipment. Combining 100% in-house manufacturing, cutting-edge technology, and unyielding quality.",
+export const metadata = {
+  title: "About Us | In-House Crusher Manufacturing | Mewar Hi-Tech",
+  description: "See how Mewar Hi-Tech designs, casts and machines crushing and screening equipment in-house at its Udaipur plant, with strict quality checks.",
   alternates: {
-    canonical: "/about",
+    canonical: "https://www.mewarhitech.com/about",
   },
   openGraph: {
-    title: "About Us | Mewar Hi-Tech",
-    description: "Manufacturer of Crushing, Screening and Size Reduction Equipment. Combining 100% in-house manufacturing, cutting-edge technology, and unyielding quality.",
+    title: "About Us | In-House Crusher Manufacturing | Mewar Hi-Tech",
+    description: "See how Mewar Hi-Tech designs, casts and machines crushing and screening equipment in-house at its Udaipur plant, with strict quality checks.",
     url: "https://www.mewarhitech.com/about",
-    images: [{ url: "/images/slider/about-mewar-hi-tech1.jpg", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Us | Mewar Hi-Tech",
-    description: "Manufacturer of Crushing, Screening and Size Reduction Equipment.",
-    images: ["/images/slider/about-mewar-hi-tech1.jpg"],
+    title: "About Us | In-House Crusher Manufacturing | Mewar Hi-Tech",
+    description: "See how Mewar Hi-Tech designs, casts and machines crushing and screening equipment in-house at its Udaipur plant, with strict quality checks.",
   },
 };
 

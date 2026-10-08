@@ -178,11 +178,10 @@ export default function ExportProjects() {
             onClick={() => setLightboxIndex(0)}
             className="lg:col-span-7 relative min-h-[420px] lg:min-h-[520px] rounded-xl overflow-hidden border border-border bg-card group shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer flex flex-col justify-end"
           >
-            <img
-              src={featuredExport.src}
+            <img src={featuredExport.src}
               alt={featuredExport.title}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
+             loading="lazy" width={800} height={600} />
 
             {/* Dark Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 opacity-90 group-hover:opacity-95 transition-opacity duration-300" />
@@ -230,11 +229,10 @@ export default function ExportProjects() {
                 onClick={() => setLightboxIndex(idx + 1)}
                 className="relative h-[155px] lg:h-[160px] rounded-xl overflow-hidden border border-border bg-card group shadow-xs hover:shadow-xl transition-all duration-300 cursor-pointer flex items-end p-4"
               >
-                <img
-                  src={item.src}
+                <img src={item.src}
                   alt={item.title}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-108"
-                />
+                 loading="lazy" width={800} height={600} />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent z-10" />
 
                 <div className="relative z-20 flex items-center justify-between w-full text-left">
@@ -268,11 +266,10 @@ export default function ExportProjects() {
               onClick={() => setLightboxIndex(idx + 4)}
               className="relative h-[220px] rounded-xl overflow-hidden border border-border bg-card group shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between p-5"
             >
-              <img
-                src={item.src}
+              <img src={item.src}
                 alt={item.title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-108"
-              />
+               loading="lazy" width={800} height={600} />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/10 z-10" />
 
               {/* Tag Badge */}
@@ -334,11 +331,10 @@ export default function ExportProjects() {
               onClick={(e) => e.stopPropagation()}
               className="relative max-w-5xl w-full max-h-[80vh] aspect-[16/10] rounded-xl overflow-hidden shadow-2xl border border-white/10"
             >
-              <img
-                src={EXPORT_PROJECTS_DATA[lightboxIndex].src}
+              <img src={EXPORT_PROJECTS_DATA[lightboxIndex].src}
                 alt={EXPORT_PROJECTS_DATA[lightboxIndex].title}
                 className="w-full h-full object-contain bg-black"
-              />
+               loading="lazy" width={800} height={600} />
 
               {/* Bottom Project Details Bar */}
               <div className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-black/90 via-black/70 to-transparent text-left text-white flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3">

@@ -122,11 +122,10 @@ export default function MultiCardCarousel({
             >
               <div className="group relative rounded-xl overflow-hidden bg-card border border-border shadow-xl min-h-[320px] sm:min-h-[380px] h-full flex flex-col justify-end transition-all duration-300 hover:border-primary/60 hover:shadow-2xl">
                 {/* Image */}
-                <img
-                  src={slide.src}
+                <img src={slide.src}
                   alt={slide.title}
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
+                 loading="lazy" width={800} height={600} />
 
                 {/* Gradient Overlays */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />

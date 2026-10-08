@@ -56,6 +56,7 @@ const IndustriesGrid: React.FC = () => {
           {industries.map((ind, i) => (
             <div
               key={ind.name}
+              id={ind.name.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}
               className="group bg-card border-2 border-border p-8 rounded-none hover:shadow-lg transition-all duration-300 relative overflow-hidden"
             >
               {/* Yellow top accent indicator line */}

@@ -131,11 +131,10 @@ export default function WhyChooseUs() {
                   transition={{ duration: 0.5, delay: idx * 0.05 }}
                   className={`${img.colSpan} relative rounded-xl overflow-hidden group shadow-sm bg-muted h-[180px] lg:h-[220px]`}
                 >
-                  <img
-                    src={img.src}
+                  <img src={img.src}
                     alt={img.title}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
+                   loading="lazy" width={800} height={600} />
 
                   {/* Bottom Text Bar */}
                   <div className="absolute bottom-0 left-0 right-0 bg-[#0A1A3B] border-t border-white/10 p-2.5 sm:p-3">
@@ -157,11 +156,10 @@ export default function WhyChooseUs() {
                 key={idx}
                 className="relative rounded-xl overflow-hidden shadow-sm bg-muted h-[220px] w-full"
               >
-                <img
-                  src={img.src}
+                <img src={img.src}
                   alt={img.title}
                   className="absolute inset-0 w-full h-full object-cover"
-                />
+                 loading="lazy" width={800} height={600} />
                 <div className="absolute bottom-0 left-0 right-0 bg-[#0A1A3B] border-t border-white/10 p-3">
                   <h3 className="text-white eyebrow inline- text-center">
                     {img.title}
@@ -183,11 +181,10 @@ export default function WhyChooseUs() {
               transition={{ duration: 0.5, delay: 0.2 + idx * 0.1 }}
               className="relative rounded-xl overflow-hidden group shadow-sm bg-muted h-[180px] lg:h-[220px]"
             >
-              <img
-                src={img.src}
+              <img src={img.src}
                 alt={img.title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
+               loading="lazy" width={800} height={600} />
 
               {/* Bottom Text Bar */}
               <div className="absolute bottom-0 left-0 right-0 bg-[#0A1A3B] border-t border-white/10 p-2.5 sm:p-3">

@@ -10,11 +10,10 @@ const CTASection: React.FC = () => {
   return (
     <section className="relative section-padding bg-secondary overflow-hidden select-none">
       <div className="absolute inset-0 opacity-10">
-        <img
-          src="/images/backgorund.webp"
-          alt=""
+        <img src="/images/backgorund.webp"
+          alt="Background Image for Call to Action"
           className="w-full h-full object-cover"
-        />
+         loading="lazy" width={800} height={600} />
       </div>
       <div
         className="relative max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-10"

@@ -20,9 +20,33 @@ import AboutTeaser from "@/components/home/AboutTeaser";
 
 import FlagshipProductsGrid from "@/components/home/FlagshipProductsGrid";
 
-export const metadata: Metadata = {
+export const metadata = {
+  title: "Crusher Manufacturer in India | Mewar Hi-Tech",
+  description: "Mewar Hi-Tech makes jaw crushers, cone crushers, screens, feeders and sand making machines in Udaipur, Rajasthan. Request a quote today.",
   alternates: {
-    canonical: "/",
+    canonical: "https://www.mewarhitech.com/",
+  },
+  openGraph: {
+    title: "Crusher Manufacturer in India | Mewar Hi-Tech",
+    description: "Mewar Hi-Tech makes jaw crushers, cone crushers, screens, feeders and sand making machines in Udaipur, Rajasthan. Request a quote today.",
+    url: "https://www.mewarhitech.com/",
+    siteName: "Mewar Hi-Tech",
+    type: "website",
+    locale: "en_IN",
+    images: [
+      {
+        url: "/images/slider/about-mewar-hi-tech1.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Mewar Hi-Tech Crushing Equipment",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Crusher Manufacturer in India | Mewar Hi-Tech",
+    description: "Mewar Hi-Tech makes jaw crushers, cone crushers, screens, feeders and sand making machines in Udaipur, Rajasthan. Request a quote today.",
+    images: ["/images/slider/about-mewar-hi-tech1.jpg"],
   },
 };
 
@@ -31,9 +55,6 @@ export default function Home() {
     <div>
       <Header />
       <main>
-        <h1 className="sr-only">
-          Mewar Hi-Tech - Heavy Duty Crushing &amp; Screening Equipment
-        </h1>
 
         {/* 1. Hero: BUILT TO CRUSH. MADE TO LAST. */}
         <HeroSection />

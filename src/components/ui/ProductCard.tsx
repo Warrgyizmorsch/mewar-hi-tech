@@ -31,11 +31,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
       >
         <div>
           <div className="overflow-hidden h-56 bg-muted">
-            <img
-              src={image}
+            <img src={image}
               alt={`${name} industrial machine`}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            />
+             loading="lazy" width={800} height={600} />
           </div>
           <div className="p-6 text-left">
             <h3 className="common-heading text-lg text-foreground mb-2">

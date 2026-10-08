@@ -52,11 +52,10 @@ const ClientLogosMarquee: React.FC = () => {
             key={`${logoSrc}-${i}`}
             className="flex items-center justify-center px-8 lg:px-12 shrink-0"
           >
-            <img
-              src={logoSrc}
+            <img src={logoSrc}
               alt={brands[i % brands.length]}
               className="h-12 lg:h-16 w-auto object-contain opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300"
-            />
+             loading="lazy" width={800} height={600} />
           </div>
         ))}
       </Container>

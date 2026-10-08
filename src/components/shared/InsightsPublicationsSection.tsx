@@ -91,11 +91,10 @@ const InsightsPublicationsSection: React.FC = () => {
                 className="border border-border bg-card rounded-xl overflow-hidden flex flex-col group hover:shadow-lg transition-all duration-300"
               >
                 <div className="h-48 overflow-hidden bg-muted">
-                  <img
-                    src={item.image}
+                  <img src={item.image}
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                   loading="lazy" width={800} height={600} />
                 </div>
                 <div className="p-6 flex-grow flex flex-col justify-between">
                   <div>

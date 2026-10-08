@@ -11,7 +11,7 @@ const footerColumns = [
     title: "COMPANY INFO",
     links: [
       { label: "Home", to: "/" },
-      { label: "About Mewar Hitech", to: "/about" },
+      { label: "About Mewar Hi-Tech", to: "/about" },
       { label: "Events", to: "/events" },
       { label: "Career", to: "/careers" },
       { label: "Contact", to: "/contact" },
@@ -65,11 +65,11 @@ const footerColumns = [
   {
     title: "APPLICATIONS",
     links: [
-      { label: "Quarrying", to: "/industries" },
-      { label: "Mining", to: "/industries" },
-      { label: "Recycling", to: "/industries" },
-      { label: "Road & Infra", to: "/industries" },
-      { label: "View all Applications", to: "/industries" },
+      { label: "Quarrying", to: "/industries#quarrying" },
+      { label: "Aggregates", to: "/industries#aggregates" },
+      { label: "Recycling", to: "/industries#recycling" },
+      { label: "Road Construction", to: "/industries#road-construction" },
+      { label: "Sand & Gravel", to: "/industries#sand-gravel" },
     ],
   },
 ];
@@ -150,13 +150,12 @@ const Footer: React.FC = () => {
             <div
               className={`w-full h-[64px] rounded flex items-center justify-center shrink-0 overflow-hidden ${theme === "dark" ? "" : "bg-white border border-border shadow-sm"}`}
             >
-              <img
-                src={
+              <img src={
                   theme === "dark" ? "/logos/logo-dark.png" : "/logos/logo.png"
                 }
                 alt="Mewar Hi-Tech Logo"
                 className="w-full h-full object-contain"
-              />
+               loading="lazy" width={800} height={600} />
             </div>
           </Link>
           <div className="space-y-4">
