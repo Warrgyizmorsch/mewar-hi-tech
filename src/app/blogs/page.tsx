@@ -489,7 +489,7 @@ export default function Blogs() {
           <div className="absolute inset-0 opacity-10">
             <Image
               src="/images/backgorund.webp"
-              alt=""
+              alt="Newsletter Background"
               fill
               className="object-cover"
             />

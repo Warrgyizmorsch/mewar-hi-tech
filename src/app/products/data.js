@@ -12,6 +12,8 @@ export const PRODUCTS_DATA = [
     heroImage: "/images/double-toggle-oil-jaw-crusher-hero.webp",
     mainImage: "/images/double-toggle-oil-jaw-crusher.webp",
     model3d: "/3d-model-proudct-images/double_toggle_oi_jaw _crusher.glb",
+    seoTitle: "Double Toggle Oil Jaw Crusher | Mewar Hi-Tech",
+    seoDescription: "Heavy-duty double toggle oil jaw crusher for primary crushing in quarries and mines. See features and request a quote from Mewar Hi-Tech.",
     introText: "KINGSON is a credible and trustworthy brand known for its high quality and great manufacturing. We also acquired experience over the years in the manufacture of jaw crusher, which is commonly used in mining, quarry and material handling. KINGSON'S Double Toggle Oil Lubricated Jaw Crusher has a longer life as compared to the jaw plates of other crushers, in light of the fact that KINGSON's Toggle Jaw Crusher operates on the 'Crushing without Rubbing' concept. Also, automatic continuous spray lubrication is provided by coupling pump / vertical oil pump on the basis of toggle-pitman mechanism which enables the crusher to run safely.",
     features: [
       "The operating mechanism is totally enclosed for maximum life and minimum maintenance.",
@@ -83,6 +85,8 @@ export const PRODUCTS_DATA = [
     heroImage: "/images/single-toggle-grease-jaw-crusher-hero.webp",
     mainImage: "/images/single-toggle-grease-jaw-crusher.webp",
     model3d: "/3d-model-proudct-images/single_toggle_greese_crusher.glb",
+    seoTitle: "Single Toggle Grease Jaw Crusher | Mewar Hi-Tech",
+    seoDescription: "Single toggle grease jaw crusher built for primary crushing of hard rock and aggregates. View details and request a quote from Mewar Hi-Tech.",
     introText: "Kingson's Single Toggle Grease Jaw Crusher is usually utilized where size conveyance isn't of fundamental significance, be that as it may, efficiency is to be increased with lower power utilization, in contrast with Double Toggle Grease Lubricated Jaw Crusher and hence working expense is lower. These do not require high operating skills and gap setting is easier and manageable. Additionally, the support necessity is much lower and it doesn't require high maintenance.",
     features: [
       "Increased stroke for greater productivity, large eccentric shaft for strong stroke in the upper chamber.",
@@ -127,6 +131,8 @@ export const PRODUCTS_DATA = [
     heroImage: "/images/double-toggle-grease-jaw-crusher-hero.webp",
     mainImage: "/images/double-toggle-grease-jaw-crusher.webp",
     model3d: "/3d-model-proudct-images/double_toggle_greese _crusher.glb",
+    seoTitle: "Double Toggle Grease Jaw Crusher | Mewar Hi-Tech",
+    seoDescription: "Double toggle grease jaw crusher for tough primary crushing duty. Check the features and ask Mewar Hi-Tech for a quote and technical details.",
     introText: "Our organization has garnered a striking position in this industry as the Exporter, Manufacturer, Service Provider and Supplier of Double Toggle Grease Based Jaw Crusher in Udaipur, Rajasthan, India. It is precisely designed by using excellent material and hi-end technology and innovation. Besides, our customers can procure our products at effectively moderate costs. The capacities may vary depending upon the type of rock gradation, breaking characteristics, compressive strength, rate and method of feeding, bulk density of feed, percentage of moisture in feed, method of operation etc. The production capacity is affected by the type of jaw plates (plain/toothed) and RPM of the machine cast through lifting on crushing stroke.",
     features: [
       "Double Toggle provides maximum leverage to the long stroke eccentric.",
@@ -178,6 +184,8 @@ export const PRODUCTS_DATA = [
     heroImage: "/images/cone-crusher-hero.webp",
     mainImage: "/images/cone-crusher.webp",
     model3d: "/3d-model-proudct-images/cone_crusher.glb",
+    seoTitle: "Cone Crusher for Secondary Crushing | Mewar Hi-Tech",
+    seoDescription: "Cone crusher for secondary and tertiary crushing with consistent product size. See features and request a quote from Mewar Hi-Tech.",
     introText: "Mewar Hi-tech is proud to reveal that it is one of the top Cone Crusher manufacturers providing the highest grade machinery for the crushing of feed materials. We don't simply concentrate on helping our clients in getting their ideal outcomes yet additionally on making the procedure progressively solid, financially savvy, and flexible. Along these lines, we resolve to give you the most lucrative outcome.",
     features: [
       "Higher crushing ratio and production efficiency result in lower spare part consumption and lower operating cost.",
@@ -228,6 +236,8 @@ export const PRODUCTS_DATA = [
     heroImage: "/images/roll-crusher-hero.webp",
     mainImage: "/images/roll-crusher.webp",
     model3d: "/3d-model-proudct-images/roll_crusher.glb",
+    seoTitle: "Roll Crusher | Mewar Hi-Tech",
+    seoDescription: "Roll crusher for controlled size reduction of medium-hard and soft materials. View details and request a quote from Mewar Hi-Tech, Udaipur.",
     introText: "KINGSON'S Roll Crusher machine is widely used for the powder process of mineral products, including metal and non-metal ore, fireproof material, bauxite, diamond dust, glass raw materials, architectural materials, artificial sand and all kinds of metals and materials. The design is robust to cater to the customer need.",
     features: [
       "Adjustable rolling spacing to change output sizing instantly.",
@@ -266,6 +276,8 @@ export const PRODUCTS_DATA = [
     heroImage: "/images/horizontal-shaft-impactor-hero.webp",
     mainImage: "/images/horizontal-shaft-impactor.webp",
     model3d: "/3d-model-proudct-images/horizontal_shaft.glb",
+    seoTitle: "Horizontal Shaft Impactor (HSI) | Mewar Hi-Tech",
+    seoDescription: "Horizontal shaft impactor for secondary crushing with good product shape. See features and request a quote from Mewar Hi-Tech.",
     introText: "KINGSON'S product series of Horizontal Shaft impactor is widely used in the mining, energy and chemical industry. The Horizontal Shaft Impactor has reasonable structure, high productivity, easy maintenance and safe performance. The most remarkable advantage of this machine is that its completed item is fit as a fiddle, non-tensile and crevice. Our Horizontal Shaft Impactor is known for the most outstanding advantage of the delivering goods cubic shapes, non-tensile and cranny products. Not only do they find a wide application in various industries but is also the first choice of crushing industries.",
     features: [
       "High reduction ratio and crushing efficiency, no-board connection; with blow bar of Chrome Steel.",
@@ -313,6 +325,8 @@ export const PRODUCTS_DATA = [
     heroImage: "/images/vertical-shaft-impactor-hero.webp",
     mainImage: "/images/vertical-shaft-impactor.webp",
     model3d: "/3d-model-proudct-images/verticle_shaft_impactor.glb",
+    seoTitle: "Vertical Shaft Impactor (VSI) | Mewar Hi-Tech",
+    seoDescription: "Vertical shaft impactor for tertiary crushing and shaping aggregates and manufactured sand. View details and request a quote from Mewar Hi-Tech.",
     introText: "KINGSON'S Impact Crusher-VSI Crusher incorporates rock-on-rock crushing technology that has revolutionized the aggregates and mineral industries worldwide. It is designed for low services requirement, with ease of lubrication and the assurance of continuous services. KINGSON VSI is an excellent third and fourth stage reduction unit, combing a unique crushing and grinding action in a single machine for the processing of abrasive friable or sticky material.",
     features: [
       "Competitive cost, especially when compared with conventional crushing equipment.",
@@ -352,6 +366,8 @@ export const PRODUCTS_DATA = [
     heroImage: "/images/sand-making-machine-hero.webp",
     mainImage: "/images/sand-making-machine.webp",
     model3d: "/3d-model-proudct-images/sand_making_machine.glb",
+    seoTitle: "Sand Making Machine | Mewar Hi-Tech",
+    seoDescription: "Sand making machine for producing manufactured sand from crushed rock. See features and request a quote from Mewar Hi-Tech, Udaipur.",
     introText: "KINGSON'S Sand Making Machine is widely used for fines size reduction of mineral product including metal and non-metal ore, fireproof material, bauxite, diamond dust, glass raw materials, architectural materials, artificial Materials of all sorts of metal ores.",
     features: [
       "The Structure is simple, and the operating cost is low.",
@@ -396,6 +412,8 @@ export const PRODUCTS_DATA = [
     heroImage: "/images/vibrating-screen-hero.webp",
     mainImage: "/images/vibrating-screen.webp",
     model3d: "/3d-model-proudct-images/vibrating_screen.glb",
+    seoTitle: "Vibrating Screen for Aggregates | Mewar Hi-Tech",
+    seoDescription: "Vibrating screen for accurate sizing and separation of crushed aggregates. View details and request a quote from Mewar Hi-Tech.",
     introText: "KINGSON'S vibrating screen, with a circular motion, is a two bearing free floating vibrating screen which proficiently screens all moderately free-flowing material. The circular throw action is delivered from uneven weights which are attached to the ends of the screening surfaces and ensure that the material travels over the screening surfaces at a constant rate. the amplitude or degree of vibration can be acclimated to fit a difference in obligation by adding a subtracting balance weight plate. The circular motion ensures rapid strait. The yield of the screen relies upon screen tendency; taking care of technique, screen RPM and vibration. We undertake all ranges of vibrating screens as per the capacity of plant and choices of the clients.",
     features: [
       "Sharp sized end products with higher capacity and lower costs. New technology equipped with two bearings and grease lubrication.",
@@ -452,6 +470,8 @@ export const PRODUCTS_DATA = [
     heroImage: "/images/sand-washer-hero.webp",
     mainImage: "/images/sand-washer.webp",
     model3d: "/3d-model-proudct-images/sand_washer.glb",
+    seoTitle: "Sand Washer | Mewar Hi-Tech",
+    seoDescription: "Sand washer for cleaning and sizing manufactured and natural sand in crushing plants. View details and request a quote from Mewar Hi-Tech.",
     introText: "Sand Washers use pressure hydraulic separation with water as the medium to clean and organise sand particles by weight. Bigger particles weigh more, sink and are gathered in the base of the trough. The sand particles are transported to the slanted release end by a double pitched steel spiral shaft with replaceable cast wear shoes. The lighter undesirable particles float to the surface of the claim settling pool and are released over the weirs. Dewatering happens as the winding shaft transports the settled sand up to the grade of the trough and is released.",
     features: [
       "Makes clean high-quality construction sand.",
@@ -498,6 +518,8 @@ export const PRODUCTS_DATA = [
     heroImage: "/images/belt-conveyor-hero.webp",
     mainImage: "/images/belt-conveyor.webp",
     model3d: "/3d-model-proudct-images/belt_conveyor.glb",
+    seoTitle: "Belt Conveyor for Crushing Plants | Mewar Hi-Tech",
+    seoDescription: "Belt conveyor for moving crushed material between plant stages. See details and request a quote from Mewar Hi-Tech, Udaipur.",
     introText: "The Belt conveyor is a mechanical material handling equipment that moves materials and products from a point and a level to another. Its maintenance is easy and is generally associated with size reduction equipment. Most of the conveying of the materials is handled by the belt conveyor as it is the most suitable equipment for material transfer.\n\nMewar Hitech offers a wide range of belt conveyors and portable conveyors. Our equipment is ideal for all regular crushing plants and mobile crushing units. The conveyors are designed according to operations, such as transportation, accumulation and sorting, the material sizes, weights and shapes and where the loading and pickup points need to be.",
     features: [
       "Rigid steel truss framework with weather cover protection guards.",
@@ -530,6 +552,8 @@ export const PRODUCTS_DATA = [
     heroImage: "/images/vibro-feeder-hero.webp",
     mainImage: "/images/vibro-feeder.webp",
     model3d: "/3d-model-proudct-images/vibro_feeder.glb",
+    seoTitle: "Vibro Feeder | Mewar Hi-Tech",
+    seoDescription: "Vibro feeder for steady, controlled feeding of rock into crushers and screens. View details and request a quote from Mewar Hi-Tech.",
     introText: "The Vibro Feeder is used for transferring the large size materials and granular material from the hopper to the receiving device uniformly, periodically and continuously in the production flow and to feed material into the crusher continuously and uniformly to the screen. Capacity figures are indicative fir material of 99.88 IBS / CU FT bulk density. The actual capacity result may vary by depending upon the feed, RPM, grading, grit and moisture, etc.",
     features: [
       "Twin eccentric shaft vibrator unit with adjustable weight segments.",
@@ -579,6 +603,8 @@ export const PRODUCTS_DATA = [
     heroImage: "/images/single-shaft-feeders-hero.webp",
     mainImage: "/images/single-shaft-feeders.webp",
     model3d: "/3d-model-proudct-images/single_shaft_feed.glb",
+    seoTitle: "Single Shaft Feeders | Mewar Hi-Tech",
+    seoDescription: "Single shaft feeders for reliable material feeding in crushing and screening plants. View details and request a quote from Mewar Hi-Tech.",
     introText: "KINGSON'S Grizzly is a massive welded frame construction to withstand extreme shock loads. These are basically conveying decks with a combination of pan and grizzly and back & side renewable liners. Grizzly Feeder is non-stopping and ventured grizzly, independently inexhaustible, for material inclining and simple fines passing. It vibrating using installed consists of two contra-rotating eccentric shafts, geared together in oil-bath. The setting of amplitude is affected at the still machine by varying unbalance. Actuation is by 4-pole motor and V-belts drive. Special steel springs are arranged for the installation on concrete or steel supporting structure.",
     features: [
       "Width: 800mm to 1500mm",

@@ -9,11 +9,10 @@ const ServiceNetworkBanner: React.FC = () => {
     <section className="relative h-[400px] lg:h-[500px] w-full flex items-center overflow-hidden bg-secondary select-none">
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full z-0">
-        <img
-          src="/images/after-sales-1.jpg"
+        <img src="/images/after-sales-1.jpg"
           alt="Field service support"
           className="w-full h-full object-cover object-center opacity-40"
-        />
+         loading="lazy" width={800} height={600} />
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/70 to-transparent" />
       </div>

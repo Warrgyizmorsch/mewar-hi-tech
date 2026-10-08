@@ -460,7 +460,7 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
               {formData.coverImage && (
                 <div className="mt-4 relative aspect-video rounded-lg overflow-hidden border border-border">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={formData.coverImage} alt="Cover Preview" className="object-cover w-full h-full" />
+                  <img src={formData.coverImage} alt="Cover Preview" className="object-cover w-full h-full"  loading="lazy" width={800} height={600} />
                 </div>
               )}
             </div>

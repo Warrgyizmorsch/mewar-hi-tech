@@ -29,10 +29,7 @@ const saira = Saira({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.mewarhitech.com"),
-  title: {
-    default: "Mewar Hi-Tech - Heavy Duty Crushing & Screening Equipment",
-    template: "%s | Mewar Hi-Tech",
-  },
+  title: "Mewar Hi-Tech - Heavy Duty Crushing & Screening Equipment",
   description:
     "Innovative crushing and screening solutions engineered to perform and built to last.",
   applicationName: "Mewar Hi-Tech",
@@ -58,6 +55,20 @@ export const metadata: Metadata = {
     siteName: "Mewar Hi-Tech",
     type: "website",
     locale: "en_IN",
+    images: [
+      {
+        url: "/images/slider/about-mewar-hi-tech1.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Mewar Hi-Tech Crushing Equipment",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mewar Hi-Tech - Heavy Duty Crushing & Screening Equipment",
+    description: "Innovative crushing and screening solutions engineered to perform and built to last.",
+    images: ["/images/slider/about-mewar-hi-tech1.jpg"],
   },
 };
 
@@ -77,6 +88,24 @@ export default function RootLayout({
         <Script id="gtm-script" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M5CJRB5N');`}
         </Script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Mewar Hi-Tech",
+              "url": "https://www.mewarhitech.com",
+              "logo": "https://www.mewarhitech.com/images/slider/about-mewar-hi-tech1.jpg",
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+91-9414167380",
+                "contactType": "customer service"
+              }
+            })
+          }}
+        />
+        <link rel="preload" href="/images/video_thumbnail.webp" as="image" />
       </head>
       <body className="min-h-screen font-sans" suppressHydrationWarning>
         <noscript>

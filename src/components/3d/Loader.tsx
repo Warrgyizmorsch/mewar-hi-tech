@@ -41,7 +41,7 @@ const Loader = () => {
 
         {/* Center Content */}
         <div className="flex flex-col items-center justify-center space-y-2">
-          <img src="/logos/logo-dark.png" alt="Mewar Hi-Tech" className="h-6 opacity-80" />
+          <img src="/logos/logo-dark.png" alt="Mewar Hi-Tech" className="h-6 opacity-80"  loading="lazy" width={800} height={600} />
           <span className="text-white font-oswald text-2xl font-bold tracking-wider">
             {Math.round(progress)}%
           </span>

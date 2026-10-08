@@ -73,9 +73,10 @@ export default function CaseStudiesSection() {
         <div className="block md:hidden">
           <MobileCarousel autoSlideInterval={2000}>
             {featuredStudies.map((study) => (
-              <div
+              <Link
+                href="/case-studies"
                 key={study.id}
-                onClick={() => setSelectedStudy(study)}
+                onClick={(e) => { e.preventDefault(); setSelectedStudy(study); }}
                 className="group bg-card border border-border/80 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between cursor-pointer w-full"
               >
                 <div>
@@ -124,7 +125,7 @@ export default function CaseStudiesSection() {
                   <span>VIEW CASE STUDY</span>
                   <ArrowRight size={14} />
                 </div>
-              </div>
+              </Link>
             ))}
           </MobileCarousel>
         </div>
@@ -138,10 +139,11 @@ export default function CaseStudiesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              onClick={() => setSelectedStudy(study)}
+              onClick={(e) => { e.preventDefault(); setSelectedStudy(study); }}
               className="group bg-card border border-border/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer"
             >
-              <div>
+              <Link href="/case-studies" onClick={(e) => e.preventDefault()} className="flex flex-col justify-between h-full">
+                <div>
                 {/* Top Image Container with Badge */}
                 <div className="relative aspect-[16/10] overflow-hidden bg-muted">
                   <Image
@@ -192,6 +194,7 @@ export default function CaseStudiesSection() {
                 <span>VIEW CASE STUDY</span>
                 <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
               </div>
+              </Link>
             </motion.div>
           ))}
         </div>

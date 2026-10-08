@@ -29,7 +29,7 @@ const navItems: NavItem[] = [
     label: "About",
     children: [
       { label: "Our Case Studies", to: "/case-studies"},
-      { label: "About Mewar Hitech", to: "/about" },
+      { label: "About Mewar Hi-Tech", to: "/about" },
       { label: "Events", to: "/events" },
       { label: "Career", to: "/careers" },
     ],
@@ -185,11 +185,10 @@ const Header: React.FC = () => {
           aria-label="Mewar Hi-Tech home"
         >
           <div className="w-[100px] rounded flex items-center justify-center shrink-0 overflow-hidden">
-            <img
-              src={theme === "dark" ? "/logos/logo-dark.png" : "/logos/logo.png"}
+            <img src={theme === "dark" ? "/logos/logo-dark.png" : "/logos/logo.png"}
               alt="Mewar Hi-Tech Logo"
               className="w-full h-full object-contain"
-            />
+             loading="lazy" width={800} height={600} />
           </div>
         </Link>
 
@@ -372,11 +371,10 @@ const Header: React.FC = () => {
                 className="flex items-center gap-2"
               >
                 <div className="w-28 h-8 rounded overflow-hidden flex items-center justify-center">
-                  <img
-                    src={theme === "dark" ? "/logos/logo-dark.png" : "/logos/logo.png"}
+                  <img src={theme === "dark" ? "/logos/logo-dark.png" : "/logos/logo.png"}
                     alt="Mewar Hi-Tech Logo"
                     className="w-full h-full object-contain"
-                  />
+                   loading="lazy" width={800} height={600} />
                 </div>
               </Link>
               <button

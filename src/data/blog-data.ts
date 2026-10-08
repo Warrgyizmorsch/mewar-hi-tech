@@ -15,12 +15,16 @@ export interface BlogPost {
   featured: boolean;
   published: boolean;
   publishedAt: string;
+  metaTitle?: string;
+  metaDescription?: string;
 }
 
 export const BLOG_POSTS: BlogPost[] = [
   {
     title: "The Future of Aggregate Crushing: Trends Shaping 2026",
     slug: "future-of-aggregate-crushing-trends-2026",
+    metaTitle: "Aggregate Crushing Trends for 2026 | Mewar Hi-Tech",
+    metaDescription: "Key trends shaping aggregate crushing and screening in 2026, and what they mean for quarry and plant owners. Read the Mewar Hi-Tech view.",
     excerpt:
       "Explore how automation, IoT integration, and sustainable practices are reshaping the aggregate crushing industry. From smart sensors to AI-driven optimization, the future is here.",
     content: `
@@ -71,6 +75,8 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     title: "Double Toggle Oil Jaw Crusher: Engineering Excellence Redefined",
     slug: "double-toggle-oil-jaw-crusher-engineering-excellence",
+    metaTitle: "Double Toggle Oil Jaw Crusher Engineering | Mewar Hi-Tech",
+    metaDescription: "A closer look at the engineering behind the Mewar Hi-Tech double toggle oil jaw crusher, from design choices to build quality and performance.",
     excerpt:
       "Discover the engineering innovations behind our flagship Double Toggle Oil Jaw Crusher — from advanced oil lubrication systems to optimized crushing chamber geometry.",
     content: `
@@ -109,6 +115,8 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     title: "Cone Crusher vs Jaw Crusher: Choosing the Right Machine",
     slug: "cone-crusher-vs-jaw-crusher-choosing-right-machine",
+    metaTitle: "Cone Crusher vs Jaw Crusher: How to Choose | Mewar Hi-Tech",
+    metaDescription: "Compare cone and jaw crushers by stage, material and output, and learn how to choose the right machine for your plant. By Mewar Hi-Tech.",
     excerpt:
       "A comprehensive comparison of cone crushers and jaw crushers to help you select the ideal crushing solution for your specific application and material type.",
     content: `
@@ -154,6 +162,8 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     title: "500 TPH Limestone Crushing Plant: A Complete Success Story",
     slug: "500-tph-limestone-crushing-plant-success-story",
+    metaTitle: "500 TPH Limestone Crushing Plant Story | Mewar Hi-Tech",
+    metaDescription: "How Mewar Hi-Tech planned and delivered a 500 TPH limestone crushing plant, with the setup, challenges and results from the project.",
     excerpt:
       "How Mewar Hi-Tech delivered a turnkey 500 TPH limestone crushing and screening plant for a major cement manufacturer in Rajasthan, achieving 98% uptime.",
     content: `
@@ -193,6 +203,8 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     title: "Vibrating Screen Maintenance: Essential Tips for Maximum Uptime",
     slug: "vibrating-screen-maintenance-essential-tips",
+    metaTitle: "Vibrating Screen Maintenance Tips | Mewar Hi-Tech",
+    metaDescription: "Practical maintenance tips to keep your vibrating screen running longer and screening accurately, from the service team at Mewar Hi-Tech.",
     excerpt:
       "Learn the critical maintenance practices that can extend your vibrating screen's lifespan by up to 40% and prevent costly unplanned downtime.",
     content: `
@@ -242,6 +254,8 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     title: "Mewar Hi-Tech Expands Manufacturing Capacity with New CNC Facility",
     slug: "mewar-hitech-expands-cnc-manufacturing-facility",
+    metaTitle: "CNC Manufacturing Facility Expansion | Mewar Hi-Tech",
+    metaDescription: "Mewar Hi-Tech expands its CNC manufacturing facility in Udaipur. Read what the new capacity means for crusher quality and delivery.",
     excerpt:
       "Mewar Hi-Tech Engineering Ltd. inaugurates a state-of-the-art CNC machining center to double production capacity and enhance precision manufacturing.",
     content: `
@@ -280,6 +294,8 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     title: "Sand Making Machine: Revolutionizing Manufactured Sand Production",
     slug: "sand-making-machine-revolutionizing-manufactured-sand",
+    metaTitle: "Sand Making Machines & Manufactured Sand | Mewar Hi-Tech",
+    metaDescription: "How modern sand making machines produce manufactured sand for construction, and what to look for when buying one. By Mewar Hi-Tech.",
     excerpt:
       "Learn how Mewar Hi-Tech's advanced Sand Making Machines are addressing the growing demand for high-quality manufactured sand in the construction industry.",
     content: `
@@ -318,6 +334,8 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     title: "Complete Guide to Crushing Plant Layout & Design",
     slug: "complete-guide-crushing-plant-layout-design",
+    metaTitle: "Crushing Plant Layout Design Guide | Mewar Hi-Tech",
+    metaDescription: "A step-by-step guide to crushing plant layout design, covering flow, equipment placement and capacity planning, from Mewar Hi-Tech engineers.",
     excerpt:
       "A detailed engineering guide to designing efficient crushing plant layouts — from material flow analysis to equipment selection and site planning.",
     content: `
@@ -362,6 +380,8 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     title: "Export Success: Mewar Hi-Tech Crushers in Africa & Middle East",
     slug: "export-success-mewar-hitech-crushers-africa-middle-east",
+    metaTitle: "Crusher Exports to Africa & Middle East | Mewar Hi-Tech",
+    metaDescription: "Mewar Hi-Tech shares its export success supplying crushers to customers in Africa and the Middle East, and what makes these projects work.",
     excerpt:
       "Mewar Hi-Tech's crushing equipment is making a mark across international markets — from gold mines in Tanzania to infrastructure projects in Saudi Arabia.",
     content: `

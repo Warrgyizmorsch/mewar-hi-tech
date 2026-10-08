@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link"; // added for HMR update
 import { Download, Play, X, BookOpen, FileText, Wrench } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import MobileCarousel from "@/components/ui/MobileCarousel";
@@ -78,11 +79,10 @@ const FlagshipProductsGrid: React.FC = () => {
                   className="bg-card rounded-[20px] p-5 border border-border/80 shadow-sm flex items-center gap-4 group min-h-[230px] w-full"
                 >
                   <div className="w-[45%] shrink-0 flex items-center justify-center relative overflow-hidden">
-                    <img
-                      src={card.image}
+                    <img src={card.image}
                       alt={card.title}
                       className="w-full h-auto max-h-[190px] object-contain drop-shadow-md"
-                    />
+                     loading="lazy" width={800} height={600} />
                   </div>
 
                   <div className="flex-1 min-w-0 flex flex-col justify-between h-full py-1">
@@ -103,13 +103,14 @@ const FlagshipProductsGrid: React.FC = () => {
                     </div>
 
                     <div className="pt-2">
-                      <button
+                      <Link
+                        href="/contact"
                         onClick={handleDownloadClick}
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-primary text-primary hover:bg-primary hover:text-primary-foreground text-[10px] font-bold uppercase tracking-wider transition-colors duration-200 cursor-pointer shadow-xs whitespace-nowrap"
                       >
                         <span>DOWNLOAD PDF</span>
                         <Download size={11} className="stroke-[2.5]" />
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -133,11 +134,10 @@ const FlagshipProductsGrid: React.FC = () => {
               >
                 {/* Left Side: 3D Standing Cover Image standing tall */}
                 <div className="w-[45%] shrink-0 flex items-center justify-center relative overflow-hidden">
-                  <img
-                    src={card.image}
+                  <img src={card.image}
                     alt={card.title}
                     className="w-full h-auto max-h-[210px] object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-500"
-                  />
+                   loading="lazy" width={800} height={600} />
                 </div>
 
                 {/* Right Side: Details & Action */}
@@ -164,13 +164,14 @@ const FlagshipProductsGrid: React.FC = () => {
 
                   {/* Outline Download PDF Button */}
                   <div className="pt-3">
-                    <button
+                    <Link
+                      href="/contact"
                       onClick={handleDownloadClick}
                       className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-primary text-primary hover:bg-primary hover:text-primary-foreground text-[11px] font-bold uppercase tracking-wider transition-colors duration-200 cursor-pointer shadow-xs whitespace-nowrap"
                     >
                       <span>DOWNLOAD PDF</span>
                       <Download size={12} className="stroke-[2.5]" />
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </motion.div>
@@ -210,11 +211,10 @@ const FlagshipProductsGrid: React.FC = () => {
               onClick={() => setIsVideoOpen(true)}
               className="relative w-48 sm:w-60 aspect-[16/10] rounded-xl overflow-hidden shadow-md border border-border group cursor-pointer"
             >
-              <img
-                src="/images/video_thumbnail.webp"
+              <img src="/images/video_thumbnail.webp"
                 alt="Heavy Machinery Operation Video Preview Thumbnail"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
+               loading="lazy" width={800} height={600} />
               <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors">
                 <div className="w-11 h-11 rounded-full border-2 border-white flex items-center justify-center bg-black/40 shadow-xl group-hover:scale-110 transition-transform">
                   <Play size={16} className="text-white fill-white ml-0.5" />

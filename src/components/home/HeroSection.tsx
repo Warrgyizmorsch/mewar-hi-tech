@@ -50,9 +50,15 @@ const HeroSection: React.FC = () => {
         {/* Dark overlay for contrast removed per user request */}
       </div>
 
-
-
-      {/* Bottom Horizontal Highlight Strip (Puzzolana Style) */}
+      {/* Central Title Overlay (H1) */}
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none bg-black/40 px-4">
+        <h1 className="text-white text-5xl md:text-7xl lg:text-8xl font-extrabold text-center tracking-tight drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">
+          MEWAR <span className="text-primary">HI-TECH</span>
+        </h1>
+        <p className="text-white/90 text-lg md:text-2xl mt-4 font-medium tracking-wide drop-shadow-md text-center max-w-3xl">
+          Heavy Duty Crushing &amp; Screening Equipment
+        </p>
+      </div>      {/* Bottom Horizontal Highlight Strip (Puzzolana Style) */}
       <div className="hidden lg:block absolute bottom-0 left-0 w-full z-20 pb-8 pt-12 bg-gradient-to-t from-black/80 to-transparent">
         <div className="max-w-[1720px] mx-auto px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-8 xl:gap-12">
@@ -65,9 +71,9 @@ const HeroSection: React.FC = () => {
                   transition={{ duration: 0.5, delay: 0.4 + (idx * 0.1) }}
                   className="flex flex-col items-center lg:items-start text-center lg:text-left"
                 >
-                  <h2 className="text-white font-bold text-lg lg:text-xl xl:text-[22px] uppercase whitespace-nowrap mb-1 tracking-wide drop-shadow-md">
+                  <p className="text-white font-bold text-lg lg:text-xl xl:text-[22px] uppercase whitespace-nowrap mb-1 tracking-wide drop-shadow-md">
                     {item.title}
-                  </h2>
+                  </p>
                   <p className="text-gray-300 text-sm lg:text-[15px] tracking-wide drop-shadow-sm">
                     {item.subtitle}
                   </p>

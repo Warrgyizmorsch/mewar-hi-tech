@@ -19,7 +19,7 @@ const STATS: Stat[] = [
 
 const Counter: React.FC<{ stat: Stat }> = ({ stat }) => {
   const ref = useRef<HTMLParagraphElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
+  const inView = useInView(ref, { once: true });
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {

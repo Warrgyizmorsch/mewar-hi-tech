@@ -84,27 +84,24 @@ export default function WelcomeTeaser() {
             <div className="hidden lg:flex justify-center relative aspect-[4/3] w-full max-w-[550px] mx-auto">
               {/* Image 1 (Background left) */}
               <div className="absolute left-0 top-[10%] w-[45%] aspect-square rounded-xl overflow-hidden border border-border shadow-lg rotate-[-3deg] hover:rotate-0 hover:z-20 transition-all duration-300">
-                <img
-                  src={WELCOME_IMAGES[0].src}
+                <img src={WELCOME_IMAGES[0].src}
                   alt={WELCOME_IMAGES[0].alt}
                   className="w-full h-full object-cover"
-                />
+                 loading="lazy" width={800} height={600} />
               </div>
               {/* Image 2 (Background right) */}
               <div className="absolute right-0 top-[15%] w-[40%] aspect-square rounded-xl overflow-hidden border border-border shadow-lg rotate-[4deg] hover:rotate-0 hover:z-20 transition-all duration-300">
-                <img
-                  src={WELCOME_IMAGES[1].src}
+                <img src={WELCOME_IMAGES[1].src}
                   alt={WELCOME_IMAGES[1].alt}
                   className="w-full h-full object-cover"
-                />
+                 loading="lazy" width={800} height={600} />
               </div>
               {/* Image 3 (Foreground center) */}
               <div className="absolute left-[20%] top-[25%] w-[60%] aspect-[4/3] rounded-xl overflow-hidden border border-primary/20 shadow-2xl rotate-[-1deg] hover:rotate-0 z-10 hover:z-20 hover:border-primary/40 transition-all duration-300 bg-card">
-                <img
-                  src={WELCOME_IMAGES[2].src}
+                <img src={WELCOME_IMAGES[2].src}
                   alt={WELCOME_IMAGES[2].alt}
                   className="w-full h-full object-cover p-2.5 bg-card"
-                />
+                 loading="lazy" width={800} height={600} />
               </div>
             </div>
 
@@ -119,11 +116,10 @@ export default function WelcomeTeaser() {
                   transition={{ duration: 0.4 }}
                   className="absolute inset-0 w-full h-full"
                 >
-                  <img
-                    src={WELCOME_IMAGES[activeIndex].src}
+                  <img src={WELCOME_IMAGES[activeIndex].src}
                     alt={WELCOME_IMAGES[activeIndex].alt}
                     className="w-full h-full object-cover"
-                  />
+                   loading="lazy" width={800} height={600} />
                   <div className="absolute inset-0 border-[6px] border-card pointer-events-none rounded-xl" />
                 </motion.div>
               </AnimatePresence>

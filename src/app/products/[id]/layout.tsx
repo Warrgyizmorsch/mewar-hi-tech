@@ -13,27 +13,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!product) {
     return {
       alternates: {
-        canonical: `/products/${slug}`,
+        canonical: `https://www.mewarhitech.com/products/${slug}`,
       },
     };
   }
 
+  const title = product.seoTitle || `${product.name} | Mewar Hi-Tech`;
+  const description = product.seoDescription || product.introText;
+
   return {
-    title: `${product.name} | Mewar Hi-Tech`,
-    description: product.introText,
+    title,
+    description,
     alternates: {
-      canonical: `/products/${slug}`,
+      canonical: `https://www.mewarhitech.com/products/${slug}`,
     },
     openGraph: {
-      title: `${product.name} | Mewar Hi-Tech`,
-      description: product.introText,
+      title,
+      description,
       url: `https://www.mewarhitech.com/products/${slug}`,
       images: [{ url: product.mainImage || "/images/products/cone_crusher.jpg", width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${product.name} | Mewar Hi-Tech`,
-      description: product.introText,
+      title,
+      description,
       images: [product.mainImage || "/images/products/cone_crusher.jpg"],
     },
   };

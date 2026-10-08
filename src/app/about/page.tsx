@@ -241,7 +241,7 @@ export default function About() {
                 </div>
 
                 <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-                  Mewar Hitech is a leading and pioneering enterprise providing top-notch services in the industry. The decisive elements for success such as technology, innovation, quality and service, combine to set us apart.
+                  Mewar Hi-Tech is a leading and pioneering enterprise providing top-notch services in the industry. The decisive elements for success such as technology, innovation, quality and service, combine to set us apart.
                 </p>
 
                 <div className="space-y-4 text-sm text-foreground/80 leading-relaxed font-normal">
@@ -325,7 +325,7 @@ export default function About() {
                     A POWERFUL &amp; <span className="text-primary inline-block">ROBUST DESIGN</span>
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
-                    Kingson Crushers by Mewar Hitech are modern Hi-tech crushers. Powerfully designed with a blend of speed and stroke to throw which promises fine crushing capability and high output performance along to ensure maximum profitability.
+                    Kingson Crushers by Mewar Hi-Tech are modern Hi-tech crushers. Powerfully designed with a blend of speed and stroke to throw which promises fine crushing capability and high output performance along to ensure maximum profitability.
                   </p>
                   <p className="text-muted-foreground text-sm leading-relaxed">
                     The crushers not only have a sturdy structure, but they are also rugged and reliable and suitable for heavy-duty mining in turn. We take all the necessary initiatives at every level of the production process to ensure that top-notch quality remains an inherent part of our offerings.
@@ -373,7 +373,7 @@ export default function About() {
                     QUALITY <span className="text-primary inline-block">POLICY</span>
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
-                    We, at Mewar Hitech, pay high attention to the quality of materials used in the manufacturing of our equipment and machinery. All of these materials, including castings done in-house, are pre-tested and continuously monitored by our Quality Assurance Cell.
+                    We, at Mewar Hi-Tech, pay high attention to the quality of materials used in the manufacturing of our equipment and machinery. All of these materials, including castings done in-house, are pre-tested and continuously monitored by our Quality Assurance Cell.
                   </p>
                   <p className="text-muted-foreground text-sm leading-relaxed">
                     As regards technological improvements and production processes, no stone is left unturned by us. Our CMD, Mr. CS Rathore, personally monitors the quality of the equipment and machinery manufactured by us.
@@ -481,7 +481,7 @@ export default function About() {
                 OUR 100% IN-HOUSE <span className="text-primary inline-block">PRECISION EQUIPMENT</span>
               </h2>
               <p className="text-secondary-foreground/70 text-sm sm:text-base font-medium">
-                Mewar Hitech has a strong and committed team of highly qualified engineers. We ensure a steady supply of top-tier crushing and screening machinery through our advanced in-house setup:
+                Mewar Hi-Tech has a strong and committed team of highly qualified engineers. We ensure a steady supply of top-tier crushing and screening machinery through our advanced in-house setup:
               </p>
             </div>
 

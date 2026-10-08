@@ -80,11 +80,10 @@ const ContactSignupBox: React.FC = () => {
         >
           {/* Background Image */}
           <div className="absolute inset-0 w-full h-full z-0">
-            <img
-              src="/images/latest-process-machinery.jpg"
+            <img src="/images/latest-process-machinery.jpg"
               alt="Keestrack headquarters office"
               className="w-full h-full object-cover"
-            />
+             loading="lazy" width={800} height={600} />
             {/* Dark overlay */}
             <div className="absolute inset-0 bg-black/60 hover:bg-black/55 transition-colors duration-300" />
           </div>
