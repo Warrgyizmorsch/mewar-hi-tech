@@ -47,7 +47,6 @@ const HeroSection: React.FC = () => {
         >
           <source src="/videos/home-page.mp4" type="video/mp4" />
         </video>
-        {/* Dark overlay for contrast removed per user request */}
       </div>
 
       {/* Central Title Overlay (H1) */}
@@ -58,7 +57,9 @@ const HeroSection: React.FC = () => {
         <p className="text-white/90 text-lg md:text-2xl mt-4 font-medium tracking-wide drop-shadow-md text-center max-w-3xl">
           Heavy Duty Crushing &amp; Screening Equipment
         </p>
-      </div>      {/* Bottom Horizontal Highlight Strip (Puzzolana Style) */}
+      </div>
+
+      {/* Bottom Horizontal Highlight Strip (Puzzolana Style) */}
       <div className="hidden lg:block absolute bottom-0 left-0 w-full z-20 pb-8 pt-12 bg-gradient-to-t from-black/80 to-transparent">
         <div className="max-w-[1720px] mx-auto px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-8 xl:gap-12">

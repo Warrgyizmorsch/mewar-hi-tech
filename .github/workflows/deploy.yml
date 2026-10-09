@@ -47,6 +47,7 @@ jobs:
             chmod -R 755 /home/mewacjql/mewar/.next /home/mewacjql/mewar/public
             source /home/mewacjql/nodevenv/mewar/22/bin/activate
             npm install --omit=dev --legacy-peer-deps
+            pkill -u mewacjql -f lsnode || true
             mkdir -p /home/mewacjql/mewar/tmp
             touch /home/mewacjql/mewar/tmp/restart.txt
             echo "=== Deployment Completed Successfully ==="
