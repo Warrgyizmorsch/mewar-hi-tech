@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 
@@ -120,9 +121,9 @@ export default function MultiCardCarousel({
                 width: `calc((100% - ${(visibleCount - 1) * gap}px) / ${visibleCount})`,
               }}
             >
-              <div className="group relative rounded-xl overflow-hidden bg-card border border-border shadow-xl min-h-[320px] sm:min-h-[380px] h-full flex flex-col justify-end transition-all duration-300 hover:border-primary/60 hover:shadow-2xl">
+              <div className="group relative rounded-xl overflow-hidden bg-card border border-border shadow-xl min-h-[320px] sm:min-h-[380px] h-full flex flex-col justify-end transition duration-300 hover:border-primary/60 hover:shadow-2xl">
                 {/* Image */}
-                <img src={slide.src}
+                <Image src={slide.src}
                   alt={slide.title}
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                  loading="lazy" width={800} height={600} />
@@ -168,7 +169,7 @@ export default function MultiCardCarousel({
       <button
         onClick={handlePrev}
         aria-label="Previous Slide"
-        className="absolute left-2 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/60 hover:bg-primary backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all duration-200 z-20 shadow-lg hover:scale-110"
+        className="absolute left-2 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/60 hover:bg-primary backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition duration-200 z-20 shadow-lg hover:scale-110"
       >
         <ChevronLeft size={22} />
       </button>
@@ -176,7 +177,7 @@ export default function MultiCardCarousel({
       <button
         onClick={handleNext}
         aria-label="Next Slide"
-        className="absolute right-2 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/60 hover:bg-primary backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all duration-200 z-20 shadow-lg hover:scale-110"
+        className="absolute right-2 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/60 hover:bg-primary backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition duration-200 z-20 shadow-lg hover:scale-110"
       >
         <ChevronRight size={22} />
       </button>
@@ -190,7 +191,7 @@ export default function MultiCardCarousel({
               setEnableTransition(true);
               setRawIndex(N + idx);
             }}
-            className={`h-2 rounded-full transition-all duration-300 ${
+            className={`h-2 rounded-full transition duration-300 ${
               activeDotIndex === idx
                 ? "w-8 bg-primary"
                 : "w-2.5 bg-muted-foreground/30 hover:bg-muted-foreground/60"

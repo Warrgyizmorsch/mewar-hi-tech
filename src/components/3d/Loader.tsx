@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { useProgress } from "@react-three/drei";
 import { motion } from "framer-motion";
 
@@ -35,13 +36,13 @@ const Loader = () => {
             strokeLinecap="round"
             strokeDasharray="301.59" // 2 * pi * 48
             strokeDashoffset={301.59 - (301.59 * progress) / 100}
-            className="transition-all duration-300 ease-out"
+            className="transition duration-300 ease-out"
           />
         </svg>
 
         {/* Center Content */}
         <div className="flex flex-col items-center justify-center space-y-2">
-          <img src="/logos/logo-dark.png" alt="Mewar Hi-Tech" className="h-6 opacity-80"  loading="lazy" width={800} height={600} />
+          <Image src="/logos/logo-dark.png" alt="Mewar Hi-Tech" className="h-6 opacity-80"  loading="lazy" width={800} height={600} />
           <span className="text-white font-oswald text-2xl font-bold tracking-wider">
             {Math.round(progress)}%
           </span>

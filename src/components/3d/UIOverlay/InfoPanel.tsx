@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useExperience } from "../ExperienceManager";
 import { X, ChevronRight } from "lucide-react";
@@ -40,7 +41,7 @@ const InfoPanel = () => {
           {/* Image (Placeholder if none provided) */}
           <div className="w-full h-48 bg-gradient-to-br from-white/5 to-transparent border-b border-white/10 flex items-center justify-center p-6 relative overflow-hidden">
             {activeHotspot.image ? (
-              <img src={activeHotspot.image} alt={activeHotspot.partName} className="object-contain w-full h-full"  loading="lazy" width={800} height={600} />
+              <Image src={activeHotspot.image} alt={activeHotspot.partName} className="object-contain w-full h-full"  loading="lazy" width={800} height={600} />
             ) : (
               <div className="text-white/20 font-oswald text-4xl tracking-widest font-bold opacity-30">
                 MEWAR HI-TECH

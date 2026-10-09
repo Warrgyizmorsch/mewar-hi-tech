@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import Script from "next/script";
+import Image from "next/image";
 import {
   ArrowRight,
   RotateCcw,
@@ -21,6 +23,7 @@ const SectorGrid: React.FC = () => {
   const [material, setMaterial] = useState("Hard Rock");
   const [capacity, setCapacity] = useState("150 - 300 TPH");
   const [power, setPower] = useState("Electric");
+  const [show3D, setShow3D] = useState(false);
 
   const viewerRef = React.useRef<any>(null);
 
@@ -134,36 +137,66 @@ const SectorGrid: React.FC = () => {
                 <div className="flex flex-col items-center relative w-full overflow-hidden">
                   
                   <div className="relative w-full aspect-square sm:aspect-[16/9] max-w-xl flex items-center justify-center p-2">
-                    <model-viewer
-                      ref={viewerRef}
-                      src="/3dmodel/Meshy_AI_Kingson_Cone_Crusher_0704110926_texture.glb"
-                      poster="/images/robust_crusher_design.webp"
-                      alt="3D Kingson Cone Crusher Model"
-                      auto-rotate
-                      camera-controls
-                      ar
-                      shadow-intensity="1"
-                      interaction-prompt="none"
-                      auto-rotate-delay="0"
-                      className="w-full h-full rounded-xl"
-                      style={{ width: "100%", height: "100%", minHeight: "350px" }}
-                    >
-                      {/* Hotspots */}
-                      <button
-                        slot="hotspot-1"
-                        data-position="-0.2m 0.5m 0.3m"
-                        className="w-6 h-6 bg-primary rounded-none flex items-center justify-center shadow-md cursor-pointer hover:scale-110 transition-transform text-primary-foreground font-bold text-xs"
+                    {!show3D ? (
+                      <div 
+                        onClick={() => setShow3D(true)}
+                        className="w-full h-full relative rounded-xl overflow-hidden cursor-pointer group flex items-center justify-center bg-black/10"
+                        style={{ minHeight: "350px" }}
                       >
-                        +
-                      </button>
-                      <button
-                        slot="hotspot-2"
-                        data-position="0.2m 0.6m -0.1m"
-                        className="w-6 h-6 bg-primary rounded-none flex items-center justify-center shadow-md cursor-pointer hover:scale-110 transition-transform text-primary-foreground font-bold text-xs"
-                      >
-                        +
-                      </button>
-                    </model-viewer>
+                        <Image
+                          src="/images/robust_crusher_design.webp"
+                          alt="3D Interactive Experience"
+                          fill
+                          className="object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+                        />
+                        <div className="absolute z-10 flex flex-col items-center">
+                          <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-primary-foreground shadow-lg group-hover:scale-110 transition-transform">
+                            <Box size={28} />
+                          </div>
+                          <p className="mt-4 text-sm font-bold tracking-wider uppercase text-foreground bg-background/80 px-4 py-2 rounded-full shadow-sm">
+                            Click to Load 3D Model
+                          </p>
+                        </div>
+                      </div>
+                    ) : (
+                      <>
+                        <Script 
+                          type="module" 
+                          src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js" 
+                          strategy="lazyOnload" 
+                        />
+                        <model-viewer
+                          ref={viewerRef}
+                          src="/3dmodel/Meshy_AI_Kingson_Cone_Crusher_0704110926_texture.glb"
+                          poster="/images/robust_crusher_design.webp"
+                          alt="3D Kingson Cone Crusher Model"
+                          auto-rotate
+                          camera-controls
+                          ar
+                          shadow-intensity="1"
+                          interaction-prompt="none"
+                          auto-rotate-delay="0"
+                          className="w-full h-full rounded-xl"
+                          style={{ width: "100%", height: "100%", minHeight: "350px" }}
+                        >
+                          {/* Hotspots */}
+                          <button
+                            slot="hotspot-1"
+                            data-position="-0.2m 0.5m 0.3m"
+                            className="w-6 h-6 bg-primary rounded-none flex items-center justify-center shadow-md cursor-pointer hover:scale-110 transition-transform text-primary-foreground font-bold text-xs"
+                          >
+                            +
+                          </button>
+                          <button
+                            slot="hotspot-2"
+                            data-position="0.2m 0.6m -0.1m"
+                            className="w-6 h-6 bg-primary rounded-none flex items-center justify-center shadow-md cursor-pointer hover:scale-110 transition-transform text-primary-foreground font-bold text-xs"
+                          >
+                            +
+                          </button>
+                        </model-viewer>
+                      </>
+                    )}
                   </div>
 
                   {/* Floating White View Control Bar */}
@@ -180,14 +213,16 @@ const SectorGrid: React.FC = () => {
                     <button 
                       onClick={handleZoomOut}
                       type="button"
-                      className="text-muted-foreground hover:text-primary transition-colors"
+                      aria-label="Zoom Out"
+                      className="text-muted-foreground hover:text-primary transition-colors p-2 md:p-3"
                     >
                       <ZoomOut size={14} strokeWidth={2.5} />
                     </button>
                     <button 
                       onClick={handleZoomIn}
                       type="button"
-                      className="text-muted-foreground hover:text-primary transition-colors"
+                      aria-label="Zoom In"
+                      className="text-muted-foreground hover:text-primary transition-colors p-2 md:p-3"
                     >
                       <ZoomIn size={14} strokeWidth={2.5} />
                     </button>

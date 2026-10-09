@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -9,7 +10,7 @@ const ServiceNetworkBanner: React.FC = () => {
     <section className="relative h-[400px] lg:h-[500px] w-full flex items-center overflow-hidden bg-secondary select-none">
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full z-0">
-        <img src="/images/after-sales-1.jpg"
+        <Image src="/images/after-sales-1.jpg"
           alt="Field service support"
           className="w-full h-full object-cover object-center opacity-40"
          loading="lazy" width={800} height={600} />
@@ -44,13 +45,13 @@ const ServiceNetworkBanner: React.FC = () => {
             Our dedicated technical support network and rapid spare parts delivery ensure your mobile crushers and screeners maintain maximum uptime on site.
           </p>
 
-          {/* Read More Link */}
+          {/* Explore Services Link */}
           <div className="pt-2">
             <Link
               href="/services"
               className="text-primary hover:text-foreground text-sm font-bold uppercase tracking-wider transition-colors inline-flex items-center gap-1"
             >
-              Read more &rarr;
+              Explore Service Network &rarr;
             </Link>
           </div>
         </motion.div>

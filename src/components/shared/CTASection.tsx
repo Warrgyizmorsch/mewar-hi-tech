@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -10,7 +11,7 @@ const CTASection: React.FC = () => {
   return (
     <section className="relative section-padding bg-secondary overflow-hidden select-none">
       <div className="absolute inset-0 opacity-10">
-        <img src="/images/backgorund.webp"
+        <Image src="/images/backgorund.webp"
           alt="Background Image for Call to Action"
           className="w-full h-full object-cover"
          loading="lazy" width={800} height={600} />

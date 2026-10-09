@@ -12,7 +12,7 @@ const CATEGORIES: MachineCategory[] = [
     desc: "High performance crushing solutions for every need.",
     image: "/images/cone-crusher.webp",
     icon: Hammer,
-    to: "/products?category=crushers",
+    to: "/products/jaw-crusher",
     exploreLabel: "Explore Crushers",
   },
   {
@@ -20,7 +20,7 @@ const CATEGORIES: MachineCategory[] = [
     desc: "Efficient screening for precise separation and high productivity.",
     image: "/images/vibrating-screen.webp",
     icon: Layers,
-    to: "/products?category=screens",
+    to: "/products/vibrating-screen",
     exploreLabel: "Explore Screeners",
   },
   {
@@ -36,7 +36,7 @@ const CATEGORIES: MachineCategory[] = [
     desc: "Reliable feeding equipment for continuous performance.",
     image: "/images/vibro-feeder.webp",
     icon: Settings,
-    to: "/products?category=feeders",
+    to: "/products/vibro-feeder",
     exploreLabel: "Explore Feeders",
   },
 ];
@@ -111,7 +111,7 @@ export const MachineShowcase: React.FC = () => {
           {CATEGORIES.map((_, idx) => (
             <div
               key={idx}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
+              className={`h-1.5 rounded-full transition duration-300 ${
                 idx === mobileIdx ? "w-6 bg-primary" : "w-1.5 bg-white/50"
               }`}
             />

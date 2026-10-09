@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link"; // added for HMR update
 import { Download, Play, X, BookOpen, FileText, Wrench } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -79,7 +80,7 @@ const FlagshipProductsGrid: React.FC = () => {
                   className="bg-card rounded-[20px] p-5 border border-border/80 shadow-sm flex items-center gap-4 group min-h-[230px] w-full"
                 >
                   <div className="w-[45%] shrink-0 flex items-center justify-center relative overflow-hidden">
-                    <img src={card.image}
+                    <Image src={card.image}
                       alt={card.title}
                       className="w-full h-auto max-h-[190px] object-contain drop-shadow-md"
                      loading="lazy" width={800} height={600} />
@@ -130,11 +131,11 @@ const FlagshipProductsGrid: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.1 }}
-                className="bg-card rounded-[20px] p-6 border border-border/80 shadow-sm hover:shadow-xl transition-all duration-300 flex items-center gap-5 group min-h-[250px]"
+                className="bg-card rounded-[20px] p-6 border border-border/80 shadow-sm hover:shadow-xl transition duration-300 flex items-center gap-5 group min-h-[250px]"
               >
                 {/* Left Side: 3D Standing Cover Image standing tall */}
                 <div className="w-[45%] shrink-0 flex items-center justify-center relative overflow-hidden">
-                  <img src={card.image}
+                  <Image src={card.image}
                     alt={card.title}
                     className="w-full h-auto max-h-[210px] object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-500"
                    loading="lazy" width={800} height={600} />
@@ -211,7 +212,7 @@ const FlagshipProductsGrid: React.FC = () => {
               onClick={() => setIsVideoOpen(true)}
               className="relative w-48 sm:w-60 aspect-[16/10] rounded-xl overflow-hidden shadow-md border border-border group cursor-pointer"
             >
-              <img src="/images/video_thumbnail.webp"
+              <Image src="/images/video_thumbnail.webp"
                 alt="Heavy Machinery Operation Video Preview Thumbnail"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                loading="lazy" width={800} height={600} />

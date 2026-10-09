@@ -59,7 +59,7 @@ export default function MobileCarousel({
           <button
             key={idx}
             onClick={() => setCurrentIndex(idx)}
-            className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+            className={`h-2 rounded-full transition duration-300 cursor-pointer ${
               currentIndex === idx
                 ? "w-6 bg-primary"
                 : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/60"

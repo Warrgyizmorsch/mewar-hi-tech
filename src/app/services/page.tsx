@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Wrench,
@@ -198,9 +199,9 @@ export default function ServicesPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: idx * 0.08 }}
-                    className="p-6 rounded-xl bg-background border border-border/70 hover:border-primary/40 shadow-xs hover:shadow-md transition-all duration-300 flex items-start gap-4 group"
+                    className="p-6 rounded-xl bg-background border border-border/70 hover:border-primary/40 shadow-xs hover:shadow-md transition duration-300 flex items-start gap-4 group"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition duration-300">
                       <IconComp size={22} className="stroke-[2.2]" />
                     </div>
                     <div className="space-y-1 text-left">
@@ -250,7 +251,7 @@ export default function ServicesPage() {
               {/* Right Column: Featured Image Card */}
               <div className="lg:col-span-5 relative">
                 <div className="relative rounded-xl overflow-hidden border border-border bg-card shadow-2xl group">
-                  <img
+                  <Image
                     src="/images/after-sales-1.jpg"
                     alt="Kingson After Sales Support"
                     className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500"
@@ -298,10 +299,10 @@ export default function ServicesPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.12 }}
-                    className="p-8 rounded-xl bg-card border border-border/80 hover:border-primary/40 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between text-left space-y-6 group"
+                    className="p-8 rounded-xl bg-card border border-border/80 hover:border-primary/40 shadow-sm hover:shadow-xl transition duration-300 flex flex-col justify-between text-left space-y-6 group"
                   >
                     <div className="flex items-center justify-between">
-                      <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition duration-300">
                         <IconComp size={24} className="stroke-[2.2]" />
                       </div>
                       <span className="text-3xl font-bold text-primary/30 font-heading">
@@ -361,7 +362,7 @@ export default function ServicesPage() {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer flex items-center gap-2 ${
+                    className={`px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition duration-300 cursor-pointer flex items-center gap-2 ${
                       isActive
                         ? "bg-primary text-primary-foreground shadow-md scale-[1.02]"
                         : "bg-card border border-border/80 text-muted-foreground hover:text-foreground hover:border-primary/40"
@@ -417,7 +418,7 @@ export default function ServicesPage() {
                       onClick={() => setLightboxImage(currentTab.image)}
                       className="relative rounded-xl overflow-hidden border border-border bg-black aspect-[4/3] cursor-pointer group shadow-lg"
                     >
-                      <img
+                      <Image
                         src={currentTab.image}
                         alt={currentTab.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
@@ -617,7 +618,7 @@ export default function ServicesPage() {
               className="relative max-w-5xl w-full max-h-[85vh] rounded-xl overflow-hidden shadow-2xl border border-white/10 bg-black flex items-center justify-center"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
+              <Image
                 src={lightboxImage}
                 alt="Enlarged view"
                 className="w-full h-full object-contain max-h-[80vh]"

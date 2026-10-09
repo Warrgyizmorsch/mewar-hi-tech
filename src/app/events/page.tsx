@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Calendar,
@@ -304,7 +305,7 @@ export default function EventsPage() {
                   <button
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
-                    className={`px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
+                    className={`px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition duration-300 ${
                       activeCategory === cat
                         ? "bg-primary text-white shadow-lg shadow-primary/25 scale-105"
                         : "bg-card border border-border text-muted-foreground hover:text-foreground hover:bg-muted"
@@ -326,11 +327,11 @@ export default function EventsPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
                   onClick={() => openLightbox(index)}
-                  className="group bg-card border border-border rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary/50 transition-all duration-300 cursor-pointer flex flex-col justify-between"
+                  className="group bg-card border border-border rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:border-primary/50 transition duration-300 cursor-pointer flex flex-col justify-between"
                 >
                   {/* Image Container with Hover Zoom */}
                   <div className="relative h-56 sm:h-60 w-full overflow-hidden bg-black/10">
-                    <img
+                    <Image
                       src={item.image}
                       alt={item.title}
                       className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
@@ -443,7 +444,7 @@ export default function EventsPage() {
 
               {/* Lightbox Main Image */}
               <div className="relative h-[320px] sm:h-[450px] w-full bg-black flex items-center justify-center overflow-hidden">
-                <img
+                <Image
                   src={filteredEvents[lightboxIndex].image}
                   alt={filteredEvents[lightboxIndex].title}
                   className="w-full h-full object-contain"

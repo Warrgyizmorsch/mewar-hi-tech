@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "react-toastify";
 import {
@@ -397,7 +398,7 @@ export default function CareersPage() {
               className="lg:col-span-5 flex justify-center"
             >
               <div className="relative -rotate-12 w-full flex items-center justify-center group">
-                <img
+                <Image
                   src={careerIllustration}
                   alt="Career at Mewar Hi-Tech Illustration"
                   className="max-h-[380px] w-auto object-contain transition-transform duration-500 group-hover:scale-105"
@@ -486,7 +487,7 @@ export default function CareersPage() {
 
                 <button
                   onClick={() => setIsFilterOpen(true)}
-                  className="w-full sm:w-auto px-6 py-3 rounded-xl bg-background border border-border hover:border-primary text-foreground text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-sm shrink-0"
+                  className="w-full sm:w-auto px-6 py-3 rounded-xl bg-background border border-border hover:border-primary text-foreground text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition shadow-sm shrink-0"
                 >
                   <Filter size={16} className="text-primary" />
                   Filters
@@ -527,7 +528,7 @@ export default function CareersPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: idx * 0.08 }}
-                    className="p-6 lg:p-8 rounded-xl bg-card border border-border shadow-md hover:border-primary/50 transition-all duration-300 space-y-5 flex flex-col justify-between"
+                    className="p-6 lg:p-8 rounded-xl bg-card border border-border shadow-md hover:border-primary/50 transition duration-300 space-y-5 flex flex-col justify-between"
                   >
                     <div className="space-y-4">
                       <div className="flex items-start justify-between gap-4">
@@ -698,7 +699,7 @@ export default function CareersPage() {
                           placeholder="Enter your name"
                           value={formData.name}
                           onChange={handleChange}
-                          className="w-full rounded-xl border border-border px-4 py-2.5 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition-all font-semibold"
+                          className="w-full rounded-xl border border-border px-4 py-2.5 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
                         />
                       </div>
 
@@ -715,7 +716,7 @@ export default function CareersPage() {
                           placeholder="Enter your email"
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full rounded-xl border border-border px-4 py-2.5 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition-all font-semibold"
+                          className="w-full rounded-xl border border-border px-4 py-2.5 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
                         />
                       </div>
                     </div>
@@ -734,7 +735,7 @@ export default function CareersPage() {
                           placeholder="Enter your mobile number"
                           value={formData.phone}
                           onChange={handleChange}
-                          className="w-full rounded-xl border border-border px-4 py-2.5 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition-all font-semibold"
+                          className="w-full rounded-xl border border-border px-4 py-2.5 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
                         />
                       </div>
 
@@ -766,7 +767,7 @@ export default function CareersPage() {
                         placeholder="Enter years of experience"
                         value={formData.experience}
                         onChange={handleChange}
-                        className="w-full rounded-xl border border-border px-4 py-2.5 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition-all font-semibold"
+                        className="w-full rounded-xl border border-border px-4 py-2.5 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
                       />
                     </div>
 

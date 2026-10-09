@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown, ChevronRight, Search, Globe } from "lucide-react";
@@ -172,7 +173,7 @@ const Header: React.FC = () => {
       >
         {/* Main nav bar */}
         <div
-        className={`w-full px-6 lg:px-8 py-3 flex items-center justify-between transition-all duration-300 ${
+        className={`w-full px-6 lg:px-8 py-3 flex items-center justify-between transition duration-300 ${
           theme === "light"
             ? "bg-white border-b border-gray-200 shadow-sm"
             : "bg-secondary border-b border-border shadow-md"
@@ -185,7 +186,7 @@ const Header: React.FC = () => {
           aria-label="Mewar Hi-Tech home"
         >
           <div className="w-[100px] rounded flex items-center justify-center shrink-0 overflow-hidden">
-            <img src={theme === "dark" ? "/logos/logo-dark.png" : "/logos/logo.png"}
+            <Image src={theme === "dark" ? "/logos/logo-dark.png" : "/logos/logo.png"}
               alt="Mewar Hi-Tech Logo"
               className="w-full h-full object-contain"
              loading="lazy" width={800} height={600} />
@@ -215,7 +216,7 @@ const Header: React.FC = () => {
                 {item.label === "Products" ? (
                   /* Horizontal Mega Menu Dropdown for Products */
                   <div
-                    className="absolute top-[calc(100%+14px)] left-[-200px] mt-0 before:absolute before:-top-4 before:left-0 before:w-full before:h-4 before:bg-transparent shadow-2xl rounded-none opacity-0 invisible -translate-y-2 origin-top group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-out z-50 p-8 w-[950px] max-w-[calc(100vw-48px)] bg-primary text-white"
+                    className="absolute top-[calc(100%+14px)] left-[-200px] mt-0 before:absolute before:-top-4 before:left-0 before:w-full before:h-4 before:bg-transparent shadow-2xl rounded-none opacity-0 invisible -translate-y-2 origin-top group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition duration-300 ease-out z-50 p-8 w-[950px] max-w-[calc(100vw-48px)] bg-primary text-white"
                   >
                     <div className="grid grid-cols-4 gap-0 divide-x divide-white/20">
                       {item.children.map((group) => (
@@ -228,7 +229,7 @@ const Header: React.FC = () => {
                               <Link
                                 key={sub.label}
                                 href={sub.to ?? "/products"}
-                                className="block text-[13px] font-medium text-black/80 hover:text-black hover:translate-x-1.5 transition-all duration-400"
+                                className="block text-[13px] font-medium text-black/80 hover:text-black hover:translate-x-1.5 transition duration-400"
                               >
                                 {sub.label}
                               </Link>
@@ -241,7 +242,7 @@ const Header: React.FC = () => {
                 ) : (
                   /* Standard Vertical Dropdown for others */
                   <div
-                    className="absolute top-[calc(100%+14px)] left-0 mt-0 before:absolute before:-top-4 before:left-0 before:w-full before:h-4 before:bg-transparent shadow-xl rounded-none opacity-0 invisible -translate-y-2 origin-top group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-out z-50 p-5 min-w-[240px] bg-primary text-white"
+                    className="absolute top-[calc(100%+14px)] left-0 mt-0 before:absolute before:-top-4 before:left-0 before:w-full before:h-4 before:bg-transparent shadow-xl rounded-none opacity-0 invisible -translate-y-2 origin-top group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition duration-300 ease-out z-50 p-5 min-w-[240px] bg-primary text-white"
                   >
                     <div className="flex flex-col gap-3">
                       {item.children.map((child) => (
@@ -256,7 +257,7 @@ const Header: React.FC = () => {
                           <Link
                             key={child.label}
                             href={child.to ?? "/"}
-                            className="block text-[14px] font-medium text-black/80 hover:text-black hover:translate-x-1.5 transition-all duration-200"
+                            className="block text-[14px] font-medium text-black/80 hover:text-black hover:translate-x-1.5 transition duration-200"
                           >
                             {child.label}
                           </Link>
@@ -301,7 +302,7 @@ const Header: React.FC = () => {
               <button
                 key={t.key}
                 onClick={() => setTheme(t.key)}
-                className={`w-5 h-5 rounded-full transition-all duration-200 ${t.color} ${
+                className={`w-5 h-5 rounded-full transition duration-200 ${t.color} ${
                   theme === t.key
                     ? "ring-2 ring-primary ring-offset-1 ring-offset-secondary scale-110"
                     : "opacity-60 hover:opacity-100"
@@ -325,7 +326,7 @@ const Header: React.FC = () => {
 
           {/* Mobile menu trigger */}
           <button
-            className={`xl:hidden p-2 rounded-lg transition-colors ${
+            className={`xl:hidden p-3 rounded-lg transition-colors ${
               theme === "light" 
                 ? "text-gray-800 hover:bg-black/5" 
                 : "text-secondary-foreground hover:bg-white/5"
@@ -334,7 +335,7 @@ const Header: React.FC = () => {
             aria-label="Open menu"
             aria-expanded={open}
           >
-            <Menu size={22} />
+            <Menu size={24} />
           </button>
         </div>
       </div>
@@ -371,7 +372,7 @@ const Header: React.FC = () => {
                 className="flex items-center gap-2"
               >
                 <div className="w-28 h-8 rounded overflow-hidden flex items-center justify-center">
-                  <img src={theme === "dark" ? "/logos/logo-dark.png" : "/logos/logo.png"}
+                  <Image src={theme === "dark" ? "/logos/logo-dark.png" : "/logos/logo.png"}
                     alt="Mewar Hi-Tech Logo"
                     className="w-full h-full object-contain"
                    loading="lazy" width={800} height={600} />

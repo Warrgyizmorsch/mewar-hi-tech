@@ -123,7 +123,7 @@ export default function WhyKingsonSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.12 }}
-                  className="relative rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:shadow-2xl transition-all duration-300 min-h-[300px] lg:min-h-[340px] flex flex-col justify-end"
+                  className="relative rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:shadow-2xl transition duration-300 min-h-[300px] lg:min-h-[340px] flex flex-col justify-end"
                 >
                   {/* Background Image */}
                   <Image

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -27,11 +28,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: index * 0.08 }}
-        className="group bg-card rounded-xl border border-border overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-full"
+        className="group bg-card rounded-xl border border-border overflow-hidden hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col justify-between h-full"
       >
         <div>
           <div className="overflow-hidden h-56 bg-muted">
-            <img src={image}
+            <Image src={image}
               alt={`${name} industrial machine`}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
              loading="lazy" width={800} height={600} />
@@ -47,7 +48,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </div>
         <div className="px-6 pb-6 pt-2 text-left">
           <span className="inline-flex items-center gap-2 text-xs font-bold text-foreground group-hover:text-primary transition-colors duration-200 uppercase tracking-wider">
-            View Details
+            View Details <span className="sr-only"> for {name}</span>
             <ArrowUpRight
               size={16}
               className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200"

@@ -136,7 +136,7 @@ export default function ApplicationModal({
                   placeholder="Enter your name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-background focus:bg-background focus:outline-none focus:border-primary transition-all font-semibold"
+                  className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-background focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
                 />
               </div>
 
@@ -153,7 +153,7 @@ export default function ApplicationModal({
                   placeholder="Enter your email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-background focus:bg-background focus:outline-none focus:border-primary transition-all font-semibold"
+                  className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-background focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
                 />
               </div>
             </div>
@@ -172,7 +172,7 @@ export default function ApplicationModal({
                   placeholder="Enter your mobile number"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-background focus:bg-background focus:outline-none focus:border-primary transition-all font-semibold"
+                  className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-background focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
                 />
               </div>
 
@@ -204,7 +204,7 @@ export default function ApplicationModal({
                 placeholder="Enter years of experience"
                 value={formData.experience}
                 onChange={handleChange}
-                className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-background focus:bg-background focus:outline-none focus:border-primary transition-all font-semibold"
+                className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-background focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
               />
             </div>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -80,7 +81,7 @@ const ContactSignupBox: React.FC = () => {
         >
           {/* Background Image */}
           <div className="absolute inset-0 w-full h-full z-0">
-            <img src="/images/latest-process-machinery.jpg"
+            <Image src="/images/latest-process-machinery.jpg"
               alt="Keestrack headquarters office"
               className="w-full h-full object-cover"
              loading="lazy" width={800} height={600} />

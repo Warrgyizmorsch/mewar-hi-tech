@@ -1,6 +1,7 @@
 "use client";
 
 import React, { use, useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -446,7 +447,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                 }}
                 title="Click to view full resolution"
               >
-                <img
+                <Image
                   src={product.mainImage}
                   alt={product.name}
                   className="max-h-[280px] sm:max-h-[460px] lg:max-h-[550px] w-auto object-contain transition-transform duration-700 ease-out group-hover:scale-105 filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] dark:drop-shadow-[0_30px_45px_rgba(0,0,0,0.7)]"
@@ -476,7 +477,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                 return (
                   <div
                     key={idx}
-                    className="w-[85vw] sm:w-auto shrink-0 snap-center p-4 sm:p-5 rounded-2xl bg-card/90 dark:bg-white/[0.03] border border-border/80 dark:border-white/10 hover:border-primary/50 transition-all duration-300 text-left space-y-2 group shadow-xs hover:shadow-md"
+                    className="w-[85vw] sm:w-auto shrink-0 snap-center p-4 sm:p-5 rounded-2xl bg-card/90 dark:bg-white/[0.03] border border-border/80 dark:border-white/10 hover:border-primary/50 transition duration-300 text-left space-y-2 group shadow-xs hover:shadow-md"
                   >
                     <div className="flex items-center justify-between">
                       <span className="text-[10px] font-bold text-muted-foreground dark:text-gray-400 uppercase tracking-widest">
@@ -588,7 +589,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                       />
                     </div>
                   ) : (
-                    <img
+                    <Image
                       src={product.mainImage}
                       alt={product.name}
                       className="max-h-[380px] w-auto object-contain transition-transform duration-500 group-hover:scale-105"
@@ -647,7 +648,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                 return (
                   <div
                     key={idx}
-                    className="w-[85vw] sm:w-auto shrink-0 snap-center p-5 sm:p-6 rounded-xl bg-card border border-border shadow-sm hover:border-primary/50 hover:shadow-md transition-all duration-300 flex flex-col justify-between space-y-4 group"
+                    className="w-[85vw] sm:w-auto shrink-0 snap-center p-5 sm:p-6 rounded-xl bg-card border border-border shadow-sm hover:border-primary/50 hover:shadow-md transition duration-300 flex flex-col justify-between space-y-4 group"
                   >
                     <div className="space-y-3">
                       <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
@@ -747,7 +748,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                       onClick={() => setLightboxOpen(true)}
                       className="relative rounded-xl overflow-hidden border border-border shadow-xl bg-card aspect-[4/3] sm:aspect-[16/10] cursor-pointer group flex items-center justify-center"
                     >
-                      <img
+                      <Image
                         src={allImages[selectedGalleryIndex]}
                         alt={`${product.name} view ${selectedGalleryIndex + 1}`}
                         className={`w-full h-full transition-transform duration-500 group-hover:scale-105 ${
@@ -772,13 +773,13 @@ export default function ProductDetailPage({ params }: PageProps) {
                         <button
                           key={i}
                           onClick={() => setSelectedGalleryIndex(i)}
-                          className={`relative w-20 h-14 sm:w-24 sm:h-16 rounded-xl overflow-hidden border-2 shrink-0 transition-all ${
+                          className={`relative w-20 h-14 sm:w-24 sm:h-16 rounded-xl overflow-hidden border-2 shrink-0 transition ${
                             selectedGalleryIndex === i
                               ? "border-primary shadow-lg ring-2 ring-primary/40 opacity-100"
                               : "border-border/60 opacity-60 hover:opacity-100"
                           }`}
                         >
-                          <img
+                          <Image
                             src={imgUrl}
                             alt={`Thumbnail ${i + 1}`}
                             className="w-full h-full object-cover"
@@ -932,7 +933,7 @@ export default function ProductDetailPage({ params }: PageProps) {
             >
               
               {/* Card 1: Main Product Brochure */}
-              <div className="w-[85vw] sm:w-auto shrink-0 snap-center p-4 sm:p-6 rounded-xl bg-card border border-border shadow-sm hover:border-primary/50 transition-all space-y-3 sm:space-y-4 flex flex-col justify-between">
+              <div className="w-[85vw] sm:w-auto shrink-0 snap-center p-4 sm:p-6 rounded-xl bg-card border border-border shadow-sm hover:border-primary/50 transition space-y-3 sm:space-y-4 flex flex-col justify-between">
                 <div className="space-y-3">
                   <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary border border-primary/20 flex items-center justify-center">
                     <FileText size={22} />
@@ -955,7 +956,7 @@ export default function ProductDetailPage({ params }: PageProps) {
               </div>
 
               {/* Card 2: Technical Data Sheet */}
-              <div className="w-[85vw] sm:w-auto shrink-0 snap-center p-4 sm:p-6 rounded-xl bg-card border border-border shadow-sm hover:border-primary/50 transition-all space-y-3 sm:space-y-4 flex flex-col justify-between">
+              <div className="w-[85vw] sm:w-auto shrink-0 snap-center p-4 sm:p-6 rounded-xl bg-card border border-border shadow-sm hover:border-primary/50 transition space-y-3 sm:space-y-4 flex flex-col justify-between">
                 <div className="space-y-3">
                   <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary border border-primary/20 flex items-center justify-center">
                     <Cpu size={22} />
@@ -978,7 +979,7 @@ export default function ProductDetailPage({ params }: PageProps) {
               </div>
 
               {/* Card 3: Civil Foundations */}
-              <div className="w-[85vw] sm:w-auto shrink-0 snap-center p-4 sm:p-6 rounded-xl bg-card border border-border shadow-sm hover:border-primary/50 transition-all space-y-3 sm:space-y-4 flex flex-col justify-between">
+              <div className="w-[85vw] sm:w-auto shrink-0 snap-center p-4 sm:p-6 rounded-xl bg-card border border-border shadow-sm hover:border-primary/50 transition space-y-3 sm:space-y-4 flex flex-col justify-between">
                 <div className="space-y-3">
                   <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary border border-primary/20 flex items-center justify-center">
                     <Layers size={22} />
@@ -1107,7 +1108,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                           placeholder="Enter your name"
                           value={formData.name}
                           onChange={handleChange}
-                          className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition-all font-semibold text-foreground"
+                          className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold text-foreground"
                         />
                       </div>
 
@@ -1124,7 +1125,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                           placeholder="Enter your email"
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition-all font-semibold text-foreground"
+                          className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold text-foreground"
                         />
                       </div>
                     </div>
@@ -1142,7 +1143,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                         placeholder="Enter your mobile number"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition-all font-semibold text-foreground"
+                        className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold text-foreground"
                       />
                     </div>
 
@@ -1159,7 +1160,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                         placeholder="Enter your requirement details..."
                         value={formData.message}
                         onChange={handleChange}
-                        className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition-all font-semibold resize-none text-foreground"
+                        className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold resize-none text-foreground"
                       />
                     </div>
 
@@ -1227,10 +1228,10 @@ export default function ProductDetailPage({ params }: PageProps) {
                   <Link
                     key={relItem.slug}
                     href={`/products/${relItem.slug}`}
-                    className="w-[85vw] sm:w-[320px] lg:w-[360px] xl:w-[400px] shrink-0 snap-center group rounded-xl bg-card border border-border overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/50 transition-all duration-300 flex flex-col justify-between"
+                    className="w-[85vw] sm:w-[320px] lg:w-[360px] xl:w-[400px] shrink-0 snap-center group rounded-xl bg-card border border-border overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/50 transition duration-300 flex flex-col justify-between"
                   >
                     <div className="p-4 sm:p-6 bg-muted/30 border-b border-border flex items-center justify-center h-[160px] sm:h-[220px] relative overflow-hidden">
-                      <img
+                      <Image
                         src={relItem.mainImage}
                         alt={relItem.name}
                         className="max-h-[140px] sm:max-h-[180px] w-auto object-contain group-hover:scale-105 transition-transform duration-500"
@@ -1334,7 +1335,7 @@ export default function ProductDetailPage({ params }: PageProps) {
 
             {/* Main Lightbox Image */}
             <div className="max-w-5xl max-h-[85vh] w-full h-full flex items-center justify-center p-4">
-              <img
+              <Image
                 src={allImages[selectedGalleryIndex]}
                 alt={`${product.name} enlarged view`}
                 className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
