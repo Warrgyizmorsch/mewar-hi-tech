@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import { Save, ArrowLeft, Image as ImageIcon } from "lucide-react";
@@ -460,7 +461,7 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
               {formData.coverImage && (
                 <div className="mt-4 relative aspect-video rounded-lg overflow-hidden border border-border">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={formData.coverImage} alt="Cover Preview" className="object-cover w-full h-full"  loading="lazy" width={800} height={600} />
+                  <Image src={formData.coverImage} alt="Cover Preview" className="object-cover w-full h-full"  loading="lazy" width={800} height={600} />
                 </div>
               )}
             </div>

@@ -140,7 +140,7 @@ export default function CaseStudiesSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               onClick={(e) => { e.preventDefault(); setSelectedStudy(study); }}
-              className="group bg-card border border-border/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer"
+              className="group bg-card border border-border/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 flex flex-col justify-between cursor-pointer"
             >
               <Link href="/case-studies" onClick={(e) => e.preventDefault()} className="flex flex-col justify-between h-full">
                 <div>
@@ -190,7 +190,7 @@ export default function CaseStudiesSection() {
               </div>
 
               {/* Action Footer */}
-              <div className="px-5 py-3.5 bg-muted/40 border-t border-border/60 flex items-center justify-center text-xs font-bold text-[#0A1A3B] dark:text-white group-hover:text-primary group-hover:bg-primary/5 transition-all uppercase tracking-wider gap-2">
+              <div className="px-5 py-3.5 bg-muted/40 border-t border-border/60 flex items-center justify-center text-xs font-bold text-[#0A1A3B] dark:text-white group-hover:text-primary group-hover:bg-primary/5 transition uppercase tracking-wider gap-2">
                 <span>VIEW CASE STUDY</span>
                 <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
               </div>

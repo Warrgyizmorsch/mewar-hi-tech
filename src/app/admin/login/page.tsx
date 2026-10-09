@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import BlobButton from "@/components/ui/BlobButton";
@@ -46,7 +47,7 @@ export default function AdminLogin() {
         <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
         
         <div className="text-center space-y-2 relative">
-          <img src="/logos/logo.png" alt="Logo" className="h-12 mx-auto mb-4 object-contain" />
+          <Image src="/logos/logo.png" alt="Logo" className="h-12 mx-auto mb-4 object-contain" />
           <h1 className="text-2xl font-bold uppercase tracking-tight text-foreground">Admin Panel</h1>
           <p className="text-sm text-muted-foreground font-medium">Sign in to manage your website</p>
         </div>

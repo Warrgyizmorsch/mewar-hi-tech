@@ -1,19 +1,16 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Theme } from "@radix-ui/themes";
 import { ToastContainer } from "react-toastify";
 import Script from "next/script";
 import { ThemeProvider } from "@/components/ui/ThemeContext";
 
 import { Rubik, Saira } from "next/font/google";
 
-import "@radix-ui/themes/styles.css";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
 import { ExperienceProvider } from "@/components/3d/ExperienceManager";
 import FloatingButton from "@/components/3d/FloatingButton";
-import ModelViewerScript from "@/components/ModelViewerScript";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -117,24 +114,19 @@ export default function RootLayout({
           />
         </noscript>
 
-        {/* Google Model Viewer Script for 3D elements */}
-        <ModelViewerScript />
-
         <ThemeProvider>
           <ExperienceProvider>
-            <Theme appearance="inherit" radius="large" scaling="100%">
-              <main className="min-h-screen font-sans">
-                {children}
-                {/* <FloatingButton /> */}
-                <ToastContainer
-                  position="top-right"
-                  autoClose={3000}
-                  newestOnTop
-                  closeOnClick
-                  pauseOnHover
-                />
-              </main>
-            </Theme>
+            <main className="min-h-screen font-sans">
+              {children}
+              {/* <FloatingButton /> */}
+              <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                newestOnTop
+                closeOnClick
+                pauseOnHover
+              />
+            </main>
           </ExperienceProvider>
         </ThemeProvider>
       </body>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Eye,
@@ -179,9 +180,9 @@ export default function LatestProjects() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             onClick={() => setLightboxIndex(0)}
-            className="lg:col-span-7 relative min-h-[420px] lg:min-h-[520px] rounded-xl overflow-hidden border border-border bg-card group shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer flex flex-col justify-end"
+            className="lg:col-span-7 relative min-h-[420px] lg:min-h-[520px] rounded-xl overflow-hidden border border-border bg-card group shadow-lg hover:shadow-2xl transition duration-500 cursor-pointer flex flex-col justify-end"
           >
-            <img src={featuredProject.src}
+            <Image src={featuredProject.src}
               alt={featuredProject.title}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
              loading="lazy" width={800} height={600} />
@@ -200,7 +201,7 @@ export default function LatestProjects() {
             </div>
 
             {/* Floating Expand Icon */}
-            <div className="absolute top-6 right-6 z-20 w-11 h-11 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110 transition-all duration-300 shadow-md">
+            <div className="absolute top-6 right-6 z-20 w-11 h-11 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110 transition duration-300 shadow-md">
               <Maximize2 size={18} />
             </div>
 
@@ -230,9 +231,9 @@ export default function LatestProjects() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: (idx + 1) * 0.1 }}
                 onClick={() => setLightboxIndex(idx + 1)}
-                className="relative h-[155px] lg:h-[160px] rounded-xl overflow-hidden border border-border bg-card group shadow-xs hover:shadow-xl transition-all duration-300 cursor-pointer flex items-end p-4"
+                className="relative h-[155px] lg:h-[160px] rounded-xl overflow-hidden border border-border bg-card group shadow-xs hover:shadow-xl transition duration-300 cursor-pointer flex items-end p-4"
               >
-                <img src={item.src}
+                <Image src={item.src}
                   alt={item.title}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-108"
                  loading="lazy" width={800} height={600} />
@@ -247,7 +248,7 @@ export default function LatestProjects() {
                       {item.title}
                     </h4>
                   </div>
-                  <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md border border-white/20 text-white flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                  <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md border border-white/20 text-white flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition duration-300">
                     <Eye size={14} />
                   </div>
                 </div>
@@ -267,9 +268,9 @@ export default function LatestProjects() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.08 }}
               onClick={() => setLightboxIndex(idx + 4)}
-              className="relative h-[220px] rounded-xl overflow-hidden border border-border bg-card group shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between p-5"
+              className="relative h-[220px] rounded-xl overflow-hidden border border-border bg-card group shadow-sm hover:shadow-xl transition duration-300 cursor-pointer flex flex-col justify-between p-5"
             >
-              <img src={item.src}
+              <Image src={item.src}
                 alt={item.title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-108"
                loading="lazy" width={800} height={600} />
@@ -323,6 +324,7 @@ export default function LatestProjects() {
               </div>
               <button
                 onClick={() => setLightboxIndex(null)}
+                aria-label="Close Preview"
                 className="w-10 h-10 rounded-full bg-white/10 hover:bg-primary hover:text-primary-foreground text-white flex items-center justify-center transition-colors cursor-pointer"
               >
                 <X size={20} />
@@ -334,7 +336,7 @@ export default function LatestProjects() {
               onClick={(e) => e.stopPropagation()}
               className="relative max-w-5xl w-full max-h-[80vh] aspect-[16/10] rounded-xl overflow-hidden shadow-2xl border border-white/10"
             >
-              <img src={LATEST_PROJECTS_DATA[lightboxIndex].src}
+              <Image src={LATEST_PROJECTS_DATA[lightboxIndex].src}
                 alt={LATEST_PROJECTS_DATA[lightboxIndex].title}
                 className="w-full h-full object-contain bg-black"
                loading="lazy" width={800} height={600} />
@@ -359,13 +361,15 @@ export default function LatestProjects() {
             {/* Navigation Arrows */}
             <button
               onClick={handlePrev}
-              className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-primary hover:text-primary-foreground text-white flex items-center justify-center transition-all cursor-pointer backdrop-blur-md shadow-lg"
+              aria-label="Previous"
+              className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-primary hover:text-primary-foreground text-white flex items-center justify-center transition cursor-pointer backdrop-blur-md shadow-lg"
             >
               <ChevronLeft size={24} />
             </button>
             <button
               onClick={handleNext}
-              className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-primary hover:text-primary-foreground text-white flex items-center justify-center transition-all cursor-pointer backdrop-blur-md shadow-lg"
+              aria-label="Next"
+              className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-primary hover:text-primary-foreground text-white flex items-center justify-center transition cursor-pointer backdrop-blur-md shadow-lg"
             >
               <ChevronRight size={24} />
             </button>

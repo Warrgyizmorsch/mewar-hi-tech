@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { Cog, Truck, Headset, Award } from "lucide-react";
 import { motion } from "framer-motion";
 import Container from "../ui/Container";
@@ -131,7 +132,7 @@ export default function WhyChooseUs() {
                   transition={{ duration: 0.5, delay: idx * 0.05 }}
                   className={`${img.colSpan} relative rounded-xl overflow-hidden group shadow-sm bg-muted h-[180px] lg:h-[220px]`}
                 >
-                  <img src={img.src}
+                  <Image src={img.src}
                     alt={img.title}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                    loading="lazy" width={800} height={600} />
@@ -156,7 +157,7 @@ export default function WhyChooseUs() {
                 key={idx}
                 className="relative rounded-xl overflow-hidden shadow-sm bg-muted h-[220px] w-full"
               >
-                <img src={img.src}
+                <Image src={img.src}
                   alt={img.title}
                   className="absolute inset-0 w-full h-full object-cover"
                  loading="lazy" width={800} height={600} />
@@ -181,7 +182,7 @@ export default function WhyChooseUs() {
               transition={{ duration: 0.5, delay: 0.2 + idx * 0.1 }}
               className="relative rounded-xl overflow-hidden group shadow-sm bg-muted h-[180px] lg:h-[220px]"
             >
-              <img src={img.src}
+              <Image src={img.src}
                 alt={img.title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                loading="lazy" width={800} height={600} />

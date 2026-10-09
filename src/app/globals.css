@@ -30,7 +30,7 @@
     --secondary: 216 56% 14%; /* #0F1E36 */
     --secondary-foreground: 0 0% 100%;
     --muted: 220 14% 96%; /* #f3f4f6 */
-    --muted-foreground: 215 16% 34%; /* #4b5563 */
+    --muted-foreground: 215 16% 27%; /* #374151 */
     --accent: 44 100% 48%;
     --accent-foreground: 216 56% 14%;
     --border: 220 13% 91%; /* #e5e7eb */
@@ -78,7 +78,7 @@
     --secondary: 215 28% 17%;
     --secondary-foreground: 0 0% 100%;
     --muted: 215 28% 17%;
-    --muted-foreground: 218 11% 65%;
+    --muted-foreground: 218 11% 75%;
     --border: 220 11% 20%;
   }
 }
@@ -259,4 +259,12 @@
 /* Common heading helper to replace font-bold/font-bold utility configurations */
 .common-heading {
   @apply font-heading font-bold uppercase tracking-tight;
+}
+
+/* Issue 6 Fix: Disable heavy decorative animations and transitions on mobile to save Main-Thread Work */
+@media (max-width: 768px) {
+  * {
+    /* Limit transition properties to only GPU accelerated ones */
+    transition-property: opacity, transform !important;
+  }
 }

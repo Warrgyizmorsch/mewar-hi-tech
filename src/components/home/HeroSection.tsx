@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 // Custom SVG Separator Component
 const Separator = () => (
@@ -31,22 +32,39 @@ const highlights = [
 ];
 
 const HeroSection: React.FC = () => {
+  const [loadVideo, setLoadVideo] = React.useState(false);
+
+  React.useEffect(() => {
+    // Delay video loading slightly so initial page load size is tiny (PageSpeed fix)
+    const timer = setTimeout(() => setLoadVideo(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section className="relative z-30 bg-background select-none min-h-[90vh] lg:min-h-screen flex items-center justify-center pt-20">
       
       {/* Background Video Container */}
-      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="/images/video_thumbnail.webp"
-          preload="none"
-          className="w-full h-full object-cover object-center"
-        >
-          <source src="/videos/home-page.mp4" type="video/mp4" />
-        </video>
+      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden bg-black">
+        <Image
+          src="/images/video_thumbnail.webp"
+          alt="Mewar Hi-Tech Heavy Duty Crushing Equipment"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center z-0"
+        />
+        {loadVideo && (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover object-center z-10"
+          >
+            <source src="/videos/home-page.mp4" type="video/mp4" />
+          </video>
+        )}
+        {/* Dark overlay for contrast removed per user request */}
       </div>
 
       {/* Central Title Overlay (H1) */}
@@ -57,9 +75,7 @@ const HeroSection: React.FC = () => {
         <p className="text-white/90 text-lg md:text-2xl mt-4 font-medium tracking-wide drop-shadow-md text-center max-w-3xl">
           Heavy Duty Crushing &amp; Screening Equipment
         </p>
-      </div>
-
-      {/* Bottom Horizontal Highlight Strip (Puzzolana Style) */}
+      </div>      {/* Bottom Horizontal Highlight Strip (Puzzolana Style) */}
       <div className="hidden lg:block absolute bottom-0 left-0 w-full z-20 pb-8 pt-12 bg-gradient-to-t from-black/80 to-transparent">
         <div className="max-w-[1720px] mx-auto px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-8 xl:gap-12">

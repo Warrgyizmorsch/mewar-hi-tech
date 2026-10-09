@@ -264,7 +264,7 @@ export default function InvestorPage({ params }: PageProps) {
                         type="button"
                         key={menuItem.slug}
                         onClick={() => handleTabChange(menuItem.slug)}
-                        className={`w-full flex items-center justify-between p-3.5 px-4 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer ${
+                        className={`w-full flex items-center justify-between p-3.5 px-4 rounded-xl text-xs font-bold transition duration-300 cursor-pointer ${
                           isActive
                             ? "bg-primary text-primary-foreground shadow-xs translate-x-1"
                             : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
@@ -457,7 +457,7 @@ export default function InvestorPage({ params }: PageProps) {
                           className="p-5 rounded-xl bg-background border border-border/60 hover:border-primary/45 transition-colors flex items-center justify-between group"
                         >
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                            <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition duration-300">
                               <FileText size={18} />
                             </div>
                             <div className="text-left font-sans">
@@ -490,7 +490,7 @@ export default function InvestorPage({ params }: PageProps) {
                           className="p-5 rounded-xl bg-background border border-border/60 hover:border-primary/45 transition-colors flex items-center justify-between group"
                         >
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                            <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition duration-300">
                               <FileText size={18} />
                             </div>
                             <div className="text-left font-sans">

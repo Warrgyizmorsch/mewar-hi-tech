@@ -362,7 +362,7 @@ export default function BlogDetailClient({
                           key={i}
                           href={`#${heading.id}`}
                           onClick={(e) => scrollToHeading(e, heading.id)}
-                          className={`block text-xs sm:text-sm transition-all py-1.5 pl-4 relative ${
+                          className={`block text-xs sm:text-sm transition py-1.5 pl-4 relative ${
                             isActive ? "text-primary font-bold" : "text-muted-foreground hover:text-foreground"
                           }`}
                         >
@@ -501,7 +501,7 @@ export default function BlogDetailClient({
                   <Link 
                     key={index} 
                     href={`/blogs/${post.slug}`} 
-                    className="w-[85vw] sm:w-[320px] lg:w-[360px] xl:w-[400px] shrink-0 snap-center group block bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/50 transition-all duration-300 border border-border flex flex-col justify-between"
+                    className="w-[85vw] sm:w-[320px] lg:w-[360px] xl:w-[400px] shrink-0 snap-center group block bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/50 transition duration-300 border border-border flex flex-col justify-between"
                   >
                     <div className="relative aspect-[4/3] overflow-hidden bg-muted">
                       <Image src={post.coverImage} alt={post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -564,7 +564,7 @@ export default function BlogDetailClient({
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
                   placeholder="Enter email address..."
-                  className="bg-background border border-border text-foreground placeholder:text-muted-foreground px-4 lg:px-5 py-3 lg:py-3.5 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all w-full sm:min-w-[220px] lg:min-w-[250px] shadow-sm text-[13px] lg:text-sm"
+                  className="bg-background border border-border text-foreground placeholder:text-muted-foreground px-4 lg:px-5 py-3 lg:py-3.5 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition w-full sm:min-w-[220px] lg:min-w-[250px] shadow-sm text-[13px] lg:text-sm"
                 />
                 <BlobButton
                   type="submit"

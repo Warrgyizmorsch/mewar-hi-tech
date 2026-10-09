@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Container from "@/components/ui/Container";
@@ -94,7 +95,7 @@ export default function CaseStudiesPage() {
             <div className="hidden md:flex items-center p-1 rounded-2xl bg-muted border border-border/80 shadow-inner">
               <button
                 onClick={() => setFilter("all")}
-                className={`px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
+                className={`px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition duration-300 ${
                   filter === "all"
                     ? "bg-primary text-primary-foreground shadow-md"
                     : "text-muted-foreground hover:text-foreground"
@@ -105,7 +106,7 @@ export default function CaseStudiesPage() {
               
               <button
                 onClick={() => setFilter("national")}
-                className={`px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
+                className={`px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition duration-300 ${
                   filter === "national"
                     ? "bg-primary text-primary-foreground shadow-md"
                     : "text-muted-foreground hover:text-foreground"
@@ -116,7 +117,7 @@ export default function CaseStudiesPage() {
 
               <button
                 onClick={() => setFilter("international")}
-                className={`px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
+                className={`px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition duration-300 ${
                   filter === "international"
                     ? "bg-primary text-primary-foreground shadow-md"
                     : "text-muted-foreground hover:text-foreground"
@@ -142,12 +143,12 @@ export default function CaseStudiesPage() {
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.4, delay: idx * 0.05 }}
                   onClick={() => setSelectedStudy(study)}
-                  className="group bg-card border border-border/80 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between cursor-pointer relative"
+                  className="group bg-card border border-border/80 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 flex flex-col justify-between cursor-pointer relative"
                 >
                   <div>
                     {/* Top Image Container */}
                     <div className="relative aspect-[16/10] overflow-hidden bg-muted">
-                      <img
+                      <Image
                         src={study.image}
                         alt={study.title}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -204,7 +205,7 @@ export default function CaseStudiesPage() {
                   </div>
 
                   {/* Card Footer Button */}
-                  <div className="px-6 py-4 bg-muted/30 border-t border-border/60 flex items-center justify-between text-xs font-bold text-[#0A1A3B] dark:text-white group-hover:text-primary group-hover:bg-primary/10 transition-all uppercase tracking-wider">
+                  <div className="px-6 py-4 bg-muted/30 border-t border-border/60 flex items-center justify-between text-xs font-bold text-[#0A1A3B] dark:text-white group-hover:text-primary group-hover:bg-primary/10 transition uppercase tracking-wider">
                     <span>VIEW CASE STUDY</span>
                     <ArrowRight size={16} className="transition-transform group-hover:translate-x-1.5" />
                   </div>
@@ -241,7 +242,7 @@ export default function CaseStudiesPage() {
               </button>
 
               <div className="relative aspect-[16/8] bg-muted overflow-hidden">
-                <img
+                <Image
                   src={selectedStudy.image}
                   alt={selectedStudy.title}
                   className="w-full h-full object-cover"

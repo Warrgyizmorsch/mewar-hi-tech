@@ -172,7 +172,7 @@ export default function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="bg-card rounded-2xl p-6 sm:p-7 border border-border/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative group text-left"
+              className="bg-card rounded-2xl p-6 sm:p-7 border border-border/80 shadow-sm hover:shadow-xl transition duration-300 flex flex-col justify-between relative group text-left"
             >
               <div className="flex items-center justify-between mb-4">
                 <span className="px-2.5 py-1 rounded-md bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider border border-primary/20">

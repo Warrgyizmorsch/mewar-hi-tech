@@ -49,8 +49,8 @@ export default function VideoShowcase() {
             {/* Visual badge info blocks */}
             <div className="space-y-4 max-w-md">
               {/* Card 1 */}
-              <div className="p-5 rounded-2xl bg-card border border-border/50 shadow-sm flex items-center gap-4 hover:border-primary/30 hover:shadow-md transition-all duration-300 group cursor-default">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+              <div className="p-5 rounded-2xl bg-card border border-border/50 shadow-sm flex items-center gap-4 hover:border-primary/30 hover:shadow-md transition duration-300 group cursor-default">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground transition duration-300">
                   <Video size={22} className="stroke-[2]" />
                 </div>
                 <div className="space-y-1">
@@ -65,8 +65,8 @@ export default function VideoShowcase() {
               </div>
 
               {/* Card 2 */}
-              <div className="p-5 rounded-2xl bg-card border border-border/50 shadow-sm flex items-center gap-4 hover:border-primary/30 hover:shadow-md transition-all duration-300 group cursor-default">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+              <div className="p-5 rounded-2xl bg-card border border-border/50 shadow-sm flex items-center gap-4 hover:border-primary/30 hover:shadow-md transition duration-300 group cursor-default">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground transition duration-300">
                   <Cog size={22} className="stroke-[2]" />
                 </div>
                 <div className="space-y-1">
@@ -104,12 +104,12 @@ export default function VideoShowcase() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10 group-hover:bg-black/40 transition-colors duration-500" />
 
               {/* Floating Play Button - Centered */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-primary/90 backdrop-blur-sm text-primary-foreground flex items-center justify-center shadow-[0_0_40px_rgba(var(--primary),0.5)] scale-95 group-hover:scale-110 group-hover:bg-primary transition-all duration-500">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-primary/90 backdrop-blur-sm text-primary-foreground flex items-center justify-center shadow-[0_0_40px_rgba(var(--primary),0.5)] scale-95 group-hover:scale-110 group-hover:bg-primary transition duration-500">
                 <Play size={32} className="fill-current ml-2" />
               </div>
 
               {/* Bottom label */}
-              <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between z-10 translate-y-2 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+              <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between z-10 translate-y-2 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 transition duration-500">
                 <div className="bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 eyebrow inline- text-white flex items-center gap-2">
                   <Play size={14} className="fill-current" />
                   Click to Watch Tour

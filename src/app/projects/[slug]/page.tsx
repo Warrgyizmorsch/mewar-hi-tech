@@ -1,6 +1,7 @@
 "use client";
 
 import React, { use, useState, useEffect } from "react";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -135,9 +136,9 @@ export default function ProjectDetailPage({ params }: PageProps) {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: Math.min(idx * 0.05, 0.3) }}
                   onClick={() => setLightboxIndex(idx)}
-                  className="relative rounded-xl overflow-hidden border border-border bg-card aspect-[4/3] cursor-pointer group shadow-xs hover:shadow-xl transition-all duration-300"
+                  className="relative rounded-xl overflow-hidden border border-border bg-card aspect-[4/3] cursor-pointer group shadow-xs hover:shadow-xl transition duration-300"
                 >
-                  <img
+                  <Image
                     src={src}
                     alt={`${project.title} installation ${idx + 1}`}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -197,7 +198,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
               className="relative max-w-5xl max-h-[80vh] flex items-center justify-center"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
+              <Image
                 src={project.images[lightboxIndex]}
                 alt={`Expanded expanded view ${lightboxIndex + 1}`}
                 className="max-w-full max-h-[80vh] object-contain rounded-xl shadow-2xl border border-white/5"

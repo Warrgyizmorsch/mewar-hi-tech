@@ -210,7 +210,7 @@ export default function Blogs() {
                   <button
                     key={cat}
                     onClick={() => handleCategoryChange(cat)}
-                    className={`shrink-0 px-4 py-2 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                    className={`shrink-0 px-4 py-2 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider whitespace-nowrap transition duration-200 cursor-pointer ${
                       category === cat
                         ? "bg-primary text-primary-foreground shadow-xs"
                         : "bg-card text-foreground border border-border/80 hover:border-primary/50"
@@ -331,7 +331,7 @@ export default function Blogs() {
                           </p>
 
                           <div className="pt-2">
-                            <span className="inline-flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-wider group-hover:gap-3 transition-all duration-300">
+                            <span className="inline-flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-wider group-hover:gap-3 transition duration-300">
                               READ FULL ARTICLE
                               <ArrowRight size={14} />
                             </span>
@@ -375,7 +375,7 @@ export default function Blogs() {
                           href={`/blogs/${post.slug}`}
                           className="group block h-full"
                         >
-                          <div className="bg-card border border-border/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full">
+                          <div className="bg-card border border-border/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition duration-300 flex flex-col h-full">
                             {/* Card Image */}
                             <div className="relative h-[180px] sm:h-[200px] overflow-hidden">
                               <Image
@@ -422,8 +422,8 @@ export default function Blogs() {
                                     {post.author.name}
                                   </span>
                                 </div>
-                                <span className="text-primary font-bold text-[11px] uppercase tracking-wider flex items-center gap-1 group-hover:gap-2 transition-all duration-300">
-                                  READ MORE
+                                <span className="text-primary font-bold text-[11px] uppercase tracking-wider flex items-center gap-1 group-hover:gap-2 transition duration-300">
+                                  READ FULL ARTICLE <span className="sr-only"> about {post.title}</span>
                                   <ArrowRight size={12} />
                                 </span>
                               </div>

@@ -138,7 +138,7 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
                   placeholder="Enter your name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-border px-3.5 py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition-all font-semibold"
+                  className="w-full rounded-xl border border-border px-3.5 py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
                 />
               </div>
 
@@ -160,7 +160,7 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
                     placeholder="Enter your email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-border px-3.5 py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition-all font-semibold"
+                    className="w-full rounded-xl border border-border px-3.5 py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
                   />
                 </div>
 
@@ -180,7 +180,7 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
                     placeholder="Enter your mobile number"
                     value={formData.mobile}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-border px-3.5 py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition-all font-semibold"
+                    className="w-full rounded-xl border border-border px-3.5 py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
                   />
                 </div>
               </div>
@@ -200,7 +200,7 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
                   placeholder="Enter your company name"
                   value={formData.company}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-border px-3.5 py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition-all font-semibold"
+                  className="w-full rounded-xl border border-border px-3.5 py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
                 />
               </div>
 
@@ -219,7 +219,7 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
                   placeholder="Enter your query or requirement..."
                   value={formData.query}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-border px-3.5 py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition-all font-semibold resize-none"
+                  className="w-full rounded-xl border border-border px-3.5 py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold resize-none"
                 />
               </div>
 

@@ -86,7 +86,7 @@ export const MachineCard: React.FC<MachineCardProps> = ({
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             priority={index === 0}
-            className="object-contain drop-shadow-2xl transition-all duration-300"
+            className="object-contain drop-shadow-2xl transition duration-300"
           />
         </motion.div>
       </motion.div>

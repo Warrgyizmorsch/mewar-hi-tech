@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Download, Calendar, MapPin } from "lucide-react";
 import Link from "next/link";
@@ -88,10 +89,10 @@ const InsightsPublicationsSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="border border-border bg-card rounded-xl overflow-hidden flex flex-col group hover:shadow-lg transition-all duration-300"
+                className="border border-border bg-card rounded-xl overflow-hidden flex flex-col group hover:shadow-lg transition duration-300"
               >
                 <div className="h-48 overflow-hidden bg-muted">
-                  <img src={item.image}
+                  <Image src={item.image}
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                    loading="lazy" width={800} height={600} />
@@ -109,7 +110,7 @@ const InsightsPublicationsSection: React.FC = () => {
                     href="/blogs"
                     className="text-primary hover:text-foreground text-xs font-bold uppercase tracking-wider transition-colors inline-flex items-center gap-1"
                   >
-                    Read more &rarr;
+                    Read all industry insights &rarr;
                   </Link>
                 </div>
               </motion.div>
@@ -177,7 +178,7 @@ const InsightsPublicationsSection: React.FC = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="border border-border p-5 rounded-xl bg-card flex items-center justify-between hover:shadow-md transition-all group"
+                  className="border border-border p-5 rounded-xl bg-card flex items-center justify-between hover:shadow-md transition group"
                 >
                   <div className="space-y-2">
                     <h4 className="common-heading text-sm text-foreground tracking-wider group-hover:text-primary transition-colors">

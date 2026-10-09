@@ -43,7 +43,7 @@ export const MachineFooter: React.FC<MachineFooterProps> = ({
       >
         <div className="overflow-hidden">
           <div
-            className={`mt-3.5 space-y-4 transition-all duration-200 ease-out ${
+            className={`mt-3.5 space-y-4 transition duration-200 ease-out ${
               isHovered ? "opacity-100 translate-y-0 [transition-delay:50ms]" : "opacity-0 translate-y-4"
             }`}
           >
@@ -52,7 +52,7 @@ export const MachineFooter: React.FC<MachineFooterProps> = ({
             </p>
             <Link href={category.to} className="cursor-pointer inline-block">
               <BlobButton variant="primary" className="!py-2.5 !px-6 text-[10px] font-bold">
-                <span>Read More</span>
+                <span>Explore {category.title}</span>
                 <ArrowRight size={12} className="stroke-[3]" />
               </BlobButton>
             </Link>

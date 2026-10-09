@@ -46,9 +46,9 @@ export default function VerifiedTrustStrip() {
 
         {/* Typography Block */}
         <div className="text-left">
-          <h3 className={`font-bold text-foreground uppercase tracking-normal font-heading leading-tight ${isMobile ? "text-xl" : "text-lg lg:text-2xl"}`}>
+          <h2 className={`font-bold text-foreground uppercase tracking-normal font-heading leading-tight ${isMobile ? "text-xl" : "text-lg lg:text-2xl"}`}>
             {badge.title}
-          </h3>
+          </h2>
           <p className={`font-bold text-muted-foreground uppercase tracking-wide font-sans ${isMobile ? "text-xs" : "text-sm"}`}>
             {badge.subtitle}
           </p>

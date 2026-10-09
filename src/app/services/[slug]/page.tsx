@@ -1,6 +1,7 @@
 "use client";
 
 import React, { use, useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -286,7 +287,7 @@ export default function ServiceSlugPage({ params }: PageProps) {
               {/* Right Column: Hero Image Preview */}
               <div className="lg:col-span-5 relative">
                 <div className="relative rounded-xl overflow-hidden border border-border bg-card shadow-lg">
-                  <img
+                  <Image
                     src={pageData.heroImage}
                     alt={pageData.title}
                     className="w-full aspect-[4/3] object-cover"
@@ -342,7 +343,7 @@ export default function ServiceSlugPage({ params }: PageProps) {
                     {withoutBullets.map((sect, sidx) => (
                       <div
                         key={sidx}
-                        className="flex-1 p-6 rounded-xl bg-card border border-border/80 flex flex-col justify-start text-left space-y-4 shadow-xs hover:shadow-md hover:border-primary/30 transition-all duration-300"
+                        className="flex-1 p-6 rounded-xl bg-card border border-border/80 flex flex-col justify-start text-left space-y-4 shadow-xs hover:shadow-md hover:border-primary/30 transition duration-300"
                       >
                         <div className="space-y-3">
                           <h3 className="font-bold text-base text-foreground font-heading">
@@ -361,7 +362,7 @@ export default function ServiceSlugPage({ params }: PageProps) {
                     {withBullets.map((sect, sidx) => (
                       <div
                         key={sidx}
-                        className="flex-1 p-6 rounded-xl bg-card border border-border/80 flex flex-col justify-start text-left space-y-4 shadow-xs hover:shadow-md hover:border-primary/30 transition-all duration-300"
+                        className="flex-1 p-6 rounded-xl bg-card border border-border/80 flex flex-col justify-start text-left space-y-4 shadow-xs hover:shadow-md hover:border-primary/30 transition duration-300"
                       >
                         <div className="space-y-3">
                           <h3 className="font-bold text-base text-foreground font-heading">
@@ -414,9 +415,9 @@ export default function ServiceSlugPage({ params }: PageProps) {
                   <div
                     key={gidx}
                     onClick={() => setLightboxImage(src)}
-                    className="relative aspect-square rounded-xl overflow-hidden border border-border bg-black cursor-pointer group shadow-xs hover:border-primary/50 hover:shadow-md transition-all duration-300"
+                    className="relative aspect-square rounded-xl overflow-hidden border border-border bg-black cursor-pointer group shadow-xs hover:border-primary/50 hover:shadow-md transition duration-300"
                   >
-                    <img
+                    <Image
                       src={src}
                       alt={`Gallery view item ${gidx + 1}`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-350 opacity-90 group-hover:opacity-100"
@@ -484,7 +485,7 @@ export default function ServiceSlugPage({ params }: PageProps) {
               className="relative max-w-5xl w-full max-h-[85vh] rounded-xl overflow-hidden shadow-2xl border border-white/10 bg-black flex items-center justify-center"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
+              <Image
                 src={lightboxImage}
                 alt="Enlarged view"
                 className="w-full h-full object-contain max-h-[80vh]"

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "@/components/ui/ThemeContext";
 import { toast } from "react-toastify";
@@ -150,7 +151,7 @@ const Footer: React.FC = () => {
             <div
               className={`w-full h-[64px] rounded flex items-center justify-center shrink-0 overflow-hidden ${theme === "dark" ? "" : "bg-white border border-border shadow-sm"}`}
             >
-              <img src={
+              <Image src={
                   theme === "dark" ? "/logos/logo-dark.png" : "/logos/logo.png"
                 }
                 alt="Mewar Hi-Tech Logo"
@@ -192,7 +193,7 @@ const Footer: React.FC = () => {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-7 h-7 rounded border border-secondary-foreground/10 bg-white/5 flex items-center justify-center text-secondary-foreground/75 hover:text-primary hover:border-primary transition-all duration-200"
+                className="w-7 h-7 rounded border border-secondary-foreground/10 bg-white/5 flex items-center justify-center text-secondary-foreground/75 hover:text-primary hover:border-primary transition duration-200"
                 aria-label={label}
               >
                 <Icon />

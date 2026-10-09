@@ -159,7 +159,7 @@ export default function TeamSection() {
                 key={item.id}
                 onMouseEnter={() => setHoveredIdx(idx)}
                 onMouseLeave={() => setHoveredIdx(null)}
-                className={`group relative bg-card rounded-[18px] p-6 border transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer shadow-sm hover:shadow-xl ${
+                className={`group relative bg-card rounded-[18px] p-6 border transition duration-300 flex flex-col justify-between overflow-hidden cursor-pointer shadow-sm hover:shadow-xl ${
                   isHovered
                     ? "border-primary shadow-lg ring-1 ring-primary/30"
                     : "border-border/80"
@@ -175,11 +175,11 @@ export default function TeamSection() {
                         <h3 className="font-sans text-xs font-bold text-[#0A1A3B] dark:text-white tracking-wider uppercase">
                           {item.department}
                         </h3>
-                        <div className="w-7 h-[2px] bg-primary rounded-full mt-1 group-hover:w-12 transition-all duration-300" />
+                        <div className="w-7 h-[2px] bg-primary rounded-full mt-1 group-hover:w-12 transition duration-300" />
                       </div>
                     </div>
 
-                    <div className="w-7 h-7 rounded-full bg-muted flex items-center justify-center text-muted-foreground group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                    <div className="w-7 h-7 rounded-full bg-muted flex items-center justify-center text-muted-foreground group-hover:bg-primary group-hover:text-primary-foreground transition duration-300">
                       <ArrowUpRight
                         size={14}
                         className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"

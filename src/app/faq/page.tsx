@@ -111,7 +111,7 @@ export default function FAQPage() {
                           <button
                             key={category.id}
                             onClick={() => { setActiveCategory(category.id); setOpenFaqId(null); }}
-                            className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-300 ${
+                            className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition duration-300 ${
                               isActive 
                                 ? "bg-primary text-white shadow-md shadow-primary/20" 
                                 : "hover:bg-muted text-foreground"
@@ -175,7 +175,7 @@ export default function FAQPage() {
                           return (
                             <div 
                               key={faqId} 
-                              className={`rounded-xl border transition-all duration-300 overflow-hidden ${
+                              className={`rounded-xl border transition duration-300 overflow-hidden ${
                                 isOpen 
                                   ? "bg-card border-primary/30 shadow-md shadow-primary/5" 
                                   : "bg-card border-border/60 hover:border-primary/30 hover:bg-muted/30"

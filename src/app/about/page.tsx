@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ShieldCheck,
@@ -287,7 +288,7 @@ export default function About() {
                 className="lg:col-span-5 relative"
               >
                 <div className="relative rounded-none overflow-hidden shadow-2xl border-2 border-border group">
-                  <img
+                  <Image
                     src="/images/about-mewar-hi-tech-1.jpg"
                     alt="Mewar Hi-Tech Manufacturing Plant Exterior"
                     className="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105"
@@ -334,7 +335,7 @@ export default function About() {
 
                 {/* Image & Caption */}
                 <div className="relative rounded-none overflow-hidden border-2 border-border">
-                  <img
+                  <Image
                     src="/images/robust_crusher_design.webp"
                     alt="Heavy-Duty Mining & Rock Reduction Crusher"
                     className="w-full h-64 sm:h-72 object-cover"
@@ -382,7 +383,7 @@ export default function About() {
 
                 {/* Image & Caption */}
                 <div className="relative rounded-none overflow-hidden border-2 border-border">
-                  <img
+                  <Image
                     src="/images/about-mewar-hi-tech-2.jpg"
                     alt="CNC Plasma Cutting Machinery in Action"
                     className="w-full h-64 sm:h-72 object-cover"
@@ -499,7 +500,7 @@ export default function About() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: idx * 0.05 }}
-                    className="w-[85vw] sm:w-auto shrink-0 snap-center p-6 rounded-xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 space-y-4 flex flex-col justify-between"
+                    className="w-[85vw] sm:w-auto shrink-0 snap-center p-6 rounded-xl bg-white/5 border border-white/10 hover:border-primary/50 transition duration-300 space-y-4 flex flex-col justify-between"
                   >
                     <div className="space-y-3">
                       <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
@@ -579,7 +580,7 @@ export default function About() {
                 className="lg:col-span-6"
               >
                 <div className="relative rounded-xl overflow-hidden shadow-2xl border border-border group">
-                  <img
+                  <Image
                     src="/images/about-mewar-hi-tech-3.jpg"
                     alt="Mewar Hi-Tech Team Celebration & Award Presentation"
                     className="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105"
