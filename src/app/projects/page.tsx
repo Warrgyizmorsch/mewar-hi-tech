@@ -13,8 +13,8 @@ import Container from "@/components/ui/Container";
 
 const PROJECT_CATEGORIES = [
   {
-    slug: "stationery-projects",
-    title: "Stationery Projects",
+    slug: "stationary-crushing-plants",
+    title: "Stationary Crushing Plants",
     description: "Global stationary crushing and size-reduction plants with heavy engineering solutions.",
     image: "/images/stationery-projects/stationery-projects-1.jpg",
     count: 29,
@@ -84,7 +84,9 @@ export default function ProjectsLandingPage() {
                       <Image
                         src={category.image}
                         alt={category.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <div className="absolute top-4 right-4 bg-background/90 backdrop-blur border border-border text-[11px] font-bold uppercase tracking-wider text-foreground px-3 py-1 rounded-full">
                         {category.count} Images

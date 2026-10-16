@@ -401,6 +401,8 @@ export default function CareersPage() {
                 <Image
                   src={careerIllustration}
                   alt="Career at Mewar Hi-Tech Illustration"
+                  width={600}
+                  height={500}
                   className="max-h-[380px] w-auto object-contain transition-transform duration-500 group-hover:scale-105"
                 />
               </div>

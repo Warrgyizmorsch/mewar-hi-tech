@@ -291,6 +291,8 @@ export default function About() {
                   <Image
                     src="/images/about-mewar-hi-tech-1.jpg"
                     alt="Mewar Hi-Tech Manufacturing Plant Exterior"
+                    width={800}
+                    height={500}
                     className="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
@@ -338,6 +340,8 @@ export default function About() {
                   <Image
                     src="/images/robust_crusher_design.webp"
                     alt="Heavy-Duty Mining & Rock Reduction Crusher"
+                    width={800}
+                    height={500}
                     className="w-full h-64 sm:h-72 object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
@@ -386,6 +390,8 @@ export default function About() {
                   <Image
                     src="/images/about-mewar-hi-tech-2.jpg"
                     alt="CNC Plasma Cutting Machinery in Action"
+                    width={800}
+                    height={500}
                     className="w-full h-64 sm:h-72 object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
@@ -583,6 +589,8 @@ export default function About() {
                   <Image
                     src="/images/about-mewar-hi-tech-3.jpg"
                     alt="Mewar Hi-Tech Team Celebration & Award Presentation"
+                    width={800}
+                    height={500}
                     className="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />

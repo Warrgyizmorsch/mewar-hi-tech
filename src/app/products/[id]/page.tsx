@@ -193,7 +193,7 @@ export default function ProductDetailPage({ params }: PageProps) {
     "screen", "washer", "feeder", "conveyor", "machine", "crusher"
   ];
 
-  let matchedKeyword = splitKeywords.find((kw) => lowerName.includes(kw));
+  const matchedKeyword = splitKeywords.find((kw) => lowerName.includes(kw));
 
   if (matchedKeyword) {
     const idx = lowerName.indexOf(matchedKeyword);
@@ -450,6 +450,9 @@ export default function ProductDetailPage({ params }: PageProps) {
                 <Image
                   src={product.mainImage}
                   alt={product.name}
+                  width={800}
+                  height={600}
+                  priority
                   className="max-h-[280px] sm:max-h-[460px] lg:max-h-[550px] w-auto object-contain transition-transform duration-700 ease-out group-hover:scale-105 filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] dark:drop-shadow-[0_30px_45px_rgba(0,0,0,0.7)]"
                 />
                 
@@ -592,6 +595,8 @@ export default function ProductDetailPage({ params }: PageProps) {
                     <Image
                       src={product.mainImage}
                       alt={product.name}
+                      width={800}
+                      height={600}
                       className="max-h-[380px] w-auto object-contain transition-transform duration-500 group-hover:scale-105"
                     />
                   )}
@@ -750,8 +755,10 @@ export default function ProductDetailPage({ params }: PageProps) {
                     >
                       <Image
                         src={allImages[selectedGalleryIndex]}
-                        alt={`${product.name} view ${selectedGalleryIndex + 1}`}
-                        className={`w-full h-full transition-transform duration-500 group-hover:scale-105 ${
+                        alt={`Kingson ${product.name} - Heavy duty crushing and aggregate processing equipment (Image ${selectedGalleryIndex + 1})`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className={`transition-transform duration-500 group-hover:scale-105 ${
                           allImages[selectedGalleryIndex].toLowerCase().includes(".png")
                             ? "object-contain p-6"
                             : "object-cover"
@@ -781,8 +788,10 @@ export default function ProductDetailPage({ params }: PageProps) {
                         >
                           <Image
                             src={imgUrl}
-                            alt={`Thumbnail ${i + 1}`}
-                            className="w-full h-full object-cover"
+                            alt={`Kingson ${product.name} detail view ${i + 1}`}
+                            fill
+                            sizes="96px"
+                            className="object-cover"
                           />
                         </button>
                       ))}
@@ -806,7 +815,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                         muted
                         loop
                         playsInline
-                        preload="metadata"
+                        preload="none"
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10px] font-bold uppercase text-white flex items-center gap-1.5 z-10">
@@ -1234,6 +1243,8 @@ export default function ProductDetailPage({ params }: PageProps) {
                       <Image
                         src={relItem.mainImage}
                         alt={relItem.name}
+                        width={400}
+                        height={300}
                         className="max-h-[140px] sm:max-h-[180px] w-auto object-contain group-hover:scale-105 transition-transform duration-500"
                       />
                       <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[9px] font-bold uppercase text-white">
@@ -1337,7 +1348,9 @@ export default function ProductDetailPage({ params }: PageProps) {
             <div className="max-w-5xl max-h-[85vh] w-full h-full flex items-center justify-center p-4">
               <Image
                 src={allImages[selectedGalleryIndex]}
-                alt={`${product.name} enlarged view`}
+                alt={`Kingson ${product.name} - High-capacity industrial machinery full view`}
+                width={1200}
+                height={800}
                 className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
               />
             </div>

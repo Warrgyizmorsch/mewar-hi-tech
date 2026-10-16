@@ -1,6 +1,10 @@
 import { Metadata } from "next";
 
 const seoData: Record<string, { title: string; description: string }> = {
+  "stationary-crushing-plants": {
+    "title": "Stationary Crushing Plants | Mewar Hi-Tech",
+    "description": "Stationary crushing plants designed, built and commissioned by Mewar Hi-Tech for quarries, mines and aggregate producers."
+  },
   "stationery-projects": {
     "title": "Stationary Crushing Plants | Mewar Hi-Tech",
     "description": "Stationary crushing plants designed, built and commissioned by Mewar Hi-Tech for quarries, mines and aggregate producers."
@@ -48,6 +52,53 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+export default async function Layout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ slug: string }>;
+}) {
+  const resolvedParams = await params;
+  const slug = resolvedParams.slug;
+  const data = seoData[slug];
+
+  const breadcrumbSchema = data
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://www.mewarhitech.com",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Projects",
+            item: "https://www.mewarhitech.com/projects",
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: data.title.replace(" | Mewar Hi-Tech", ""),
+            item: `https://www.mewarhitech.com/projects/${slug}`,
+          },
+        ],
+      }
+    : null;
+
+  return (
+    <>
+      {breadcrumbSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
+      )}
+      {children}
+    </>
+  );
 }

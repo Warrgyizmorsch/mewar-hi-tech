@@ -15,12 +15,18 @@ const urls = [
   `${BASE_URL}/terms-of-use`,
   `${BASE_URL}/cookie-policy`,
   `${BASE_URL}/events`,
+  `${BASE_URL}/industries`,
+  `${BASE_URL}/industries/quarrying`,
+  `${BASE_URL}/industries/mining`,
+  `${BASE_URL}/industries/m-sand`,
+  `${BASE_URL}/industries/road-construction`,
+  `${BASE_URL}/industries/recycling`,
+  `${BASE_URL}/industries/aggregates`,
 ];
 
 const uniqueUrls = [...new Set(urls)];
 
 export async function GET() {
-  const currentDate = new Date().toISOString();
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   ${uniqueUrls
@@ -28,8 +34,8 @@ export async function GET() {
       (loc) => `
     <url>
       <loc>${loc}</loc>
-      <lastmod>${currentDate}</lastmod>
-      <changefreq>${loc === BASE_URL ? "daily" : "weekly"}</changefreq>
+      <lastmod>${loc === BASE_URL ? "2026-10-15" : "2026-09-10"}</lastmod>
+      <changefreq>${loc === BASE_URL ? "weekly" : "monthly"}</changefreq>
       <priority>${loc === BASE_URL ? "1.0" : "0.8"}</priority>
     </url>`
     )

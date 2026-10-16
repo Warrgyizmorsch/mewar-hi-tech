@@ -7,6 +7,10 @@ const BASE_URL =
 
 const urls = [
   `${BASE_URL}/products`,
+  `${BASE_URL}/products/crushers`,
+  `${BASE_URL}/products/impactors`,
+  `${BASE_URL}/products/screens`,
+  `${BASE_URL}/products/feeders`,
   `${BASE_URL}/products/double-toggle-oil-jaw-crusher`,
   `${BASE_URL}/products/single-toggle-grease-jaw-crusher`,
   `${BASE_URL}/products/double-toggle-grease-jaw-crusher`,
@@ -26,7 +30,7 @@ const urls = [
 const uniqueUrls = [...new Set(urls)];
 
 export async function GET() {
-  const currentDate = new Date().toISOString();
+  const lastmodDate = "2026-09-20";
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   ${uniqueUrls
@@ -34,7 +38,7 @@ export async function GET() {
       (loc) => `
     <url>
       <loc>${loc}</loc>
-      <lastmod>${currentDate}</lastmod>
+      <lastmod>${lastmodDate}</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.9</priority>
     </url>`

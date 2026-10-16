@@ -254,6 +254,8 @@ export default function ServicesPage() {
                   <Image
                     src="/images/after-sales-1.jpg"
                     alt="Kingson After Sales Support"
+                    width={800}
+                    height={600}
                     className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -421,7 +423,9 @@ export default function ServicesPage() {
                       <Image
                         src={currentTab.image}
                         alt={currentTab.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
                       />
                       <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
                       <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/60 backdrop-blur text-white flex items-center justify-center group-hover:bg-primary transition-colors">
@@ -621,6 +625,8 @@ export default function ServicesPage() {
               <Image
                 src={lightboxImage}
                 alt="Enlarged view"
+                width={1200}
+                height={800}
                 className="w-full h-full object-contain max-h-[80vh]"
               />
             </motion.div>

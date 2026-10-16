@@ -268,7 +268,9 @@ export default function InfrastructureDetailPage({ params }: PageProps) {
                       <Image
                         src={src}
                         alt={`${config.title} asset view ${idx + 1}`}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -330,6 +332,8 @@ export default function InfrastructureDetailPage({ params }: PageProps) {
               <Image
                 src={config.images[lightboxIndex]}
                 alt={`Expanded expanded view ${lightboxIndex + 1}`}
+                width={1200}
+                height={800}
                 className="max-w-full max-h-[80vh] object-contain rounded-xl shadow-2xl border border-white/5"
               />
             </motion.div>

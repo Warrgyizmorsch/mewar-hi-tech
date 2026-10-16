@@ -1,13 +1,22 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import connectToDatabase from "@/lib/mongodb";
 import Blog from "@/models/Blog";
 import { BLOG_POSTS } from "@/data/blog-data";
+import { isAdminAuthorized } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
-// POST /api/blogs/seed - Seed blog posts from static data
-export async function POST() {
+// POST /api/blogs/seed - Seed blog posts from static data (Admin Only)
+export async function POST(req: NextRequest) {
   try {
+    const isAuth = await isAdminAuthorized(req);
+    if (!isAuth) {
+      return NextResponse.json(
+        { message: "Unauthorized. Admin authentication required." },
+        { status: 401 }
+      );
+    }
+
     const conn = await connectToDatabase();
     if (!conn) {
       return NextResponse.json(
@@ -35,8 +44,9 @@ export async function POST() {
   } catch (error: any) {
     console.error("Error seeding blogs:", error);
     return NextResponse.json(
-      { message: "Error seeding blogs: " + (error.message || "Unknown error") },
+      { message: "Failed to seed blog posts" },
       { status: 500 }
     );
   }
 }
+

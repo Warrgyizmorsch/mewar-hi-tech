@@ -27,7 +27,7 @@ export const MachineFooter: React.FC<MachineFooterProps> = ({
           {category.title}
         </h3>
         <motion.div
-          animate={{ rotate: isHovered ? 45 : 0 }}
+          animate={{ rotate: isHovered ? -45 : 0 }}
           transition={cardTransition}
           className="text-white shrink-0"
         >

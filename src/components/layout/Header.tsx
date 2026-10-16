@@ -3,8 +3,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown, ChevronRight, Search, Globe } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import BlobButton from "@/components/ui/BlobButton";
 import { useTheme } from "@/components/ui/ThemeContext";
@@ -27,18 +26,9 @@ type NavItem = {
 const navItems: NavItem[] = [
   { label: "Home", to: "/" },
   {
-    label: "About",
-    children: [
-      { label: "Our Case Studies", to: "/case-studies"},
-      { label: "About Mewar Hi-Tech", to: "/about" },
-      { label: "Events", to: "/events" },
-      { label: "Career", to: "/careers" },
-    ],
-  },
-  {
     label: "Products",
     children: [
-      { label: "Crusher", heading: true,
+      { label: "Crusher", to: "/products/crushers", heading: true,
         children: [
           { label: "Double Toggle Oil Jaw Crusher", to: "/products/double-toggle-oil-jaw-crusher" },
           { label: "Single Toggle Grease Jaw Crusher", to: "/products/single-toggle-grease-jaw-crusher" },
@@ -47,21 +37,21 @@ const navItems: NavItem[] = [
           { label: "Roll Crusher", to: "/products/roll-crusher" },
         ]
       },
-      { label: "Impactor", heading: true,
+      { label: "Impactor", to: "/products/impactors", heading: true,
         children: [
           { label: "Horizontal Shaft Impactor", to: "/products/horizontal-shaft-impactor" },
           { label: "Vertical Shaft Impactor", to: "/products/vertical-shaft-impactor" },
           { label: "Sand Making Machine", to: "/products/sand-making-machine" },
         ]
       },
-      { label: "Screen", heading: true,
+      { label: "Screen", to: "/products/screens", heading: true,
         children: [
           { label: "Vibrating Screen", to: "/products/vibrating-screen" },
           { label: "Sand Washer", to: "/products/sand-washer" },
           { label: "Belt Conveyor", to: "/products/belt-conveyor" },
         ]
       },
-      { label: "Feeder", heading: true,
+      { label: "Feeder", to: "/products/feeders", heading: true,
         children: [
           { label: "Vibro Feeder", to: "/products/vibro-feeder" },
           { label: "Single Shaft Feeders", to: "/products/single-shaft-feeders" },
@@ -70,9 +60,17 @@ const navItems: NavItem[] = [
     ],
   },
   {
+    label: "Services",
+    children: [
+      { label: "After Sales", to: "/services/after-sales" },
+      { label: "Spare Parts", to: "/services/spare-parts" },
+      { label: "Erection & Commissioning", to: "/services/erection-commissioning" },
+    ],
+  },
+  {
     label: "Projects",
     children: [
-      { label: "Stationery Projects", to: "/projects/stationery-projects" },
+      { label: "Stationary Crushing Plants", to: "/projects/stationary-crushing-plants" },
       { label: "Mobile Plants", heading: true },
       { label: "Track Mounted", to: "/projects/track-mounted-mobile-projects" },
       { label: "Wheel Mounted", to: "/projects/wheel-mounted-mobile-projects" },
@@ -87,26 +85,25 @@ const navItems: NavItem[] = [
       { label: "R & D and Design", to: "/infrastructure/r-d-design" },
     ],
   },
+  { label: "Blog", to: "/blogs" },
+  { label: "Investors", to: "/investors" },
   {
-    label: "Services",
+    label: "About",
     children: [
-      { label: "After Sales", to: "/services/after-sales" },
-      { label: "Spare Parts", to: "/services/spare-parts" },
-      { label: "Erection & Commissioning", to: "/services/erection-commissioning" },
+      { label: "Our Case Studies", to: "/case-studies"},
+      { label: "About Mewar Hi-Tech", to: "/about" },
+      { label: "Events", to: "/events" },
+      { label: "Career", to: "/careers" },
     ],
   },
-  { label: "Investors", to: "/investors" },
-  { label: "Blog", to: "/blogs" },
   { label: "Contact", to: "/contact" },
 ];
 
 const Header: React.FC = () => {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [visible, setVisible] = useState(true);
   const [isBrochureOpen, setIsBrochureOpen] = useState(false);
   const [expandedSubmenu, setExpandedSubmenu] = useState<string | null>(null);
-  const pathname = usePathname();
   const { theme, setTheme } = useTheme();
 
   const lastScrollYRef = useRef(0);
@@ -124,7 +121,6 @@ const Header: React.FC = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const lastScrollY = lastScrollYRef.current;
-      setScrolled(currentScrollY > 24);
 
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
@@ -213,17 +209,27 @@ const Header: React.FC = () => {
                   <ChevronDown size={13} className="opacity-60 transition-transform duration-300 group-hover:rotate-180" />
                 </button>
 
-                {item.label === "Products" ? (
+                {item.label === "Products" || item.label === "Product" ? (
                   /* Horizontal Mega Menu Dropdown for Products */
                   <div
-                    className="absolute top-[calc(100%+14px)] left-[-200px] mt-0 before:absolute before:-top-4 before:left-0 before:w-full before:h-4 before:bg-transparent shadow-2xl rounded-none opacity-0 invisible -translate-y-2 origin-top group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition duration-300 ease-out z-50 p-8 w-[950px] max-w-[calc(100vw-48px)] bg-primary text-white"
+                    className="absolute top-[calc(100%+14px)] left-[-120px] mt-0 before:absolute before:-top-4 before:left-0 before:w-full before:h-4 before:bg-transparent shadow-2xl rounded-none opacity-0 invisible -translate-y-2 origin-top group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition duration-300 ease-out z-50 p-8 w-[950px] max-w-[calc(100vw-48px)] bg-primary text-white"
                   >
                     <div className="grid grid-cols-4 gap-0 divide-x divide-white/20">
                       {item.children.map((group) => (
                         <div key={group.label} className="flex flex-col gap-4 px-6 first:pl-0 last:pr-0">
-                          <h4 className="text-[14px] font-bold uppercase tracking-wider text-black/80">
-                            {group.label}
-                          </h4>
+                          {group.to ? (
+                            <Link
+                              href={group.to}
+                              className="text-[14px] font-bold uppercase tracking-wider text-black/90 hover:text-black flex items-center justify-between group/cat hover:underline transition-colors"
+                            >
+                              <span>{group.label}</span>
+                              <ChevronRight size={14} className="opacity-60 transition-transform group-hover/cat:translate-x-1" />
+                            </Link>
+                          ) : (
+                            <h4 className="text-[14px] font-bold uppercase tracking-wider text-black/80">
+                              {group.label}
+                            </h4>
+                          )}
                           <div className="flex flex-col gap-2.5">
                             {group.children?.map((sub) => (
                               <Link
@@ -247,12 +253,22 @@ const Header: React.FC = () => {
                     <div className="flex flex-col gap-3">
                       {item.children.map((child) => (
                         child.heading ? (
-                          <h4
-                            key={child.label}
-                            className="text-[12px] font-bold uppercase tracking-wider mt-3 mb-1 border-t border-black/10 pt-4 first:mt-0 first:border-0 first:pt-0 text-black/80"
-                          >
-                            {child.label}
-                          </h4>
+                          child.to ? (
+                            <Link
+                              key={child.label}
+                              href={child.to}
+                              className="text-[12px] font-bold uppercase tracking-wider mt-3 mb-1 border-t border-black/10 pt-4 first:mt-0 first:border-0 first:pt-0 text-black/80 hover:text-black block"
+                            >
+                              {child.label}
+                            </Link>
+                          ) : (
+                            <h4
+                              key={child.label}
+                              className="text-[12px] font-bold uppercase tracking-wider mt-3 mb-1 border-t border-black/10 pt-4 first:mt-0 first:border-0 first:pt-0 text-black/80"
+                            >
+                              {child.label}
+                            </h4>
+                          )
                         ) : (
                           <Link
                             key={child.label}
@@ -429,11 +445,24 @@ const Header: React.FC = () => {
                                 {item.children!.map((child) => (
                                   child.children ? (
                                     <div key={child.label} className="mt-2 mb-1">
-                                      <div className={`px-4 py-1 text-xs font-bold uppercase tracking-wider ${
-                                        theme === "light" ? "text-gray-900" : "text-secondary-foreground"
-                                      }`}>
-                                        {child.label}
-                                      </div>
+                                      {child.to ? (
+                                        <Link
+                                          href={child.to}
+                                          onClick={() => setOpen(false)}
+                                          className={`px-4 py-1.5 text-xs font-bold uppercase tracking-wider flex items-center justify-between transition-colors ${
+                                            theme === "light" ? "text-gray-900 hover:text-primary" : "text-secondary-foreground hover:text-primary"
+                                          }`}
+                                        >
+                                          <span>{child.label}</span>
+                                          <ChevronRight size={13} className="text-muted-foreground" />
+                                        </Link>
+                                      ) : (
+                                        <div className={`px-4 py-1 text-xs font-bold uppercase tracking-wider ${
+                                          theme === "light" ? "text-gray-900" : "text-secondary-foreground"
+                                        }`}>
+                                          {child.label}
+                                        </div>
+                                      )}
                                       <div className="pl-2 flex flex-col gap-0.5">
                                         {child.children.map((sub) => (
                                           <Link
@@ -453,14 +482,27 @@ const Header: React.FC = () => {
                                     </div>
                                   ) : (
                                   child.heading ? (
-                                    <div
-                                      key={child.label}
-                                      className={`px-4 py-2 mt-2 text-xs font-bold uppercase tracking-wider ${
-                                        theme === "light" ? "text-gray-900 border-t border-gray-100 pt-3" : "text-gray-200 border-t border-white/5 pt-3"
-                                      }`}
-                                    >
-                                      {child.label}
-                                    </div>
+                                    child.to ? (
+                                      <Link
+                                        key={child.label}
+                                        href={child.to}
+                                        onClick={() => setOpen(false)}
+                                        className={`px-4 py-2 mt-2 text-xs font-bold uppercase tracking-wider block transition-colors ${
+                                          theme === "light" ? "text-gray-900 border-t border-gray-100 pt-3 hover:text-primary" : "text-gray-200 border-t border-white/5 pt-3 hover:text-primary"
+                                        }`}
+                                      >
+                                        {child.label}
+                                      </Link>
+                                    ) : (
+                                      <div
+                                        key={child.label}
+                                        className={`px-4 py-2 mt-2 text-xs font-bold uppercase tracking-wider ${
+                                          theme === "light" ? "text-gray-900 border-t border-gray-100 pt-3" : "text-gray-200 border-t border-white/5 pt-3"
+                                        }`}
+                                      >
+                                        {child.label}
+                                      </div>
+                                    )
                                   ) : (
                                     <Link
                                       key={child.label}

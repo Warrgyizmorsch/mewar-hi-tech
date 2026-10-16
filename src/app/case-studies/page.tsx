@@ -151,7 +151,9 @@ export default function CaseStudiesPage() {
                       <Image
                         src={study.image}
                         alt={study.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                       
                       {/* Number Counter Badge */}
@@ -245,7 +247,9 @@ export default function CaseStudiesPage() {
                 <Image
                   src={selectedStudy.image}
                   alt={selectedStudy.title}
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 1000px"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent flex flex-col justify-end p-6 sm:p-8">
                   <div className="flex items-center gap-2 mb-2">

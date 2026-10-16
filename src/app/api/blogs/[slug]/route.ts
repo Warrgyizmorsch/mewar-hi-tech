@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectToDatabase from "@/lib/mongodb";
 import Blog from "@/models/Blog";
+import { isAdminAuthorized } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
-// GET /api/blogs/[slug] - Get single blog by slug
+// GET /api/blogs/[slug] - Get single blog by slug (Public)
 export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ slug: string }> }
@@ -38,12 +39,20 @@ export async function GET(
   }
 }
 
-// PUT /api/blogs/[slug] - Update blog post
+// PUT /api/blogs/[slug] - Update blog post (Admin Only)
 export async function PUT(
   req: NextRequest,
   { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
+    const isAuth = await isAdminAuthorized(req);
+    if (!isAuth) {
+      return NextResponse.json(
+        { message: "Unauthorized. Admin authentication required." },
+        { status: 401 }
+      );
+    }
+
     const conn = await connectToDatabase();
     if (!conn) {
       return NextResponse.json(
@@ -53,13 +62,17 @@ export async function PUT(
     }
 
     const { slug } = await params;
-    const body = await req.json();
-    console.log("Received body in PUT /api/blogs/[slug]:", JSON.stringify({ metaTitle: body.metaTitle, faqs: body.faqs }));
+    let body;
+    try {
+      body = await req.json();
+    } catch {
+      return NextResponse.json(
+        { message: "Invalid JSON request body" },
+        { status: 400 }
+      );
+    }
 
     const blog = await Blog.findOneAndUpdate({ slug }, body, { new: true });
-    if (blog) {
-      console.log("Updated blog in DB:", JSON.stringify({ metaTitle: blog.metaTitle, faqs: blog.faqs }));
-    }
     if (!blog) {
       return NextResponse.json(
         { message: "Blog not found" },
@@ -71,18 +84,26 @@ export async function PUT(
   } catch (error: any) {
     console.error("Error updating blog:", error);
     return NextResponse.json(
-      { message: "Internal server error" },
+      { message: "Failed to update blog post" },
       { status: 500 }
     );
   }
 }
 
-// DELETE /api/blogs/[slug] - Delete blog post
+// DELETE /api/blogs/[slug] - Delete blog post (Admin Only)
 export async function DELETE(
   req: NextRequest,
   { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
+    const isAuth = await isAdminAuthorized(req);
+    if (!isAuth) {
+      return NextResponse.json(
+        { message: "Unauthorized. Admin authentication required." },
+        { status: 401 }
+      );
+    }
+
     const conn = await connectToDatabase();
     if (!conn) {
       return NextResponse.json(
@@ -105,8 +126,9 @@ export async function DELETE(
   } catch (error: any) {
     console.error("Error deleting blog:", error);
     return NextResponse.json(
-      { message: "Internal server error" },
+      { message: "Failed to delete blog post" },
       { status: 500 }
     );
   }
 }
+

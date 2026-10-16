@@ -1,13 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectToDatabase from "@/lib/mongodb";
 import Enquiry from "@/models/Enquiry";
+import { isAdminAuthorized } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
+    let body;
+    try {
+      body = await req.json();
+    } catch {
+      return NextResponse.json(
+        { message: "Invalid JSON request body" },
+        { status: 400 }
+      );
+    }
 
     // Validate required fields
-    if (!body.name || !body.email || !body.phone || !body.message || !body.type) {
+    if (!body || !body.name || !body.email || !body.phone || !body.message || !body.type) {
       return NextResponse.json(
         { message: "Missing required fields" },
         { status: 400 }
@@ -24,11 +33,10 @@ export async function POST(req: NextRequest) {
     // Connect to database
     const conn = await connectToDatabase();
     if (!conn) {
-      const message = process.env.MONGODB_URI
-        ? "Database connection failed. Please try again later."
-        : "Database is not configured on this server. Add the MONGODB_URI environment variable in production.";
-
-      return NextResponse.json({ message }, { status: 503 });
+      return NextResponse.json(
+        { message: "Database connection failed. Please try again later." },
+        { status: 503 }
+      );
     }
 
     const enquiry = new Enquiry({
@@ -53,15 +61,31 @@ export async function POST(req: NextRequest) {
   } catch (error: any) {
     console.error("Enquiry submission error:", error);
     return NextResponse.json(
-      { message: "Internal server error: " + (error.message || "Unknown error") },
+      { message: "Failed to submit enquiry. Please try again later." },
       { status: 500 }
     );
   }
 }
 
+
 export async function DELETE(req: NextRequest) {
   try {
-    const { ids } = await req.json();
+    const isAuth = await isAdminAuthorized(req);
+    if (!isAuth) {
+      return NextResponse.json(
+        { message: "Unauthorized. Admin authentication required." },
+        { status: 401 }
+      );
+    }
+
+    let body;
+    try {
+      body = await req.json();
+    } catch {
+      return NextResponse.json({ message: "Invalid JSON request body" }, { status: 400 });
+    }
+
+    const { ids } = body || {};
     if (!ids || !Array.isArray(ids) || ids.length === 0) {
       return NextResponse.json({ message: "No IDs provided for deletion" }, { status: 400 });
     }
@@ -76,6 +100,10 @@ export async function DELETE(req: NextRequest) {
     return NextResponse.json({ message: "Enquiries deleted successfully" }, { status: 200 });
   } catch (error: any) {
     console.error("Enquiry deletion error:", error);
-    return NextResponse.json({ message: "Internal server error" }, { status: 500 });
+    return NextResponse.json(
+      { message: "Failed to delete enquiries" },
+      { status: 500 }
+    );
   }
 }
+

@@ -66,11 +66,12 @@ const footerColumns = [
   {
     title: "APPLICATIONS",
     links: [
-      { label: "Quarrying", to: "/industries#quarrying" },
-      { label: "Aggregates", to: "/industries#aggregates" },
-      { label: "Recycling", to: "/industries#recycling" },
-      { label: "Road Construction", to: "/industries#road-construction" },
-      { label: "Sand & Gravel", to: "/industries#sand-gravel" },
+      { label: "Quarrying", to: "/industries/quarrying" },
+      { label: "Mining", to: "/industries/mining" },
+      { label: "M-Sand Production", to: "/industries/m-sand" },
+      { label: "Road Construction", to: "/industries/road-construction" },
+      { label: "C&D Recycling", to: "/industries/recycling" },
+      { label: "Commercial Aggregates", to: "/industries/aggregates" },
     ],
   },
 ];

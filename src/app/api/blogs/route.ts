@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectToDatabase from "@/lib/mongodb";
 import Blog from "@/models/Blog";
+import { isAdminAuthorized } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -50,9 +51,17 @@ export async function GET(req: NextRequest) {
   }
 }
 
-// POST /api/blogs - Create a new blog post
+// POST /api/blogs - Create a new blog post (Admin Only)
 export async function POST(req: NextRequest) {
   try {
+    const isAuth = await isAdminAuthorized(req);
+    if (!isAuth) {
+      return NextResponse.json(
+        { message: "Unauthorized. Admin authentication required." },
+        { status: 401 }
+      );
+    }
+
     const conn = await connectToDatabase();
     if (!conn) {
       return NextResponse.json(
@@ -61,8 +70,22 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const body = await req.json();
-    console.log("Received body in POST /api/blogs:", JSON.stringify({ metaTitle: body.metaTitle, faqs: body.faqs }));
+    let body;
+    try {
+      body = await req.json();
+    } catch {
+      return NextResponse.json(
+        { message: "Invalid JSON request body" },
+        { status: 400 }
+      );
+    }
+
+    if (!body || !body.title) {
+      return NextResponse.json(
+        { message: "Blog title is required" },
+        { status: 400 }
+      );
+    }
 
     // Generate slug if not provided
     if (!body.slug) {
@@ -74,7 +97,6 @@ export async function POST(req: NextRequest) {
 
     const blog = new Blog(body);
     await blog.save();
-    console.log("Saved blog to DB:", JSON.stringify({ metaTitle: blog.metaTitle, faqs: blog.faqs }));
 
     return NextResponse.json(
       { message: "Blog created successfully", blog },
@@ -83,8 +105,9 @@ export async function POST(req: NextRequest) {
   } catch (error: any) {
     console.error("Error creating blog:", error);
     return NextResponse.json(
-      { message: "Internal server error: " + (error.message || "Unknown error") },
+      { message: "Failed to create blog post" },
       { status: 500 }
     );
   }
 }
+

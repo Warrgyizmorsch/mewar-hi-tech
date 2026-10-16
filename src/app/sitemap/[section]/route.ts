@@ -32,7 +32,7 @@ const sectionData: Record<string, { loc: string[] }> = {
   projects: {
     loc: [
       `${BASE_URL}/projects`,
-      `${BASE_URL}/projects/stationery-projects`,
+      `${BASE_URL}/projects/stationary-crushing-plants`,
       `${BASE_URL}/projects/track-mounted-mobile-projects`,
       `${BASE_URL}/projects/wheel-mounted-mobile-projects`,
     ],

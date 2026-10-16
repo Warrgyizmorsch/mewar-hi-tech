@@ -290,6 +290,8 @@ export default function ServiceSlugPage({ params }: PageProps) {
                   <Image
                     src={pageData.heroImage}
                     alt={pageData.title}
+                    width={800}
+                    height={600}
                     className="w-full aspect-[4/3] object-cover"
                   />
                 </div>
@@ -420,7 +422,9 @@ export default function ServiceSlugPage({ params }: PageProps) {
                     <Image
                       src={src}
                       alt={`Gallery view item ${gidx + 1}`}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-350 opacity-90 group-hover:opacity-100"
+                      fill
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-350 opacity-90 group-hover:opacity-100"
                     />
                     <div className="absolute inset-0 bg-black/10 group-hover:bg-black/25 transition-colors" />
                     <div className="absolute top-2 right-2 w-7 h-7 rounded-full bg-black/50 backdrop-blur text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
@@ -488,6 +492,8 @@ export default function ServiceSlugPage({ params }: PageProps) {
               <Image
                 src={lightboxImage}
                 alt="Enlarged view"
+                width={1200}
+                height={800}
                 className="w-full h-full object-contain max-h-[80vh]"
               />
             </motion.div>
