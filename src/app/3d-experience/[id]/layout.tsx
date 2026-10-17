@@ -58,6 +58,9 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       title: data.title,
       description: data.description,
     },
+    ...(id.endsWith("-1") || id.endsWith("-5")
+      ? { robots: { index: false, follow: true } }
+      : {}),
   };
 }
 

@@ -4,41 +4,39 @@ const BASE_URL =
   "https://www.mewarhitech.com";
 
 export async function GET() {
-  const currentDate = new Date().toISOString();
-  
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>${BASE_URL}/sitemap-general.xml</loc>
-    <lastmod>${currentDate}</lastmod>
+    <lastmod>2026-10-15</lastmod>
   </sitemap>
   <sitemap>
     <loc>${BASE_URL}/sitemap-products.xml</loc>
-    <lastmod>${currentDate}</lastmod>
+    <lastmod>2026-09-20</lastmod>
   </sitemap>
   <sitemap>
     <loc>${BASE_URL}/sitemap-services.xml</loc>
-    <lastmod>${currentDate}</lastmod>
+    <lastmod>2026-09-01</lastmod>
   </sitemap>
   <sitemap>
     <loc>${BASE_URL}/sitemap-blogs.xml</loc>
-    <lastmod>${currentDate}</lastmod>
+    <lastmod>2026-10-15</lastmod>
   </sitemap>
   <sitemap>
     <loc>${BASE_URL}/sitemap-projects.xml</loc>
-    <lastmod>${currentDate}</lastmod>
+    <lastmod>2026-09-15</lastmod>
   </sitemap>
   <sitemap>
     <loc>${BASE_URL}/sitemap-infrastructure.xml</loc>
-    <lastmod>${currentDate}</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </sitemap>
   <sitemap>
     <loc>${BASE_URL}/sitemap-investors.xml</loc>
-    <lastmod>${currentDate}</lastmod>
+    <lastmod>2026-09-15</lastmod>
   </sitemap>
   <sitemap>
     <loc>${BASE_URL}/sitemap-3d-experience.xml</loc>
-    <lastmod>${currentDate}</lastmod>
+    <lastmod>2026-08-15</lastmod>
   </sitemap>
 </sitemapindex>`;
 

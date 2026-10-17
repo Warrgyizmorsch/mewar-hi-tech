@@ -4,9 +4,17 @@ import Newsletter from "@/models/Newsletter";
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
+    let body;
+    try {
+      body = await req.json();
+    } catch {
+      return NextResponse.json(
+        { message: "Invalid JSON request body" },
+        { status: 400 }
+      );
+    }
 
-    if (!body.email) {
+    if (!body || !body.email) {
       return NextResponse.json({ message: "Email is required" }, { status: 400 });
     }
 
@@ -38,8 +46,9 @@ export async function POST(req: NextRequest) {
   } catch (error: any) {
     console.error("Newsletter subscription error:", error);
     return NextResponse.json(
-      { message: "Internal server error: " + (error.message || "Unknown error") },
+      { message: "Failed to subscribe to newsletter. Please try again later." },
       { status: 500 }
     );
   }
 }
+

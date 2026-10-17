@@ -12,7 +12,7 @@ const CATEGORIES: MachineCategory[] = [
     desc: "High performance crushing solutions for every need.",
     image: "/images/cone-crusher.webp",
     icon: Hammer,
-    to: "/products/jaw-crusher",
+    to: "/products/cone-crusher",
     exploreLabel: "Explore Crushers",
   },
   {
@@ -71,7 +71,7 @@ export const MachineShowcase: React.FC = () => {
       </div>
 
       {/* 2. Tablet Layout (md to lg) - Grid Layout */}
-      <div className="hidden md:grid lg:hidden grid-cols-2 gap-5 w-full">
+      <div className="hidden md:grid lg:hidden grid-cols-2 gap-5 w-full" aria-hidden="true" data-nosnippet="true">
         {CATEGORIES.map((cat, idx) => (
           <div key={cat.title} className="h-[400px] w-full">
             <MachineCard
@@ -87,7 +87,7 @@ export const MachineShowcase: React.FC = () => {
       </div>
 
       {/* 3. Mobile Layout (below md) - Auto-sliding Carousel */}
-      <div className="block md:hidden w-full overflow-hidden relative rounded-xl">
+      <div className="block md:hidden w-full overflow-hidden relative rounded-xl" aria-hidden="true" data-nosnippet="true">
         <div 
           className="flex transition-transform duration-500 ease-in-out w-full"
           style={{ transform: `translateX(-${mobileIdx * 100}%)` }}

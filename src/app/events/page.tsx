@@ -334,7 +334,9 @@ export default function EventsPage() {
                     <Image
                       src={item.image}
                       alt={item.title}
-                      className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover object-center group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity" />
 
@@ -447,7 +449,9 @@ export default function EventsPage() {
                 <Image
                   src={filteredEvents[lightboxIndex].image}
                   alt={filteredEvents[lightboxIndex].title}
-                  className="w-full h-full object-contain"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 1000px"
+                  className="object-contain"
                 />
 
                 {/* Left & Right Controls */}

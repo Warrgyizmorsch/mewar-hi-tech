@@ -28,6 +28,26 @@ const nextConfig = {
         destination: 'https://www.mewarhitech.com/:path*',
         permanent: true,
       },
+      {
+        source: '/projects/stationery-projects',
+        destination: '/projects/stationary-crushing-plants',
+        permanent: true,
+      },
+      {
+        source: '/stationery-projects',
+        destination: '/projects/stationary-crushing-plants',
+        permanent: true,
+      },
+      {
+        source: '/stationary-crushing-plants',
+        destination: '/projects/stationary-crushing-plants',
+        permanent: true,
+      },
+      {
+        source: '/industries/sand-gravel',
+        destination: '/industries/m-sand',
+        permanent: true,
+      },
     ];
   },
   async headers() {

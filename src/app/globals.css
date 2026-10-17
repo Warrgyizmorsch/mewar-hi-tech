@@ -89,12 +89,14 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased transition-colors duration-300 overflow-x-hidden w-full;
+    @apply bg-background text-foreground font-sans antialiased transition-colors duration-300 w-full;
+    overflow-x: clip;
   }
 
   html {
     scroll-behavior: smooth;
-    @apply overflow-x-hidden w-full;
+    @apply w-full;
+    overflow-x: clip;
   }
 
   h1,

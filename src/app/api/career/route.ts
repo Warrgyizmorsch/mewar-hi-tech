@@ -6,7 +6,23 @@ import Career from "@/models/Career";
 
 export async function POST(req: NextRequest) {
   try {
-    const formData = await req.formData();
+    const contentType = req.headers.get("content-type") || "";
+    if (!contentType.includes("multipart/form-data")) {
+      return NextResponse.json(
+        { message: "Invalid content type. multipart/form-data is required." },
+        { status: 400 }
+      );
+    }
+
+    let formData: FormData;
+    try {
+      formData = await req.formData();
+    } catch {
+      return NextResponse.json(
+        { message: "Failed to parse form data." },
+        { status: 400 }
+      );
+    }
     
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
@@ -60,8 +76,9 @@ export async function POST(req: NextRequest) {
   } catch (error: any) {
     console.error("Career application error:", error);
     return NextResponse.json(
-      { message: "Internal server error: " + (error.message || "Unknown error") },
+      { message: "Failed to submit career application. Please try again later." },
       { status: 500 }
     );
   }
 }
+

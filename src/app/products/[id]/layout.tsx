@@ -42,10 +42,81 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function ProductLayout({
+export default async function ProductLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ id: string }>;
 }) {
-  return <>{children}</>;
+  const resolvedParams = await params;
+  const slug = resolvedParams.id;
+  const product = PRODUCTS_DATA.find((item) => item.slug === slug);
+
+  const productSchema = product
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        name: product.name,
+        image: product.mainImage
+          ? `https://www.mewarhitech.com${product.mainImage}`
+          : "https://www.mewarhitech.com/images/products/cone_crusher.jpg",
+        description: product.seoDescription || product.introText,
+        brand: {
+          "@type": "Brand",
+          name: "Kingson",
+        },
+        manufacturer: {
+          "@type": "Organization",
+          name: "Mewar Hi-Tech Engineering Ltd.",
+        },
+        url: `https://www.mewarhitech.com/products/${slug}`,
+        category: product.category || "Crushing Equipment",
+      }
+    : null;
+
+  const breadcrumbSchema = product
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://www.mewarhitech.com",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Products",
+            item: "https://www.mewarhitech.com/products",
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: product.name,
+            item: `https://www.mewarhitech.com/products/${slug}`,
+          },
+        ],
+      }
+    : null;
+
+  return (
+    <>
+      {productSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+        />
+      )}
+      {breadcrumbSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
+      )}
+      {children}
+    </>
+  );
 }

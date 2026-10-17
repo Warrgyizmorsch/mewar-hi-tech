@@ -2,6 +2,7 @@ import React from "react";
 import BlogForm from "@/components/admin/BlogForm";
 import connectToDatabase from "@/lib/mongodb";
 import Blog from "@/models/Blog";
+import mongoose from "mongoose";
 import { notFound } from "next/navigation";
 
 export const dynamic = "force-dynamic";
@@ -12,7 +13,16 @@ export default async function EditBlogPage({ params }: { params: Promise<{ id: s
   
   let blog = null;
   try {
-    const rawBlog = await Blog.findById(resolvedParams.id).lean();
+    const rawId = resolvedParams.id;
+    let rawBlog = null;
+
+    if (mongoose.Types.ObjectId.isValid(rawId)) {
+      rawBlog = await Blog.findById(rawId).lean();
+    }
+    if (!rawBlog) {
+      rawBlog = await Blog.findOne({ slug: rawId }).lean();
+    }
+
     if (rawBlog) {
       // Serialize all ObjectIds and Dates for client component
       blog = JSON.parse(JSON.stringify(rawBlog));
@@ -34,7 +44,7 @@ export default async function EditBlogPage({ params }: { params: Promise<{ id: s
         </p>
       </div>
       
-      <BlogForm initialData={blog} />
+      <BlogForm key={blog._id || resolvedParams.id} initialData={blog} />
     </div>
   );
 }

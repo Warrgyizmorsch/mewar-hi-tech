@@ -31,8 +31,13 @@ interface ProjectConfig {
 }
 
 const PROJECTS_CONFIG: Record<string, ProjectConfig> = {
+  "stationary-crushing-plants": {
+    title: "Stationary Crushing Plants",
+    description: "Heavy-duty stationary crushing, screening, and size-reduction plant installations deployed globally.",
+    images: STATIONERY_IMAGES,
+  },
   "stationery-projects": {
-    title: "Stationery Projects",
+    title: "Stationary Crushing Plants",
     description: "Heavy-duty stationary crushing, screening, and size-reduction plant installations deployed globally.",
     images: STATIONERY_IMAGES,
   },
@@ -141,7 +146,9 @@ export default function ProjectDetailPage({ params }: PageProps) {
                   <Image
                     src={src}
                     alt={`${project.title} installation ${idx + 1}`}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
                   {/* Hover Overlay */}
@@ -201,6 +208,8 @@ export default function ProjectDetailPage({ params }: PageProps) {
               <Image
                 src={project.images[lightboxIndex]}
                 alt={`Expanded expanded view ${lightboxIndex + 1}`}
+                width={1200}
+                height={800}
                 className="max-w-full max-h-[80vh] object-contain rounded-xl shadow-2xl border border-white/5"
               />
             </motion.div>

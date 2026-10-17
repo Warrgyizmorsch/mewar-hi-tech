@@ -1,13 +1,39 @@
 import { NextRequest, NextResponse } from "next/server";
 import { writeFile, mkdir } from "fs/promises";
 import path from "path";
+import { isAdminAuthorized } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
   try {
-    const data = await req.formData();
+    const isAuth = await isAdminAuthorized(req);
+    if (!isAuth) {
+      return NextResponse.json(
+        { error: "Unauthorized. Admin authentication required." },
+        { status: 401 }
+      );
+    }
+
+    const contentType = req.headers.get("content-type") || "";
+    if (!contentType.includes("multipart/form-data")) {
+      return NextResponse.json(
+        { error: "Invalid content type. multipart/form-data is required." },
+        { status: 400 }
+      );
+    }
+
+    let data: FormData;
+    try {
+      data = await req.formData();
+    } catch {
+      return NextResponse.json(
+        { error: "Failed to parse form data." },
+        { status: 400 }
+      );
+    }
+
     const file: File | null = data.get("file") as unknown as File;
 
-    if (!file) {
+    if (!file || typeof file.arrayBuffer !== "function") {
       return NextResponse.json({ error: "No file received." }, { status: 400 });
     }
 
@@ -16,7 +42,7 @@ export async function POST(req: NextRequest) {
 
     // Create unique filename
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    const filename = uniqueSuffix + "-" + file.name.replace(/[^a-zA-Z0-9.-]/g, "");
+    const filename = uniqueSuffix + "-" + (file.name || "upload").replace(/[^a-zA-Z0-9.-]/g, "");
 
     // Ensure uploads directory exists
     const uploadDir = path.join(process.cwd(), "public/uploads");
@@ -38,3 +64,4 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Failed to upload file." }, { status: 500 });
   }
 }
+

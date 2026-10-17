@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useParams } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -56,6 +56,66 @@ export default function BlogDetailClient({
 }) {
   const slug = blog.slug;
 
+  const sanitizeHtml = (html: string) => {
+    if (!html) return "";
+    let processed = html;
+    if (processed.includes("&lt;h2") || processed.includes("&lt;p") || processed.includes("&lt;h3")) {
+      processed = processed.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
+      processed = processed.replace(/<p>\s*(<h\d[^>]*>)/g, "$1").replace(/(<\/h\d>)\s*<\/p>/g, "$1");
+    }
+    return processed;
+  };
+
+  // Synchronized single-pass HTML processing and TOC heading extraction
+  const { processedHtml, headings } = useMemo(() => {
+    if (!blog?.content) return { processedHtml: "", headings: [] };
+
+    let html = sanitizeHtml(blog.content);
+    // Convert bold paragraphs / breaks to H2
+    html = html.replace(/<p>\s*<strong>(.*?)<\/strong>\s*<\/p>/gi, "<h2>$1</h2>");
+    html = html.replace(/<strong>(.*?)<\/strong>\s*<br\s*\/?>/gi, "<h2>$1</h2>");
+    html = html.replace(/<p>\s*<b>(.*?)<\/b>\s*<\/p>/gi, "<h2>$1</h2>");
+
+    const extracted: { text: string; id: string }[] = [];
+    const idCount: Record<string, number> = {};
+
+    const resultHtml = html.replace(/<h2\b([^>]*)>(.*?)<\/h2>/gi, (match, attrs, innerText) => {
+      const cleanText = innerText
+        .replace(/<[^>]+>/g, "")
+        .replace(/&nbsp;/g, " ")
+        .replace(/&amp;/g, "&")
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">")
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .trim();
+
+      let baseId = cleanText
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)+/g, "");
+
+      if (!baseId) {
+        baseId = `section-${extracted.length + 1}`;
+      }
+
+      let finalId = baseId;
+      if (idCount[baseId]) {
+        idCount[baseId]++;
+        finalId = `${baseId}-${idCount[baseId]}`;
+      } else {
+        idCount[baseId] = 1;
+      }
+
+      extracted.push({ text: cleanText, id: finalId });
+
+      const cleanAttrs = attrs.replace(/\bid=["'][^"']*["']/gi, "").trim();
+      return `<h2 id="${finalId}" ${cleanAttrs}>${innerText}</h2>`;
+    });
+
+    return { processedHtml: resultHtml, headings: extracted };
+  }, [blog?.content]);
+
   const [activeHeading, setActiveHeading] = useState<string>("");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -90,93 +150,71 @@ export default function BlogDetailClient({
     });
   };
 
-  const sanitizeHtml = (html: string) => {
-    if (!html) return "";
-    let processed = html;
-    if (processed.includes("&lt;h2") || processed.includes("&lt;p") || processed.includes("&lt;h3")) {
-      processed = processed.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
-      processed = processed.replace(/<p>\s*(<h\d[^>]*>)/g, "$1").replace(/(<\/h\d>)\s*<\/p>/g, "$1");
-    }
-    return processed;
-  };
-
-  const extractHeadings = (rawHtml: string) => {
-    const html = sanitizeHtml(rawHtml);
-    const matches = html.match(/<h2>(.*?)<\/h2>/g) || [];
-    return matches.map((m) => {
-      let text = m.replace(/<[^>]+>/g, "");
-      text = text
-        .replace(/&nbsp;/g, " ")
-        .replace(/&amp;/g, "&")
-        .replace(/&lt;/g, "<")
-        .replace(/&gt;/g, ">")
-        .replace(/&quot;/g, '"')
-        .replace(/&#39;/g, "'");
-      const id = text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "");
-      return { text, id };
-    });
-  };
-
-  const processContent = (rawHtml: string) => {
-    let html = sanitizeHtml(rawHtml);
-    if (!html) return "";
-
-    // 1. Auto-convert standalone bold paragraphs into H2
-    html = html.replace(/<p>\s*<strong>(.*?)<\/strong>\s*<\/p>/gi, "<h2>$1</h2>");
-    
-    // 2. Convert bold text followed immediately by a <br> into H2 (fixes pasted PDF content)
-    html = html.replace(/<strong>(.*?)<\/strong>\s*<br\s*\/?>/gi, "<h2>$1</h2>");
-    
-    // Auto-convert standalone bold paragraphs into H2 for users who didn't use heading formats
-    html = html.replace(/<p>\s*<b>(.*?)<\/b>\s*<\/p>/gi, "<h2>$1</h2>");
-
-    return html.replace(/<h2>(.*?)<\/h2>/g, (original, text) => {
-      let cleanText = text.replace(/<[^>]+>/g, "")
-        .replace(/&nbsp;/g, " ")
-        .replace(/&amp;/g, "&")
-        .replace(/&lt;/g, "<")
-        .replace(/&gt;/g, ">")
-        .replace(/&quot;/g, '"')
-        .replace(/&#39;/g, "'");
-      const id = cleanText.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "");
-      return `<h2 id="${id}">${text}</h2>`;
-    });
-  };
-
   useEffect(() => {
-    if (!blog) return;
+    if (!headings || headings.length === 0) return;
+
+    let ticking = false;
+
+    const updateActiveHeading = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+
+      // 1. If at or near the bottom of page (within 120px), activate the last heading
+      if (windowHeight + scrollY >= documentHeight - 120) {
+        setActiveHeading(headings[headings.length - 1].id);
+        return;
+      }
+
+      // 2. If near top of article, activate first heading
+      if (scrollY < 180) {
+        setActiveHeading(headings[0].id);
+        return;
+      }
+
+      // 3. Find the heading currently active in reading view
+      // Trigger line at 200px (below 80px fixed header + 120px reading comfort zone)
+      const triggerY = 200;
+      let currentActive = headings[0].id;
+
+      for (let i = 0; i < headings.length; i++) {
+        const el = document.getElementById(headings[i].id);
+        if (!el) continue;
+
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= triggerY) {
+          currentActive = headings[i].id;
+        } else {
+          // Since headings are ordered down the page, once one is below triggerY, stop
+          break;
+        }
+      }
+
+      setActiveHeading(currentActive);
+    };
 
     const handleScroll = () => {
-      const headings = Array.from(document.querySelectorAll("article h2"));
-      if (!headings.length) return;
-
-      // Find the heading that is closest to the top of the viewport
-      let currentActiveId = headings[0].id;
-      const scrollPosition = window.scrollY;
-      const headerOffset = 150; // offset for the fixed header
-
-      headings.forEach((heading) => {
-        const offsetTop = heading.getBoundingClientRect().top + window.scrollY;
-        if (scrollPosition >= offsetTop - headerOffset) {
-          currentActiveId = heading.id;
-        }
-      });
-
-      setActiveHeading(currentActiveId);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateActiveHeading();
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    // Initial check
-    setTimeout(handleScroll, 100);
+    updateActiveHeading();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [blog]);
+  }, [headings]);
 
   const scrollToHeading = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
-      const headerOffset = 100;
+      setActiveHeading(id);
+      const headerOffset = 112; // 7rem (aligns with top-28 below fixed header)
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
       window.scrollTo({ top: offsetPosition, behavior: "smooth" });
@@ -230,7 +268,6 @@ export default function BlogDetailClient({
     );
   }
 
-  const headings = extractHeadings(blog.content);
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans">
@@ -240,7 +277,7 @@ export default function BlogDetailClient({
 
       <main className="flex-1 pt-32 pb-20">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Left Column - Main Content */}
             <article className="lg:col-span-8 space-y-8">
               {/* Category & Title */}
@@ -257,9 +294,9 @@ export default function BlogDetailClient({
                 <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground py-4 border-b border-border">
                   <div className="flex items-center gap-2">
                     <div className="w-6 h-6 rounded-full overflow-hidden bg-muted relative">
-                      <Image src={blog.author.avatar || "/images/logo.png"} alt={blog.author.name} fill className="object-cover" />
+                      <Image src={blog.author?.avatar || "/images/logo.png"} alt={blog.author?.name || "Author"} fill sizes="24px" className="object-cover" />
                     </div>
-                    <span className="font-medium text-foreground">{blog.author.name}</span>
+                    <span className="font-medium text-foreground">{blog.author?.name || "Mewar Hi-Tech"}</span>
                   </div>
                   <span className="text-muted-foreground">•</span>
                   <div className="flex items-center gap-1.5">
@@ -276,12 +313,13 @@ export default function BlogDetailClient({
 
               {/* Cover Image */}
               <div className="relative aspect-video md:aspect-[2/1] rounded-2xl overflow-hidden shadow-lg border border-border">
-                <Image src={blog.coverImage} alt={blog.title} fill priority className="object-cover" />
+                <Image src={blog.coverImage || "/images/backgorund.webp"} alt={blog.title} fill priority sizes="(max-width: 1024px) 100vw, 800px" className="object-cover" />
               </div>
 
               <div
                 className="prose max-w-none text-muted-foreground text-[15px] sm:text-base leading-[1.8] font-sans break-words
                   prose-headings:font-bold prose-headings:text-foreground prose-headings:mt-10 prose-headings:mb-5 prose-headings:leading-snug
+                  prose-headings:scroll-mt-28
                   prose-h2:text-lg prose-h2:sm:text-xl prose-h2:md:text-2xl
                   prose-h3:text-base prose-h3:sm:text-lg prose-h3:md:text-xl
                   prose-p:text-muted-foreground prose-p:text-[15px] prose-p:sm:text-base prose-p:leading-[1.8] prose-p:mb-5
@@ -293,7 +331,7 @@ export default function BlogDetailClient({
                   prose-table:block prose-table:overflow-x-auto prose-table:w-full prose-table:border-collapse prose-table:border prose-table:border-border prose-table:my-6 prose-table:rounded-lg
                   prose-th:bg-muted prose-th:text-left prose-th:p-4 prose-th:border prose-th:border-border prose-th:text-foreground prose-th:font-semibold prose-th:whitespace-nowrap
                   prose-td:p-4 prose-td:border prose-td:border-border prose-td:text-muted-foreground"
-                dangerouslySetInnerHTML={{ __html: processContent(blog.content) }}
+                dangerouslySetInnerHTML={{ __html: processedHtml }}
               />
 
 
@@ -344,7 +382,7 @@ export default function BlogDetailClient({
             </article>
 
             {/* Right Column - Sidebar */}
-            <aside className="lg:col-span-4 space-y-8 lg:sticky lg:top-24 lg:self-start">
+            <aside className="lg:col-span-4 lg:sticky lg:top-28 lg:self-start space-y-6 lg:max-h-[calc(100vh-8.5rem)] lg:overflow-y-auto hide-scrollbar">
 
 
               {/* Table of Contents */}
@@ -504,7 +542,7 @@ export default function BlogDetailClient({
                     className="w-[85vw] sm:w-[320px] lg:w-[360px] xl:w-[400px] shrink-0 snap-center group block bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/50 transition duration-300 border border-border flex flex-col justify-between"
                   >
                     <div className="relative aspect-[4/3] overflow-hidden bg-muted">
-                      <Image src={post.coverImage} alt={post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <Image src={post.coverImage || "/images/backgorund.webp"} alt={post.title} fill sizes="(max-width: 768px) 100vw, 350px" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                       <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm">
                         {post.category}
                       </div>

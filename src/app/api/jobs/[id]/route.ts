@@ -1,12 +1,21 @@
 import { NextResponse } from "next/server";
 import connectToDatabase from "@/lib/mongodb";
 import Job from "@/models/Job";
+import { isAdminAuthorized } from "@/lib/auth";
 
 export async function PUT(
   req: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const isAuth = await isAdminAuthorized(req);
+    if (!isAuth) {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized. Admin authentication required." },
+        { status: 401 }
+      );
+    }
+
     await connectToDatabase();
     
     const { id } = await params;
@@ -17,7 +26,15 @@ export async function PUT(
       );
     }
     
-    const body = await req.json();
+    let body;
+    try {
+      body = await req.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, message: "Invalid JSON request body" },
+        { status: 400 }
+      );
+    }
     
     const updatedJob = await Job.findByIdAndUpdate(id, body, {
       new: true,
@@ -35,7 +52,7 @@ export async function PUT(
   } catch (error: any) {
     console.error("Error updating job:", error);
     return NextResponse.json(
-      { success: false, message: error.message || "Failed to update job" },
+      { success: false, message: "Failed to update job" },
       { status: 500 }
     );
   }
@@ -46,6 +63,14 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const isAuth = await isAdminAuthorized(req);
+    if (!isAuth) {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized. Admin authentication required." },
+        { status: 401 }
+      );
+    }
+
     await connectToDatabase();
     
     const { id } = await params;
@@ -69,8 +94,9 @@ export async function DELETE(
   } catch (error: any) {
     console.error("Error deleting job:", error);
     return NextResponse.json(
-      { success: false, message: error.message || "Failed to delete job" },
+      { success: false, message: "Failed to delete job" },
       { status: 500 }
     );
   }
 }
+

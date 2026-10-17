@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import connectToDatabase from "@/lib/mongodb";
 import Job from "@/models/Job";
+import { isAdminAuthorized } from "@/lib/auth";
 
 export async function GET(req: Request) {
   try {
@@ -22,7 +23,7 @@ export async function GET(req: Request) {
   } catch (error: any) {
     console.error("Error fetching jobs:", error);
     return NextResponse.json(
-      { success: false, message: error.message || "Failed to fetch jobs" },
+      { success: false, message: "Failed to fetch jobs" },
       { status: 500 }
     );
   }
@@ -30,12 +31,28 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
   try {
+    const isAuth = await isAdminAuthorized(req);
+    if (!isAuth) {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized. Admin authentication required." },
+        { status: 401 }
+      );
+    }
+
     await connectToDatabase();
     
-    const body = await req.json();
+    let body;
+    try {
+      body = await req.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, message: "Invalid JSON request body" },
+        { status: 400 }
+      );
+    }
     
     // Validation
-    const { title, department, experience, education, location, type } = body;
+    const { title, department, experience, education, location, type } = body || {};
     if (!title || !department || !experience || !education || !location || !type) {
       return NextResponse.json(
         { success: false, message: "Please provide all required fields." },
@@ -49,8 +66,9 @@ export async function POST(req: Request) {
   } catch (error: any) {
     console.error("Error creating job:", error);
     return NextResponse.json(
-      { success: false, message: error.message || "Failed to create job posting" },
+      { success: false, message: "Failed to create job posting" },
       { status: 500 }
     );
   }
 }
+

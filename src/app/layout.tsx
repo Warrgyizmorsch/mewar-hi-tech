@@ -88,18 +88,68 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "Mewar Hi-Tech",
-              "url": "https://www.mewarhitech.com",
-              "logo": "https://www.mewarhitech.com/images/slider/about-mewar-hi-tech1.jpg",
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "+91-9414167380",
-                "contactType": "customer service"
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "Mewar Hi-Tech Engineering Ltd.",
+                "alternateName": ["Kingson", "Kingson Crusher", "Mewar Hi-Tech"],
+                "url": "https://www.mewarhitech.com",
+                "logo": "https://www.mewarhitech.com/images/slider/about-mewar-hi-tech1.jpg",
+                "brand": {
+                  "@type": "Brand",
+                  "name": "Kingson"
+                },
+                "sameAs": [
+                  "https://www.youtube.com/@MewarHitec",
+                  "https://www.facebook.com/profile.php?id=61592863865884",
+                  "https://www.instagram.com/mewarhitech/",
+                  "https://www.linkedin.com/company/mewar-hi-tech-engineering-ltd/"
+                ],
+                "contactPoint": [
+                  {
+                    "@type": "ContactPoint",
+                    "telephone": "+91-9001999721",
+                    "contactType": "sales",
+                    "email": "sales@kingsoncrusher.com",
+                    "areaServed": "IN"
+                  },
+                  {
+                    "@type": "ContactPoint",
+                    "telephone": "+91-9414167380",
+                    "contactType": "customer service",
+                    "areaServed": "IN"
+                  }
+                ]
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "name": "Mewar Hi-Tech Engineering Ltd.",
+                "image": "https://www.mewarhitech.com/images/slider/about-mewar-hi-tech1.jpg",
+                "telephone": "+91-9001999721",
+                "url": "https://www.mewarhitech.com",
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "Hawa Magri Industrial Area, Sukher",
+                  "addressLocality": "Udaipur",
+                  "addressRegion": "Rajasthan",
+                  "postalCode": "313001",
+                  "addressCountry": "IN"
+                },
+                "geo": {
+                  "@type": "GeoCoordinates",
+                  "latitude": 24.6368,
+                  "longitude": 73.7126
+                },
+                "openingHoursSpecification": {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                  "opens": "09:00",
+                  "closes": "18:00"
+                }
               }
-            })
+            ])
           }}
         />
         <link rel="preload" href="/images/video_thumbnail.webp" as="image" />

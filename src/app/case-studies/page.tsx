@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Container from "@/components/ui/Container";
@@ -38,9 +39,10 @@ export default function CaseStudiesPage() {
     return true;
   });
 
-  const renderStatIcon = (iconType: string) => {
+  const renderStatIcon = (iconType?: string) => {
     switch (iconType) {
       case "chart":
+      case "trending":
         return <TrendingUp size={16} className="text-primary" />;
       case "clock":
         return <Clock size={16} className="text-primary" />;
@@ -142,73 +144,76 @@ export default function CaseStudiesPage() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.4, delay: idx * 0.05 }}
-                  onClick={() => setSelectedStudy(study)}
                   className="group bg-card border border-border/80 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 flex flex-col justify-between cursor-pointer relative"
                 >
-                  <div>
-                    {/* Top Image Container */}
-                    <div className="relative aspect-[16/10] overflow-hidden bg-muted">
-                      <Image
-                        src={study.image}
-                        alt={study.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      
-                      {/* Number Counter Badge */}
-                      <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/70 backdrop-blur-md text-white font-mono font-bold text-xs flex items-center justify-center border border-white/20 shadow-lg">
-                        {String(idx + 1).padStart(2, '0')}
+                  <Link href={`/case-studies/${study.slug || study.id}`} className="flex flex-col justify-between h-full">
+                    <div>
+                      {/* Top Image Container */}
+                      <div className="relative aspect-[16/10] overflow-hidden bg-muted">
+                        <Image
+                          src={study.image}
+                          alt={study.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                        
+                        {/* Number Counter Badge */}
+                        <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/70 backdrop-blur-md text-white font-mono font-bold text-xs flex items-center justify-center border border-white/20 shadow-lg">
+                          {String(idx + 1).padStart(2, '0')}
+                        </div>
+
+                        {/* Category Tag */}
+                        <div className="absolute top-4 left-4 bg-primary text-primary-foreground text-[10px] font-bold tracking-wider px-3 py-1 rounded-md uppercase shadow-md">
+                          {study.category}
+                        </div>
+
+                        {/* Type Badge (National vs International) */}
+                        <div className="absolute bottom-3 right-3 bg-[#0A1A3B]/90 backdrop-blur-md text-white text-[10px] font-bold tracking-wider px-2.5 py-0.5 rounded-full uppercase border border-white/10">
+                          {study.type}
+                        </div>
                       </div>
 
-                      {/* Category Tag */}
-                      <div className="absolute top-4 left-4 bg-primary text-primary-foreground text-[10px] font-bold tracking-wider px-3 py-1 rounded-md uppercase shadow-md">
-                        {study.category}
-                      </div>
+                      {/* Card Content */}
+                      <div className="p-6 space-y-4">
+                        <h3 className="text-lg font-bold text-[#0A1A3B] dark:text-white group-hover:text-primary transition-colors leading-snug line-clamp-2 min-h-[52px] flex items-center">
+                          {study.title}
+                        </h3>
 
-                      {/* Type Badge (National vs International) */}
-                      <div className="absolute bottom-3 right-3 bg-[#0A1A3B]/90 backdrop-blur-md text-white text-[10px] font-bold tracking-wider px-2.5 py-0.5 rounded-full uppercase border border-white/10">
-                        {study.type}
-                      </div>
-                    </div>
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground font-semibold pb-3 border-b border-border/60">
+                          <MapPin size={15} className="text-primary shrink-0" />
+                          <span>{study.location}</span>
+                        </div>
 
-                    {/* Card Content */}
-                    <div className="p-6 space-y-4">
-                      <h3 className="text-lg font-bold text-[#0A1A3B] dark:text-white group-hover:text-primary transition-colors leading-snug line-clamp-2 min-h-[52px] flex items-center">
-                        {study.title}
-                      </h3>
+                        <p className="text-xs text-muted-foreground font-medium leading-relaxed line-clamp-2">
+                          {study.description}
+                        </p>
 
-                      <div className="flex items-center gap-2 text-xs text-muted-foreground font-semibold pb-3 border-b border-border/60">
-                        <MapPin size={15} className="text-primary shrink-0" />
-                        <span>{study.location}</span>
-                      </div>
-
-                      <p className="text-xs text-muted-foreground font-medium leading-relaxed line-clamp-2">
-                        {study.description}
-                      </p>
-
-                      {/* Stats Section */}
-                      <div className="grid grid-cols-3 gap-2 pt-2 bg-muted/40 p-3 rounded-2xl border border-border/50">
-                        {study.stats.map((stat, sIdx) => (
-                          <div key={sIdx} className="flex flex-col items-center text-center space-y-1">
-                            <div className="flex items-center gap-1">
-                              {renderStatIcon(stat.icon)}
-                              <span className="text-xs font-bold text-foreground">
-                                {stat.value}
+                        {/* Stats Section */}
+                        <div className="grid grid-cols-3 gap-2 pt-2 bg-muted/40 p-3 rounded-2xl border border-border/50">
+                          {study.stats.map((stat, sIdx) => (
+                            <div key={sIdx} className="flex flex-col items-center text-center space-y-1">
+                              <div className="flex items-center gap-1">
+                                {renderStatIcon(stat.icon)}
+                                <span className="text-xs font-bold text-foreground">
+                                  {stat.value}
+                                </span>
+                              </div>
+                              <span className="text-[9px] text-muted-foreground font-medium leading-tight line-clamp-2">
+                                {stat.label}
                               </span>
                             </div>
-                            <span className="text-[9px] text-muted-foreground font-medium leading-tight line-clamp-2">
-                              {stat.label}
-                            </span>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  {/* Card Footer Button */}
-                  <div className="px-6 py-4 bg-muted/30 border-t border-border/60 flex items-center justify-between text-xs font-bold text-[#0A1A3B] dark:text-white group-hover:text-primary group-hover:bg-primary/10 transition uppercase tracking-wider">
-                    <span>VIEW CASE STUDY</span>
-                    <ArrowRight size={16} className="transition-transform group-hover:translate-x-1.5" />
-                  </div>
+                    {/* Card Footer Button */}
+                    <div className="px-6 py-4 bg-muted/30 border-t border-border/60 flex items-center justify-between text-xs font-bold text-[#0A1A3B] dark:text-white group-hover:text-primary group-hover:bg-primary/10 transition uppercase tracking-wider">
+                      <span>VIEW CASE STUDY</span>
+                      <ArrowRight size={16} className="transition-transform group-hover:translate-x-1.5" />
+                    </div>
+                  </Link>
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -245,7 +250,9 @@ export default function CaseStudiesPage() {
                 <Image
                   src={selectedStudy.image}
                   alt={selectedStudy.title}
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 1000px"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent flex flex-col justify-end p-6 sm:p-8">
                   <div className="flex items-center gap-2 mb-2">

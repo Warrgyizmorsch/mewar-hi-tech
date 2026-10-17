@@ -20,7 +20,7 @@ const urls = [
 const uniqueUrls = [...new Set(urls)];
 
 export async function GET() {
-  const currentDate = new Date().toISOString();
+  const lastmodDate = "2026-09-15";
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   ${uniqueUrls
@@ -28,7 +28,7 @@ export async function GET() {
       (loc) => `
     <url>
       <loc>${loc}</loc>
-      <lastmod>${currentDate}</lastmod>
+      <lastmod>${lastmodDate}</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
     </url>`

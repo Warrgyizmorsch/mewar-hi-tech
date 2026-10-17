@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
+import { verifyAdminToken } from '@/lib/auth'
 
-export function proxy(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
   if (path.startsWith('/admin')) {
@@ -12,8 +13,9 @@ export function proxy(request: NextRequest) {
 
     const token = request.cookies.get('admin_token')?.value;
 
-    // Verify token presence and value
-    if (!token || token !== 'authenticated') {
+    // Verify token cryptographically
+    const isValid = await verifyAdminToken(token);
+    if (!isValid) {
       return NextResponse.redirect(new URL('/admin/login', request.url));
     }
   }
@@ -24,3 +26,4 @@ export function proxy(request: NextRequest) {
 export const config = {
   matcher: ['/admin/:path*'],
 }
+
