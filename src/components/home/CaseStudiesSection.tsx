@@ -28,9 +28,10 @@ export default function CaseStudiesSection() {
   const [selectedStudy, setSelectedStudy] = useState<CaseStudy | null>(null);
 
   // Helper to render icon based on stat type
-  const renderStatIcon = (iconType: string) => {
+  const renderStatIcon = (iconType?: string) => {
     switch (iconType) {
       case "chart":
+      case "trending":
         return <TrendingUp size={16} className="text-primary" />;
       case "clock":
         return <Clock size={16} className="text-primary" />;
@@ -74,9 +75,8 @@ export default function CaseStudiesSection() {
           <MobileCarousel autoSlideInterval={2000}>
             {featuredStudies.map((study) => (
               <Link
-                href="/case-studies"
+                href={`/case-studies/${study.slug || study.id}`}
                 key={study.id}
-                onClick={(e) => { e.preventDefault(); setSelectedStudy(study); }}
                 className="group bg-card border border-border/80 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between cursor-pointer w-full"
               >
                 <div>
@@ -139,10 +139,9 @@ export default function CaseStudiesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              onClick={(e) => { e.preventDefault(); setSelectedStudy(study); }}
               className="group bg-card border border-border/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 flex flex-col justify-between cursor-pointer"
             >
-              <Link href="/case-studies" onClick={(e) => e.preventDefault()} className="flex flex-col justify-between h-full">
+              <Link href={`/case-studies/${study.slug || study.id}`} className="flex flex-col justify-between h-full">
                 <div>
                 {/* Top Image Container with Badge */}
                 <div className="relative aspect-[16/10] overflow-hidden bg-muted">
