@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
-import { Save, ArrowLeft, Image as ImageIcon } from "lucide-react";
+import { Save, ArrowLeft } from "lucide-react";
 import BlobButton from "@/components/ui/BlobButton";
 import SelectionDropdown from "@/components/ui/SelectionDropdown";
 import Link from "next/link";
@@ -14,53 +14,105 @@ import { toast } from "react-toastify";
 // Dynamically import ReactQuill to avoid SSR issues
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
+interface BlogFormData {
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  coverImage: string;
+  metaTitle: string;
+  metaDescription: string;
+  faqs: { question: string; answer: string }[];
+  category: string;
+  tags: string;
+  readTime: number;
+  featured: boolean;
+  published: boolean;
+  author: {
+    name: string;
+    title: string;
+    avatar: string;
+  };
+}
+
+function getInitialFormData(initialData: any): BlogFormData {
+  return {
+    title: initialData?.title || "",
+    slug: initialData?.slug || "",
+    excerpt: initialData?.excerpt || "",
+    content: initialData?.content || "",
+    coverImage: initialData?.coverImage || "",
+    metaTitle: initialData?.metaTitle || initialData?.seoTitle || initialData?.meta_title || "",
+    metaDescription: initialData?.metaDescription || initialData?.seoDescription || initialData?.meta_description || "",
+    faqs: Array.isArray(initialData?.faqs)
+      ? initialData.faqs.map((f: any) => ({
+          question: f?.question || "",
+          answer: f?.answer || "",
+        }))
+      : [],
+    category: initialData?.category || "",
+    tags: Array.isArray(initialData?.tags)
+      ? initialData.tags.join(", ")
+      : typeof initialData?.tags === "string"
+      ? initialData.tags
+      : "",
+    readTime: Number(initialData?.readTime) || 5,
+    featured: Boolean(initialData?.featured),
+    published: initialData?.published !== undefined ? Boolean(initialData.published) : true,
+    author: {
+      name: initialData?.author?.name || "Admin",
+      title: initialData?.author?.title || "Content Team",
+      avatar: initialData?.author?.avatar || "/images/placeholders/avatar.jpg",
+    },
+  };
+}
+
 export default function BlogForm({ initialData = null }: { initialData?: any }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [uploadingAvatar, setUploadingAvatar] = useState(false);
-  const [categories, setCategories] = useState<string[]>([]);
   const [newCategory, setNewCategory] = useState("");
 
-  const [formData, setFormData] = useState({
-    title: "",
-    slug: "",
-    excerpt: "",
-    content: "",
-    coverImage: "",
-    metaTitle: "",
-    metaDescription: "",
-    faqs: [] as { question: string; answer: string }[],
-    category: "",
-    tags: "", // We'll convert to array on submit
-    readTime: 5,
-    featured: false,
-    published: true,
-    author: {
-      name: "Admin",
-      title: "Content Team",
-      avatar: "/images/placeholders/avatar.jpg",
-    },
+  const [categories, setCategories] = useState<string[]>(() => {
+    const defaultList = [
+      "Industry News",
+      "Product Updates",
+      "Engineering",
+      "Case Studies",
+      "Sand & Washing Systems",
+      "Crushing & Screening",
+    ];
+    if (initialData?.category && !defaultList.includes(initialData.category)) {
+      return [initialData.category, ...defaultList];
+    }
+    return defaultList;
   });
 
+  const [formData, setFormData] = useState(() => getInitialFormData(initialData));
+
   useEffect(() => {
-    // Fetch available categories
+    // Sync state if initialData changes
+    if (initialData) {
+      setFormData(getInitialFormData(initialData));
+      if (initialData.category) {
+        setCategories((prev) => Array.from(new Set([initialData.category, ...prev])));
+      }
+    }
+  }, [initialData]);
+
+  useEffect(() => {
+    // Fetch available categories from database
     fetch("/api/blogs/categories")
       .then((res) => res.json())
       .then((data) => {
         if (data.categories) {
-          // Remove 'all' from categories list for the form
-          setCategories(data.categories.filter((c: string) => c !== "all"));
+          const fetchedCats = data.categories.filter((c: string) => c !== "all");
+          setCategories((prev) => Array.from(new Set([...prev, ...fetchedCats])));
         }
-      });
-
-    if (initialData) {
-      setFormData({
-        ...initialData,
-        tags: initialData.tags ? initialData.tags.join(", ") : "",
-      });
-    }
-  }, [initialData]);
+      })
+      .catch((err) => console.warn("Failed to fetch categories:", err));
+  }, []);
 
   const generateSlug = (text: string) => {
     return text
@@ -83,13 +135,41 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
     setLoading(true);
 
     try {
+      const cleanFaqs = (formData.faqs || [])
+        .map((f: { question: string; answer: string }) => ({
+          question: (f.question || "").trim(),
+          answer: (f.answer || "").trim(),
+        }))
+        .filter((f: { question: string; answer: string }) => f.question || f.answer);
+
       const payload = {
-        ...formData,
-        tags: formData.tags.split(",").map((t) => t.trim()).filter(Boolean),
-        category: newCategory || formData.category || "Uncategorized",
+        title: (formData.title || "").trim(),
+        slug: (formData.slug || "").trim(),
+        excerpt: (formData.excerpt || "").trim(),
+        content: formData.content || "",
+        coverImage: (formData.coverImage || "").trim() || "/images/backgorund.webp",
+        metaTitle: (formData.metaTitle || "").trim(),
+        metaDescription: (formData.metaDescription || "").trim(),
+        faqs: cleanFaqs,
+        category: newCategory.trim() || formData.category || "Industry News",
+        tags: (typeof formData.tags === "string" ? formData.tags : "")
+          .split(",")
+          .map((t) => t.trim())
+          .filter(Boolean),
+        readTime: Number(formData.readTime) || 5,
+        featured: Boolean(formData.featured),
+        published: Boolean(formData.published),
+        author: {
+          name: (formData.author?.name || "").trim() || "Admin",
+          title: (formData.author?.title || "").trim() || "Content Team",
+          avatar: (formData.author?.avatar || "").trim() || "/images/placeholders/avatar.jpg",
+        },
       };
 
-      const url = initialData ? `/api/blogs/${initialData.slug}` : "/api/blogs";
+      const identifier = initialData?._id || initialData?.slug;
+      const url = initialData
+        ? `/api/blogs/${encodeURIComponent(identifier)}`
+        : "/api/blogs";
       const method = initialData ? "PUT" : "POST";
 
       const res = await fetch(url, {
@@ -105,9 +185,10 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
         router.push("/admin/blogs");
         router.refresh();
       } else {
-        toast.error(data.error || "Something went wrong.");
+        toast.error(data.message || data.error || "Something went wrong.");
       }
     } catch (error) {
+      console.error("Failed to save blog:", error);
       toast.error("Failed to save blog.");
     } finally {
       setLoading(false);
@@ -141,7 +222,7 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
       } else {
         toast.error(data.error || "Upload failed");
       }
-    } catch (error) {
+    } catch {
       toast.error("Upload failed");
     } finally {
       if (type === 'cover') setUploadingImage(false);
@@ -190,7 +271,7 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
               <input
                 type="text"
                 required
-                value={formData.title}
+                value={formData.title || ""}
                 onChange={handleTitleChange}
                 className="w-full px-4 py-2 bg-background border border-border rounded-lg text-foreground focus:outline-none focus:border-primary"
                 placeholder="Enter blog title"
@@ -204,7 +285,7 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
               <input
                 type="text"
                 required
-                value={formData.slug}
+                value={formData.slug || ""}
                 onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
                 className="w-full px-4 py-2 bg-background border border-border rounded-lg text-foreground focus:outline-none focus:border-primary"
                 placeholder="enter-blog-slug"
@@ -218,7 +299,7 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
               <textarea
                 required
                 rows={3}
-                value={formData.excerpt}
+                value={formData.excerpt || ""}
                 onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
                 className="w-full px-4 py-2 bg-background border border-border rounded-lg text-foreground focus:outline-none focus:border-primary resize-none"
                 placeholder="Short description for the blog card..."
@@ -236,7 +317,7 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
             <div className="bg-background text-foreground h-[500px] rounded-lg overflow-hidden [&_.ql-toolbar]:bg-muted [&_.ql-toolbar]:border-border [&_.ql-container]:border-border [&_.ql-editor]:min-h-[450px]">
               <ReactQuill
                 theme="snow"
-                value={formData.content}
+                value={formData.content || ""}
                 onChange={(val) => setFormData({ ...formData, content: val })}
                 modules={modules}
                 className="h-full"
@@ -255,7 +336,7 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
               </label>
               <input
                 type="text"
-                value={formData.metaTitle}
+                value={formData.metaTitle || ""}
                 onChange={(e) => setFormData({ ...formData, metaTitle: e.target.value })}
                 className="w-full px-4 py-2 bg-background border border-border rounded-lg text-foreground focus:outline-none focus:border-primary"
                 placeholder="SEO Title (e.g. Best Crushing Equipment 2026)"
@@ -268,7 +349,7 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
               </label>
               <textarea
                 rows={3}
-                value={formData.metaDescription}
+                value={formData.metaDescription || ""}
                 onChange={(e) => setFormData({ ...formData, metaDescription: e.target.value })}
                 className="w-full px-4 py-2 bg-background border border-border rounded-lg text-foreground focus:outline-none focus:border-primary resize-none"
                 placeholder="SEO Description (shows in Google search results)"
@@ -291,12 +372,12 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
             </div>
             
             <div className="space-y-6">
-              {(formData.faqs || []).map((faq, index) => (
+              {(formData.faqs || []).map((faq: { question: string; answer: string }, index: number) => (
                 <div key={index} className="space-y-4 p-4 border border-border rounded-lg bg-background/50 relative">
                   <button
                     type="button"
                     onClick={() => {
-                      const newFaqs = [...formData.faqs];
+                      const newFaqs = [...(formData.faqs || [])];
                       newFaqs.splice(index, 1);
                       setFormData({ ...formData, faqs: newFaqs });
                     }}
@@ -310,10 +391,10 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
                     </label>
                     <input
                       type="text"
-                      value={faq.question}
+                      value={faq.question || ""}
                       onChange={(e) => {
-                        const newFaqs = [...formData.faqs];
-                        newFaqs[index].question = e.target.value;
+                        const newFaqs = [...(formData.faqs || [])];
+                        newFaqs[index] = { ...(newFaqs[index] || {}), question: e.target.value };
                         setFormData({ ...formData, faqs: newFaqs });
                       }}
                       className="w-full px-4 py-2 bg-background border border-border rounded-lg text-foreground focus:outline-none focus:border-primary"
@@ -327,8 +408,8 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
                     <textarea
                       value={faq.answer || ""}
                       onChange={(e) => {
-                        const newFaqs = [...formData.faqs];
-                        newFaqs[index].answer = e.target.value;
+                        const newFaqs = [...(formData.faqs || [])];
+                        newFaqs[index] = { ...(newFaqs[index] || {}), answer: e.target.value };
                         setFormData({ ...formData, faqs: newFaqs });
                       }}
                       rows={4}
@@ -356,7 +437,7 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
             <label className="flex items-center gap-3 cursor-pointer">
               <input
                 type="checkbox"
-                checked={formData.published}
+                checked={Boolean(formData.published)}
                 onChange={(e) => setFormData({ ...formData, published: e.target.checked })}
                 className="w-4 h-4 rounded border-border text-primary focus:ring-primary"
               />
@@ -366,7 +447,7 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
             <label className="flex items-center gap-3 cursor-pointer">
               <input
                 type="checkbox"
-                checked={formData.featured}
+                checked={Boolean(formData.featured)}
                 onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
                 className="w-4 h-4 rounded border-border text-primary focus:ring-primary"
               />
@@ -385,7 +466,7 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
                 Category
               </label>
               <SelectionDropdown
-                value={formData.category}
+                value={formData.category || ""}
                 onChange={(val) => setFormData({ ...formData, category: val })}
                 options={categories}
                 placeholder="Select a category..."
@@ -407,7 +488,7 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
               </label>
               <input
                 type="text"
-                value={formData.tags}
+                value={formData.tags || ""}
                 onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
                 className="w-full px-4 py-2 bg-background border border-border rounded-lg text-foreground focus:outline-none focus:border-primary"
                 placeholder="Industry, Mining, Safety"
@@ -421,7 +502,7 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
               <input
                 type="number"
                 min="1"
-                value={formData.readTime}
+                value={formData.readTime ?? 5}
                 onChange={(e) => setFormData({ ...formData, readTime: parseInt(e.target.value) || 5 })}
                 className="w-full px-4 py-2 bg-background border border-border rounded-lg text-foreground focus:outline-none focus:border-primary"
               />
@@ -452,7 +533,7 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
               <div className="flex gap-2">
                 <input
                   type="text"
-                  value={formData.coverImage}
+                  value={formData.coverImage || ""}
                   onChange={(e) => setFormData({ ...formData, coverImage: e.target.value })}
                   className="flex-1 px-4 py-2 bg-background border border-border rounded-lg text-foreground focus:outline-none focus:border-primary text-sm"
                   placeholder="Paste Image URL here..."
@@ -460,8 +541,7 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
               </div>
               {formData.coverImage && (
                 <div className="mt-4 relative aspect-video rounded-lg overflow-hidden border border-border">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <Image src={formData.coverImage} alt="Cover Preview" className="object-cover w-full h-full"  loading="lazy" width={800} height={600} />
+                  <Image src={formData.coverImage} alt="Cover Preview" className="object-cover w-full h-full" loading="lazy" width={800} height={600} />
                 </div>
               )}
             </div>
@@ -478,8 +558,8 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
               <input
                 type="text"
                 required
-                value={formData.author.name}
-                onChange={(e) => setFormData({ ...formData, author: { ...formData.author, name: e.target.value } })}
+                value={formData.author?.name || ""}
+                onChange={(e) => setFormData({ ...formData, author: { ...(formData.author || {}), name: e.target.value } as any })}
                 className="w-full px-3 py-1.5 bg-background border border-border rounded-lg text-foreground focus:outline-none focus:border-primary text-sm"
               />
             </div>
@@ -488,8 +568,8 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
               <input
                 type="text"
                 required
-                value={formData.author.title}
-                onChange={(e) => setFormData({ ...formData, author: { ...formData.author, title: e.target.value } })}
+                value={formData.author?.title || ""}
+                onChange={(e) => setFormData({ ...formData, author: { ...(formData.author || {}), title: e.target.value } as any })}
                 className="w-full px-3 py-1.5 bg-background border border-border rounded-lg text-foreground focus:outline-none focus:border-primary text-sm"
               />
             </div>
@@ -506,8 +586,8 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
               <div className="text-xs text-muted-foreground text-center my-1">OR URL</div>
               <input
                 type="text"
-                value={formData.author.avatar}
-                onChange={(e) => setFormData({ ...formData, author: { ...formData.author, avatar: e.target.value } })}
+                value={formData.author?.avatar || ""}
+                onChange={(e) => setFormData({ ...formData, author: { ...(formData.author || {}), avatar: e.target.value } as any })}
                 className="w-full px-3 py-1.5 bg-background border border-border rounded-lg text-foreground focus:outline-none focus:border-primary text-sm"
                 placeholder="/images/placeholders/avatar.jpg"
               />

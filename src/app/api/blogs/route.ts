@@ -88,14 +88,44 @@ export async function POST(req: NextRequest) {
     }
 
     // Generate slug if not provided
-    if (!body.slug) {
-      body.slug = body.title
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/(^-|-$)/g, "");
-    }
+    const slug = (body.slug || body.title)
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
 
-    const blog = new Blog(body);
+    // Sanitize and construct clean document
+    const cleanFaqs = Array.isArray(body.faqs)
+      ? body.faqs
+          .map((f: any) => ({
+            question: String(f.question || "").trim(),
+            answer: String(f.answer || "").trim(),
+          }))
+          .filter((f: any) => f.question || f.answer)
+      : [];
+
+    const blogDoc = {
+      title: body.title.trim(),
+      slug,
+      excerpt: body.excerpt || "",
+      content: body.content || "",
+      coverImage: body.coverImage || "/images/backgorund.webp",
+      category: body.category || "Industry News",
+      author: {
+        name: body.author?.name || "Admin",
+        title: body.author?.title || "Content Team",
+        avatar: body.author?.avatar || "/images/placeholders/avatar.jpg",
+      },
+      tags: Array.isArray(body.tags) ? body.tags.map((t: any) => String(t).trim()).filter(Boolean) : [],
+      readTime: Number(body.readTime) || 5,
+      metaTitle: body.metaTitle || body.seoTitle || "",
+      metaDescription: body.metaDescription || body.seoDescription || "",
+      faqs: cleanFaqs,
+      featured: Boolean(body.featured),
+      published: body.published !== undefined ? Boolean(body.published) : true,
+      publishedAt: body.publishedAt ? new Date(body.publishedAt) : new Date(),
+    };
+
+    const blog = new Blog(blogDoc);
     await blog.save();
 
     return NextResponse.json(
