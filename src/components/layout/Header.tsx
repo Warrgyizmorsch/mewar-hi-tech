@@ -30,6 +30,7 @@ const navItems: NavItem[] = [
     children: [
       { label: "Crusher", to: "/products/crushers", heading: true,
         children: [
+          { label: "Jaw Crusher", to: "/products/jaw-crusher" },
           { label: "Double Toggle Oil Jaw Crusher", to: "/products/double-toggle-oil-jaw-crusher" },
           { label: "Single Toggle Grease Jaw Crusher", to: "/products/single-toggle-grease-jaw-crusher" },
           { label: "Double Toggle Grease Jaw Crusher", to: "/products/double-toggle-grease-jaw-crusher" },
@@ -39,9 +40,9 @@ const navItems: NavItem[] = [
       },
       { label: "Impactor", to: "/products/impactors", heading: true,
         children: [
-          { label: "Horizontal Shaft Impactor", to: "/products/horizontal-shaft-impactor" },
-          { label: "Vertical Shaft Impactor", to: "/products/vertical-shaft-impactor" },
-          { label: "Sand Making Machine", to: "/products/sand-making-machine" },
+          { label: "HSI", to: "/products/horizontal-shaft-impactor" },
+          { label: "VSI", to: "/products/vertical-shaft-impactor" },
+          { label: "SMM", to: "/products/sand-making-machine" },
         ]
       },
       { label: "Screen", to: "/products/screens", heading: true,

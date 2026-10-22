@@ -9,8 +9,8 @@ export const PRODUCTS = [
   {
     name: "Jaw Crusher",
     description: "Heavy-duty primary crushing for high-capacity ore and rock reduction.",
-    image: "/images/double-toggle-oil-jaw-crusher.webp",
-    slug: "double-toggle-oil-jaw-crusher",
+    image: "/images/jaw-crusher.webp",
+    slug: "jaw-crusher",
   },
   {
     name: "Cone Crusher",

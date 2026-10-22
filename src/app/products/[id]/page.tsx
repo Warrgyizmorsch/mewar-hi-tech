@@ -41,6 +41,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BlobButton from "@/components/ui/BlobButton";
 import Container from "@/components/ui/Container";
+import ModelViewer3D from "@/components/common/ModelViewer3D";
 import { PRODUCTS_DATA } from "../data";
 
 interface PageProps {
@@ -211,8 +212,8 @@ export default function ProductDetailPage({ params }: PageProps) {
     (item) => item.slug !== product.slug && (item.category === product.category || item.subCategory === product.subCategory)
   ).slice(0, 3);
 
-  // Gallery items including mainImage
-  const allImages = [product.mainImage, ...(product.gallery || [])];
+  // Gallery items including mainImage if present
+  const allImages = [product.mainImage, ...(product.gallery || [])].filter(Boolean) as string[];
 
   // Quick info metrics extracted dynamically from specs or defaults
   const quickMetrics = [
@@ -328,7 +329,7 @@ export default function ProductDetailPage({ params }: PageProps) {
               <h1 className="common-heading text-3xl sm:text-4xl lg:text-[54px] leading-[1.1] tracking-tight font-bold">
                 <span className="text-foreground dark:text-white">{firstHalf} </span>
                 {secondHalf && (
-                  <span className="text-primary block mt-1">{secondHalf}</span>
+                  <span className="text-primary block mt-3">{secondHalf}</span>
                 )}
               </h1>
 
@@ -439,30 +440,49 @@ export default function ProductDetailPage({ params }: PageProps) {
               </motion.div>
 
               {/* Main Machine Image Stage */}
-              <div 
-                className="relative z-10 w-full group flex items-center justify-center cursor-pointer px-4 sm:px-0" 
-                onClick={() => {
-                  setSelectedGalleryIndex(0);
-                  setLightboxOpen(true);
-                }}
-                title="Click to view full resolution"
-              >
-                <Image
-                  src={product.mainImage}
-                  alt={product.name}
-                  width={800}
-                  height={600}
-                  priority
-                  className="max-h-[280px] sm:max-h-[460px] lg:max-h-[550px] w-auto object-contain transition-transform duration-700 ease-out group-hover:scale-105 filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] dark:drop-shadow-[0_30px_45px_rgba(0,0,0,0.7)]"
-                />
-                
-                {/* Hover Expand Badge */}
-                <div className="absolute bottom-2 right-4 sm:bottom-4 sm:right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-11 h-11 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
-                    <Maximize2 size={18} />
+              {product.mainImage ? (
+                <div 
+                  className="relative z-10 w-full group flex items-center justify-center cursor-pointer px-4 sm:px-0" 
+                  onClick={() => {
+                    setSelectedGalleryIndex(0);
+                    setLightboxOpen(true);
+                  }}
+                  title="Click to view full resolution"
+                >
+                  <Image
+                    src={product.mainImage}
+                    alt={product.name}
+                    width={800}
+                    height={600}
+                    priority
+                    className="max-h-[280px] sm:max-h-[460px] lg:max-h-[550px] w-auto object-contain transition-transform duration-700 ease-out group-hover:scale-105 filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] dark:drop-shadow-[0_30px_45px_rgba(0,0,0,0.7)]"
+                  />
+                  
+                  {/* Hover Expand Badge */}
+                  <div className="absolute bottom-2 right-4 sm:bottom-4 sm:right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-11 h-11 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
+                      <Maximize2 size={18} />
+                    </div>
                   </div>
                 </div>
-              </div>
+              ) : (
+                <div className="relative z-10 w-full min-h-[280px] sm:min-h-[420px] rounded-2xl border-2 border-dashed border-border/70 bg-card/60 backdrop-blur-sm p-8 flex flex-col items-center justify-center text-center shadow-xl group">
+                  <div className="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/25 flex items-center justify-center text-primary mb-4 shadow-inner group-hover:scale-105 transition-transform">
+                    <Layers size={32} />
+                  </div>
+                  <div className="text-sm sm:text-base font-bold uppercase tracking-wider text-foreground">
+                    Hero Machine Asset Pending
+                  </div>
+                  <p className="text-xs text-muted-foreground max-w-xs mt-1.5 leading-relaxed">
+                    Official high-resolution machine renders and CAD visualization will be updated shortly.
+                  </p>
+                  <div className="mt-4 flex items-center gap-2">
+                    <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider border border-primary/20">
+                      Field Photos in Gallery Below
+                    </span>
+                  </div>
+                </div>
+              )}
             </motion.div>
 
           </Container>
@@ -579,19 +599,22 @@ export default function ProductDetailPage({ params }: PageProps) {
 
                   {product.model3d ? (
                     <div className="w-full h-[280px] sm:h-[360px] lg:h-[420px] flex items-center justify-center relative mt-4">
-                      <model-viewer
+                      <ModelViewer3D
                         src={product.model3d}
                         alt={product.name}
-                        auto-rotate
-                        camera-controls
+                        loading="eager"
+                        reveal="auto"
+                        autoRotate
+                        cameraControls
                         ar
-                        shadow-intensity="1.5"
-                        auto-rotate-delay="1000"
-                        camera-orbit="45deg 75deg 105%"
+                        shadowIntensity="1.5"
+                        autoRotateDelay="0"
+                        cameraOrbit="45deg 75deg 105%"
+                        poster={product.mainImage || allImages[0]}
                         style={{ width: "100%", height: "100%" }}
                       />
                     </div>
-                  ) : (
+                  ) : product.mainImage ? (
                     <Image
                       src={product.mainImage}
                       alt={product.name}
@@ -599,25 +622,37 @@ export default function ProductDetailPage({ params }: PageProps) {
                       height={600}
                       className="max-h-[380px] w-auto object-contain transition-transform duration-500 group-hover:scale-105"
                     />
+                  ) : (
+                    <div className="w-full h-[240px] sm:h-[320px] flex flex-col items-center justify-center border-2 border-dashed border-border/80 rounded-xl p-6 text-center bg-muted/10 mt-4">
+                      <Pickaxe className="w-12 h-12 text-primary/40 mb-3" />
+                      <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-foreground">
+                        3D Interactive Model Coming Soon
+                      </span>
+                      <span className="text-[11px] text-muted-foreground mt-1">
+                        CAD engineering model under preparation
+                      </span>
+                    </div>
                   )}
 
                   <div className="w-full mt-4 pt-4 border-t border-border flex items-center justify-between text-left">
                     <div>
                       <h4 className="text-xs font-bold text-foreground uppercase">{product.name}</h4>
                       <p className="text-[10px] text-muted-foreground font-bold">
-                        {product.model3d ? "Rotate 360° • Zoom • Inspect" : "Primary Industrial Material Handler"}
+                        {product.model3d ? "Rotate 360° • Zoom • Inspect" : product.mainImage ? "Primary Industrial Material Handler" : "3D Asset Pending"}
                       </p>
                     </div>
-                    <button
-                      onClick={() => {
-                        setSelectedGalleryIndex(0);
-                        setLightboxOpen(true);
-                      }}
-                      className="text-xs text-primary font-bold hover:underline flex items-center gap-1"
-                    >
-                      <span>Expand View</span>
-                      <Maximize2 size={12} />
-                    </button>
+                    {allImages.length > 0 && (
+                      <button
+                        onClick={() => {
+                          setSelectedGalleryIndex(0);
+                          setLightboxOpen(true);
+                        }}
+                        className="text-xs text-primary font-bold hover:underline flex items-center gap-1"
+                      >
+                        <span>Expand View</span>
+                        <Maximize2 size={12} />
+                      </button>
+                    )}
                   </div>
                 </div>
               </motion.div>
@@ -717,7 +752,7 @@ export default function ProductDetailPage({ params }: PageProps) {
         </section>
 
         {/* ── 5. DYNAMIC MEDIA SHOWCASE (GALLERY & VIDEO) ── */}
-        {(allImages.length > 1 || product.video) && (
+        {(allImages.length > 0 || product.video) && (
           <section className="py-10 lg:py-14 bg-background border-b border-border">
             <Container className="space-y-8 lg:space-y-12">
               
@@ -736,72 +771,74 @@ export default function ProductDetailPage({ params }: PageProps) {
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start">
                 
                 {/* Left: Gallery & Lightbox Trigger */}
-                <div className="lg:col-span-6 space-y-6 text-left">
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2 text-[10px] sm:text-xs font-bold uppercase text-foreground">
-                        <FileText size={16} className="text-primary" />
-                        <span>Machine Gallery &amp; Diagrams</span>
+                {allImages.length > 0 && (
+                  <div className={`${product.video ? "lg:col-span-6" : "lg:col-span-12"} space-y-6 text-left`}>
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2 text-[10px] sm:text-xs font-bold uppercase text-foreground">
+                          <FileText size={16} className="text-primary" />
+                          <span>Machine Gallery &amp; Diagrams</span>
+                        </div>
+                        <span className="text-[10px] sm:text-[11px] text-muted-foreground font-semibold hidden sm:inline">
+                          Click image to view full resolution
+                        </span>
                       </div>
-                      <span className="text-[10px] sm:text-[11px] text-muted-foreground font-semibold hidden sm:inline">
-                        Click image to view full resolution
-                      </span>
-                    </div>
 
-                    {/* Main Selected Image Preview */}
-                    <div 
-                      onClick={() => setLightboxOpen(true)}
-                      className="relative rounded-xl overflow-hidden border border-border shadow-xl bg-card aspect-[4/3] sm:aspect-[16/10] cursor-pointer group flex items-center justify-center"
-                    >
-                      <Image
-                        src={allImages[selectedGalleryIndex]}
-                        alt={`Kingson ${product.name} - Heavy duty crushing and aggregate processing equipment (Image ${selectedGalleryIndex + 1})`}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        className={`transition-transform duration-500 group-hover:scale-105 ${
-                          allImages[selectedGalleryIndex].toLowerCase().includes(".png")
-                            ? "object-contain p-6"
-                            : "object-cover"
-                        }`}
-                      />
-                      <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <div className="px-4 py-2 rounded-full bg-black/70 backdrop-blur-md text-white text-xs font-bold flex items-center gap-2">
-                          <Maximize2 size={14} />
-                          <span>Open Lightbox</span>
+                      {/* Main Selected Image Preview */}
+                      <div 
+                        onClick={() => setLightboxOpen(true)}
+                        className="relative rounded-xl overflow-hidden border border-border shadow-xl bg-card aspect-[4/3] sm:aspect-[16/10] cursor-pointer group flex items-center justify-center"
+                      >
+                        <Image
+                          src={allImages[selectedGalleryIndex] || allImages[0]}
+                          alt={`Kingson ${product.name} - Heavy duty crushing and aggregate processing equipment (Image ${selectedGalleryIndex + 1})`}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          className={`transition-transform duration-500 group-hover:scale-105 ${
+                            (allImages[selectedGalleryIndex] || allImages[0]).toLowerCase().includes(".png")
+                              ? "object-contain p-6"
+                              : "object-cover"
+                          }`}
+                        />
+                        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                          <div className="px-4 py-2 rounded-full bg-black/70 backdrop-blur-md text-white text-xs font-bold flex items-center gap-2">
+                            <Maximize2 size={14} />
+                            <span>Open Lightbox</span>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  {/* Thumbnail Selector Strip */}
-                  {allImages.length > 1 && (
-                    <div className="flex items-center gap-3 overflow-x-auto pb-1 pt-1">
-                      {allImages.map((imgUrl, i) => (
-                        <button
-                          key={i}
-                          onClick={() => setSelectedGalleryIndex(i)}
-                          className={`relative w-20 h-14 sm:w-24 sm:h-16 rounded-xl overflow-hidden border-2 shrink-0 transition ${
-                            selectedGalleryIndex === i
-                              ? "border-primary shadow-lg ring-2 ring-primary/40 opacity-100"
-                              : "border-border/60 opacity-60 hover:opacity-100"
-                          }`}
-                        >
-                          <Image
-                            src={imgUrl}
-                            alt={`Kingson ${product.name} detail view ${i + 1}`}
-                            fill
-                            sizes="96px"
-                            className="object-cover"
-                          />
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                    {/* Thumbnail Selector Strip */}
+                    {allImages.length > 1 && (
+                      <div className="flex items-center gap-3 overflow-x-auto pb-1 pt-1">
+                        {allImages.map((imgUrl, i) => (
+                          <button
+                            key={i}
+                            onClick={() => setSelectedGalleryIndex(i)}
+                            className={`relative w-20 h-14 sm:w-24 sm:h-16 rounded-xl overflow-hidden border-2 shrink-0 transition ${
+                              selectedGalleryIndex === i
+                                ? "border-primary shadow-lg ring-2 ring-primary/40 opacity-100"
+                                : "border-border/60 opacity-60 hover:opacity-100"
+                            }`}
+                          >
+                            <Image
+                              src={imgUrl}
+                              alt={`Kingson ${product.name} detail view ${i + 1}`}
+                              fill
+                              sizes="96px"
+                              className="object-cover"
+                            />
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 {/* Right: Working Video */}
                 {product.video && (
-                  <div className="lg:col-span-6 space-y-6 text-left">
+                  <div className={`${allImages.length > 0 ? "lg:col-span-6" : "lg:col-span-12"} space-y-6 text-left`}>
                     <div className="flex items-center gap-2 text-xs font-bold uppercase text-foreground">
                       <Video size={16} className="text-primary" />
                       <span>Operational Video Footage</span>
@@ -810,7 +847,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                     <div className="relative rounded-xl overflow-hidden border border-border shadow-2xl bg-black aspect-[4/3] sm:aspect-[16/10] flex items-center justify-center group">
                       <video
                         src={product.video}
-                        poster={product.mainImage}
+                        poster={product.mainImage || allImages[0] || undefined}
                         autoPlay
                         muted
                         loop
@@ -1240,13 +1277,19 @@ export default function ProductDetailPage({ params }: PageProps) {
                     className="w-[85vw] sm:w-[320px] lg:w-[360px] xl:w-[400px] shrink-0 snap-center group rounded-xl bg-card border border-border overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/50 transition duration-300 flex flex-col justify-between"
                   >
                     <div className="p-4 sm:p-6 bg-muted/30 border-b border-border flex items-center justify-center h-[160px] sm:h-[220px] relative overflow-hidden">
-                      <Image
-                        src={relItem.mainImage}
-                        alt={relItem.name}
-                        width={400}
-                        height={300}
-                        className="max-h-[140px] sm:max-h-[180px] w-auto object-contain group-hover:scale-105 transition-transform duration-500"
-                      />
+                      {relItem.mainImage || relItem.heroImage || relItem.gallery?.[0] ? (
+                        <Image
+                          src={relItem.mainImage || relItem.heroImage || relItem.gallery?.[0] || "/images/jaw-crusher-site-1.webp"}
+                          alt={relItem.name}
+                          width={400}
+                          height={300}
+                          className="max-h-[140px] sm:max-h-[180px] w-auto object-contain group-hover:scale-105 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                          <Layers size={24} />
+                        </div>
+                      )}
                       <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[9px] font-bold uppercase text-white">
                         {relItem.category}
                       </span>
@@ -1346,13 +1389,15 @@ export default function ProductDetailPage({ params }: PageProps) {
 
             {/* Main Lightbox Image */}
             <div className="max-w-5xl max-h-[85vh] w-full h-full flex items-center justify-center p-4">
-              <Image
-                src={allImages[selectedGalleryIndex]}
-                alt={`Kingson ${product.name} - High-capacity industrial machinery full view`}
-                width={1200}
-                height={800}
-                className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
-              />
+              {allImages[selectedGalleryIndex] && (
+                <Image
+                  src={allImages[selectedGalleryIndex]}
+                  alt={`Kingson ${product.name} - High-capacity industrial machinery full view`}
+                  width={1200}
+                  height={800}
+                  className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
+                />
+              )}
             </div>
           </motion.div>
         )}

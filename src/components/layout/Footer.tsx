@@ -24,6 +24,10 @@ const footerColumns = [
     title: "OUR PRODUCT",
     links: [
       {
+        label: "Jaw Crusher",
+        to: "/products/jaw-crusher",
+      },
+      {
         label: "Double Toggle Oil Jaw Crusher",
         to: "/products/double-toggle-oil-jaw-crusher",
       },

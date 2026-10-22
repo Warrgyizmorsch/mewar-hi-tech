@@ -11,6 +11,7 @@ const urls = [
   `${BASE_URL}/products/impactors`,
   `${BASE_URL}/products/screens`,
   `${BASE_URL}/products/feeders`,
+  `${BASE_URL}/products/jaw-crusher`,
   `${BASE_URL}/products/double-toggle-oil-jaw-crusher`,
   `${BASE_URL}/products/single-toggle-grease-jaw-crusher`,
   `${BASE_URL}/products/double-toggle-grease-jaw-crusher`,

@@ -13,7 +13,14 @@ export async function GET() {
     // Always include 'all' as the first category, then sort the rest alphabetically (removing any 'all' from db)
     const sortedCategories = ["all", ...categories.filter(c => c.toLowerCase() !== "all").sort()];
 
-    return NextResponse.json({ categories: sortedCategories });
+    return NextResponse.json(
+      { categories: sortedCategories },
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
+        },
+      }
+    );
   } catch (error) {
     console.error("Error fetching categories:", error);
     // Fallback to default categories if DB fails

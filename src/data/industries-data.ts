@@ -112,11 +112,11 @@ export const INDUSTRIES_DATA: IndustryData[] = [
     ],
     recommendedProducts: [
       {
-        slug: "double-toggle-oil-jaw-crusher",
-        name: "Double Toggle Oil Jaw Crusher",
+        slug: "jaw-crusher",
+        name: "Jaw Crusher",
         category: "Crushers",
-        image: "/images/double-toggle-oil-jaw-crusher.webp",
-        description: "Heavy-duty primary crusher with enclosed oil lubrication and zero-rubbing toggle geometry.",
+        image: "/images/jaw-crusher.webp",
+        description: "Heavy-duty primary crusher with high reduction ratios and zero-rubbing toggle geometry.",
       },
       {
         slug: "cone-crusher",
@@ -224,10 +224,10 @@ export const INDUSTRIES_DATA: IndustryData[] = [
     ],
     recommendedProducts: [
       {
-        slug: "double-toggle-oil-jaw-crusher",
-        name: "Double Toggle Oil Jaw Crusher",
+        slug: "jaw-crusher",
+        name: "Jaw Crusher",
         category: "Crushers",
-        image: "/images/double-toggle-oil-jaw-crusher.webp",
+        image: "/images/jaw-crusher.webp",
         description: "Continuous lubrication heavy-duty primary breaker for iron ore, bauxite, and hard metallic ores.",
       },
       {
@@ -560,10 +560,10 @@ export const INDUSTRIES_DATA: IndustryData[] = [
     ],
     recommendedProducts: [
       {
-        slug: "double-toggle-oil-jaw-crusher",
-        name: "Double Toggle Oil Jaw Crusher",
+        slug: "jaw-crusher",
+        name: "Jaw Crusher",
         category: "Crushers",
-        image: "/images/double-toggle-oil-jaw-crusher.webp",
+        image: "/images/jaw-crusher.webp",
         description: "Wide feed mouth and high crushing force easily crush heavy reinforced concrete chunks.",
       },
       {
@@ -672,10 +672,10 @@ export const INDUSTRIES_DATA: IndustryData[] = [
     ],
     recommendedProducts: [
       {
-        slug: "double-toggle-oil-jaw-crusher",
-        name: "Double Toggle Oil Jaw Crusher",
+        slug: "jaw-crusher",
+        name: "Jaw Crusher",
         category: "Crushers",
-        image: "/images/double-toggle-oil-jaw-crusher.webp",
+        image: "/images/jaw-crusher.webp",
         description: "Industry-standard primary breaker delivering continuous low-maintenance primary crushing.",
       },
       {

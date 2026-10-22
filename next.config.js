@@ -48,6 +48,11 @@ const nextConfig = {
         destination: '/industries/m-sand',
         permanent: true,
       },
+      {
+        source: '/products/stone-crusher',
+        destination: '/products/jaw-crusher',
+        permanent: true,
+      },
     ];
   },
   async headers() {

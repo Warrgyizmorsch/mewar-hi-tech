@@ -27,6 +27,7 @@ import StatsCounter from "@/components/shared/StatsCounter";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import CTASection from "@/components/shared/CTASection";
 import BlobButton from "@/components/ui/BlobButton";
+import ModelViewer3D from "@/components/common/ModelViewer3D";
 
 import MultiCardCarousel from "@/components/ui/MultiCardCarousel";
 
@@ -420,19 +421,21 @@ export default function About() {
                     Interactive 3D Equipment Model
                   </span>
                 </div>
-                <model-viewer
+                <ModelViewer3D
                   src="/3dmodel/Meshy_AI_Hammer_Mill_0704071611_texture.glb"
                   poster="/images/backgorund.webp"
                   alt="3D Industrial Hammer Mill Machinery Model"
-                  auto-rotate
-                  camera-controls
+                  loading="eager"
+                  reveal="auto"
+                  autoRotate
+                  cameraControls
                   ar
-                  shadow-intensity="1"
-                  interaction-prompt="none"
-                  auto-rotate-delay="0"
+                  shadowIntensity="1"
+                  interactionPrompt="none"
+                  autoRotateDelay="0"
                   className="w-full h-[380px] sm:h-[450px] rounded-none bg-muted"
                   style={{ width: "100%", height: "420px" }}
-                ></model-viewer>
+                />
               </div>
             </div>
 
