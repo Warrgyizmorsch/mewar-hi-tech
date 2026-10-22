@@ -5,13 +5,90 @@
 
 export const PRODUCTS_DATA = [
   {
+    slug: "jaw-crusher",
+    name: "Jaw Crusher",
+    category: "Crushers",
+    subCategory: "Jaw Crusher",
+    heroImage: "/images/jaw-crusher-hero.webp",
+    mainImage: "/images/jaw-crusher.webp",
+    model3d: "/3d-model-proudct-images/double_toggle_oil_jaw_crusher.glb",
+    seoTitle: "Jaw Crusher Manufacturer for Mining & Quarries | Mewar Hi-Tech",
+    seoDescription: "Buy a heavy-duty jaw crusher from Mewar Hi-Tech for efficient primary crushing in quarries and mines. Explore features and request a quote today.",
+    introText: "Heavy-duty industrial crushing and material handling system designed for high reduction ratios, maximum continuous uptime, and reliable operating efficiency in extreme quarry conditions.\n\nMewar Hi-Tech is a credible and trustworthy brand known for its high quality and great manufacturing. We also acquired experience over the years in the manufacture of jaw crusher, which is commonly used in mining, quarry and material handling. Mewar Hi-Tech's Jaw Crusher has a longer life as compared to the jaw plates of other crushers, in light of the fact that Mewar Hi-Tech's Jaw Crusher operates on the 'Crushing without Rubbing' concept. Also, automatic continuous spray lubrication is provided by coupling pump / vertical oil pump on the basis of toggle-pitman mechanism which enables the crusher to run safely.",
+    features: [
+      "The operating mechanism is totally enclosed for maximum life and minimum maintenance.",
+      "Double toggle provides maximum leverage to long stroke eccentric.",
+      "Pull-back and springs automatically compensate for wear.",
+      "Wide entry throat ensures easy feeding to the crushing chamber.",
+      "The cast steel swing jaw is balanced to avoid power losses through lifting on crushing.",
+      "Strong steel machine body and other parts are made from certified quality material."
+    ],
+    gallery: [
+      "/images/jaw-crusher.webp",
+      "/images/jaw-crusher-site-1.webp",
+      "/images/jaw-crusher-quarry-2.webp",
+      "/images/jaw-crusher-erection-3.webp",
+      "/images/jaw-crusher-plant-4.webp"
+    ],
+    video: "/videos/double-toggle-oil-jaw-crusher.mp4",
+    specsNote: "The output is based on average hard dry quarry of a solid rock weighing at least 100 lb/cu.ft when continuous feed of graded size with fines removed and is subject to variation depending on working conditions.",
+    specsTable: {
+      headers: [
+        "S.No",
+        "Size (Inch)",
+        "Size (MM)",
+        "Rec. Feed (mm)",
+        "Gape (mm)",
+        "Capacity CSS Options (TPH)",
+        "RPM",
+        "Power (HP)",
+        "Weight (Tons)"
+      ],
+      sections: [
+        {
+          title: "Primary Crusher",
+          rows: [
+            ["1", "20\"x12\"", "500x300", "270", "11", "0.25\": 22 | 1\": 31 | 1.25\": 39 | 1.50\": 47", "300-320", "30", "4.0"],
+            ["2", "24\"x12\"", "600x300", "270", "11", "0.25\": 22 | 1\": 31 | 1.25\": 39 | 1.50\": 47 | 2.0\": 56", "300-320", "35", "5.8"],
+            ["3", "24\"x15\"", "600x400", "275", "12", "0.25\": 22 | 1\": 31 | 1.25\": 39 | 1.50\": 47 | 2.0\": 56 | 2.50\": 65", "300-320", "35", "5.8"],
+            ["4", "30\"x15\"", "750x375", "300", "13", "1.25\": 46 | 1.50\": 53 | 2.0\": 70 | 2.50\": 81 | 3.0\": 90", "300-320", "40", "9.1"],
+            ["5", "30\"x20\"", "750x500", "425", "17", "2.0\": 70 | 2.50\": 81 | 3.0\": 90 | 3.50\": 116 | 4.0\": 130", "300-320", "50", "11.8"],
+            ["6", "36\"x24\"", "900x600", "525", "21", "2.50\": 80 | 3.0\": 116 | 3.50\": 130", "300-320", "60", "13.7"],
+            ["7", "36\"x24\"H", "900x600", "525", "21", "3.50\": 142 | 4.0\": 155 | 5.0\": 167 | 6.0\": 195", "300-320", "75", "21.0"],
+            ["8", "38\"x30\"", "950x750", "635", "23", "4.0\": 167 | 5.0\": 175 | 6.0\": 195 | 7.0\": 225", "240-260", "100", "24.0"],
+            ["9", "42\"x30\"", "1050x750", "635", "23", "4.0\": 170 | 5.0\": 180 | 6.0\": 195 | 7.0\": 225 | 8.0\": 265", "240-260", "100", "26.0"],
+            ["10", "42\"x36\"", "1050x900", "800", "32", "4.0\": 170 | 5.0\": 180 | 6.0\": 195 | 7.0\": 225 | 8.0\": 265 | 9.0\": 285", "220-240", "125", "31.0"],
+            ["11", "48\"x36\"", "1200x900", "800", "32", "2.00\": 112 | 2.50\": 120 | 3.00\": 135 | 3.50\": 155 | 4.0\": 220 | 5.0\": 280", "220-240", "125", "32.0"],
+            ["12", "48\"x42\"", "1200x1050", "975", "39", "4.0\": 220 | 5.0\": 280 | 6.0\": 289", "200-220", "150", "39.5"],
+            ["13", "48\"x48\"", "1200x1200", "1100", "44", "4.0\": 220 | 5.0\": 280 | 6.0\": 289 | 8.0\": 325", "200-220", "150", "43.5"],
+            ["14", "60\"x48\"", "1500x1200", "1100", "44", "5.0\": 275 | 6.0\": 325 | 7.0\": 365 | 8.0\": 390 | 10.0\": 444 | 12.0\": 520", "180-200", "200", "72.0"]
+          ]
+        },
+        {
+          title: "Secondary Crusher",
+          rows: [
+            ["15", "12\"x8\"", "300x200", "200", "6", "0.25\": 12 | 1\": 16 | 1.25\": 24 | 1.50\": 34 | 2.0\": 40", "320-340", "20", "4.2"],
+            ["16", "20\"x8\"", "500x200", "200", "6", "1.0\": 18 | 1.25\": 22 | 1.50\": 27 | 2.0\": 33 | 2.50\": 44 | 3.0\": 55", "320-340", "30", "6.0"],
+            ["17", "30\"x8\"", "750x200", "125", "5", "1.0\": 22 | 1.25\": 27 | 1.50\": 33 | 2.0\": 40 | 2.50\": 54", "320-340", "40", "7.0"],
+            ["18", "36\"x8\"", "900x200", "125", "5", "1.0\": 22 | 1.25\": 27 | 1.50\": 33 | 2.0\": 40 | 2.50\": 54", "320-340", "40", "8.0"],
+            ["19", "42\"x8\"", "1050x200", "125", "5", "1.25\": 28 | 1.50\": 35 | 2.0\": 42 | 2.50\": 58", "320-340", "50", "9.5"],
+            ["20", "42\"x10\"", "1050x250", "200", "8", "1.25\": 28 | 1.50\": 35 | 2.0\": 42 | 2.50\": 58", "320-340", "50", "10.0"],
+            ["21", "48\"x8\"", "1200x200", "125", "5", "1.50\": 38 | 2.0\": 50 | 2.50\": 64 | 3.00\": 72", "320-340", "60", "11.5"],
+            ["22", "48\"x10\"", "1200x250", "200", "8", "1.50\": 51 | 2.00\": 68 | 2.50\": 82 | 3.00\": 92", "320-340", "60", "11.8"],
+            ["23", "48\"x12\"", "1200x300", "200", "8", "2.00\": 62 | 2.50\": 82 | 3.00\": 88 | 3.50\": 98", "320-340", "75", "14.8"]
+          ]
+        }
+      ]
+    }
+  },
+  {
     slug: "double-toggle-oil-jaw-crusher",
     name: "Double Toggle Oil Jaw Crusher",
     category: "Crushers",
     subCategory: "Jaw Crusher",
     heroImage: "/images/double-toggle-oil-jaw-crusher-hero.webp",
     mainImage: "/images/double-toggle-oil-jaw-crusher.webp",
-    model3d: "/3d-model-proudct-images/double_toggle_oi_jaw _crusher.glb",
+    model3d: "/3d-model-proudct-images/double_toggle_oil_jaw_crusher.glb",
     seoTitle: "Double Toggle Oil Jaw Crusher | Mewar Hi-Tech",
     seoDescription: "Heavy-duty double toggle oil jaw crusher for primary crushing in quarries and mines. See features and request a quote from Mewar Hi-Tech.",
     introText: "KINGSON is a credible and trustworthy brand known for its high quality and great manufacturing. We also acquired experience over the years in the manufacture of jaw crusher, which is commonly used in mining, quarry and material handling. KINGSON'S Double Toggle Oil Lubricated Jaw Crusher has a longer life as compared to the jaw plates of other crushers, in light of the fact that KINGSON's Toggle Jaw Crusher operates on the 'Crushing without Rubbing' concept. Also, automatic continuous spray lubrication is provided by coupling pump / vertical oil pump on the basis of toggle-pitman mechanism which enables the crusher to run safely.",
@@ -130,7 +207,7 @@ export const PRODUCTS_DATA = [
     subCategory: "Jaw Crusher",
     heroImage: "/images/double-toggle-grease-jaw-crusher-hero.webp",
     mainImage: "/images/double-toggle-grease-jaw-crusher.webp",
-    model3d: "/3d-model-proudct-images/double_toggle_greese _crusher.glb",
+    model3d: "/3d-model-proudct-images/double_toggle_grease_jaw_crusher.glb",
     seoTitle: "Double Toggle Grease Jaw Crusher | Mewar Hi-Tech",
     seoDescription: "Double toggle grease jaw crusher for tough primary crushing duty. Check the features and ask Mewar Hi-Tech for a quote and technical details.",
     introText: "Our organization has garnered a striking position in this industry as the Exporter, Manufacturer, Service Provider and Supplier of Double Toggle Grease Based Jaw Crusher in Udaipur, Rajasthan, India. It is precisely designed by using excellent material and hi-end technology and innovation. Besides, our customers can procure our products at effectively moderate costs. The capacities may vary depending upon the type of rock gradation, breaking characteristics, compressive strength, rate and method of feeding, bulk density of feed, percentage of moisture in feed, method of operation etc. The production capacity is affected by the type of jaw plates (plain/toothed) and RPM of the machine cast through lifting on crushing stroke.",
@@ -270,7 +347,7 @@ export const PRODUCTS_DATA = [
   },
   {
     slug: "horizontal-shaft-impactor",
-    name: "Horizontal Shaft Impactor",
+    name: "HSI (Horizontal Shaft Impactor)",
     category: "Impactors",
     subCategory: "Impactor",
     heroImage: "/images/horizontal-shaft-impactor-hero.webp",
@@ -319,7 +396,7 @@ export const PRODUCTS_DATA = [
   },
   {
     slug: "vertical-shaft-impactor",
-    name: "Vertical Shaft Impactor",
+    name: "VSI (Vertical Shaft Impactor)",
     category: "Impactors",
     subCategory: "Impactor",
     heroImage: "/images/vertical-shaft-impactor-hero.webp",
@@ -360,7 +437,7 @@ export const PRODUCTS_DATA = [
   },
   {
     slug: "sand-making-machine",
-    name: "Sand Making Machine",
+    name: "SMM (Sand Making Machine)",
     category: "Impactors",
     subCategory: "Impactor",
     heroImage: "/images/sand-making-machine-hero.webp",

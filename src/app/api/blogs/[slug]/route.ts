@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import mongoose from "mongoose";
 import connectToDatabase from "@/lib/mongodb";
 import Blog from "@/models/Blog";
@@ -27,7 +28,7 @@ export async function GET(
       ? { $or: [{ _id: decodedSlug }, { slug: decodedSlug }], published: true }
       : { slug: decodedSlug, published: true };
 
-    const blog = await Blog.findOne(query);
+    const blog = await Blog.findOne(query).lean();
 
     if (!blog) {
       return NextResponse.json(
@@ -36,7 +37,14 @@ export async function GET(
       );
     }
 
-    return NextResponse.json({ blog });
+    return NextResponse.json(
+      { blog },
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=60, stale-while-revalidate=120",
+        },
+      }
+    );
   } catch (error: any) {
     console.error("Error fetching blog:", error);
     return NextResponse.json(
@@ -102,6 +110,16 @@ export async function PUT(
       );
     }
 
+    try {
+      revalidatePath("/blogs");
+      revalidatePath(`/blogs/${decodedSlug}`);
+      if (blog.slug && blog.slug !== decodedSlug) {
+        revalidatePath(`/blogs/${blog.slug}`);
+      }
+    } catch (e) {
+      // Ignore in non-ISR contexts
+    }
+
     return NextResponse.json({ message: "Blog updated successfully", blog });
   } catch (error: any) {
     console.error("Error updating blog:", error);
@@ -148,6 +166,13 @@ export async function DELETE(
         { message: "Blog not found" },
         { status: 404 }
       );
+    }
+
+    try {
+      revalidatePath("/blogs");
+      revalidatePath(`/blogs/${decodedSlug}`);
+    } catch (e) {
+      // Ignore in non-ISR contexts
     }
 
     return NextResponse.json({ message: "Blog deleted successfully" });

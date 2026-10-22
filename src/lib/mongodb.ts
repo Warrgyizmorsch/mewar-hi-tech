@@ -25,7 +25,12 @@ async function connectToDatabase() {
     return null;
   }
 
-  if (cached.conn) {
+  // If already connected, return immediately
+  if (mongoose.connection && mongoose.connection.readyState === 1) {
+    return mongoose;
+  }
+
+  if (cached.conn && mongoose.connection.readyState === 1) {
     return cached.conn;
   }
 
@@ -39,6 +44,10 @@ async function connectToDatabase() {
     const opts = {
       bufferCommands: false,
       serverSelectionTimeoutMS: 5000,
+      connectTimeoutMS: 10000,
+      socketTimeoutMS: 45000,
+      maxPoolSize: 10,
+      minPoolSize: 1,
     };
 
     cached.promise = mongoose

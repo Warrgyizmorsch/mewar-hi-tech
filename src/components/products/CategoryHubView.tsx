@@ -25,6 +25,8 @@ export interface CategoryHubProps {
     subCategory?: string;
     introText: string;
     mainImage: string;
+    heroImage?: string;
+    gallery?: string[];
     features?: string[];
   }[];
 }
@@ -37,6 +39,7 @@ const CATEGORIES_NAV = [
 ];
 
 const SHORT_DESCRIPTIONS: Record<string, string> = {
+  "jaw-crusher": "Heavy-duty industrial crushing and material handling system designed for high reduction ratios and maximum continuous uptime.",
   "double-toggle-oil-jaw-crusher": "Heavy-duty primary crushing for high-capacity ore and rock reduction.",
   "single-toggle-grease-jaw-crusher": "High-efficiency primary jaw crusher engineered for lower power utilization.",
   "double-toggle-grease-jaw-crusher": "Robust crushing units built for tough aggregate and mining applications.",
@@ -183,7 +186,7 @@ export default function CategoryHubView({
                         {/* Machine Image Container */}
                         <div className="overflow-hidden h-56 bg-muted p-4 relative flex items-center justify-center">
                           <Image
-                            src={product.mainImage}
+                            src={product.mainImage || product.heroImage || product.gallery?.[0] || "/images/jaw-crusher-site-1.webp"}
                             alt={`${product.name} industrial machine`}
                             fill
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"

@@ -131,8 +131,10 @@ export default function BlogsClient({
   }, []);
 
   useEffect(() => {
-    fetchCategories();
-  }, [fetchCategories]);
+    if (!initialCategories || initialCategories.length <= 1) {
+      fetchCategories();
+    }
+  }, [fetchCategories, initialCategories]);
 
   const handleCategoryChange = (cat: string) => {
     setCategory(cat);
@@ -226,28 +228,69 @@ export default function BlogsClient({
         </section>
 
         {loading ? (
-          /* Loading Skeleton during client-side filter switches */
-          <section className="section-padding">
-            <Container>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[1, 2, 3, 4, 5, 6].map((i) => (
-                  <div
-                    key={i}
-                    className="bg-card border border-border rounded-2xl overflow-hidden animate-pulse"
-                  >
-                    <div className="h-[200px] bg-muted" />
-                    <div className="p-5 space-y-3">
-                      <div className="h-3 bg-muted rounded w-1/3" />
-                      <div className="h-5 bg-muted rounded w-full" />
-                      <div className="h-5 bg-muted rounded w-2/3" />
-                      <div className="h-3 bg-muted rounded w-full" />
-                      <div className="h-3 bg-muted rounded w-3/4" />
-                    </div>
+          /* High-Fidelity Loading Skeleton during client-side filter / pagination switches */
+          <div className="space-y-12">
+            {/* Featured Article Skeleton */}
+            <section className="section-padding">
+              <Container>
+                <div className="grid grid-cols-1 lg:grid-cols-5 bg-card border border-border rounded-2xl overflow-hidden shadow-md animate-pulse">
+                  <div className="lg:col-span-3 h-[240px] sm:h-[300px] lg:h-[420px] bg-muted flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full border-4 border-primary border-t-transparent animate-spin" />
                   </div>
-                ))}
-              </div>
-            </Container>
-          </section>
+                  <div className="lg:col-span-2 p-6 sm:p-8 lg:p-10 flex flex-col justify-center space-y-4">
+                    <div className="h-4 w-28 bg-primary/20 rounded-full" />
+                    <div className="h-8 w-full bg-muted rounded-lg" />
+                    <div className="h-8 w-4/5 bg-muted rounded-lg" />
+                    <div className="flex items-center gap-3 pt-1">
+                      <div className="h-3 w-24 bg-muted rounded" />
+                      <div className="h-3 w-20 bg-muted rounded" />
+                    </div>
+                    <div className="space-y-2 pt-2">
+                      <div className="h-3.5 w-full bg-muted rounded" />
+                      <div className="h-3.5 w-full bg-muted rounded" />
+                      <div className="h-3.5 w-2/3 bg-muted rounded" />
+                    </div>
+                    <div className="h-4 w-32 bg-primary/30 rounded mt-4" />
+                  </div>
+                </div>
+              </Container>
+            </section>
+
+            {/* Grid Skeleton */}
+            <section className="section-padding-sm bg-muted/30">
+              <Container>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+                  {[1, 2, 3, 4, 5, 6].map((i) => (
+                    <div
+                      key={i}
+                      className="bg-card border border-border/80 rounded-2xl overflow-hidden shadow-sm animate-pulse flex flex-col"
+                    >
+                      <div className="h-[180px] sm:h-[200px] bg-muted" />
+                      <div className="p-6 space-y-3 flex-1 flex flex-col justify-between">
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between">
+                            <div className="h-3.5 w-20 bg-primary/20 rounded" />
+                            <div className="h-3 w-14 bg-muted rounded" />
+                          </div>
+                          <div className="h-5 w-full bg-muted rounded" />
+                          <div className="h-5 w-3/4 bg-muted rounded" />
+                          <div className="h-3.5 w-full bg-muted/60 rounded pt-1" />
+                          <div className="h-3.5 w-4/5 bg-muted/60 rounded" />
+                        </div>
+                        <div className="pt-4 border-t border-border/60 flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <div className="w-7 h-7 rounded-full bg-muted" />
+                            <div className="h-3 w-24 bg-muted rounded" />
+                          </div>
+                          <div className="h-3 w-16 bg-primary/20 rounded" />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Container>
+            </section>
+          </div>
         ) : blogs.length === 0 ? (
           /* Empty State */
           <section className="section-padding">

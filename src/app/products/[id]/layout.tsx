@@ -21,6 +21,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = product.seoTitle || `${product.name} | Mewar Hi-Tech`;
   const description = product.seoDescription || product.introText;
 
+  const shareImage =
+    product.mainImage ||
+    product.heroImage ||
+    product.gallery?.[0] ||
+    "/images/products/cone_crusher.jpg";
+
   return {
     title,
     description,
@@ -31,13 +37,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
       url: `https://www.mewarhitech.com/products/${slug}`,
-      images: [{ url: product.mainImage || "/images/products/cone_crusher.jpg", width: 1200, height: 630 }],
+      images: [{ url: shareImage, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [product.mainImage || "/images/products/cone_crusher.jpg"],
+      images: [shareImage],
     },
   };
 }
@@ -60,6 +66,8 @@ export default async function ProductLayout({
         name: product.name,
         image: product.mainImage
           ? `https://www.mewarhitech.com${product.mainImage}`
+          : product.gallery?.[0]
+          ? `https://www.mewarhitech.com${product.gallery[0]}`
           : "https://www.mewarhitech.com/images/products/cone_crusher.jpg",
         description: product.seoDescription || product.introText,
         brand: {

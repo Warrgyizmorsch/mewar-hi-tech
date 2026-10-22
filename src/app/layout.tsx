@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ToastContainer } from "react-toastify";
 import Script from "next/script";
 import { ThemeProvider } from "@/components/ui/ThemeContext";
+import ModelViewerScript from "@/components/ModelViewerScript";
 
 import { Rubik, Saira } from "next/font/google";
 
@@ -153,6 +154,8 @@ export default function RootLayout({
           }}
         />
         <link rel="preload" href="/images/video_thumbnail.webp" as="image" />
+        <link rel="preconnect" href="https://ajax.googleapis.com" crossOrigin="anonymous" />
+        <link rel="modulepreload" href="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js" />
       </head>
       <body className="min-h-screen font-sans" suppressHydrationWarning>
         <noscript>
@@ -166,6 +169,7 @@ export default function RootLayout({
 
         <ThemeProvider>
           <ExperienceProvider>
+            <ModelViewerScript />
             <main className="min-h-screen font-sans">
               {children}
               {/* <FloatingButton /> */}

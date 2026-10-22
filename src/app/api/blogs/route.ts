@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import connectToDatabase from "@/lib/mongodb";
 import Blog from "@/models/Blog";
 import { isAdminAuthorized } from "@/lib/auth";
@@ -26,22 +27,33 @@ export async function GET(req: NextRequest) {
       query.category = category;
     }
 
-    const total = await Blog.countDocuments(query);
-    const blogs = await Blog.find(query)
-      .sort({ publishedAt: -1 })
-      .skip((page - 1) * limit)
-      .limit(limit)
-      .select("-content");
+    // Run count and query in parallel with .lean()
+    const [total, blogs] = await Promise.all([
+      Blog.countDocuments(query),
+      Blog.find(query)
+        .sort({ publishedAt: -1 })
+        .skip((page - 1) * limit)
+        .limit(limit)
+        .select("-content")
+        .lean(),
+    ]);
 
-    return NextResponse.json({
-      blogs,
-      pagination: {
-        page,
-        limit,
-        total,
-        totalPages: Math.ceil(total / limit),
+    return NextResponse.json(
+      {
+        blogs,
+        pagination: {
+          page,
+          limit,
+          total,
+          totalPages: Math.ceil(total / limit),
+        },
       },
-    });
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=60, stale-while-revalidate=120",
+        },
+      }
+    );
   } catch (error: any) {
     console.error("Error fetching blogs:", error);
     return NextResponse.json(
@@ -127,6 +139,13 @@ export async function POST(req: NextRequest) {
 
     const blog = new Blog(blogDoc);
     await blog.save();
+
+    try {
+      revalidatePath("/blogs");
+      revalidatePath(`/blogs/${slug}`);
+    } catch (e) {
+      // Ignore if revalidatePath fails in non-ISR contexts
+    }
 
     return NextResponse.json(
       { message: "Blog created successfully", blog },

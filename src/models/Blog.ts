@@ -58,14 +58,15 @@ const BlogSchema = new Schema<IBlog>(
   { timestamps: true }
 );
 
-// Create text index for search
+// Optimized compound indexes for ultra-fast query execution
+BlogSchema.index({ slug: 1, published: 1 });
+BlogSchema.index({ published: 1, publishedAt: -1 });
+BlogSchema.index({ category: 1, published: 1, publishedAt: -1 });
+BlogSchema.index({ published: 1, category: 1 });
 BlogSchema.index({ title: "text", excerpt: "text", tags: "text" });
 
-// Delete the existing model to force a schema reload in development
-if (mongoose.models.Blog) {
-  delete mongoose.models.Blog;
-}
-
-const Blog: Model<IBlog> = mongoose.model<IBlog>("Blog", BlogSchema);
+const Blog: Model<IBlog> =
+  (mongoose.models.Blog as Model<IBlog>) ||
+  mongoose.model<IBlog>("Blog", BlogSchema);
 
 export default Blog;
