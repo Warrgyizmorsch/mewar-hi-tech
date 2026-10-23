@@ -42,14 +42,14 @@ const footerColumns = [
       { label: "Cone Crusher", to: "/products/cone-crusher" },
       { label: "Roll Crusher", to: "/products/roll-crusher" },
       {
-        label: "Horizontal Shaft Impactor",
+        label: "Horizontal Shaft Impactor Crusher",
         to: "/products/horizontal-shaft-impactor",
       },
       {
-        label: "Vertical Shaft Impactor",
+        label: "Vertical Shaft Impactor Crusher",
         to: "/products/vertical-shaft-impactor",
       },
-      { label: "Sand Making Machine", to: "/products/sand-making-machine" },
+      { label: "Sand Making Machine Crusher", to: "/products/sand-making-machine" },
       { label: "Vibrating Screen", to: "/products/vibrating-screen" },
       { label: "Vibro Feeder", to: "/products/vibro-feeder" },
       { label: "Single Shaft Feeders", to: "/products/single-shaft-feeders" },
