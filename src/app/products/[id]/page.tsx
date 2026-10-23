@@ -189,23 +189,33 @@ export default function ProductDetailPage({ params }: PageProps) {
   let secondHalf = "";
   const lowerName = product.name.toLowerCase();
 
-  const splitKeywords = [
-    "jaw crusher", "cone crusher", "roll crusher", "impactor",
-    "screen", "washer", "feeder", "conveyor", "machine", "crusher"
-  ];
-
-  const matchedKeyword = splitKeywords.find((kw) => lowerName.includes(kw));
-
-  if (matchedKeyword) {
-    const idx = lowerName.indexOf(matchedKeyword);
-    firstHalf = product.name.slice(0, idx).trim();
-    secondHalf = product.name.slice(idx).trim();
+  // If title has parentheses (e.g. "VSI Crusher (Vertical Shaft Impactor)")
+  const parenIdx = product.name.indexOf("(");
+  if (parenIdx !== -1) {
+    firstHalf = product.name.slice(0, parenIdx).trim();
+    secondHalf = product.name.slice(parenIdx).trim();
   } else {
-    const nameWords = product.name.split(" ");
-    const halfLength = Math.ceil(nameWords.length / 2);
-    firstHalf = nameWords.slice(0, halfLength).join(" ");
-    secondHalf = nameWords.slice(halfLength).join(" ");
+    const splitKeywords = [
+      "jaw crusher", "cone crusher", "roll crusher",
+      "vibrating screen", "single shaft feeders",
+      "crusher", "screen", "washer", "feeder", "conveyor", "machine", "impactor"
+    ];
+
+    const matchedKeyword = splitKeywords.find((kw) => lowerName.includes(kw));
+
+    if (matchedKeyword) {
+      const idx = lowerName.indexOf(matchedKeyword);
+      firstHalf = product.name.slice(0, idx).trim();
+      secondHalf = product.name.slice(idx).trim();
+    } else {
+      const nameWords = product.name.split(" ");
+      const halfLength = Math.ceil(nameWords.length / 2);
+      firstHalf = nameWords.slice(0, halfLength).join(" ");
+      secondHalf = nameWords.slice(halfLength).join(" ");
+    }
   }
+
+  const isLongTitle = product.name.length > 24 || secondHalf.length > 18;
 
   // Related Products
   const relatedProducts = PRODUCTS_DATA.filter(
@@ -326,10 +336,14 @@ export default function ProductDetailPage({ params }: PageProps) {
               </div>
 
               {/* Dynamic Styled Product Title */}
-              <h1 className="common-heading text-3xl sm:text-4xl lg:text-[54px] leading-[1.1] tracking-tight font-bold">
-                <span className="text-foreground dark:text-white">{firstHalf} </span>
+              <h1 className={`common-heading leading-[1.1] tracking-tight font-bold ${
+                isLongTitle 
+                  ? "text-2xl sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[44px] 2xl:text-[48px]" 
+                  : "text-3xl sm:text-4xl lg:text-[54px]"
+              }`}>
+                <span className="text-foreground dark:text-white block">{firstHalf}</span>
                 {secondHalf && (
-                  <span className="text-primary block mt-3">{secondHalf}</span>
+                  <span className="text-primary block mt-2 sm:mt-3 whitespace-normal xl:whitespace-nowrap">{secondHalf}</span>
                 )}
               </h1>
 
