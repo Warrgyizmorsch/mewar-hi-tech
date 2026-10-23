@@ -50,6 +50,7 @@ const HeroSection: React.FC = () => {
           alt="Mewar Hi-Tech Heavy Duty Crushing Equipment"
           fill
           priority
+          unoptimized
           sizes="100vw"
           className="object-cover object-center z-0"
         />
