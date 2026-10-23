@@ -153,7 +153,7 @@ export default function RootLayout({
             ])
           }}
         />
-        <link rel="preload" href="/images/video_thumbnail.webp" as="image" />
+        <link rel="preload" href="/images/hero_thumbnail.webp" as="image" />
         <link rel="preconnect" href="https://ajax.googleapis.com" crossOrigin="anonymous" />
         <link rel="modulepreload" href="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js" />
       </head>
