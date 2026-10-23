@@ -46,7 +46,7 @@ const HeroSection: React.FC = () => {
       {/* Background Video Container */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden bg-black">
         <Image
-          src="/images/video_thumbnail.webp"
+          src="/images/hero_thumbnail.webp"
           alt="Mewar Hi-Tech Heavy Duty Crushing Equipment"
           fill
           priority
@@ -60,6 +60,7 @@ const HeroSection: React.FC = () => {
             loop
             playsInline
             preload="none"
+            poster="/images/hero_thumbnail.webp"
             className="absolute inset-0 w-full h-full object-cover object-center z-10"
           >
             <source src="/videos/home-page.mp4" type="video/mp4" />
