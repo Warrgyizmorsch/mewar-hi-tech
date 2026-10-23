@@ -21,6 +21,7 @@ const AboutTeaser: React.FC = () => {
                 alt="3D Gold Trophy"
                 width={200}
                 height={224}
+                style={{ width: "auto" }}
                 className="h-40 sm:h-56 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,184,0,0.15)] dark:drop-shadow-[0_0_15px_rgba(255,184,0,0.25)]"
               />
             </div>

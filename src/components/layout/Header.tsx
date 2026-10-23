@@ -40,9 +40,9 @@ const navItems: NavItem[] = [
       },
       { label: "Impactor", to: "/products/impactors", heading: true,
         children: [
-          { label: "HSI", to: "/products/horizontal-shaft-impactor" },
-          { label: "VSI", to: "/products/vertical-shaft-impactor" },
-          { label: "SMM", to: "/products/sand-making-machine" },
+          { label: "Horizontal Shaft Impactor Crusher", to: "/products/horizontal-shaft-impactor" },
+          { label: "Vertical Shaft Impactor Crusher", to: "/products/vertical-shaft-impactor" },
+          { label: "Sand Making Machine Crusher", to: "/products/sand-making-machine" },
         ]
       },
       { label: "Screen", to: "/products/screens", heading: true,

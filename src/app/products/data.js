@@ -347,7 +347,7 @@ export const PRODUCTS_DATA = [
   },
   {
     slug: "horizontal-shaft-impactor",
-    name: "HSI (Horizontal Shaft Impactor)",
+    name: "HSI Crusher (Horizontal Shaft Impactor)",
     category: "Impactors",
     subCategory: "Impactor",
     heroImage: "/images/horizontal-shaft-impactor-hero.webp",
@@ -396,7 +396,7 @@ export const PRODUCTS_DATA = [
   },
   {
     slug: "vertical-shaft-impactor",
-    name: "VSI (Vertical Shaft Impactor)",
+    name: "VSI Crusher (Vertical Shaft Impactor)",
     category: "Impactors",
     subCategory: "Impactor",
     heroImage: "/images/vertical-shaft-impactor-hero.webp",
@@ -437,7 +437,7 @@ export const PRODUCTS_DATA = [
   },
   {
     slug: "sand-making-machine",
-    name: "SMM (Sand Making Machine)",
+    name: "SMM Crusher (Sand Making Machine)",
     category: "Impactors",
     subCategory: "Impactor",
     heroImage: "/images/sand-making-machine-hero.webp",

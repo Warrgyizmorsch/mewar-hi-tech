@@ -551,7 +551,7 @@ export default function BlogDetailClient({
                       <h3 className="font-bold text-lg text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-3">
                         {post.title}
                       </h3>
-                      <p className="text-muted-foreground text-sm line-clamp-3 mb-4 flex-1">
+                      <p className="text-muted-foreground text-sm line-clamp-2 mb-4 flex-1">
                         {post.excerpt}
                       </p>
                       <div className="flex items-center justify-between text-[11px] sm:text-xs text-muted-foreground font-medium pt-4 border-t border-border mt-auto">
