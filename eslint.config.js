@@ -7,7 +7,7 @@ import tseslint from 'typescript-eslint'
 import nextPlugin from '@next/eslint-plugin-next'
 
 export default defineConfig([
-  globalIgnores(['dist', '.next', 'node_modules', 'project']),
+  globalIgnores(['dist', '.next', 'node_modules', 'project/**', 'project']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
