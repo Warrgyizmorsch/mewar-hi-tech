@@ -74,7 +74,7 @@ const PAGES_DATA: Record<
     },
     sections: [
       {
-        title: "1. Kingson's Pre-sales services",
+        title: "1. Mewar Hi-Tech's Pre-sales services",
         desc: "We go about as a detent consultant and right hand to the customers, empowering them to make a rational choice. We assist them in selecting the perfect crusher equipment model or crusher range, design and manufacture products according to their requirements.",
       },
       {

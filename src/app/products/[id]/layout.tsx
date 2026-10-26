@@ -72,7 +72,7 @@ export default async function ProductLayout({
         description: product.seoDescription || product.introText,
         brand: {
           "@type": "Brand",
-          name: "Kingson",
+          name: "Mewar Hi-Tech",
         },
         manufacturer: {
           "@type": "Organization",

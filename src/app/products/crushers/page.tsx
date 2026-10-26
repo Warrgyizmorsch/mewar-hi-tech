@@ -43,7 +43,7 @@ export default function CrushersCategoryPage() {
       categoryName="Crushers"
       title="Heavy-Duty Industrial Stone & Mineral Crushers"
       subtitle="Engineered with three decades of metallurgy excellence to deliver uncompromising primary, secondary, and tertiary reduction across demanding quarry and mining operations."
-      description="Mewar Hi-Tech (KINGSON) manufactures an industry-leading lineup of heavy-duty crushers. Built around our proprietary 'Crushing without Rubbing' technology and automated continuous lubrication, our jaw, cone, and roll crushers minimize operating cost per ton while maximizing throughput on abrasive granites, iron ore, limestone, and hard rock."
+      description="Mewar Hi-Tech manufactures an industry-leading lineup of heavy-duty crushers. Built around our proprietary 'Crushing without Rubbing' technology and automated continuous lubrication, our jaw, cone, and roll crushers minimize operating cost per ton while maximizing throughput on abrasive granites, iron ore, limestone, and hard rock."
       heroImage="/images/hero_crusher.webp"
       stats={[
         { label: "Capacity Range", value: "10 - 520 TPH" },
