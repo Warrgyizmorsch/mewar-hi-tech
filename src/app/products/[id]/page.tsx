@@ -222,8 +222,10 @@ export default function ProductDetailPage({ params }: PageProps) {
     (item) => item.slug !== product.slug && (item.category === product.category || item.subCategory === product.subCategory)
   ).slice(0, 3);
 
-  // Gallery items including mainImage if present
-  const allImages = [product.mainImage, ...(product.gallery || [])].filter(Boolean) as string[];
+  // Gallery items including mainImage if present (deduplicated)
+  const allImages = Array.from(
+    new Set([product.mainImage, ...(product.gallery || [])].filter(Boolean))
+  ) as string[];
 
   // Quick info metrics extracted dynamically from specs or defaults
   const quickMetrics = [
@@ -770,15 +772,18 @@ export default function ProductDetailPage({ params }: PageProps) {
           <section className="py-10 lg:py-14 bg-background border-b border-border">
             <Container className="space-y-8 lg:space-y-12">
               
-              <div className="max-w-3xl space-y-2 text-center md:text-left mx-auto md:mx-0">
-                <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
+              <div className={`space-y-2 ${product.video ? "max-w-3xl text-center md:text-left mx-auto md:mx-0" : "max-w-3xl text-center mx-auto"}`}>
+                <div className={`flex items-center gap-3 mb-2 ${product.video ? "justify-center md:justify-start" : "justify-center"}`}>
                   <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
                   <span className="text-primary eyebrow">
                     VISUAL MEDIA &bull; TECHNICAL ASSETS
                   </span>
                 </div>
                 <h2 className="font-sans text-xl sm:text-3xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
-                  ON-SITE INSPECTION &amp; <span className="text-primary inline-block">WORKING VIDEO</span>
+                  ON-SITE INSPECTION &amp;{" "}
+                  <span className="text-primary inline-block">
+                    {product.video ? "WORKING VIDEO" : "MACHINE GALLERY"}
+                  </span>
                 </h2>
               </div>
 
@@ -786,7 +791,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                 
                 {/* Left: Gallery & Lightbox Trigger */}
                 {allImages.length > 0 && (
-                  <div className={`${product.video ? "lg:col-span-6" : "lg:col-span-12"} space-y-6 text-left`}>
+                  <div className={`${product.video ? "lg:col-span-6" : "lg:col-span-12 max-w-3xl mx-auto w-full"} space-y-6 text-left`}>
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2 text-[10px] sm:text-xs font-bold uppercase text-foreground">
@@ -801,18 +806,18 @@ export default function ProductDetailPage({ params }: PageProps) {
                       {/* Main Selected Image Preview */}
                       <div 
                         onClick={() => setLightboxOpen(true)}
-                        className="relative rounded-xl overflow-hidden border border-border shadow-xl bg-card aspect-[4/3] sm:aspect-[16/10] cursor-pointer group flex items-center justify-center"
+                        className={`relative rounded-xl overflow-hidden border border-border shadow-xl bg-card cursor-pointer group flex items-center justify-center ${
+                          product.video
+                            ? "aspect-[4/3] sm:aspect-[16/10]"
+                            : "aspect-[4/3] sm:aspect-[16/10] max-h-[440px] sm:max-h-[480px]"
+                        }`}
                       >
                         <Image
                           src={allImages[selectedGalleryIndex] || allImages[0]}
-                          alt={`Kingson ${product.name} - Heavy duty crushing and aggregate processing equipment (Image ${selectedGalleryIndex + 1})`}
+                          alt={`Mewar Hi-Tech ${product.name} - Heavy duty crushing and aggregate processing equipment (Image ${selectedGalleryIndex + 1})`}
                           fill
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                          className={`transition-transform duration-500 group-hover:scale-105 ${
-                            (allImages[selectedGalleryIndex] || allImages[0]).toLowerCase().includes(".png")
-                              ? "object-contain p-6"
-                              : "object-cover"
-                          }`}
+                          sizes={product.video ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 768px"}
+                          className="object-contain p-4 sm:p-6 transition-transform duration-500 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                           <div className="px-4 py-2 rounded-full bg-black/70 backdrop-blur-md text-white text-xs font-bold flex items-center gap-2">
@@ -825,12 +830,12 @@ export default function ProductDetailPage({ params }: PageProps) {
 
                     {/* Thumbnail Selector Strip */}
                     {allImages.length > 1 && (
-                      <div className="flex items-center gap-3 overflow-x-auto pb-1 pt-1">
+                      <div className={`flex items-center gap-3 overflow-x-auto pb-1 pt-1 ${product.video ? "" : "justify-center"}`}>
                         {allImages.map((imgUrl, i) => (
                           <button
                             key={i}
                             onClick={() => setSelectedGalleryIndex(i)}
-                            className={`relative w-20 h-14 sm:w-24 sm:h-16 rounded-xl overflow-hidden border-2 shrink-0 transition ${
+                            className={`relative w-20 h-14 sm:w-24 sm:h-16 rounded-xl overflow-hidden border-2 shrink-0 transition bg-card ${
                               selectedGalleryIndex === i
                                 ? "border-primary shadow-lg ring-2 ring-primary/40 opacity-100"
                                 : "border-border/60 opacity-60 hover:opacity-100"
@@ -838,10 +843,10 @@ export default function ProductDetailPage({ params }: PageProps) {
                           >
                             <Image
                               src={imgUrl}
-                              alt={`Kingson ${product.name} detail view ${i + 1}`}
+                              alt={`Mewar Hi-Tech ${product.name} detail view ${i + 1}`}
                               fill
                               sizes="96px"
-                              className="object-cover"
+                              className="object-contain p-1"
                             />
                           </button>
                         ))}
@@ -1406,7 +1411,7 @@ export default function ProductDetailPage({ params }: PageProps) {
               {allImages[selectedGalleryIndex] && (
                 <Image
                   src={allImages[selectedGalleryIndex]}
-                  alt={`Kingson ${product.name} - High-capacity industrial machinery full view`}
+                  alt={`Mewar Hi-Tech ${product.name} - High-capacity industrial machinery full view`}
                   width={1200}
                   height={800}
                   className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"

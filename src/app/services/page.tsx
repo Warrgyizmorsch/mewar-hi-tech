@@ -31,7 +31,7 @@ const SERVICE_STAGES = [
   {
     id: "pre-sales",
     step: "01",
-    title: "Kingson Pre-Sales Consultancy",
+    title: "Mewar Hi-Tech Pre-Sales Consultancy",
     subtitle: "Rational Equipment Selection & Custom Plant Design",
     icon: Compass,
     description:
@@ -97,7 +97,7 @@ const SERVICE_TAB_CONTENT = [
     badge: "Parts Logistics",
     tagline: "100% High-Manganese Castings & Precision Components",
     description:
-      "Maximize equipment longevity and crushing efficiency with original Kingson spare parts. Manufactured in our in-house alloy casting foundry, our jaw plates, cone liners, blow bars, and shafts undergo rigorous metallurgy checks.",
+      "Maximize equipment longevity and crushing efficiency with original Mewar Hi-Tech spare parts. Manufactured in our in-house alloy casting foundry, our jaw plates, cone liners, blow bars, and shafts undergo rigorous metallurgy checks.",
     features: [
       "18% & 22% Mn Jaw Plates & Heavy Duty Cheek Plates",
       "Manganese Cone Crusher Mantles & Concaves",
@@ -253,7 +253,7 @@ export default function ServicesPage() {
                 <div className="relative rounded-xl overflow-hidden border border-border bg-card shadow-2xl group">
                   <Image
                     src="/images/after-sales-1.jpg"
-                    alt="Kingson After Sales Support"
+                    alt="Mewar Hi-Tech After Sales Support"
                     width={800}
                     height={600}
                     className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500"

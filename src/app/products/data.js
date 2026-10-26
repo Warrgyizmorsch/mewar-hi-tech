@@ -91,7 +91,7 @@ export const PRODUCTS_DATA = [
     model3d: "/3d-model-proudct-images/double_toggle_oil_jaw_crusher.glb",
     seoTitle: "Double Toggle Oil Jaw Crusher | Mewar Hi-Tech",
     seoDescription: "Heavy-duty double toggle oil jaw crusher for primary crushing in quarries and mines. See features and request a quote from Mewar Hi-Tech.",
-    introText: "KINGSON is a credible and trustworthy brand known for its high quality and great manufacturing. We also acquired experience over the years in the manufacture of jaw crusher, which is commonly used in mining, quarry and material handling. KINGSON'S Double Toggle Oil Lubricated Jaw Crusher has a longer life as compared to the jaw plates of other crushers, in light of the fact that KINGSON's Toggle Jaw Crusher operates on the 'Crushing without Rubbing' concept. Also, automatic continuous spray lubrication is provided by coupling pump / vertical oil pump on the basis of toggle-pitman mechanism which enables the crusher to run safely.",
+    introText: "Mewar Hi-Tech is a credible and trustworthy brand known for its high quality and great manufacturing. We also acquired experience over the years in the manufacture of jaw crusher, which is commonly used in mining, quarry and material handling. Mewar Hi-Tech's Double Toggle Oil Lubricated Jaw Crusher has a longer life as compared to the jaw plates of other crushers, in light of the fact that Mewar Hi-Tech's Toggle Jaw Crusher operates on the 'Crushing without Rubbing' concept. Also, automatic continuous spray lubrication is provided by coupling pump / vertical oil pump on the basis of toggle-pitman mechanism which enables the crusher to run safely.",
     features: [
       "The operating mechanism is totally enclosed for maximum life and minimum maintenance.",
       "Double toggle provides maximum leverage to long stroke eccentric.",
@@ -164,7 +164,7 @@ export const PRODUCTS_DATA = [
     model3d: "/3d-model-proudct-images/single_toggle_greese_crusher.glb",
     seoTitle: "Single Toggle Grease Jaw Crusher | Mewar Hi-Tech",
     seoDescription: "Single toggle grease jaw crusher built for primary crushing of hard rock and aggregates. View details and request a quote from Mewar Hi-Tech.",
-    introText: "Kingson's Single Toggle Grease Jaw Crusher is usually utilized where size conveyance isn't of fundamental significance, be that as it may, efficiency is to be increased with lower power utilization, in contrast with Double Toggle Grease Lubricated Jaw Crusher and hence working expense is lower. These do not require high operating skills and gap setting is easier and manageable. Additionally, the support necessity is much lower and it doesn't require high maintenance.",
+    introText: "Mewar Hi-Tech's Single Toggle Grease Jaw Crusher is usually utilized where size conveyance isn't of fundamental significance, be that as it may, efficiency is to be increased with lower power utilization, in contrast with Double Toggle Grease Lubricated Jaw Crusher and hence working expense is lower. These do not require high operating skills and gap setting is easier and manageable. Additionally, the support necessity is much lower and it doesn't require high maintenance.",
     features: [
       "Increased stroke for greater productivity, large eccentric shaft for strong stroke in the upper chamber.",
       "High angle toggle plate increases stroke in the lower chamber.",
@@ -315,7 +315,7 @@ export const PRODUCTS_DATA = [
     model3d: "/3d-model-proudct-images/roll_crusher.glb",
     seoTitle: "Roll Crusher | Mewar Hi-Tech",
     seoDescription: "Roll crusher for controlled size reduction of medium-hard and soft materials. View details and request a quote from Mewar Hi-Tech, Udaipur.",
-    introText: "KINGSON'S Roll Crusher machine is widely used for the powder process of mineral products, including metal and non-metal ore, fireproof material, bauxite, diamond dust, glass raw materials, architectural materials, artificial sand and all kinds of metals and materials. The design is robust to cater to the customer need.",
+    introText: "Mewar Hi-Tech's Roll Crusher machine is widely used for the powder process of mineral products, including metal and non-metal ore, fireproof material, bauxite, diamond dust, glass raw materials, architectural materials, artificial sand and all kinds of metals and materials. The design is robust to cater to the customer need.",
     features: [
       "Adjustable rolling spacing to change output sizing instantly.",
       "Heavy duty compression spring release protection against metal tramps.",
@@ -355,7 +355,7 @@ export const PRODUCTS_DATA = [
     model3d: "/3d-model-proudct-images/horizontal_shaft.glb",
     seoTitle: "Horizontal Shaft Impactor (HSI) | Mewar Hi-Tech",
     seoDescription: "Horizontal shaft impactor for secondary crushing with good product shape. See features and request a quote from Mewar Hi-Tech.",
-    introText: "KINGSON'S product series of Horizontal Shaft impactor is widely used in the mining, energy and chemical industry. The Horizontal Shaft Impactor has reasonable structure, high productivity, easy maintenance and safe performance. The most remarkable advantage of this machine is that its completed item is fit as a fiddle, non-tensile and crevice. Our Horizontal Shaft Impactor is known for the most outstanding advantage of the delivering goods cubic shapes, non-tensile and cranny products. Not only do they find a wide application in various industries but is also the first choice of crushing industries.",
+    introText: "Mewar Hi-Tech's product series of Horizontal Shaft impactor is widely used in the mining, energy and chemical industry. The Horizontal Shaft Impactor has reasonable structure, high productivity, easy maintenance and safe performance. The most remarkable advantage of this machine is that its completed item is fit as a fiddle, non-tensile and crevice. Our Horizontal Shaft Impactor is known for the most outstanding advantage of the delivering goods cubic shapes, non-tensile and cranny products. Not only do they find a wide application in various industries but is also the first choice of crushing industries.",
     features: [
       "High reduction ratio and crushing efficiency, no-board connection; with blow bar of Chrome Steel.",
       "Impact plate has a special shape, with easy maintenance and reliable operation, connected with locking sleeve assembly and the blow bar of high chrome steel.",
@@ -404,7 +404,7 @@ export const PRODUCTS_DATA = [
     model3d: "/3d-model-proudct-images/verticle_shaft_impactor.glb",
     seoTitle: "Vertical Shaft Impactor (VSI) | Mewar Hi-Tech",
     seoDescription: "Vertical shaft impactor for tertiary crushing and shaping aggregates and manufactured sand. View details and request a quote from Mewar Hi-Tech.",
-    introText: "KINGSON'S Impact Crusher-VSI Crusher incorporates rock-on-rock crushing technology that has revolutionized the aggregates and mineral industries worldwide. It is designed for low services requirement, with ease of lubrication and the assurance of continuous services. KINGSON VSI is an excellent third and fourth stage reduction unit, combing a unique crushing and grinding action in a single machine for the processing of abrasive friable or sticky material.",
+    introText: "Mewar Hi-Tech's Impact Crusher-VSI Crusher incorporates rock-on-rock crushing technology that has revolutionized the aggregates and mineral industries worldwide. It is designed for low services requirement, with ease of lubrication and the assurance of continuous services. Mewar Hi-Tech VSI is an excellent third and fourth stage reduction unit, combing a unique crushing and grinding action in a single machine for the processing of abrasive friable or sticky material.",
     features: [
       "Competitive cost, especially when compared with conventional crushing equipment.",
       "Low service and maintenance requirements, minimum operating and wear cost.",
@@ -445,7 +445,7 @@ export const PRODUCTS_DATA = [
     model3d: "/3d-model-proudct-images/sand_making_machine.glb",
     seoTitle: "Sand Making Machine | Mewar Hi-Tech",
     seoDescription: "Sand making machine for producing manufactured sand from crushed rock. See features and request a quote from Mewar Hi-Tech, Udaipur.",
-    introText: "KINGSON'S Sand Making Machine is widely used for fines size reduction of mineral product including metal and non-metal ore, fireproof material, bauxite, diamond dust, glass raw materials, architectural materials, artificial Materials of all sorts of metal ores.",
+    introText: "Mewar Hi-Tech's Sand Making Machine is widely used for fines size reduction of mineral product including metal and non-metal ore, fireproof material, bauxite, diamond dust, glass raw materials, architectural materials, artificial Materials of all sorts of metal ores.",
     features: [
       "The Structure is simple, and the operating cost is low.",
       "High efficiency and low power consumption.",
@@ -491,7 +491,7 @@ export const PRODUCTS_DATA = [
     model3d: "/3d-model-proudct-images/vibrating_screen.glb",
     seoTitle: "Vibrating Screen for Aggregates | Mewar Hi-Tech",
     seoDescription: "Vibrating screen for accurate sizing and separation of crushed aggregates. View details and request a quote from Mewar Hi-Tech.",
-    introText: "KINGSON'S vibrating screen, with a circular motion, is a two bearing free floating vibrating screen which proficiently screens all moderately free-flowing material. The circular throw action is delivered from uneven weights which are attached to the ends of the screening surfaces and ensure that the material travels over the screening surfaces at a constant rate. the amplitude or degree of vibration can be acclimated to fit a difference in obligation by adding a subtracting balance weight plate. The circular motion ensures rapid strait. The yield of the screen relies upon screen tendency; taking care of technique, screen RPM and vibration. We undertake all ranges of vibrating screens as per the capacity of plant and choices of the clients.",
+    introText: "Mewar Hi-Tech's vibrating screen, with a circular motion, is a two bearing free floating vibrating screen which proficiently screens all moderately free-flowing material. The circular throw action is delivered from uneven weights which are attached to the ends of the screening surfaces and ensure that the material travels over the screening surfaces at a constant rate. the amplitude or degree of vibration can be acclimated to fit a difference in obligation by adding a subtracting balance weight plate. The circular motion ensures rapid strait. The yield of the screen relies upon screen tendency; taking care of technique, screen RPM and vibration. We undertake all ranges of vibrating screens as per the capacity of plant and choices of the clients.",
     features: [
       "Sharp sized end products with higher capacity and lower costs. New technology equipped with two bearings and grease lubrication.",
       "Frames are of rugged construction with torsionally rigid tubular cross members.",
@@ -682,7 +682,7 @@ export const PRODUCTS_DATA = [
     model3d: "/3d-model-proudct-images/single_shaft_feed.glb",
     seoTitle: "Single Shaft Feeders | Mewar Hi-Tech",
     seoDescription: "Single shaft feeders for reliable material feeding in crushing and screening plants. View details and request a quote from Mewar Hi-Tech.",
-    introText: "KINGSON'S Grizzly is a massive welded frame construction to withstand extreme shock loads. These are basically conveying decks with a combination of pan and grizzly and back & side renewable liners. Grizzly Feeder is non-stopping and ventured grizzly, independently inexhaustible, for material inclining and simple fines passing. It vibrating using installed consists of two contra-rotating eccentric shafts, geared together in oil-bath. The setting of amplitude is affected at the still machine by varying unbalance. Actuation is by 4-pole motor and V-belts drive. Special steel springs are arranged for the installation on concrete or steel supporting structure.",
+    introText: "Mewar Hi-Tech's Grizzly is a massive welded frame construction to withstand extreme shock loads. These are basically conveying decks with a combination of pan and grizzly and back & side renewable liners. Grizzly Feeder is non-stopping and ventured grizzly, independently inexhaustible, for material inclining and simple fines passing. It vibrating using installed consists of two contra-rotating eccentric shafts, geared together in oil-bath. The setting of amplitude is affected at the still machine by varying unbalance. Actuation is by 4-pole motor and V-belts drive. Special steel springs are arranged for the installation on concrete or steel supporting structure.",
     features: [
       "Width: 800mm to 1500mm",
       "Length: 2000mm to 6000mm",
