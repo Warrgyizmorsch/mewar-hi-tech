@@ -3,12 +3,30 @@ import { revalidatePath } from "next/cache";
 import connectToDatabase from "@/lib/mongodb";
 import Blog from "@/models/Blog";
 import { isAdminAuthorized } from "@/lib/auth";
+import { getCache, setCache, invalidateCache } from "@/lib/cache";
 
 export const dynamic = "force-dynamic";
 
 // GET /api/blogs - List blogs with pagination and category filter
 export async function GET(req: NextRequest) {
   try {
+    const { searchParams } = new URL(req.url);
+    const page = parseInt(searchParams.get("page") || "1");
+    const limit = parseInt(searchParams.get("limit") || "9");
+    const category = searchParams.get("category") || "";
+
+    const cacheKey = `blogs_list_${page}_${limit}_${category || "all"}`;
+    const cachedResponse = getCache<any>(cacheKey);
+
+    if (cachedResponse) {
+      return NextResponse.json(cachedResponse, {
+        headers: {
+          "Cache-Control": "public, s-maxage=60, stale-while-revalidate=120",
+          "X-Cache": "HIT",
+        },
+      });
+    }
+
     const conn = await connectToDatabase();
     if (!conn) {
       return NextResponse.json(
@@ -16,11 +34,6 @@ export async function GET(req: NextRequest) {
         { status: 503 }
       );
     }
-
-    const { searchParams } = new URL(req.url);
-    const page = parseInt(searchParams.get("page") || "1");
-    const limit = parseInt(searchParams.get("limit") || "9");
-    const category = searchParams.get("category") || "";
 
     const query: any = { published: true };
     if (category && category !== "all") {
@@ -38,22 +51,24 @@ export async function GET(req: NextRequest) {
         .lean(),
     ]);
 
-    return NextResponse.json(
-      {
-        blogs,
-        pagination: {
-          page,
-          limit,
-          total,
-          totalPages: Math.ceil(total / limit),
-        },
+    const result = {
+      blogs,
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages: Math.ceil(total / limit),
       },
-      {
-        headers: {
-          "Cache-Control": "public, s-maxage=60, stale-while-revalidate=120",
-        },
-      }
-    );
+    };
+
+    setCache(cacheKey, result, 60);
+
+    return NextResponse.json(result, {
+      headers: {
+        "Cache-Control": "public, s-maxage=60, stale-while-revalidate=120",
+        "X-Cache": "MISS",
+      },
+    });
   } catch (error: any) {
     console.error("Error fetching blogs:", error);
     return NextResponse.json(
@@ -139,6 +154,10 @@ export async function POST(req: NextRequest) {
 
     const blog = new Blog(blogDoc);
     await blog.save();
+
+    // Invalidate memory cache & Next.js ISR path
+    invalidateCache("blogs");
+    invalidateCache("blog_categories");
 
     try {
       revalidatePath("/blogs");

@@ -64,26 +64,35 @@ export default function BlogDetailClient({
         .replace(/&amp;/g, "&");
     }
 
-    // 2. Replace non-breaking spaces with standard spaces to ensure proper natural word wrapping
-    processed = processed.replace(/&nbsp;/g, " ").replace(/\u00a0/g, " ");
+    // 2. Replace non-breaking spaces with standard spaces & auto-repair PDF split words
+    processed = processed
+      .replace(/&nbsp;/g, " ")
+      .replace(/\u00a0/g, " ")
+      .replace(/\bthro\s+ughput\b/gi, "throughput")
+      .replace(/\bt\s+he\b/gi, "the")
+      .replace(/\bfur\s+ther\b/gi, "further")
+      .replace(/\bheavy-\s+duty\b/gi, "heavy-duty")
+      .replace(/\bhigh-\s+strength\b/gi, "high-strength")
+      .replace(/\bend-\s+products\b/gi, "end-products");
 
-    // 3. Unwrap block-level elements accidentally wrapped in <p> tags
+    // 3. Convert standalone bold paragraphs or bold headings with line break to clean H2 headings
+    processed = processed.replace(/<p>\s*<strong>([^\n\r<>]+)<\/strong>\s*<\/p>/gi, "<h2>$1</h2>");
+    processed = processed.replace(/<p>\s*<b>([^\n\r<>]+)<\/b>\s*<\/p>/gi, "<h2>$1</h2>");
+    processed = processed.replace(/<p>\s*<strong>([^\n\r<>]+)<\/strong>\s*<br\s*\/?>\s*([\s\S]*?)<\/p>/gi, "<h2>$1</h2><p>$2</p>");
+    processed = processed.replace(/<p>\s*<b>([^\n\r<>]+)<\/b>\s*<br\s*\/?>\s*([\s\S]*?)<\/p>/gi, "<h2>$1</h2><p>$2</p>");
+
+    // 4. Unwrap block-level elements accidentally wrapped in <p> tags
     processed = processed.replace(/<p>\s*(<\/?(?:ul|ol|li|h[1-6]|table|thead|tbody|tr|th|td|blockquote)[^>]*>)\s*<\/p>/gis, "$1");
     processed = processed.replace(/<p>\s*(<\/?(?:ul|ol)[^>]*>)/gis, "$1");
     processed = processed.replace(/(<\/?(?:ul|ol)[^>]*>)\s*<\/p>/gis, "$1");
     processed = processed.replace(/<p>\s*(<h[1-6][^>]*>.*?<\/h[1-6]>)\s*<\/p>/gis, "$1");
     processed = processed.replace(/<p>\s*(<li>.*?<\/li>)\s*<\/p>/gis, "$1");
 
-    // 4. Unwrap nested paragraphs
+    // 5. Unwrap nested paragraphs
     processed = processed.replace(/<p>\s*<p>(.*?)<\/p>\s*<\/p>/gis, "<p>$1</p>");
 
-    // 5. Remove empty paragraphs
+    // 6. Remove empty paragraphs
     processed = processed.replace(/<p>\s*(?:<br\s*\/?>)?\s*<\/p>/gi, "");
-
-    // 6. Convert standalone bold paragraphs / breaks to clean H2 headings
-    processed = processed.replace(/<p>\s*<strong>(.*?)<\/strong>\s*<\/p>/gi, "<h2>$1</h2>");
-    processed = processed.replace(/<p>\s*<b>(.*?)<\/b>\s*<\/p>/gi, "<h2>$1</h2>");
-    processed = processed.replace(/<strong>(.*?)<\/strong>\s*<br\s*\/?>/gi, "<h2>$1</h2>");
 
     return processed;
   };

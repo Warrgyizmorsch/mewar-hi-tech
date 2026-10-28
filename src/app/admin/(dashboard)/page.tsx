@@ -6,6 +6,7 @@ import Career from "@/models/Career";
 import Newsletter from "@/models/Newsletter";
 import Link from "next/link";
 import DashboardFilter from "@/components/admin/DashboardFilter";
+import { getCache, setCache } from "@/lib/cache";
 
 export const dynamic = "force-dynamic";
 
@@ -14,19 +15,51 @@ export default async function AdminDashboard() {
   let totalCareers = 0;
   let totalNewsletters = 0;
   let recentEnquiries: any[] = [];
-  let dbError = false;
+  let _dbError = false;
 
-  try {
-    const conn = await connectToDatabase();
-    if (conn) {
-      totalEnquiries = await Enquiry.countDocuments();
-      totalCareers = await Career.countDocuments();
-      totalNewsletters = await Newsletter.countDocuments();
-      recentEnquiries = await Enquiry.find().sort({ createdAt: -1 }).limit(5);
+  const cacheKey = "admin_dashboard_metrics";
+  const cachedData = getCache<any>(cacheKey);
+
+  if (cachedData) {
+    totalEnquiries = cachedData.totalEnquiries;
+    totalCareers = cachedData.totalCareers;
+    totalNewsletters = cachedData.totalNewsletters;
+    recentEnquiries = cachedData.recentEnquiries;
+  } else {
+    try {
+      const conn = await connectToDatabase();
+      if (conn) {
+        const [enqCount, carCount, newsCount, enqRecent] = await Promise.all([
+          Enquiry.countDocuments(),
+          Career.countDocuments(),
+          Newsletter.countDocuments(),
+          Enquiry.find()
+            .sort({ createdAt: -1 })
+            .limit(5)
+            .select("name email phone type createdAt")
+            .lean(),
+        ]);
+
+        totalEnquiries = enqCount;
+        totalCareers = carCount;
+        totalNewsletters = newsCount;
+        recentEnquiries = enqRecent;
+
+        setCache(
+          cacheKey,
+          {
+            totalEnquiries,
+            totalCareers,
+            totalNewsletters,
+            recentEnquiries,
+          },
+          30 // 30 seconds cache for instant tab navigation
+        );
+      }
+    } catch (error) {
+      console.error("MongoDB Connection Error in Admin Dashboard:", error);
+      _dbError = true;
     }
-  } catch (error) {
-    console.error("MongoDB Connection Error in Admin Dashboard:", error);
-    dbError = true;
   }
 
   const stats = [

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
@@ -90,6 +90,86 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
   });
 
   const [formData, setFormData] = useState(() => getInitialFormData(initialData));
+  const quillRef = useRef<any>(null);
+
+  // Custom Quill Image Handler: Enables uploading 1-10+ images (5-6MB each) seamlessly
+  const imageHandler = useCallback(function (this: any) {
+    const quillInstance = this?.quill || quillRef.current?.getEditor();
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("accept", "image/*");
+    input.setAttribute("multiple", "multiple");
+    input.click();
+
+    input.onchange = async () => {
+      const files = Array.from(input.files || []);
+      if (files.length === 0) return;
+
+      const quill = quillInstance || quillRef.current?.getEditor();
+      if (!quill) return;
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const toastId = toast.loading(`Uploading image ${i + 1} of ${files.length}...`);
+
+        try {
+          const uploadFormData = new FormData();
+          uploadFormData.append("file", file);
+
+          const res = await fetch("/api/upload", {
+            method: "POST",
+            body: uploadFormData,
+          });
+          const data = await res.json();
+
+          if (res.ok && data.url) {
+            const range = quill.getSelection(true);
+            const index = range ? range.index : quill.getLength();
+            quill.insertEmbed(index, "image", data.url);
+            quill.setSelection(index + 1);
+            toast.update(toastId, {
+              render: `Image ${i + 1} uploaded & inserted!`,
+              type: "success",
+              isLoading: false,
+              autoClose: 1200,
+            });
+          } else {
+            toast.update(toastId, {
+              render: data.error || `Upload failed for ${file.name}`,
+              type: "error",
+              isLoading: false,
+              autoClose: 3000,
+            });
+          }
+        } catch {
+          toast.update(toastId, {
+            render: `Failed to upload ${file.name}`,
+            type: "error",
+            isLoading: false,
+            autoClose: 3000,
+          });
+        }
+      }
+    };
+  }, []);
+
+  const modules = useMemo(
+    () => ({
+      toolbar: {
+        container: [
+          [{ header: [2, 3, false] }], // Use H2 for Table of Contents
+          ["bold", "italic", "underline", "strike", "blockquote"],
+          [{ list: "ordered" }, { list: "bullet" }],
+          ["link", "image"],
+          ["clean"],
+        ],
+        handlers: {
+          image: imageHandler,
+        },
+      },
+    }),
+    [imageHandler]
+  );
 
   useEffect(() => {
     // Sync state if initialData changes
@@ -135,6 +215,35 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
     setLoading(true);
 
     try {
+      // 1. Check for any pasted base64 images and auto-convert them to real uploaded files
+      let processedContent = formData.content || "";
+      const base64Regex = /src=["'](data:image\/[^"']+)["']/g;
+      const base64Matches: string[] = [];
+      let match;
+      while ((match = base64Regex.exec(processedContent)) !== null) {
+        if (match[1]) base64Matches.push(match[1]);
+      }
+
+      if (base64Matches.length > 0) {
+        toast.info(`Optimizing ${base64Matches.length} embedded images for fast saving...`);
+        for (let i = 0; i < base64Matches.length; i++) {
+          const base64Data = base64Matches[i];
+          try {
+            const res = await fetch("/api/upload", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ base64: base64Data, filename: `content-img-${i + 1}` }),
+            });
+            const data = await res.json();
+            if (res.ok && data.url) {
+              processedContent = processedContent.replaceAll(base64Data, data.url);
+            }
+          } catch (uploadErr) {
+            console.warn("Base64 upload error:", uploadErr);
+          }
+        }
+      }
+
       const cleanFaqs = (formData.faqs || [])
         .map((f: { question: string; answer: string }) => ({
           question: (f.question || "").trim(),
@@ -146,7 +255,7 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
         title: (formData.title || "").trim(),
         slug: (formData.slug || "").trim(),
         excerpt: (formData.excerpt || "").trim(),
-        content: formData.content || "",
+        content: processedContent,
         coverImage: (formData.coverImage || "").trim() || "/images/backgorund.webp",
         metaTitle: (formData.metaTitle || "").trim(),
         metaDescription: (formData.metaDescription || "").trim(),
@@ -230,17 +339,6 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
     }
   };
 
-  // ReactQuill modules configuration for toolbar
-  const modules = {
-    toolbar: [
-      [{ header: [2, 3, false] }], // Use H2 for Table of Contents
-      ["bold", "italic", "underline", "strike", "blockquote"],
-      [{ list: "ordered" }, { list: "bullet" }],
-      ["link", "image"],
-      ["clean"],
-    ],
-  };
-
   return (
     <form onSubmit={handleSubmit} className="space-y-8 pb-20">
       <div className="flex items-center justify-between">
@@ -316,6 +414,7 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
             </p>
             <div className="bg-background text-foreground h-[500px] rounded-lg overflow-hidden [&_.ql-toolbar]:bg-muted [&_.ql-toolbar]:border-border [&_.ql-container]:border-border [&_.ql-editor]:min-h-[450px]">
               <ReactQuill
+                {...({ ref: quillRef } as any)}
                 theme="snow"
                 value={formData.content || ""}
                 onChange={(val) => setFormData({ ...formData, content: val })}

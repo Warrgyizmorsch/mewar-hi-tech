@@ -52,6 +52,10 @@ const EnquirySchema: Schema<IEnquiry> = new Schema({
   },
 });
 
+// Indexes for ultra-fast sorting and dashboard queries
+EnquirySchema.index({ createdAt: -1 });
+EnquirySchema.index({ type: 1, createdAt: -1 });
+
 const Enquiry: Model<IEnquiry> =
   mongoose.models.Enquiry || mongoose.model<IEnquiry>("Enquiry", EnquirySchema);
 
