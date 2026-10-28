@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { useParams } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Container from "@/components/ui/Container";
@@ -15,7 +14,6 @@ import {
   Clock,
   ArrowLeft,
   Tag,
-  Share2,
   BookOpen,
   Twitter,
   Facebook,
@@ -54,15 +52,39 @@ export default function BlogDetailClient({
   relatedBlogs: BlogPost[];
   categories: string[];
 }) {
-  const slug = blog.slug;
-
   const sanitizeHtml = (html: string) => {
     if (!html) return "";
     let processed = html;
-    if (processed.includes("&lt;h2") || processed.includes("&lt;p") || processed.includes("&lt;h3")) {
-      processed = processed.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
-      processed = processed.replace(/<p>\s*(<h\d[^>]*>)/g, "$1").replace(/(<\/h\d>)\s*<\/p>/g, "$1");
+
+    // 1. Decode escaped HTML entities if present
+    if (processed.includes("&lt;")) {
+      processed = processed
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">")
+        .replace(/&amp;/g, "&");
     }
+
+    // 2. Replace non-breaking spaces with standard spaces to ensure proper natural word wrapping
+    processed = processed.replace(/&nbsp;/g, " ").replace(/\u00a0/g, " ");
+
+    // 3. Unwrap block-level elements accidentally wrapped in <p> tags
+    processed = processed.replace(/<p>\s*(<\/?(?:ul|ol|li|h[1-6]|table|thead|tbody|tr|th|td|blockquote)[^>]*>)\s*<\/p>/gis, "$1");
+    processed = processed.replace(/<p>\s*(<\/?(?:ul|ol)[^>]*>)/gis, "$1");
+    processed = processed.replace(/(<\/?(?:ul|ol)[^>]*>)\s*<\/p>/gis, "$1");
+    processed = processed.replace(/<p>\s*(<h[1-6][^>]*>.*?<\/h[1-6]>)\s*<\/p>/gis, "$1");
+    processed = processed.replace(/<p>\s*(<li>.*?<\/li>)\s*<\/p>/gis, "$1");
+
+    // 4. Unwrap nested paragraphs
+    processed = processed.replace(/<p>\s*<p>(.*?)<\/p>\s*<\/p>/gis, "<p>$1</p>");
+
+    // 5. Remove empty paragraphs
+    processed = processed.replace(/<p>\s*(?:<br\s*\/?>)?\s*<\/p>/gi, "");
+
+    // 6. Convert standalone bold paragraphs / breaks to clean H2 headings
+    processed = processed.replace(/<p>\s*<strong>(.*?)<\/strong>\s*<\/p>/gi, "<h2>$1</h2>");
+    processed = processed.replace(/<p>\s*<b>(.*?)<\/b>\s*<\/p>/gi, "<h2>$1</h2>");
+    processed = processed.replace(/<strong>(.*?)<\/strong>\s*<br\s*\/?>/gi, "<h2>$1</h2>");
+
     return processed;
   };
 
@@ -70,16 +92,13 @@ export default function BlogDetailClient({
   const { processedHtml, headings } = useMemo(() => {
     if (!blog?.content) return { processedHtml: "", headings: [] };
 
-    let html = sanitizeHtml(blog.content);
-    // Convert bold paragraphs / breaks to H2
-    html = html.replace(/<p>\s*<strong>(.*?)<\/strong>\s*<\/p>/gi, "<h2>$1</h2>");
-    html = html.replace(/<strong>(.*?)<\/strong>\s*<br\s*\/?>/gi, "<h2>$1</h2>");
-    html = html.replace(/<p>\s*<b>(.*?)<\/b>\s*<\/p>/gi, "<h2>$1</h2>");
+    const html = sanitizeHtml(blog.content);
 
     const extracted: { text: string; id: string }[] = [];
     const idCount: Record<string, number> = {};
 
-    const resultHtml = html.replace(/<h2\b([^>]*)>(.*?)<\/h2>/gi, (match, attrs, innerText) => {
+    // 1. Assign IDs to H2 and extract into Table of Contents
+    let resultHtml = html.replace(/<h2\b([^>]*)>(.*?)<\/h2>/gi, (match, attrs, innerText) => {
       const cleanText = innerText
         .replace(/<[^>]+>/g, "")
         .replace(/&nbsp;/g, " ")
@@ -111,6 +130,15 @@ export default function BlogDetailClient({
 
       const cleanAttrs = attrs.replace(/\bid=["'][^"']*["']/gi, "").trim();
       return `<h2 id="${finalId}" ${cleanAttrs}>${innerText}</h2>`;
+    });
+
+    // 2. Also assign IDs to H3 for deep linking and scroll targets
+    resultHtml = resultHtml.replace(/<h3\b([^>]*)>(.*?)<\/h3>/gi, (match, attrs, innerText) => {
+      if (attrs.includes("id=")) return match;
+      const cleanText = innerText.replace(/<[^>]+>/g, "").trim();
+      let baseId = cleanText.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "");
+      if (!baseId) baseId = `sub-${Math.random().toString(36).substring(2, 7)}`;
+      return `<h3 id="${baseId}" ${attrs}>${innerText}</h3>`;
     });
 
     return { processedHtml: resultHtml, headings: extracted };
@@ -294,7 +322,7 @@ export default function BlogDetailClient({
                 <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground py-4 border-b border-border">
                   <div className="flex items-center gap-2">
                     <div className="w-6 h-6 rounded-full overflow-hidden bg-muted relative">
-                      <Image src={blog.author?.avatar || "/images/logo.png"} alt={blog.author?.name || "Author"} fill sizes="24px" className="object-cover" />
+                      <Image src={blog.author?.avatar || "/images/logo.png"} alt={blog.author?.name || "Author"} fill sizes="24px" className="object-cover" unoptimized />
                     </div>
                     <span className="font-medium text-foreground">{blog.author?.name || "Mewar Hi-Tech"}</span>
                   </div>
@@ -312,25 +340,13 @@ export default function BlogDetailClient({
               </header>
 
               {/* Cover Image */}
-              <div className="relative aspect-video md:aspect-[2/1] rounded-2xl overflow-hidden shadow-lg border border-border">
-                <Image src={blog.coverImage || "/images/backgorund.webp"} alt={blog.title} fill priority sizes="(max-width: 1024px) 100vw, 800px" className="object-cover" />
+              <div className="relative aspect-video md:aspect-[2/1] rounded-2xl overflow-hidden shadow-lg border border-border mb-8 lg:mb-10">
+                <Image src={blog.coverImage || "/images/backgorund.webp"} alt={blog.title} fill priority unoptimized sizes="(max-width: 1024px) 100vw, 800px" className="object-cover" />
               </div>
 
+              {/* Main Blog Body */}
               <div
-                className="prose max-w-none text-muted-foreground text-[15px] sm:text-base leading-[1.8] font-sans break-words
-                  prose-headings:font-bold prose-headings:text-foreground prose-headings:mt-10 prose-headings:mb-5 prose-headings:leading-snug
-                  prose-headings:scroll-mt-28
-                  prose-h2:text-lg prose-h2:sm:text-xl prose-h2:md:text-2xl
-                  prose-h3:text-base prose-h3:sm:text-lg prose-h3:md:text-xl
-                  prose-p:text-muted-foreground prose-p:text-[15px] prose-p:sm:text-base prose-p:leading-[1.8] prose-p:mb-5
-                  prose-ul:my-5 prose-ul:list-disc prose-ul:pl-5
-                  prose-li:text-muted-foreground prose-li:text-[15px] prose-li:sm:text-base prose-li:leading-[1.8] prose-li:mb-2 prose-li:marker:text-primary
-                  prose-strong:text-foreground prose-strong:font-semibold
-                  prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:bg-primary/5 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:rounded-r-xl prose-blockquote:italic prose-blockquote:text-muted-foreground
-                  prose-a:text-primary prose-a:font-semibold hover:prose-a:underline
-                  prose-table:block prose-table:overflow-x-auto prose-table:w-full prose-table:border-collapse prose-table:border prose-table:border-border prose-table:my-6 prose-table:rounded-lg
-                  prose-th:bg-muted prose-th:text-left prose-th:p-4 prose-th:border prose-th:border-border prose-th:text-foreground prose-th:font-semibold prose-th:whitespace-nowrap
-                  prose-td:p-4 prose-td:border prose-td:border-border prose-td:text-muted-foreground"
+                className="blog-content"
                 dangerouslySetInnerHTML={{ __html: processedHtml }}
               />
 
@@ -542,7 +558,7 @@ export default function BlogDetailClient({
                     className="w-[85vw] sm:w-[320px] lg:w-[360px] xl:w-[400px] shrink-0 snap-center group block bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/50 transition duration-300 border border-border flex flex-col justify-between"
                   >
                     <div className="relative aspect-[4/3] overflow-hidden bg-muted">
-                      <Image src={post.coverImage || "/images/backgorund.webp"} alt={post.title} fill sizes="(max-width: 768px) 100vw, 350px" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <Image src={post.coverImage || "/images/backgorund.webp"} alt={post.title} fill unoptimized sizes="(max-width: 768px) 100vw, 350px" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                       <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm">
                         {post.category}
                       </div>
