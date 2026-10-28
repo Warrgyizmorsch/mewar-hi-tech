@@ -94,6 +94,17 @@ export default function BlogDetailClient({
     // 6. Remove empty paragraphs
     processed = processed.replace(/<p>\s*(?:<br\s*\/?>)?\s*<\/p>/gi, "");
 
+    // 7. Remove any <hr> immediately following a heading
+    processed = processed.replace(/(<\/h[1-6]>)\s*<hr\s*\/?>/gi, "$1");
+
+    // 8. Clean internal linking: remove redundant <u> tags and inline blue styles that cause double/blue lines
+    processed = processed.replace(/<a\b([^>]*)>\s*<u\b[^>]*>(.*?)<\/u>\s*<\/a>/gi, "<a $1>$2</a>");
+    processed = processed.replace(/<u\b[^>]*>\s*<a\b([^>]*)>(.*?)<\/a>\s*<\/u>/gi, "<a $1>$2</a>");
+    processed = processed.replace(/<a\b([^>]*)>/gi, (match, attrs) => {
+      const cleanAttrs = attrs.replace(/\bstyle=["'][^"']*["']/gi, "").trim();
+      return `<a ${cleanAttrs}>`;
+    });
+
     return processed;
   };
 
@@ -142,11 +153,13 @@ export default function BlogDetailClient({
     });
 
     // 2. Also assign IDs to H3 for deep linking and scroll targets
+    let h3Counter = 0;
     resultHtml = resultHtml.replace(/<h3\b([^>]*)>(.*?)<\/h3>/gi, (match, attrs, innerText) => {
       if (attrs.includes("id=")) return match;
       const cleanText = innerText.replace(/<[^>]+>/g, "").trim();
       let baseId = cleanText.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "");
-      if (!baseId) baseId = `sub-${Math.random().toString(36).substring(2, 7)}`;
+      h3Counter++;
+      if (!baseId) baseId = `sub-${h3Counter}`;
       return `<h3 id="${baseId}" ${attrs}>${innerText}</h3>`;
     });
 
@@ -356,6 +369,7 @@ export default function BlogDetailClient({
               {/* Main Blog Body */}
               <div
                 className="blog-content"
+                suppressHydrationWarning
                 dangerouslySetInnerHTML={{ __html: processedHtml }}
               />
 
