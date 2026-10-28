@@ -338,6 +338,7 @@ export default function BlogsClient({
                             alt={featuredPost.title}
                             fill
                             priority
+                            unoptimized
                             sizes="(max-width: 1024px) 100vw, 60vw"
                             className="object-cover group-hover:scale-105 transition-transform duration-700"
                           />
@@ -428,6 +429,7 @@ export default function BlogsClient({
                                 src={post.coverImage}
                                 alt={post.title}
                                 fill
+                                unoptimized
                                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                 className="object-cover group-hover:scale-105 transition-transform duration-700"
                               />

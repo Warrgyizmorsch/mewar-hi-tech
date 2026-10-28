@@ -541,7 +541,7 @@ export default function BlogForm({ initialData = null }: { initialData?: any }) 
               </div>
               {formData.coverImage && (
                 <div className="mt-4 relative aspect-video rounded-lg overflow-hidden border border-border">
-                  <Image src={formData.coverImage} alt="Cover Preview" className="object-cover w-full h-full" loading="lazy" width={800} height={600} />
+                  <Image src={formData.coverImage} alt="Cover Preview" className="object-cover w-full h-full" loading="lazy" width={800} height={600} unoptimized />
                 </div>
               )}
             </div>
