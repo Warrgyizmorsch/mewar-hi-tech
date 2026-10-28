@@ -317,12 +317,17 @@
   font-size: 1.35rem;
   margin-top: 2.75rem;
   margin-bottom: 1.15rem;
-  padding-bottom: 0.65rem;
-  border-bottom: 2px solid hsl(var(--border));
   scroll-margin-top: 7rem;
   display: flex;
   align-items: center;
   gap: 0.65rem;
+}
+
+.blog-content h1 + hr,
+.blog-content h2 + hr,
+.blog-content h3 + hr,
+.blog-content h4 + hr {
+  display: none;
 }
 
 .blog-content h2::before {
@@ -416,15 +421,31 @@
 }
 
 .blog-content a {
-  color: hsl(var(--primary));
+  color: hsl(var(--primary)) !important;
   font-weight: 600;
   text-decoration: underline;
+  text-decoration-color: hsl(var(--primary)) !important;
   text-underline-offset: 3px;
   transition: opacity 0.2s;
 }
 
 .blog-content a:hover {
-  opacity: 0.8;
+  opacity: 0.85;
+}
+
+/* Eliminate nested double underlines, browser default blue line, and inner u/span colors */
+.blog-content a *,
+.blog-content a u,
+.blog-content a span,
+.blog-content a font,
+.blog-content a strong,
+.blog-content a b {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.blog-content u {
+  text-decoration-color: hsl(var(--primary)) !important;
 }
 
 .blog-content table {
