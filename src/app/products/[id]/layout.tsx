@@ -110,6 +110,24 @@ export default async function ProductLayout({
       }
     : null;
 
+  const faqSchema =
+    product?.faqs && product.faqs.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: product.faqs.map(
+            (faq: { question: string; answer: string }) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: faq.answer,
+              },
+            })
+          ),
+        }
+      : null;
+
   return (
     <>
       {productSchema && (
@@ -122,6 +140,12 @@ export default async function ProductLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
+      )}
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       )}
       {children}

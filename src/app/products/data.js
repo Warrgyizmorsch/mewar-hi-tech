@@ -9,12 +9,13 @@ export const PRODUCTS_DATA = [
     name: "Jaw Crusher",
     category: "Crushers",
     subCategory: "Jaw Crusher",
+    shortDescription: "A jaw crusher designed for high-capacity crushing delivers reliable performance and efficient material reduction in demanding mining and quarrying operations.",
     heroImage: "/images/jaw-crusher-hero.webp",
     mainImage: "/images/jaw-crusher.webp",
     model3d: "/3d-model-proudct-images/double_toggle_oil_jaw_crusher.glb",
     seoTitle: "Jaw Crusher Manufacturer for Mining & Quarries | Mewar Hi-Tech",
     seoDescription: "Buy a heavy-duty jaw crusher from Mewar Hi-Tech for efficient primary crushing in quarries and mines. Explore features and request a quote today.",
-    introText: "Heavy-duty industrial crushing and material handling system designed for high reduction ratios, maximum continuous uptime, and reliable operating efficiency in extreme quarry conditions.\n\nMewar Hi-Tech is a credible and trustworthy brand known for its high quality and great manufacturing. We also acquired experience over the years in the manufacture of jaw crusher, which is commonly used in mining, quarry and material handling. Mewar Hi-Tech's Jaw Crusher has a longer life as compared to the jaw plates of other crushers, in light of the fact that Mewar Hi-Tech's Jaw Crusher operates on the 'Crushing without Rubbing' concept. Also, automatic continuous spray lubrication is provided by coupling pump / vertical oil pump on the basis of toggle-pitman mechanism which enables the crusher to run safely.",
+    introText: "A high-performance jaw crusher engineered for efficient material reduction and continuous operation in demanding mining and quarrying conditions. Mewar Hi-Tech delivers durable construction and reliable crushing performance for heavy-duty applications.",
     features: [
       "The operating mechanism is totally enclosed for maximum life and minimum maintenance.",
       "Double toggle provides maximum leverage to long stroke eccentric.",
@@ -79,13 +80,90 @@ export const PRODUCTS_DATA = [
           ]
         }
       ]
-    }
+    },
+    faqs: [
+      {
+        question: "What is a jaw crusher used for?",
+        answer: "A jaw crusher is used to reduce large rocks and minerals into smaller pieces. It is commonly used for primary crushing in mining and quarrying and aggregate production."
+      },
+      {
+        question: "What is the working principle of a jaw crusher?",
+        answer: "A jaw crusher works by compressing material between a fixed jaw and a moving jaw. The material breaks into smaller pieces before leaving through the discharge opening."
+      },
+      {
+        question: "What factors affect jaw crusher capacity?",
+        answer: "Capacity depends on feed size and material hardness and jaw opening and discharge setting and operating conditions. The manufacturer's specifications provide the most relevant capacity information for each model."
+      },
+      {
+        question: "What are the main parts of a jaw crusher?",
+        answer: "Common components include the fixed jaw plate and movable jaw plate and toggle plate and eccentric shaft and bearings. The exact parts depend on the machine design."
+      },
+      {
+        question: "How do I choose the right jaw crusher machine?",
+        answer: "Consider the material type and maximum feed size and required production capacity and final output size. Also review maintenance requirements and spare parts availability and the manufacturer's technical support."
+      }
+    ],
+    articleContent: `<h2>Jaw Crusher Manufacturer for Mining and Quarrying</h2>
+<p>A high-performance jaw crusher is essential for reducing hard rock and minerals into manageable sizes for mining and quarrying operations. Mewar Hi-Tech offers crushing equipment solutions designed to support efficient material reduction and dependable performance in demanding industrial environments. Whether you need a jaw crusher machine for a quarry or a jaw crusher for mining, selecting the right equipment helps improve production efficiency and maintain consistent output.</p>
+
+<h3>Heavy-Duty Jaw Crusher Machine for Industrial Applications</h3>
+<p>A jaw crusher machine reduces large rocks into smaller pieces through compression. It is commonly installed at the primary crushing stage where raw material enters the processing plant. Its design makes it suitable for handling various types of hard and abrasive materials.</p>
+<p>Mewar Hi-Tech provides crushing equipment solutions for applications involving mining and quarrying and aggregate production. The appropriate machine depends on the feed material and required capacity and final product size.</p>
+<p>A properly selected jaw stone crusher can help maintain a steady material flow through the crushing plant. It can also work alongside feeders and conveyors and screening equipment to support an integrated crushing operation.</p>
+
+<h3>Jaw Crusher Working Principle</h3>
+<p>The jaw crusher working principle is based on compression between two crushing surfaces. One jaw remains fixed while the other moves to crush the material inside the chamber.</p>
+<p>Large rocks enter through the feed opening and move into the crushing chamber. The moving jaw applies pressure against the fixed jaw and breaks the material into smaller pieces. The crushed material then passes through the discharge opening.</p>
+<p>The final output size depends on the machine design and jaw plate condition and discharge setting and material characteristics. Correct feeding and suitable operating settings help maintain consistent crushing performance.</p>
+
+<h3>Types of Jaw Crusher and Their Applications</h3>
+<p>Different types of jaw crusher are available to meet different production requirements. The right choice depends on the application and material properties and expected output.</p>
+
+<h4>Single Toggle Jaw Crusher</h4>
+<p>A single toggle jaw crusher uses a toggle mechanism to move the crushing jaw. It is commonly selected for applications that require primary crushing of suitable rock and mineral materials. Its suitability depends on the required capacity and feed size and operating conditions.</p>
+
+<h4>Double Toggle Jaw Crusher</h4>
+<p>A double toggle jaw crusher uses two toggle plates within its mechanical arrangement. This configuration is used in certain heavy-duty crushing applications where machine design and operating requirements determine its suitability.</p>
+<p>Before selecting either type buyers should compare the technical specifications and maintenance requirements and expected production capacity.</p>
+
+<h3>Jaw Crusher for Mining and Quarrying</h3>
+<p>A jaw crusher for mining is used to reduce large pieces of ore and rock before further processing. Depending on the material and plant design the crushed output may move to a secondary crusher or screening system.</p>
+<p>Mining applications may involve iron ore and copper ore and manganese ore and other mineral-bearing materials. Hard and abrasive feed material requires suitable machine selection and appropriate wear-resistant components.</p>
+<p>In quarrying a jaw stone crusher can process suitable rocks such as granite and basalt and limestone. The crushed material may be used in road construction and concrete production and other infrastructure applications.</p>
+<p>Choosing the correct crusher helps maintain production flow. An undersized machine may restrict plant capacity while an unnecessarily large machine may increase the initial investment.</p>
+
+<h3>Understanding the Jaw Crusher Diagram and Parts</h3>
+<p>A jaw crusher diagram helps buyers and operators understand the machine's main components and how they work together. It is also useful when reviewing equipment specifications and planning maintenance.</p>
+<p>Common jaw crusher parts include the fixed jaw plate and movable jaw plate and toggle plate and eccentric shaft and bearings and flywheels. The exact arrangement depends on the crusher model.</p>
+<p>The crusher jaw plate is particularly important because it comes into direct contact with the material. Its design and condition influence crushing performance and wear life. Selecting compatible replacement plates helps maintain the intended operation of the machine.</p>
+<p>A toggle plate jaw crusher uses the toggle plate as part of its jaw movement mechanism. This component also plays a role in transmitting force through the mechanism. Operators should inspect wear components regularly and follow the manufacturer's maintenance instructions.</p>
+
+<h3>Jaw Crusher Capacity Calculation and Selection</h3>
+<p>Jaw crusher capacity depends on several factors including feed opening and material hardness and feed size and discharge setting and operating conditions. Actual production can vary between materials and machine configurations.</p>
+<p>A jaw crusher capacity calculation PDF may provide useful reference information when planning a crushing plant. However buyers should always use the manufacturer's specifications for the exact model rather than relying only on general calculations.</p>
+<p>Before choosing a machine determine the maximum feed size and target tonnes per hour and required output size. Also consider the downstream equipment and available installation space and operating schedule.</p>
+<p>These details help identify a jaw crusher machine that matches the production requirements without creating unnecessary capacity limitations.</p>
+
+<h3>Jaw Crusher Price and Investment Considerations</h3>
+<p>Jaw crusher price varies according to machine size and design and capacity and configuration. A small machine for a lower-capacity operation may have different costs from a heavy-duty crusher designed for demanding mining applications.</p>
+<p>The total investment may also include transportation and installation and electrical connections and feeders and conveyors and spare parts. Maintenance requirements and replacement jaw plates should also be considered when evaluating long-term operating costs.</p>
+<p>When comparing jaw crusher manufacturers buyers should review the machine specifications and warranty terms and availability of technical support. Comparing these factors provides a clearer picture of the equipment's suitability and overall value.</p>
+
+<h3>Choosing Reliable Jaw Crusher Manufacturers</h3>
+<p>Selecting among jaw crusher manufacturers requires more than comparing prices. Buyers should assess manufacturing quality and machine specifications and the suitability of the equipment for their material.</p>
+<p>Businesses searching for jaw crusher manufacturers in Ahmedabad may also consider suppliers from other industrial regions of India when evaluating available options. The important factors are whether the manufacturer can meet the project requirements and provide appropriate technical information and after-sales support.</p>
+<p>Mewar Hi-Tech offers crushing equipment solutions for industrial material processing. Sharing details about the feed material and capacity target and final product size helps the team understand the application and discuss suitable equipment options.</p>
+
+<h3>Contact Mewar Hi-Tech for Jaw Crusher Solutions</h3>
+<p>Selecting the right jaw crusher helps establish a reliable foundation for mining and quarrying operations. The machine should match the material characteristics and production targets while fitting the overall crushing plant design. Proper maintenance and suitable operating practices also contribute to consistent performance and longer service life.</p>
+<p>Mewar Hi-Tech provides crushing equipment solutions for businesses seeking dependable material processing machinery. Contact <a href="https://www.mewarhitech.com/">Mewar Hi-Tech</a> to discuss your application and explore jaw crusher options based on your feed material and capacity requirements.</p>`
   },
   {
     slug: "double-toggle-oil-jaw-crusher",
     name: "Double Toggle Oil Jaw Crusher",
     category: "Crushers",
     subCategory: "Jaw Crusher",
+    shortDescription: "Heavy-duty primary crushing for high-capacity ore and rock reduction.",
     heroImage: "/images/double-toggle-oil-jaw-crusher-hero.webp",
     mainImage: "/images/double-toggle-oil-jaw-crusher.webp",
     model3d: "/3d-model-proudct-images/double_toggle_oil_jaw_crusher.glb",
@@ -159,6 +237,7 @@ export const PRODUCTS_DATA = [
     name: "Single Toggle Grease Jaw Crusher",
     category: "Crushers",
     subCategory: "Jaw Crusher",
+    shortDescription: "High-efficiency primary jaw crusher engineered for lower power utilization.",
     heroImage: "/images/single-toggle-grease-jaw-crusher-hero.webp",
     mainImage: "/images/single-toggle-grease-jaw-crusher.webp",
     model3d: "/3d-model-proudct-images/single_toggle_greese_crusher.glb",
@@ -205,6 +284,7 @@ export const PRODUCTS_DATA = [
     name: "Double Toggle Grease Jaw Crusher",
     category: "Crushers",
     subCategory: "Jaw Crusher",
+    shortDescription: "Robust crushing units built for tough aggregate and mining applications.",
     heroImage: "/images/double-toggle-grease-jaw-crusher-hero.webp",
     mainImage: "/images/double-toggle-grease-jaw-crusher.webp",
     model3d: "/3d-model-proudct-images/double_toggle_grease_jaw_crusher.glb",
@@ -258,6 +338,7 @@ export const PRODUCTS_DATA = [
     name: "Cone Crusher",
     category: "Crushers",
     subCategory: "Cone Crusher",
+    shortDescription: "Precision secondary crushing engineered for consistent particle shape.",
     heroImage: "/images/cone-crusher-hero.webp",
     mainImage: "/images/cone-crusher.webp",
     model3d: "/3d-model-proudct-images/cone_crusher.glb",
@@ -310,6 +391,7 @@ export const PRODUCTS_DATA = [
     name: "Roll Crusher",
     category: "Crushers",
     subCategory: "Roll Crusher",
+    shortDescription: "Efficient compression crushing for medium-hard and soft materials.",
     heroImage: "/images/roll-crusher-hero.webp",
     mainImage: "/images/roll-crusher.webp",
     model3d: "/3d-model-proudct-images/roll_crusher.glb",
@@ -350,6 +432,7 @@ export const PRODUCTS_DATA = [
     name: "HSI Crusher (Horizontal Shaft Impactor)",
     category: "Impactors",
     subCategory: "Impactor",
+    shortDescription: "High-reduction secondary impactor delivering cubical aggregates with tight flakiness control.",
     heroImage: "/images/horizontal-shaft-impactor-hero.webp",
     mainImage: "/images/horizontal-shaft-impactor.webp",
     model3d: "/3d-model-proudct-images/horizontal_shaft.glb",
@@ -399,6 +482,7 @@ export const PRODUCTS_DATA = [
     name: "VSI Crusher (Vertical Shaft Impactor)",
     category: "Impactors",
     subCategory: "Impactor",
+    shortDescription: "Tertiary impact crusher for high-spec manufactured sand and aggregate shaping.",
     heroImage: "/images/vertical-shaft-impactor-hero.webp",
     mainImage: "/images/vertical-shaft-impactor.webp",
     model3d: "/3d-model-proudct-images/verticle_shaft_impactor.glb",
@@ -440,6 +524,7 @@ export const PRODUCTS_DATA = [
     name: "SMM Crusher (Sand Making Machine)",
     category: "Impactors",
     subCategory: "Impactor",
+    shortDescription: "Advanced sand maker producing high-grade concrete sand from crushed rock.",
     heroImage: "/images/sand-making-machine-hero.webp",
     mainImage: "/images/sand-making-machine.webp",
     model3d: "/3d-model-proudct-images/sand_making_machine.glb",
@@ -486,6 +571,7 @@ export const PRODUCTS_DATA = [
     name: "Vibrating Screen",
     category: "Screens",
     subCategory: "Screen",
+    shortDescription: "High-frequency screening for precise material grading and separation.",
     heroImage: "/images/vibrating-screen-hero.webp",
     mainImage: "/images/vibrating-screen.webp",
     model3d: "/3d-model-proudct-images/vibrating_screen.glb",
@@ -544,6 +630,7 @@ export const PRODUCTS_DATA = [
     name: "Sand Washer",
     category: "Screens",
     subCategory: "Screen",
+    shortDescription: "Advanced washing systems delivering clean, high-quality manufactured sand.",
     heroImage: "/images/sand-washer-hero.webp",
     mainImage: "/images/sand-washer.webp",
     model3d: "/3d-model-proudct-images/sand_washer.glb",
@@ -592,6 +679,7 @@ export const PRODUCTS_DATA = [
     name: "Belt Conveyor",
     category: "Screens",
     subCategory: "Screen",
+    shortDescription: "Durable belt conveyors engineered for continuous material transport.",
     heroImage: "/images/belt-conveyor-hero.webp",
     mainImage: "/images/belt-conveyor.webp",
     model3d: "/3d-model-proudct-images/belt_conveyor.glb",
@@ -626,6 +714,7 @@ export const PRODUCTS_DATA = [
     name: "Vibro Feeder",
     category: "Feeders",
     subCategory: "Feeder",
+    shortDescription: "Controlled, uniform feeding of bulk material into crushing circuits.",
     heroImage: "/images/vibro-feeder-hero.webp",
     mainImage: "/images/vibro-feeder.webp",
     model3d: "/3d-model-proudct-images/vibro_feeder.glb",
@@ -677,6 +766,7 @@ export const PRODUCTS_DATA = [
     name: "Single Shaft Feeders",
     category: "Feeders",
     subCategory: "Feeder",
+    shortDescription: "Reliable grizzly feeding and scalping in crushing and screening plants.",
     heroImage: "/images/single-shaft-feeders-hero.webp",
     mainImage: "/images/single-shaft-feeders.webp",
     model3d: "/3d-model-proudct-images/single_shaft_feed.glb",
