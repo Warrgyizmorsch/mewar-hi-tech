@@ -227,9 +227,9 @@ const Header: React.FC = () => {
                               <ChevronRight size={14} className="opacity-60 transition-transform group-hover/cat:translate-x-1" />
                             </Link>
                           ) : (
-                            <h4 className="text-[14px] font-bold uppercase tracking-wider text-black/80">
+                            <span className="block text-[14px] font-bold uppercase tracking-wider text-black/80">
                               {group.label}
-                            </h4>
+                            </span>
                           )}
                           <div className="flex flex-col gap-2.5">
                             {group.children?.map((sub) => (
@@ -263,12 +263,12 @@ const Header: React.FC = () => {
                               {child.label}
                             </Link>
                           ) : (
-                            <h4
+                            <span
                               key={child.label}
-                              className="text-[12px] font-bold uppercase tracking-wider mt-3 mb-1 border-t border-black/10 pt-4 first:mt-0 first:border-0 first:pt-0 text-black/80"
+                              className="block text-[12px] font-bold uppercase tracking-wider mt-3 mb-1 border-t border-black/10 pt-4 first:mt-0 first:border-0 first:pt-0 text-black/80"
                             >
                               {child.label}
-                            </h4>
+                            </span>
                           )
                         ) : (
                           <Link

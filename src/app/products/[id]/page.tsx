@@ -331,12 +331,6 @@ export default function ProductDetailPage({ params }: PageProps) {
                 <span className="text-primary font-bold">{product.name}</span>
               </div>
 
-              {/* Sub-Category Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/25 text-primary text-[10px] sm:text-[11px] font-bold uppercase tracking-widest shadow-sm">
-                <Sparkles size={13} />
-                <span>{product.category} &bull; {product.subCategory}</span>
-              </div>
-
               {/* Dynamic Styled Product Title */}
               <h1 className={`common-heading leading-[1.1] tracking-tight font-bold ${
                 isLongTitle 
@@ -348,14 +342,6 @@ export default function ProductDetailPage({ params }: PageProps) {
                   <span className="text-primary block mt-2 sm:mt-3 whitespace-normal xl:whitespace-nowrap">{secondHalf}</span>
                 )}
               </h1>
-
-              {/* Tagline & Accent Divider */}
-              <div className="flex items-center gap-3 pt-1">
-                <div className="w-10 h-[3px] bg-primary rounded-full shrink-0" />
-                <p className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-primary">
-                  Engineered for Maximum Tonnage &bull; Built to Last
-                </p>
-              </div>
 
               {/* Intro Text Description */}
               <p className="text-xs sm:text-sm text-muted-foreground dark:text-gray-300 font-medium leading-relaxed max-w-xl">
@@ -553,12 +539,6 @@ export default function ProductDetailPage({ params }: PageProps) {
                 className="lg:col-span-7 space-y-6 text-center lg:text-left"
               >
                 <div>
-                  <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
-                    <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                    <span className="text-primary eyebrow">
-                      EQUIPMENT NARRATIVE &bull; OVERVIEW
-                    </span>
-                  </div>
                   <h2 className="font-sans text-xl sm:text-3xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white leading-tight">
                     ENGINEERED FOR PRECISION, CONTINUOUS TONNAGE &amp; <span className="text-primary inline-block">HEAVY DUTY LIFE</span>
                   </h2>
@@ -681,12 +661,6 @@ export default function ProductDetailPage({ params }: PageProps) {
           <Container className="space-y-12">
             
             <div className="max-w-2xl space-y-3 text-center md:text-left mx-auto md:mx-0">
-              <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
-                <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                <span className="text-primary eyebrow">
-                  TARGET OPERATIONS &bull; APPLICATIONS
-                </span>
-              </div>
               <h2 className="font-sans text-xl sm:text-3xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
                 VERSATILE INDUSTRIAL OPERATING <span className="text-primary inline-block">ENVIRONMENTS</span>
               </h2>
@@ -773,12 +747,6 @@ export default function ProductDetailPage({ params }: PageProps) {
             <Container className="space-y-8 lg:space-y-12">
               
               <div className={`space-y-2 ${product.video ? "max-w-3xl text-center md:text-left mx-auto md:mx-0" : "max-w-3xl text-center mx-auto"}`}>
-                <div className={`flex items-center gap-3 mb-2 ${product.video ? "justify-center md:justify-start" : "justify-center"}`}>
-                  <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                  <span className="text-primary eyebrow">
-                    VISUAL MEDIA &bull; TECHNICAL ASSETS
-                  </span>
-                </div>
                 <h2 className="font-sans text-xl sm:text-3xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
                   ON-SITE INSPECTION &amp;{" "}
                   <span className="text-primary inline-block">
@@ -893,12 +861,6 @@ export default function ProductDetailPage({ params }: PageProps) {
             <Container className="space-y-10">
               
               <div className="max-w-3xl space-y-2 text-center md:text-left mx-auto md:mx-0">
-                <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
-                  <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                  <span className="text-primary eyebrow">
-                    ENGINEERING MATRIX &bull; TECHNICAL DATA
-                  </span>
-                </div>
                 <h2 className="font-sans text-xl sm:text-3xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
                   MACHINE SPECIFICATIONS &amp; <span className="text-primary inline-block">TONNAGE CHART</span>
                 </h2>
@@ -981,12 +943,6 @@ export default function ProductDetailPage({ params }: PageProps) {
           <Container className="space-y-10">
             
             <div className="max-w-2xl space-y-2 text-center md:text-left mx-auto md:mx-0">
-              <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
-                <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                <span className="text-primary eyebrow">
-                  TECHNICAL DOCUMENTATION
-                </span>
-              </div>
               <h2 className="font-sans text-xl sm:text-3xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
                 DOWNLOAD PRODUCT BROCHURES &amp; <span className="text-primary inline-block">LAYOUTS</span>
               </h2>
@@ -1078,12 +1034,6 @@ export default function ProductDetailPage({ params }: PageProps) {
               {/* Info Column */}
               <div className="lg:col-span-5 flex flex-col justify-between h-full space-y-6 text-center lg:text-left">
                 <div className="space-y-3 sm:space-y-4">
-                  <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
-                    <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                    <span className="text-primary eyebrow">
-                      DIRECT FACTORY QUOTE REQUEST
-                    </span>
-                  </div>
                   <h2 className="font-sans text-xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white leading-tight">
                     REQUEST PRICING &amp; CUSTOM FLOWSHEET <span className="text-primary inline-block">DESIGN</span>
                   </h2>
@@ -1150,9 +1100,6 @@ export default function ProductDetailPage({ params }: PageProps) {
                   <div className="absolute top-0 right-0 w-48 h-48 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
                   <div>
-                    <span className="text-primary eyebrow mb-1">
-                      Technical Enquiry
-                    </span>
                     <h3 className="common-heading text-lg sm:text-2xl text-foreground font-bold">
                       Equipment Spec &amp; Price Request
                     </h3>
@@ -1265,12 +1212,6 @@ export default function ProductDetailPage({ params }: PageProps) {
               
               <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 text-center sm:text-left">
                 <div className="space-y-2">
-                  <div className="flex items-center justify-center sm:justify-start gap-3 mb-2">
-                    <div className="hidden sm:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                    <span className="text-primary eyebrow">
-                      PRODUCT PORTFOLIO
-                    </span>
-                  </div>
                   <h2 className="font-sans text-xl sm:text-3xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
                     RELATED HEAVY <span className="text-primary inline-block">EQUIPMENT</span>
                   </h2>
