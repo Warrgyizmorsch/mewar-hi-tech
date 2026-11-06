@@ -43,7 +43,7 @@ export default function FeedersCategoryPage() {
       categoryName="Feeders"
       title="Heavy-Duty Vibrating & Grizzly Feeders"
       subtitle="Engineered for smooth, high-tonnage primary dump feeding, aggressive fines scalping, and reliable hopper surge protection in crushing plants."
-      description="Mewar Hi-Tech (KINGSON) Vibro Feeders and Single Shaft Grizzly Feeders deliver uniform, controlled material flow into primary and secondary crushers. By bypassing undersized rock and natural dirt through tapered grizzly bars, our feeders reduce wear on downstream crushers and increase overall crushing plant throughput by up to 25%."
+      description="Mewar Hi-Tech Vibro Feeders and Single Shaft Grizzly Feeders deliver uniform, controlled material flow into primary and secondary crushers. By bypassing undersized rock and natural dirt through tapered grizzly bars, our feeders reduce wear on downstream crushers and increase overall crushing plant throughput by up to 25%."
       heroImage="/images/vibro-feeder-hero.webp"
       stats={[
         { label: "Feed Capacities", value: "50 - 600 TPH" },

@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  compress: true,
+  poweredByHeader: false,
   experimental: {
     agentUpgrade: "security",
   },
@@ -81,6 +83,15 @@ const nextConfig = {
       },
       {
         source: '/3dmodel/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/uploads/:path*',
         headers: [
           {
             key: 'Cache-Control',

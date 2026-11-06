@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import connectToDatabase from "@/lib/mongodb";
 import Blog from "@/models/Blog";
 import { isAdminAuthorized } from "@/lib/auth";
+import { getCache, setCache, invalidateCache } from "@/lib/cache";
 
 export const dynamic = "force-dynamic";
 
@@ -13,6 +14,24 @@ export async function GET(
   { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
+    const { slug } = await params;
+    const decodedSlug = decodeURIComponent(slug);
+
+    const cacheKey = `blog_detail_${decodedSlug}`;
+    const cachedBlog = getCache<any>(cacheKey);
+
+    if (cachedBlog) {
+      return NextResponse.json(
+        { blog: cachedBlog },
+        {
+          headers: {
+            "Cache-Control": "public, s-maxage=60, stale-while-revalidate=120",
+            "X-Cache": "HIT",
+          },
+        }
+      );
+    }
+
     const conn = await connectToDatabase();
     if (!conn) {
       return NextResponse.json(
@@ -21,8 +40,6 @@ export async function GET(
       );
     }
 
-    const { slug } = await params;
-    const decodedSlug = decodeURIComponent(slug);
     const isObjectId = mongoose.Types.ObjectId.isValid(decodedSlug);
     const query: any = isObjectId
       ? { $or: [{ _id: decodedSlug }, { slug: decodedSlug }], published: true }
@@ -37,11 +54,14 @@ export async function GET(
       );
     }
 
+    setCache(cacheKey, blog, 120);
+
     return NextResponse.json(
       { blog },
       {
         headers: {
           "Cache-Control": "public, s-maxage=60, stale-while-revalidate=120",
+          "X-Cache": "MISS",
         },
       }
     );
@@ -110,6 +130,11 @@ export async function PUT(
       );
     }
 
+    invalidateCache("blogs");
+    invalidateCache("blog_categories");
+    invalidateCache(`blog_detail_${decodedSlug}`);
+    if (blog.slug) invalidateCache(`blog_detail_${blog.slug}`);
+
     try {
       revalidatePath("/blogs");
       revalidatePath(`/blogs/${decodedSlug}`);
@@ -167,6 +192,11 @@ export async function DELETE(
         { status: 404 }
       );
     }
+
+    invalidateCache("blogs");
+    invalidateCache("blog_categories");
+    invalidateCache(`blog_detail_${decodedSlug}`);
+    if (blog.slug) invalidateCache(`blog_detail_${blog.slug}`);
 
     try {
       revalidatePath("/blogs");

@@ -41,6 +41,9 @@ const CareerSchema: Schema<ICareer> = new Schema({
   },
 });
 
+// Index for ultra-fast sorting and dashboard queries
+CareerSchema.index({ createdAt: -1 });
+
 const Career: Model<ICareer> =
   mongoose.models.Career || mongoose.model<ICareer>("Career", CareerSchema);
 

@@ -26,12 +26,13 @@ import PageHero from "@/components/layout/PageHero";
 import BlobButton from "@/components/ui/BlobButton";
 import StatsCounter from "@/components/shared/StatsCounter";
 import CTASection from "@/components/shared/CTASection";
+import EnquiryModal from "@/components/ui/EnquiryModal";
 
 const SERVICE_STAGES = [
   {
     id: "pre-sales",
     step: "01",
-    title: "Kingson Pre-Sales Consultancy",
+    title: "Mewar Hi-Tech Pre-Sales Consultancy",
     subtitle: "Rational Equipment Selection & Custom Plant Design",
     icon: Compass,
     description:
@@ -97,7 +98,7 @@ const SERVICE_TAB_CONTENT = [
     badge: "Parts Logistics",
     tagline: "100% High-Manganese Castings & Precision Components",
     description:
-      "Maximize equipment longevity and crushing efficiency with original Kingson spare parts. Manufactured in our in-house alloy casting foundry, our jaw plates, cone liners, blow bars, and shafts undergo rigorous metallurgy checks.",
+      "Maximize equipment longevity and crushing efficiency with original Mewar Hi-Tech spare parts. Manufactured in our in-house alloy casting foundry, our jaw plates, cone liners, blow bars, and shafts undergo rigorous metallurgy checks.",
     features: [
       "18% & 22% Mn Jaw Plates & Heavy Duty Cheek Plates",
       "Manganese Cone Crusher Mantles & Concaves",
@@ -149,6 +150,7 @@ const ASSURANCES = [
 export default function ServicesPage() {
   const [activeTab, setActiveTab] = useState("after-sales");
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const [spareModalOpen, setSpareModalOpen] = useState(false);
 
   // Form State
   const [formName, setFormName] = useState("");
@@ -253,7 +255,7 @@ export default function ServicesPage() {
                 <div className="relative rounded-xl overflow-hidden border border-border bg-card shadow-2xl group">
                   <Image
                     src="/images/after-sales-1.jpg"
-                    alt="Kingson After Sales Support"
+                    alt="Mewar Hi-Tech After Sales Support"
                     width={800}
                     height={600}
                     className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500"
@@ -404,8 +406,20 @@ export default function ServicesPage() {
                     </p>
 
                     <div className="flex flex-wrap gap-4 pt-2">
+                      {currentTab.id === "spare-parts" && (
+                        <BlobButton
+                          onClick={() => setSpareModalOpen(true)}
+                          variant="primary"
+                          className="!py-3 !px-6 text-xs font-bold uppercase tracking-wider cursor-pointer shadow-md shadow-primary/20"
+                        >
+                          <span className="flex items-center gap-2">
+                            <Wrench size={14} />
+                            <span>Enquire Spare Parts</span>
+                          </span>
+                        </BlobButton>
+                      )}
                       <Link href={`/services/${currentTab.id}`}>
-                        <BlobButton variant="primary" className="!py-3 !px-6 text-xs font-bold uppercase tracking-wider">
+                        <BlobButton variant={currentTab.id === "spare-parts" ? "secondary" : "primary"} className="!py-3 !px-6 text-xs font-bold uppercase tracking-wider">
                           <span className="flex items-center gap-2">
                             <span>View Dedicated Page</span>
                             <ArrowRight size={14} />
@@ -633,6 +647,14 @@ export default function ServicesPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Enquiry Modal */}
+      <EnquiryModal
+        isOpen={spareModalOpen}
+        onClose={() => setSpareModalOpen(false)}
+        defaultEnquiryType="SparePart"
+        defaultMachine="Crusher Spare Parts"
+      />
 
       <Footer />
     </div>

@@ -9,6 +9,7 @@ import PageHero from "@/components/layout/PageHero";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, Eye, LayoutGrid } from "lucide-react";
 import Container from "@/components/ui/Container";
+import SparePartsBanner from "@/components/common/SparePartsBanner";
 
 // Generate project images lists matching local assets
 const STATIONERY_IMAGES = Array.from(
@@ -162,6 +163,13 @@ export default function ProjectDetailPage({ params }: PageProps) {
             </div>
           </Container>
         </section>
+
+        {/* Spare Parts Enquiry Section for Plant Installation */}
+        <SparePartsBanner
+          title={`NEED SPARE PARTS FOR ${project.title.toUpperCase()}?`}
+          subtitle="We supply OEM replacement jaw plates, mantles, blow bars, tension springs, conveyor belts, and screen meshes matching your plant configuration."
+          defaultMachine={project.title}
+        />
       </main>
 
       {/* Interactive Lightbox / Modal Carousel */}

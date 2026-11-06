@@ -14,6 +14,7 @@ import {
   ShieldCheck,
   Zap,
   ChevronRight,
+  ChevronDown,
   Flame,
   Wrench,
   TrendingUp,
@@ -57,6 +58,7 @@ export default function ProductDetailPage({ params }: PageProps) {
 
   // Form State
   const [submitting, setSubmitting] = useState(false);
+  const [enquiryType, setEnquiryType] = useState<"Product" | "SparePart" | "Both">("Product");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -70,6 +72,12 @@ export default function ProductDetailPage({ params }: PageProps) {
 
   // Active Main Image in Gallery Section
   const [selectedGalleryIndex, setSelectedGalleryIndex] = useState(0);
+
+  // FAQ Accordion State
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+  // Article Read More State
+  const [isArticleExpanded, setIsArticleExpanded] = useState(false);
 
   const featuresCarouselRef = useRef<HTMLDivElement>(null);
   const applicationsCarouselRef = useRef<HTMLDivElement>(null);
@@ -127,7 +135,7 @@ export default function ProductDetailPage({ params }: PageProps) {
         },
         body: JSON.stringify({
           ...formData,
-          type: "Product",
+          type: enquiryType,
           productName: product?.name,
         }),
       });
@@ -222,8 +230,10 @@ export default function ProductDetailPage({ params }: PageProps) {
     (item) => item.slug !== product.slug && (item.category === product.category || item.subCategory === product.subCategory)
   ).slice(0, 3);
 
-  // Gallery items including mainImage if present
-  const allImages = [product.mainImage, ...(product.gallery || [])].filter(Boolean) as string[];
+  // Gallery items including mainImage if present (deduplicated)
+  const allImages = Array.from(
+    new Set([product.mainImage, ...(product.gallery || [])].filter(Boolean))
+  ) as string[];
 
   // Quick info metrics extracted dynamically from specs or defaults
   const quickMetrics = [
@@ -329,12 +339,6 @@ export default function ProductDetailPage({ params }: PageProps) {
                 <span className="text-primary font-bold">{product.name}</span>
               </div>
 
-              {/* Sub-Category Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/25 text-primary text-[10px] sm:text-[11px] font-bold uppercase tracking-widest shadow-sm">
-                <Sparkles size={13} />
-                <span>{product.category} &bull; {product.subCategory}</span>
-              </div>
-
               {/* Dynamic Styled Product Title */}
               <h1 className={`common-heading leading-[1.1] tracking-tight font-bold ${
                 isLongTitle 
@@ -347,17 +351,9 @@ export default function ProductDetailPage({ params }: PageProps) {
                 )}
               </h1>
 
-              {/* Tagline & Accent Divider */}
-              <div className="flex items-center gap-3 pt-1">
-                <div className="w-10 h-[3px] bg-primary rounded-full shrink-0" />
-                <p className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-primary">
-                  Engineered for Maximum Tonnage &bull; Built to Last
-                </p>
-              </div>
-
               {/* Intro Text Description */}
               <p className="text-xs sm:text-sm text-muted-foreground dark:text-gray-300 font-medium leading-relaxed max-w-xl">
-                Heavy-duty industrial crushing and material handling system designed for high reduction ratios, maximum continuous uptime, and reliable operating efficiency in extreme quarry conditions.
+                {product.shortDescription}
               </p>
 
               {/* Quick Specifications Tags */}
@@ -551,18 +547,12 @@ export default function ProductDetailPage({ params }: PageProps) {
                 className="lg:col-span-7 space-y-6 text-center lg:text-left"
               >
                 <div>
-                  <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
-                    <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                    <span className="text-primary eyebrow">
-                      EQUIPMENT NARRATIVE &bull; OVERVIEW
-                    </span>
-                  </div>
                   <h2 className="font-sans text-xl sm:text-3xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white leading-tight">
                     ENGINEERED FOR PRECISION, CONTINUOUS TONNAGE &amp; <span className="text-primary inline-block">HEAVY DUTY LIFE</span>
                   </h2>
                 </div>
 
-                <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed font-semibold">
+                <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed font-semibold whitespace-pre-line">
                   {product.introText}
                 </p>
 
@@ -679,12 +669,6 @@ export default function ProductDetailPage({ params }: PageProps) {
           <Container className="space-y-12">
             
             <div className="max-w-2xl space-y-3 text-center md:text-left mx-auto md:mx-0">
-              <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
-                <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                <span className="text-primary eyebrow">
-                  TARGET OPERATIONS &bull; APPLICATIONS
-                </span>
-              </div>
               <h2 className="font-sans text-xl sm:text-3xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
                 VERSATILE INDUSTRIAL OPERATING <span className="text-primary inline-block">ENVIRONMENTS</span>
               </h2>
@@ -770,15 +754,12 @@ export default function ProductDetailPage({ params }: PageProps) {
           <section className="py-10 lg:py-14 bg-background border-b border-border">
             <Container className="space-y-8 lg:space-y-12">
               
-              <div className="max-w-3xl space-y-2 text-center md:text-left mx-auto md:mx-0">
-                <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
-                  <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                  <span className="text-primary eyebrow">
-                    VISUAL MEDIA &bull; TECHNICAL ASSETS
-                  </span>
-                </div>
+              <div className={`space-y-2 ${product.video ? "max-w-3xl text-center md:text-left mx-auto md:mx-0" : "max-w-3xl text-center mx-auto"}`}>
                 <h2 className="font-sans text-xl sm:text-3xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
-                  ON-SITE INSPECTION &amp; <span className="text-primary inline-block">WORKING VIDEO</span>
+                  ON-SITE INSPECTION &amp;{" "}
+                  <span className="text-primary inline-block">
+                    {product.video ? "WORKING VIDEO" : "MACHINE GALLERY"}
+                  </span>
                 </h2>
               </div>
 
@@ -786,7 +767,7 @@ export default function ProductDetailPage({ params }: PageProps) {
                 
                 {/* Left: Gallery & Lightbox Trigger */}
                 {allImages.length > 0 && (
-                  <div className={`${product.video ? "lg:col-span-6" : "lg:col-span-12"} space-y-6 text-left`}>
+                  <div className={`${product.video ? "lg:col-span-6" : "lg:col-span-12 max-w-3xl mx-auto w-full"} space-y-6 text-left`}>
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2 text-[10px] sm:text-xs font-bold uppercase text-foreground">
@@ -801,18 +782,18 @@ export default function ProductDetailPage({ params }: PageProps) {
                       {/* Main Selected Image Preview */}
                       <div 
                         onClick={() => setLightboxOpen(true)}
-                        className="relative rounded-xl overflow-hidden border border-border shadow-xl bg-card aspect-[4/3] sm:aspect-[16/10] cursor-pointer group flex items-center justify-center"
+                        className={`relative rounded-xl overflow-hidden border border-border shadow-xl bg-card cursor-pointer group flex items-center justify-center ${
+                          product.video
+                            ? "aspect-[4/3] sm:aspect-[16/10]"
+                            : "aspect-[4/3] sm:aspect-[16/10] max-h-[440px] sm:max-h-[480px]"
+                        }`}
                       >
                         <Image
                           src={allImages[selectedGalleryIndex] || allImages[0]}
-                          alt={`Kingson ${product.name} - Heavy duty crushing and aggregate processing equipment (Image ${selectedGalleryIndex + 1})`}
+                          alt={`Mewar Hi-Tech ${product.name} - Heavy duty crushing and aggregate processing equipment (Image ${selectedGalleryIndex + 1})`}
                           fill
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                          className={`transition-transform duration-500 group-hover:scale-105 ${
-                            (allImages[selectedGalleryIndex] || allImages[0]).toLowerCase().includes(".png")
-                              ? "object-contain p-6"
-                              : "object-cover"
-                          }`}
+                          sizes={product.video ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 768px"}
+                          className="object-contain p-4 sm:p-6 transition-transform duration-500 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                           <div className="px-4 py-2 rounded-full bg-black/70 backdrop-blur-md text-white text-xs font-bold flex items-center gap-2">
@@ -825,12 +806,12 @@ export default function ProductDetailPage({ params }: PageProps) {
 
                     {/* Thumbnail Selector Strip */}
                     {allImages.length > 1 && (
-                      <div className="flex items-center gap-3 overflow-x-auto pb-1 pt-1">
+                      <div className={`flex items-center gap-3 overflow-x-auto pb-1 pt-1 ${product.video ? "" : "justify-center"}`}>
                         {allImages.map((imgUrl, i) => (
                           <button
                             key={i}
                             onClick={() => setSelectedGalleryIndex(i)}
-                            className={`relative w-20 h-14 sm:w-24 sm:h-16 rounded-xl overflow-hidden border-2 shrink-0 transition ${
+                            className={`relative w-20 h-14 sm:w-24 sm:h-16 rounded-xl overflow-hidden border-2 shrink-0 transition bg-card ${
                               selectedGalleryIndex === i
                                 ? "border-primary shadow-lg ring-2 ring-primary/40 opacity-100"
                                 : "border-border/60 opacity-60 hover:opacity-100"
@@ -838,10 +819,10 @@ export default function ProductDetailPage({ params }: PageProps) {
                           >
                             <Image
                               src={imgUrl}
-                              alt={`Kingson ${product.name} detail view ${i + 1}`}
+                              alt={`Mewar Hi-Tech ${product.name} detail view ${i + 1}`}
                               fill
                               sizes="96px"
-                              className="object-cover"
+                              className="object-contain p-1"
                             />
                           </button>
                         ))}
@@ -888,12 +869,6 @@ export default function ProductDetailPage({ params }: PageProps) {
             <Container className="space-y-10">
               
               <div className="max-w-3xl space-y-2 text-center md:text-left mx-auto md:mx-0">
-                <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
-                  <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                  <span className="text-primary eyebrow">
-                    ENGINEERING MATRIX &bull; TECHNICAL DATA
-                  </span>
-                </div>
                 <h2 className="font-sans text-xl sm:text-3xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
                   MACHINE SPECIFICATIONS &amp; <span className="text-primary inline-block">TONNAGE CHART</span>
                 </h2>
@@ -976,12 +951,6 @@ export default function ProductDetailPage({ params }: PageProps) {
           <Container className="space-y-10">
             
             <div className="max-w-2xl space-y-2 text-center md:text-left mx-auto md:mx-0">
-              <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
-                <div className="hidden md:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                <span className="text-primary eyebrow">
-                  TECHNICAL DOCUMENTATION
-                </span>
-              </div>
               <h2 className="font-sans text-xl sm:text-3xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
                 DOWNLOAD PRODUCT BROCHURES &amp; <span className="text-primary inline-block">LAYOUTS</span>
               </h2>
@@ -1073,12 +1042,6 @@ export default function ProductDetailPage({ params }: PageProps) {
               {/* Info Column */}
               <div className="lg:col-span-5 flex flex-col justify-between h-full space-y-6 text-center lg:text-left">
                 <div className="space-y-3 sm:space-y-4">
-                  <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
-                    <div className="hidden lg:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                    <span className="text-primary eyebrow">
-                      DIRECT FACTORY QUOTE REQUEST
-                    </span>
-                  </div>
                   <h2 className="font-sans text-xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white leading-tight">
                     REQUEST PRICING &amp; CUSTOM FLOWSHEET <span className="text-primary inline-block">DESIGN</span>
                   </h2>
@@ -1145,15 +1108,74 @@ export default function ProductDetailPage({ params }: PageProps) {
                   <div className="absolute top-0 right-0 w-48 h-48 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
                   <div>
-                    <span className="text-primary eyebrow mb-1">
-                      Technical Enquiry
-                    </span>
                     <h3 className="common-heading text-lg sm:text-2xl text-foreground font-bold">
                       Equipment Spec &amp; Price Request
                     </h3>
                   </div>
 
                   <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
+                    {/* Enquiry Type Selector */}
+                    <div className="space-y-1.5">
+                      <label className="block text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+                        I am enquiring for *
+                      </label>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <label
+                          className={`flex items-center gap-2 p-2.5 rounded-xl border cursor-pointer transition text-xs font-bold ${
+                            enquiryType === "Product"
+                              ? "border-primary bg-primary/15 text-primary shadow-xs"
+                              : "border-border bg-muted/40 text-foreground hover:border-primary/50"
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="productEnquiryType"
+                            value="Product"
+                            checked={enquiryType === "Product"}
+                            onChange={() => setEnquiryType("Product")}
+                            className="w-4 h-4 accent-[#F5A623] cursor-pointer"
+                          />
+                          <span>Enquiry for Product</span>
+                        </label>
+
+                        <label
+                          className={`flex items-center gap-2 p-2.5 rounded-xl border cursor-pointer transition text-xs font-bold ${
+                            enquiryType === "SparePart"
+                              ? "border-primary bg-primary/15 text-primary shadow-xs"
+                              : "border-border bg-muted/40 text-foreground hover:border-primary/50"
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="productEnquiryType"
+                            value="SparePart"
+                            checked={enquiryType === "SparePart"}
+                            onChange={() => setEnquiryType("SparePart")}
+                            className="w-4 h-4 accent-[#F5A623] cursor-pointer"
+                          />
+                          <span>Enquiry for Spare Parts</span>
+                        </label>
+
+                        <label
+                          className={`flex items-center gap-2 p-2.5 rounded-xl border cursor-pointer transition text-xs font-bold ${
+                            enquiryType === "Both"
+                              ? "border-primary bg-primary/15 text-primary shadow-xs"
+                              : "border-border bg-muted/40 text-foreground hover:border-primary/50"
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="productEnquiryType"
+                            value="Both"
+                            checked={enquiryType === "Both"}
+                            onChange={() => setEnquiryType("Both")}
+                            className="w-4 h-4 accent-[#F5A623] cursor-pointer"
+                          />
+                          <span>Both (Product &amp; Parts)</span>
+                        </label>
+                      </div>
+                    </div>
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {/* Name */}
                       <div>
@@ -1260,12 +1282,6 @@ export default function ProductDetailPage({ params }: PageProps) {
               
               <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 text-center sm:text-left">
                 <div className="space-y-2">
-                  <div className="flex items-center justify-center sm:justify-start gap-3 mb-2">
-                    <div className="hidden sm:block w-8 h-[2.5px] bg-primary shrink-0 rounded-full" />
-                    <span className="text-primary eyebrow">
-                      PRODUCT PORTFOLIO
-                    </span>
-                  </div>
                   <h2 className="font-sans text-xl sm:text-3xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
                     RELATED HEAVY <span className="text-primary inline-block">EQUIPMENT</span>
                   </h2>
@@ -1332,6 +1348,110 @@ export default function ProductDetailPage({ params }: PageProps) {
                 ))}
               </div>
 
+            </Container>
+          </section>
+        )}
+
+        {/* ── 10. FREQUENTLY ASKED QUESTIONS (FAQ) ── */}
+        {product.faqs && product.faqs.length > 0 && (
+          <section className="py-12 lg:py-16 bg-background border-b border-border">
+            <Container className="w-full space-y-8 lg:space-y-10">
+              <div className="max-w-3xl space-y-2 text-center mx-auto">
+                <h2 className="font-sans text-xl sm:text-3xl lg:text-5xl font-bold tracking-tight uppercase text-[#0A1A3B] dark:text-white">
+                  FREQUENTLY ASKED <span className="text-primary inline-block">QUESTIONS</span>
+                </h2>
+                <p className="text-xs sm:text-sm text-muted-foreground font-semibold">
+                  Common questions regarding equipment performance, working principles, and sizing.
+                </p>
+              </div>
+
+              <div className="max-w-4xl mx-auto w-full space-y-3">
+                {product.faqs.map((faq: { question: string; answer: string }, idx: number) => {
+                  const isOpen = openFaqIndex === idx;
+                  return (
+                    <div
+                      key={idx}
+                      className={`w-full rounded-xl border transition-colors duration-200 overflow-hidden ${
+                        isOpen
+                          ? "bg-card border-primary/40 shadow-sm"
+                          : "bg-card border-border/80 hover:border-primary/30"
+                      }`}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
+                        className="w-full flex items-center justify-between p-4 sm:p-5 text-left gap-4 cursor-pointer"
+                      >
+                        <span className="font-bold text-foreground text-xs sm:text-sm md:text-base leading-snug">
+                          {faq.question}
+                        </span>
+                        <div
+                          className={`shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-colors duration-200 ${
+                            isOpen ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
+                          }`}
+                        >
+                          <ChevronDown
+                            size={16}
+                            className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                          />
+                        </div>
+                      </button>
+
+                      <AnimatePresence initial={false}>
+                        {isOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.25, ease: "easeInOut" }}
+                            className="overflow-hidden"
+                          >
+                            <div className="px-4 sm:px-5 pb-4 sm:pb-5 text-xs sm:text-sm text-muted-foreground font-medium leading-relaxed border-t border-border/40 pt-3">
+                              {faq.answer}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                })}
+              </div>
+            </Container>
+          </section>
+        )}
+
+        {/* ── 11. DETAILED ARTICLE / CONTENT SECTION (WITH READ MORE) ── */}
+        {product.articleContent && (
+          <section className="py-12 lg:py-16 bg-muted/20 border-b border-border relative">
+            <Container className="w-full">
+              <div className="mx-auto max-w-4xl relative">
+                <div
+                  className={`blog-content transition-all duration-700 ease-in-out overflow-hidden [&>h2:first-child]:!mt-0 ${
+                    isArticleExpanded ? "max-h-[10000px]" : "max-h-[250px]"
+                  }`}
+                  dangerouslySetInnerHTML={{ __html: product.articleContent }}
+                />
+
+                {!isArticleExpanded && (
+                  <div className="absolute bottom-14 left-0 right-0 h-32 bg-gradient-to-t from-muted/60 dark:from-background to-transparent pointer-events-none" />
+                )}
+
+                <div className="flex justify-center mt-6">
+                  <button
+                    type="button"
+                    onClick={() => setIsArticleExpanded(!isArticleExpanded)}
+                    className="group flex items-center gap-2 rounded-full border-2 border-primary px-6 py-2.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 shadow-sm cursor-pointer"
+                  >
+                    <span>{isArticleExpanded ? "Read Less" : "Read More"}</span>
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform duration-300 ${
+                        isArticleExpanded ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                </div>
+              </div>
             </Container>
           </section>
         )}
@@ -1406,7 +1526,7 @@ export default function ProductDetailPage({ params }: PageProps) {
               {allImages[selectedGalleryIndex] && (
                 <Image
                   src={allImages[selectedGalleryIndex]}
-                  alt={`Kingson ${product.name} - High-capacity industrial machinery full view`}
+                  alt={`Mewar Hi-Tech ${product.name} - High-capacity industrial machinery full view`}
                   width={1200}
                   height={800}
                   className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"

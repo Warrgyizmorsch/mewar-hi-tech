@@ -46,7 +46,7 @@ export const INDUSTRIES_DATA: IndustryData[] = [
     tagline: "Uncompromising Tonnage & Wear Life in Granite, Basalt & Limestone Quarries",
     overview: [
       "Quarry operations require continuous, uninterrupted processing of massive blasted boulders into commercial-grade aggregates. Hard igneous rocks like granite, basalt, and trap rock impose tremendous abrasive wear and mechanical shock loads on crushing machinery.",
-      "Mewar Hi-Tech's KINGSON quarry equipment is specifically designed with heavy cast-steel swing jaws, extra-large forged eccentric shafts, and our proprietary 'Crushing without Rubbing' double-toggle kinematics. This unique design reduces rubbing between jaw plates and rock, doubling liner life and minimizing plant electrical consumption.",
+      "Mewar Hi-Tech's quarry equipment is specifically designed with heavy cast-steel swing jaws, extra-large forged eccentric shafts, and our proprietary 'Crushing without Rubbing' double-toggle kinematics. This unique design reduces rubbing between jaw plates and rock, doubling liner life and minimizing plant electrical consumption.",
       "From high-tonnage primary dump feeding to multi-deck vibrating classification, our quarry solutions ensure steady production rates up to 500+ TPH with lowest cost-per-ton economics.",
     ],
     challenges: [
@@ -58,7 +58,7 @@ export const INDUSTRIES_DATA: IndustryData[] = [
       {
         title: "Hopper Bridging & Uneven Primary Infeed",
         description:
-          "Uneven truck dumps can choke primary crushers. KINGSON single shaft grizzly feeders scalp undersized natural dirt while feeding boulders smoothly into the crushing chamber.",
+          "Uneven truck dumps can choke primary crushers. Mewar Hi-Tech single shaft grizzly feeders scalp undersized natural dirt while feeding boulders smoothly into the crushing chamber.",
       },
       {
         title: "Strict Particle Flakiness Standards",
@@ -165,7 +165,7 @@ export const INDUSTRIES_DATA: IndustryData[] = [
       {
         title: "Continuous 24/7 Heavy Operation",
         description:
-          "Mining installations run round-the-clock where unscheduled stoppages halt complete beneficiation circuits. KINGSON machines feature heavy-duty spherical roller bearings with labyrinth seals to ensure uninterrupted operation.",
+          "Mining installations run round-the-clock where unscheduled stoppages halt complete beneficiation circuits. Mewar Hi-Tech machines feature heavy-duty spherical roller bearings with labyrinth seals to ensure uninterrupted operation.",
       },
       {
         title: "Tramp Metal & Uncrushable Debris",
@@ -287,7 +287,7 @@ export const INDUSTRIES_DATA: IndustryData[] = [
       {
         title: "Severe Rotor Wear from Abrasive Silica",
         description:
-          "High quartz contents cause rapid rotor wear. KINGSON VSI rotors utilize tungsten carbide tips and build-up autogenous rock pockets that absorb crushing impact.",
+          "High quartz contents cause rapid rotor wear. Mewar Hi-Tech VSI rotors utilize tungsten carbide tips and build-up autogenous rock pockets that absorb crushing impact.",
       },
     ],
     processFlow: [
@@ -394,7 +394,7 @@ export const INDUSTRIES_DATA: IndustryData[] = [
       {
         title: "High Production Demands under Tight Deadlines",
         description:
-          "Road paving schedules require continuous aggregate supply up to 3,000 tons per day. KINGSON plants deliver non-stop duty with proven mechanical reliability.",
+          "Road paving schedules require continuous aggregate supply up to 3,000 tons per day. Mewar Hi-Tech plants deliver non-stop duty with proven mechanical reliability.",
       },
       {
         title: "Varying Rock Hardness Across Quarry Sites",
