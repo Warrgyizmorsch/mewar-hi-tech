@@ -16,11 +16,31 @@ export async function POST(req: NextRequest) {
 
     const { email, password } = body || {};
 
+    // 1. Super Admin Credentials
     const configuredEmail = process.env.ADMIN_EMAIL || "admin@mewar.com";
     const configuredPassword = process.env.ADMIN_PASSWORD || "Admin@123";
 
+    // 2. Spare Parts Department Credentials
+    const sparePartsEmail = process.env.SPARE_PARTS_EMAIL || "spareparts@mewar.com";
+    const sparePartsAltEmail = "spareparts@mewarhitech.com";
+    const sparePartsPassword = process.env.SPARE_PARTS_PASSWORD || "SpareParts@123";
+
+    let role = "";
+    let userEmail = "";
+
     if (email === configuredEmail && password === configuredPassword) {
-      const token = await signAdminToken(email);
+      role = "admin";
+      userEmail = email;
+    } else if (
+      (email === sparePartsEmail || email === sparePartsAltEmail) &&
+      password === sparePartsPassword
+    ) {
+      role = "spare_parts";
+      userEmail = email;
+    }
+
+    if (role) {
+      const token = await signAdminToken(userEmail, role);
       const cookieStore = await cookies();
       cookieStore.set("admin_token", token, {
         httpOnly: true,
@@ -29,7 +49,7 @@ export async function POST(req: NextRequest) {
         path: "/",
         maxAge: 60 * 60 * 24 * 7, // 7 days
       });
-      return NextResponse.json({ success: true });
+      return NextResponse.json({ success: true, role });
     }
 
     return NextResponse.json({ message: "Invalid credentials" }, { status: 401 });

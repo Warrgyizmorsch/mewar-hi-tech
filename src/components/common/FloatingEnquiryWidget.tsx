@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Send } from "lucide-react";
 import EnquiryModal from "@/components/ui/EnquiryModal";
@@ -14,9 +14,14 @@ export default function FloatingEnquiryWidget({
 }: FloatingEnquiryWidgetProps) {
   const pathname = usePathname();
   const [modalOpen, setModalOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  // Do not render on any admin panel routes (/admin, /admin/login, /admin/*)
-  if (pathname?.startsWith("/admin")) {
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Do not render during SSR or on any admin panel routes (/admin, /admin/login, /admin/*)
+  if (!mounted || pathname?.startsWith("/admin")) {
     return null;
   }
 

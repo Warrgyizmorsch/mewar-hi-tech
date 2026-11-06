@@ -162,7 +162,7 @@ export default function EnquiryModal({
                       onChange={() => setEnquiryType("Product")}
                       className="w-3.5 h-3.5 accent-[#F5A623] cursor-pointer"
                     />
-                    <span className="text-[11px] sm:text-xs">Enquiry for Product</span>
+                    <span className="text-[11px] sm:text-xs">Products</span>
                   </label>
 
                   <label
@@ -180,7 +180,7 @@ export default function EnquiryModal({
                       onChange={() => setEnquiryType("SparePart")}
                       className="w-3.5 h-3.5 accent-[#F5A623] cursor-pointer"
                     />
-                    <span className="text-[11px] sm:text-xs">Enquiry for Spare Parts</span>
+                    <span className="text-[11px] sm:text-xs">Spare Parts</span>
                   </label>
 
                   <label
@@ -198,7 +198,7 @@ export default function EnquiryModal({
                       onChange={() => setEnquiryType("Both")}
                       className="w-3.5 h-3.5 accent-[#F5A623] cursor-pointer"
                     />
-                    <span className="text-[11px] sm:text-xs">Both (Product &amp; Parts)</span>
+                    <span className="text-[11px] sm:text-xs">Both</span>
                   </label>
                 </div>
               </div>

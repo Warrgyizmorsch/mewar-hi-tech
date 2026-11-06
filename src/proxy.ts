@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { verifyAdminToken } from '@/lib/auth'
+import { getAdminSession } from '@/lib/auth'
 
 export async function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname;
@@ -13,10 +13,17 @@ export async function proxy(request: NextRequest) {
 
     const token = request.cookies.get('admin_token')?.value;
 
-    // Verify token cryptographically
-    const isValid = await verifyAdminToken(token);
-    if (!isValid) {
+    // Verify token and role cryptographically
+    const session = await getAdminSession(token);
+    if (!session) {
       return NextResponse.redirect(new URL('/admin/login', request.url));
+    }
+
+    // Role guard: spare_parts role is only permitted to access /admin/enquiries
+    if (session.role === 'spare_parts') {
+      if (!path.startsWith('/admin/enquiries')) {
+        return NextResponse.redirect(new URL('/admin/enquiries', request.url));
+      }
     }
   }
 
