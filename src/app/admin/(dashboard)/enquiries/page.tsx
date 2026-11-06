@@ -30,7 +30,7 @@ export default async function AdminEnquiries() {
           <h1 className="text-2xl font-bold text-[#2B3674]">Enquiries</h1>
           <p className="text-sm text-gray-500 mt-1">
             {role === "spare_parts"
-              ? "Manage spare parts and general customer enquiries."
+              ? "Manage spare parts and combined enquiries."
               : "Manage contact, spare parts, and product enquiries."}
           </p>
         </div>
