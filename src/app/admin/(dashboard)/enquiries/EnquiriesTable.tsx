@@ -340,8 +340,14 @@ export default function EnquiriesTable({
                 <td className="px-6 py-4 max-w-[200px] truncate" title={enq.message}>
                   {enq.message}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  {new Date(enq.createdAt).toLocaleDateString()}
+                <td className="px-6 py-4 whitespace-nowrap" suppressHydrationWarning>
+                  {enq.createdAt
+                    ? new Date(enq.createdAt).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })
+                    : "-"}
                 </td>
                 <td className="px-6 py-4 text-center">
                   <button
@@ -424,8 +430,16 @@ export default function EnquiriesTable({
                 </div>
                 <div>
                   <p className="text-xs font-bold text-gray-400 uppercase">Date</p>
-                  <p className="font-semibold text-gray-800">
-                    {new Date(selected.createdAt).toLocaleString()}
+                  <p className="font-semibold text-gray-800" suppressHydrationWarning>
+                    {selected.createdAt
+                      ? new Date(selected.createdAt).toLocaleString("en-US", {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })
+                      : "-"}
                   </p>
                 </div>
                 {(selected.productName || selected.machineType) && (

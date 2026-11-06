@@ -106,14 +106,14 @@ export default function AdminDashboardLayout({ children }: { children: React.Rea
           </div>
           <div className="flex items-center gap-4">
              <div className="text-sm text-right hidden sm:block">
-                <p className="font-bold leading-tight">
+                <p className="font-bold leading-tight" suppressHydrationWarning>
                   {userRole === "spare_parts" ? "Spare Parts Team" : "Admin User"}
                 </p>
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-gray-500" suppressHydrationWarning>
                   {userRole === "spare_parts" ? "Spare Parts Dept" : "Super Admin"}
                 </p>
              </div>
-             <div className="w-10 h-10 rounded-full bg-gray-100 border-2 border-[#0A1A3B] shadow-sm flex items-center justify-center font-bold text-[#0A1A3B]">
+             <div className="w-10 h-10 rounded-full bg-gray-100 border-2 border-[#0A1A3B] shadow-sm flex items-center justify-center font-bold text-[#0A1A3B]" suppressHydrationWarning>
                 {userRole === "spare_parts" ? "S" : "A"}
              </div>
           </div>
