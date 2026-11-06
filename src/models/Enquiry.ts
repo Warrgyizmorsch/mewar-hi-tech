@@ -7,8 +7,10 @@ export interface IEnquiry extends Document {
   company?: string;
   address?: string;
   message: string;
-  type: "Contact" | "Product";
+  type: "Contact" | "Product" | "SparePart" | "Both";
   productName?: string;
+  machineType?: string;
+  partName?: string;
   createdAt: Date;
 }
 
@@ -39,10 +41,18 @@ const EnquirySchema: Schema<IEnquiry> = new Schema({
   },
   type: {
     type: String,
-    enum: ["Contact", "Product"],
+    enum: ["Contact", "Product", "SparePart", "Both"],
     required: [true, "Type is required"],
   },
   productName: {
+    type: String,
+    required: false,
+  },
+  machineType: {
+    type: String,
+    required: false,
+  },
+  partName: {
     type: String,
     required: false,
   },

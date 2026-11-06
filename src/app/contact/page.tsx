@@ -23,6 +23,7 @@ import Container from "@/components/ui/Container";
 
 export default function Contact() {
   const [submitting, setSubmitting] = useState(false);
+  const [enquiryType, setEnquiryType] = useState<"Product" | "SparePart" | "Both">("Product");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -50,7 +51,7 @@ export default function Contact() {
         },
         body: JSON.stringify({
           ...formData,
-          type: "Contact",
+          type: enquiryType,
         }),
       });
 
@@ -256,6 +257,68 @@ export default function Contact() {
                   </div>
 
                   <form onSubmit={handleSubmit} className="space-y-5">
+                    {/* Enquiry Type Selector */}
+                    <div className="space-y-1.5">
+                      <label className="block text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+                        I am enquiring for *
+                      </label>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <label
+                          className={`flex items-center gap-2 p-2.5 rounded-xl border cursor-pointer transition text-xs font-bold ${
+                            enquiryType === "Product"
+                              ? "border-primary bg-primary/15 text-primary shadow-xs"
+                              : "border-border bg-muted/40 text-foreground hover:border-primary/50"
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="contactEnquiryType"
+                            value="Product"
+                            checked={enquiryType === "Product"}
+                            onChange={() => setEnquiryType("Product")}
+                            className="w-4 h-4 accent-[#F5A623] cursor-pointer"
+                          />
+                          <span>Enquiry for Product</span>
+                        </label>
+
+                        <label
+                          className={`flex items-center gap-2 p-2.5 rounded-xl border cursor-pointer transition text-xs font-bold ${
+                            enquiryType === "SparePart"
+                              ? "border-primary bg-primary/15 text-primary shadow-xs"
+                              : "border-border bg-muted/40 text-foreground hover:border-primary/50"
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="contactEnquiryType"
+                            value="SparePart"
+                            checked={enquiryType === "SparePart"}
+                            onChange={() => setEnquiryType("SparePart")}
+                            className="w-4 h-4 accent-[#F5A623] cursor-pointer"
+                          />
+                          <span>Enquiry for Spare Parts</span>
+                        </label>
+
+                        <label
+                          className={`flex items-center gap-2 p-2.5 rounded-xl border cursor-pointer transition text-xs font-bold ${
+                            enquiryType === "Both"
+                              ? "border-primary bg-primary/15 text-primary shadow-xs"
+                              : "border-border bg-muted/40 text-foreground hover:border-primary/50"
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="contactEnquiryType"
+                            value="Both"
+                            checked={enquiryType === "Both"}
+                            onChange={() => setEnquiryType("Both")}
+                            className="w-4 h-4 accent-[#F5A623] cursor-pointer"
+                          />
+                          <span>Both (Product &amp; Parts)</span>
+                        </label>
+                      </div>
+                    </div>
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       {/* Name */}
                       <div>

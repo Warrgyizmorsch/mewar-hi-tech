@@ -26,6 +26,7 @@ import PageHero from "@/components/layout/PageHero";
 import BlobButton from "@/components/ui/BlobButton";
 import StatsCounter from "@/components/shared/StatsCounter";
 import CTASection from "@/components/shared/CTASection";
+import EnquiryModal from "@/components/ui/EnquiryModal";
 
 const SERVICE_STAGES = [
   {
@@ -149,6 +150,7 @@ const ASSURANCES = [
 export default function ServicesPage() {
   const [activeTab, setActiveTab] = useState("after-sales");
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const [spareModalOpen, setSpareModalOpen] = useState(false);
 
   // Form State
   const [formName, setFormName] = useState("");
@@ -404,8 +406,20 @@ export default function ServicesPage() {
                     </p>
 
                     <div className="flex flex-wrap gap-4 pt-2">
+                      {currentTab.id === "spare-parts" && (
+                        <BlobButton
+                          onClick={() => setSpareModalOpen(true)}
+                          variant="primary"
+                          className="!py-3 !px-6 text-xs font-bold uppercase tracking-wider cursor-pointer shadow-md shadow-primary/20"
+                        >
+                          <span className="flex items-center gap-2">
+                            <Wrench size={14} />
+                            <span>Enquire Spare Parts</span>
+                          </span>
+                        </BlobButton>
+                      )}
                       <Link href={`/services/${currentTab.id}`}>
-                        <BlobButton variant="primary" className="!py-3 !px-6 text-xs font-bold uppercase tracking-wider">
+                        <BlobButton variant={currentTab.id === "spare-parts" ? "secondary" : "primary"} className="!py-3 !px-6 text-xs font-bold uppercase tracking-wider">
                           <span className="flex items-center gap-2">
                             <span>View Dedicated Page</span>
                             <ArrowRight size={14} />
@@ -633,6 +647,14 @@ export default function ServicesPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Enquiry Modal */}
+      <EnquiryModal
+        isOpen={spareModalOpen}
+        onClose={() => setSpareModalOpen(false)}
+        defaultEnquiryType="SparePart"
+        defaultMachine="Crusher Spare Parts"
+      />
 
       <Footer />
     </div>

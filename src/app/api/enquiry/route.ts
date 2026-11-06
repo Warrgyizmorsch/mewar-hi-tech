@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (!["Contact", "Product"].includes(body.type)) {
+    if (!["Contact", "Product", "SparePart", "Both"].includes(body.type)) {
       return NextResponse.json(
         { message: "Invalid enquiry type" },
         { status: 400 }
@@ -48,6 +48,8 @@ export async function POST(req: NextRequest) {
       message: body.message,
       type: body.type,
       productName: body.productName || undefined,
+      machineType: body.machineType || undefined,
+      partName: body.partName || undefined,
     });
 
     console.log("Saving enquiry to MongoDB...");
