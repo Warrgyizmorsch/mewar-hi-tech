@@ -278,7 +278,7 @@ export default function Contact() {
                             onChange={() => setEnquiryType("Product")}
                             className="w-4 h-4 accent-[#F5A623] cursor-pointer"
                           />
-                          <span>Enquiry for Product</span>
+                          <span>Products</span>
                         </label>
 
                         <label
@@ -296,7 +296,7 @@ export default function Contact() {
                             onChange={() => setEnquiryType("SparePart")}
                             className="w-4 h-4 accent-[#F5A623] cursor-pointer"
                           />
-                          <span>Enquiry for Spare Parts</span>
+                          <span>Spare Parts</span>
                         </label>
 
                         <label
@@ -314,7 +314,7 @@ export default function Contact() {
                             onChange={() => setEnquiryType("Both")}
                             className="w-4 h-4 accent-[#F5A623] cursor-pointer"
                           />
-                          <span>Both (Product &amp; Parts)</span>
+                          <span>Both</span>
                         </label>
                       </div>
                     </div>

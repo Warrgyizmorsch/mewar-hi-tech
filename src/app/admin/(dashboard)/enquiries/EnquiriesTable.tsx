@@ -21,18 +21,13 @@ export default function EnquiriesTable({
 
   const isSparePartsRole = role === "spare_parts";
 
-  // If spare parts role, product enquiries are strictly hidden from view
-  const accessibleEnquiries = isSparePartsRole
-    ? enquiries.filter((e) => (e.type || "").toLowerCase() !== "product")
-    : enquiries;
+  // All enquiries are shown in "All", including product enquiries
+  const accessibleEnquiries = enquiries;
 
   // Filter helper matching logic
   const matchFilter = (enq: any, currentFilter: string) => {
     if (currentFilter === "all") return true;
     const t = (enq.type || "").toLowerCase();
-    if (currentFilter === "Product") {
-      return t === "product" || t === "both";
-    }
     if (currentFilter === "SparePart") {
       return t === "sparepart" || t === "spare part" || t === "spare_part" || t === "both";
     }
@@ -42,25 +37,17 @@ export default function EnquiriesTable({
     return true;
   };
 
-  // Dynamic counts for each filter option based on accessible enquiries
+  // Dynamic counts for each filter option
   const allCount = accessibleEnquiries.length;
-  const productCount = accessibleEnquiries.filter((e) => matchFilter(e, "Product")).length;
   const spareCount = accessibleEnquiries.filter((e) => matchFilter(e, "SparePart")).length;
   const contactCount = accessibleEnquiries.filter((e) => matchFilter(e, "Contact")).length;
 
-  // Role-based filter options: Spare Parts user sees ONLY All, Spare Parts, Contact
-  const filterOptions = isSparePartsRole
-    ? [
-        { value: "all", label: "All", count: allCount },
-        { value: "SparePart", label: "Spare Parts", count: spareCount },
-        { value: "Contact", label: "Contact", count: contactCount },
-      ]
-    : [
-        { value: "all", label: "All", count: allCount },
-        { value: "Product", label: "Products", count: productCount },
-        { value: "SparePart", label: "Spare Parts", count: spareCount },
-        { value: "Contact", label: "Contact", count: contactCount },
-      ];
+  // Filter options: All (all enquiries), Spare Parts, Contact (no separate Product option)
+  const filterOptions = [
+    { value: "all", label: "All", count: allCount },
+    { value: "SparePart", label: "Spare Parts", count: spareCount },
+    { value: "Contact", label: "Contact", count: contactCount },
+  ];
 
   // Enquiries filtered by active selection
   const filteredEnquiries = accessibleEnquiries.filter((e) => matchFilter(e, filter));
