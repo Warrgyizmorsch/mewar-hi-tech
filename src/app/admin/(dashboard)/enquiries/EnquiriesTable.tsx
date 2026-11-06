@@ -1,75 +1,169 @@
 "use client";
 
 import React, { useState } from "react";
-import { Eye, X, Download, Trash2 } from "lucide-react";
+import { Eye, X, Download, Trash2, Filter, FileSpreadsheet } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import * as XLSX from "xlsx";
 
-export default function EnquiriesTable({ enquiries }: { enquiries: any[] }) {
+export default function EnquiriesTable({
+  enquiries = [],
+  role = "admin",
+}: {
+  enquiries: any[];
+  role?: string;
+}) {
   const [selected, setSelected] = useState<any>(null);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [filter, setFilter] = useState<string>("all");
   const router = useRouter();
+
+  const isSparePartsRole = role === "spare_parts";
+
+  // If spare parts role, product enquiries are strictly hidden from view
+  const accessibleEnquiries = isSparePartsRole
+    ? enquiries.filter((e) => (e.type || "").toLowerCase() !== "product")
+    : enquiries;
+
+  // Filter helper matching logic
+  const matchFilter = (enq: any, currentFilter: string) => {
+    if (currentFilter === "all") return true;
+    const t = (enq.type || "").toLowerCase();
+    if (currentFilter === "Product") {
+      return t === "product" || t === "both";
+    }
+    if (currentFilter === "SparePart") {
+      return t === "sparepart" || t === "spare part" || t === "spare_part" || t === "both";
+    }
+    if (currentFilter === "Contact") {
+      return t === "contact" || (!t && !enq.productName && !enq.partName);
+    }
+    return true;
+  };
+
+  // Dynamic counts for each filter option based on accessible enquiries
+  const allCount = accessibleEnquiries.length;
+  const productCount = accessibleEnquiries.filter((e) => matchFilter(e, "Product")).length;
+  const spareCount = accessibleEnquiries.filter((e) => matchFilter(e, "SparePart")).length;
+  const contactCount = accessibleEnquiries.filter((e) => matchFilter(e, "Contact")).length;
+
+  // Role-based filter options: Spare Parts user sees ONLY All, Spare Parts, Contact
+  const filterOptions = isSparePartsRole
+    ? [
+        { value: "all", label: "All", count: allCount },
+        { value: "SparePart", label: "Spare Parts", count: spareCount },
+        { value: "Contact", label: "Contact", count: contactCount },
+      ]
+    : [
+        { value: "all", label: "All", count: allCount },
+        { value: "Product", label: "Products", count: productCount },
+        { value: "SparePart", label: "Spare Parts", count: spareCount },
+        { value: "Contact", label: "Contact", count: contactCount },
+      ];
+
+  // Enquiries filtered by active selection
+  const filteredEnquiries = accessibleEnquiries.filter((e) => matchFilter(e, filter));
+
+  const handleFilterChange = (newFilter: string) => {
+    setFilter(newFilter);
+    setSelectedIds([]); // Clear selection when filter changes to avoid hidden selections
+  };
 
   const handleSelectAll = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
-      setSelectedIds(enquiries.map(enq => enq._id));
+      setSelectedIds(filteredEnquiries.map((enq) => enq._id));
     } else {
-      setSelectedIds([]);
+      const currentFilteredIds = new Set(filteredEnquiries.map((enq) => enq._id));
+      setSelectedIds((prev) => prev.filter((id) => !currentFilteredIds.has(id)));
     }
   };
 
   const handleSelectOne = (id: string) => {
-    setSelectedIds(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
+    setSelectedIds((prev) =>
+      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
+    );
   };
 
-  const handleExport = () => {
-    const dataToExport = selectedIds.length > 0 
-      ? enquiries.filter(enq => selectedIds.includes(enq._id))
-      : enquiries;
+  const isAllSelected =
+    filteredEnquiries.length > 0 &&
+    filteredEnquiries.every((enq) => selectedIds.includes(enq._id));
+
+  // Export directly in native Excel (.xlsx) format
+  const handleExportExcel = () => {
+    const dataToExport =
+      selectedIds.length > 0
+        ? filteredEnquiries.filter((enq) => selectedIds.includes(enq._id))
+        : filteredEnquiries;
 
     if (dataToExport.length === 0) {
-      toast.warning("No enquiries to export.");
+      toast.warning("No enquiries to export in current filter.");
       return;
     }
 
-    const headers = ["Name", "Company", "Email", "Phone", "Type", "Product", "Message", "Date"];
-    const csvData = dataToExport.map(enq => [
-      `"${enq.name || ''}"`,
-      `"${enq.company || ''}"`,
-      `"${enq.email || ''}"`,
-      `"${enq.phone || ''}"`,
-      `"${enq.type || ''}"`,
-      `"${enq.productName || ''}"`,
-      `"${(enq.message || '').replace(/"/g, '""')}"`,
-      `"${new Date(enq.createdAt).toLocaleString()}"`
-    ].join(','));
+    const worksheetData = dataToExport.map((enq) => ({
+      "Name": enq.name || "",
+      "Company": enq.company || "",
+      "Email": enq.email || "",
+      "Phone": enq.phone || "",
+      "Address / Location": enq.address || "",
+      "Enquiry Type":
+        enq.type === "SparePart"
+          ? "Spare Part"
+          : enq.type === "Both"
+          ? "Product & Spare Parts"
+          : enq.type || "Contact",
+      "Product / Machine": enq.productName || enq.machineType || "",
+      "Spare Part / Wear Liner": enq.partName || "",
+      "Message": enq.message || "",
+      "Date": new Date(enq.createdAt).toLocaleString(),
+    }));
 
-    const csvContent = [headers.join(','), ...csvData].join('\n');
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.setAttribute("href", url);
-    link.setAttribute("download", `enquiries_${new Date().getTime()}.csv`);
-    link.style.visibility = 'hidden';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    toast.success(`Successfully exported ${dataToExport.length} enquiries.`);
+    const worksheet = XLSX.utils.json_to_sheet(worksheetData);
+
+    // Set custom column widths for clean readability
+    worksheet["!cols"] = [
+      { wch: 22 }, // Name
+      { wch: 22 }, // Company
+      { wch: 26 }, // Email
+      { wch: 16 }, // Phone
+      { wch: 26 }, // Address
+      { wch: 20 }, // Enquiry Type
+      { wch: 30 }, // Product
+      { wch: 28 }, // Spare Part
+      { wch: 42 }, // Message
+      { wch: 22 }, // Date
+    ];
+
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Enquiries");
+
+    const filterTag = filter === "all" ? "all" : filter.toLowerCase();
+    XLSX.writeFile(
+      workbook,
+      `Mewar_Enquiries_${filterTag}_${new Date().toISOString().slice(0, 10)}.xlsx`
+    );
+
+    toast.success(`Successfully exported ${dataToExport.length} enquiries to Excel.`);
   };
 
   const handleDelete = async () => {
     if (selectedIds.length === 0) return;
-    if (!confirm(`Are you sure you want to delete ${selectedIds.length} selected enquiries?`)) return;
+    if (
+      !confirm(
+        `Are you sure you want to delete ${selectedIds.length} selected enquiries?`
+      )
+    )
+      return;
 
     setIsDeleting(true);
     try {
-      const res = await fetch('/api/enquiry', {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ids: selectedIds })
+      const res = await fetch("/api/enquiry", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ids: selectedIds }),
       });
-      
+
       if (res.ok) {
         setSelectedIds([]);
         toast.success(`Successfully deleted ${selectedIds.length} enquiries.`);
@@ -85,39 +179,108 @@ export default function EnquiriesTable({ enquiries }: { enquiries: any[] }) {
     }
   };
 
+  const activeFilterObj =
+    filterOptions.find((opt) => opt.value === filter) || filterOptions[0];
+
   return (
     <>
-      <div className="flex items-center justify-between p-4 border-b border-gray-100 bg-gray-50/50">
-        <div className="flex items-center space-x-2 text-sm text-gray-500">
-          <span className="font-medium text-[#2B3674]">{selectedIds.length}</span> selected
-        </div>
-        <div className="flex items-center space-x-3">
-          <button
-            onClick={handleExport}
-            className="flex items-center space-x-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium"
-          >
-            <Download size={16} />
-            <span>Export CSV</span>
-          </button>
-          <button
-            onClick={handleDelete}
-            disabled={selectedIds.length === 0 || isDeleting}
-            className="flex items-center space-x-2 px-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <Trash2 size={16} />
-            <span>{isDeleting ? "Deleting..." : "Delete"}</span>
-          </button>
+      {/* ── Toolbar: Filter Selection & Actions ── */}
+      <div className="p-4 border-b border-gray-100 bg-gray-50/50 space-y-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          {/* Left: Filter Buttons & Selection Dropdown */}
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="flex items-center space-x-1.5 text-gray-500 mr-1">
+              <Filter size={15} className="text-amber-500 shrink-0" />
+              <span className="text-xs font-bold uppercase tracking-wider">Filter:</span>
+            </div>
+
+            {/* Quick Pill Filter Buttons */}
+            <div className="hidden sm:inline-flex items-center gap-1 p-1 bg-white rounded-xl border border-gray-200/80 shadow-2xs">
+              {filterOptions.map((opt) => {
+                const isActive = filter === opt.value;
+                return (
+                  <button
+                    key={opt.value}
+                    type="button"
+                    onClick={() => handleFilterChange(opt.value)}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center space-x-1.5 ${
+                      isActive
+                        ? "bg-[#0A1A3B] text-white shadow-xs"
+                        : "text-gray-600 hover:text-gray-900 hover:bg-gray-100/70"
+                    }`}
+                  >
+                    <span>{opt.label}</span>
+                    <span
+                      className={`px-1.5 py-0.2 rounded-full text-[10px] font-bold ${
+                        isActive
+                          ? "bg-amber-400 text-gray-950 font-extrabold"
+                          : "bg-gray-100 text-gray-600"
+                      }`}
+                    >
+                      {opt.count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Mobile Dropdown Selection */}
+            <div className="sm:hidden relative inline-block">
+              <select
+                value={filter}
+                onChange={(e) => handleFilterChange(e.target.value)}
+                className="appearance-none pl-3 pr-8 py-1.5 bg-white border border-gray-200 text-gray-800 rounded-lg text-xs font-bold shadow-2xs focus:outline-hidden focus:border-amber-500"
+              >
+                {filterOptions.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label} ({opt.count})
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Selection Count Pill */}
+            <div className="text-xs text-gray-500 pl-1 font-medium">
+              <span className="font-bold text-[#2B3674]">{selectedIds.length}</span> of{" "}
+              <span className="font-semibold text-gray-700">{filteredEnquiries.length}</span> selected
+            </div>
+          </div>
+
+          {/* Right: Export Excel & Delete Actions */}
+          <div className="flex items-center space-x-2.5 self-end sm:self-auto">
+            <button
+              type="button"
+              onClick={handleExportExcel}
+              title="Export enquiries to Excel (.xlsx)"
+              className="flex items-center space-x-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 hover:border-gray-300 transition-all text-xs sm:text-sm font-semibold shadow-2xs cursor-pointer"
+            >
+              <FileSpreadsheet size={16} className="text-emerald-600 shrink-0" />
+              <span>Export Excel</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={handleDelete}
+              disabled={selectedIds.length === 0 || isDeleting}
+              className="flex items-center space-x-2 px-3.5 py-2 bg-red-50 border border-red-200/60 text-red-600 rounded-lg hover:bg-red-100 transition-all text-xs sm:text-sm font-semibold disabled:opacity-40 disabled:cursor-not-allowed shadow-2xs cursor-pointer"
+            >
+              <Trash2 size={15} className="shrink-0" />
+              <span>{isDeleting ? "Deleting..." : "Delete"}</span>
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* ── Table ── */}
       <div className="overflow-x-auto">
         <table className="w-full text-left text-sm text-gray-600">
           <thead className="bg-gray-50 text-gray-500 font-medium border-b border-gray-100">
             <tr>
               <th className="px-6 py-4 w-[50px]">
-                <input 
-                  type="checkbox" 
-                  className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                  checked={enquiries.length > 0 && selectedIds.length === enquiries.length}
+                <input
+                  type="checkbox"
+                  className="rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                  checked={isAllSelected}
                   onChange={handleSelectAll}
                 />
               </th>
@@ -130,12 +293,12 @@ export default function EnquiriesTable({ enquiries }: { enquiries: any[] }) {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {enquiries.map((enq) => (
+            {filteredEnquiries.map((enq) => (
               <tr key={enq._id} className="hover:bg-gray-50/50 transition-colors">
                 <td className="px-6 py-4">
-                  <input 
-                    type="checkbox" 
-                    className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                  <input
+                    type="checkbox"
+                    className="rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
                     checked={selectedIds.includes(enq._id)}
                     onChange={() => handleSelectOne(enq._id)}
                   />
@@ -149,33 +312,54 @@ export default function EnquiriesTable({ enquiries }: { enquiries: any[] }) {
                   <p>{enq.phone}</p>
                 </td>
                 <td className="px-6 py-4">
-                  <span className={`px-2 py-1 rounded text-xs font-bold ${
-                    enq.type === 'SparePart'
-                      ? 'bg-amber-100 text-amber-800 border border-amber-300'
-                      : enq.type === 'Both'
-                      ? 'bg-purple-100 text-purple-800 border border-purple-300'
-                      : enq.type === 'Product'
-                      ? 'bg-blue-100 text-blue-700'
-                      : 'bg-green-100 text-green-700'
-                  }`}>
-                    {enq.type === 'SparePart'
-                      ? 'Spare Part'
-                      : enq.type === 'Both'
-                      ? 'Product & Spare Parts'
-                      : enq.type}
+                  <span
+                    className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-bold whitespace-nowrap shadow-2xs ${
+                      enq.type === "SparePart"
+                        ? "bg-amber-100 text-amber-900 border border-amber-300"
+                        : enq.type === "Both"
+                        ? "bg-purple-100 text-purple-900 border border-purple-300"
+                        : enq.type === "Product"
+                        ? "bg-blue-100 text-blue-800 border border-blue-200"
+                        : "bg-emerald-100 text-emerald-800 border border-emerald-200"
+                    }`}
+                  >
+                    {enq.type === "SparePart"
+                      ? "Spare Part"
+                      : enq.type === "Both"
+                      ? "Product & Parts"
+                      : enq.type === "Product"
+                      ? "Product"
+                      : "Contact"}
                   </span>
-                  {enq.productName && (
-                    <p className="text-xs mt-1 font-bold text-gray-800 truncate max-w-[180px]" title={enq.productName}>
-                      <span className="text-gray-400 font-normal">Item:</span> {enq.productName}
+                  {(enq.productName || enq.machineType) && (
+                    <p
+                      className="text-xs mt-1 font-bold text-gray-800 truncate max-w-[180px]"
+                      title={enq.productName || enq.machineType}
+                    >
+                      <span className="text-gray-400 font-normal">Item:</span>{" "}
+                      {enq.productName || enq.machineType}
+                    </p>
+                  )}
+                  {enq.partName && (
+                    <p
+                      className="text-xs mt-0.5 font-medium text-amber-800 truncate max-w-[180px]"
+                      title={enq.partName}
+                    >
+                      <span className="text-gray-400 font-normal">Part:</span>{" "}
+                      {enq.partName}
                     </p>
                   )}
                 </td>
-                <td className="px-6 py-4 max-w-[200px] truncate" title={enq.message}>{enq.message}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{new Date(enq.createdAt).toLocaleDateString()}</td>
+                <td className="px-6 py-4 max-w-[200px] truncate" title={enq.message}>
+                  {enq.message}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  {new Date(enq.createdAt).toLocaleDateString()}
+                </td>
                 <td className="px-6 py-4 text-center">
-                  <button 
+                  <button
                     onClick={() => setSelected(enq)}
-                    className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                    className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors cursor-pointer"
                     title="View Details"
                   >
                     <Eye size={18} />
@@ -183,22 +367,41 @@ export default function EnquiriesTable({ enquiries }: { enquiries: any[] }) {
                 </td>
               </tr>
             ))}
-            {enquiries.length === 0 && (
+            {filteredEnquiries.length === 0 && (
               <tr>
-                <td colSpan={7} className="px-6 py-8 text-center text-gray-400">No enquiries found.</td>
+                <td colSpan={7} className="px-6 py-12 text-center text-gray-400">
+                  <div className="flex flex-col items-center justify-center space-y-2">
+                    <Filter size={24} className="text-gray-300" />
+                    <p className="font-semibold text-gray-600">
+                      No {activeFilterObj.label} found.
+                    </p>
+                    {filter !== "all" && (
+                      <button
+                        type="button"
+                        onClick={() => handleFilterChange("all")}
+                        className="text-xs text-[#0A1A3B] font-bold underline hover:text-amber-600 cursor-pointer"
+                      >
+                        Clear filter to view all
+                      </button>
+                    )}
+                  </div>
+                </td>
               </tr>
             )}
           </tbody>
         </table>
       </div>
 
-      {/* Modal */}
+      {/* ── Details Modal ── */}
       {selected && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
           <div className="bg-white rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
             <div className="flex justify-between items-center p-6 border-b border-gray-100">
               <h3 className="text-xl font-bold text-[#2B3674]">Enquiry Details</h3>
-              <button onClick={() => setSelected(null)} className="text-gray-400 hover:text-red-500 transition-colors">
+              <button
+                onClick={() => setSelected(null)}
+                className="text-gray-400 hover:text-red-500 transition-colors cursor-pointer"
+              >
                 <X size={24} />
               </button>
             </div>
@@ -222,21 +425,57 @@ export default function EnquiriesTable({ enquiries }: { enquiries: any[] }) {
                 </div>
                 <div>
                   <p className="text-xs font-bold text-gray-400 uppercase">Type</p>
-                  <p className="font-semibold text-gray-800">{selected.type}</p>
+                  <p className="font-semibold text-gray-800">
+                    {selected.type === "SparePart"
+                      ? "Spare Part"
+                      : selected.type === "Both"
+                      ? "Product & Spare Parts"
+                      : selected.type === "Product"
+                      ? "Product"
+                      : "Contact"}
+                  </p>
                 </div>
                 <div>
                   <p className="text-xs font-bold text-gray-400 uppercase">Date</p>
-                  <p className="font-semibold text-gray-800">{new Date(selected.createdAt).toLocaleString()}</p>
+                  <p className="font-semibold text-gray-800">
+                    {new Date(selected.createdAt).toLocaleString()}
+                  </p>
                 </div>
-                {selected.productName && (
+                {(selected.productName || selected.machineType) && (
                   <div className="col-span-2">
-                    <p className="text-xs font-bold text-gray-400 uppercase">Product / Requested Brochure</p>
-                    <p className="font-semibold text-gray-800 bg-gray-50 p-2.5 rounded-lg border border-gray-100 mt-1">{selected.productName}</p>
+                    <p className="text-xs font-bold text-gray-400 uppercase">
+                      Product / Requested Machine
+                    </p>
+                    <p className="font-semibold text-gray-800 bg-gray-50 p-2.5 rounded-lg border border-gray-100 mt-1">
+                      {selected.productName || selected.machineType}
+                    </p>
+                  </div>
+                )}
+                {selected.partName && (
+                  <div className="col-span-2">
+                    <p className="text-xs font-bold text-gray-400 uppercase">
+                      Required Spare Parts / Wear Liners
+                    </p>
+                    <p className="font-semibold text-gray-800 bg-amber-50/70 p-2.5 rounded-lg border border-amber-200/60 mt-1">
+                      {selected.partName}
+                    </p>
+                  </div>
+                )}
+                {selected.address && (
+                  <div className="col-span-2">
+                    <p className="text-xs font-bold text-gray-400 uppercase">
+                      Company / Plant Location
+                    </p>
+                    <p className="font-semibold text-gray-800 bg-gray-50 p-2.5 rounded-lg border border-gray-100 mt-1">
+                      {selected.address}
+                    </p>
                   </div>
                 )}
                 <div className="col-span-2">
                   <p className="text-xs font-bold text-gray-400 uppercase">Message</p>
-                  <p className="p-3 bg-gray-50 rounded-lg mt-1 text-gray-700 whitespace-pre-wrap leading-relaxed">{selected.message}</p>
+                  <p className="p-3 bg-gray-50 rounded-lg mt-1 text-gray-700 whitespace-pre-wrap leading-relaxed">
+                    {selected.message}
+                  </p>
                 </div>
               </div>
             </div>

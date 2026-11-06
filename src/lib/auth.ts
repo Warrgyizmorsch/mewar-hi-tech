@@ -37,16 +37,18 @@ function fromBase64Url(str: string): string {
   return atob(base64);
 }
 
+const ALLOWED_ADMIN_ROLES = ["admin", "spare_parts"];
+
 /**
  * Generates a cryptographically signed HMAC token for admin session
  */
-export async function signAdminToken(email: string): Promise<string> {
+export async function signAdminToken(email: string, role: string = "admin"): Promise<string> {
   const header = toBase64Url(JSON.stringify({ alg: "HS256", typ: "JWT" }));
   const exp = Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7; // 7 days
   const payload = toBase64Url(
     JSON.stringify({
       email,
-      role: "admin",
+      role,
       exp,
       iat: Math.floor(Date.now() / 1000),
     })
@@ -71,11 +73,21 @@ export async function signAdminToken(email: string): Promise<string> {
  * Verifies the cryptographically signed HMAC token
  */
 export async function verifyAdminToken(token: string | undefined): Promise<boolean> {
-  if (!token || typeof token !== "string") return false;
+  const session = await getAdminSession(token);
+  return session !== null;
+}
+
+/**
+ * Decodes and validates admin token session payload
+ */
+export async function getAdminSession(
+  token: string | undefined
+): Promise<{ email: string; role: string } | null> {
+  if (!token || typeof token !== "string") return null;
 
   try {
     const parts = token.split(".");
-    if (parts.length !== 3) return false;
+    if (parts.length !== 3) return null;
 
     const [header, payload, signature] = parts;
     const data = `${header}.${payload}`;
@@ -86,11 +98,11 @@ export async function verifyAdminToken(token: string | undefined): Promise<boole
       decodedPayload.exp &&
       decodedPayload.exp < Math.floor(Date.now() / 1000)
     ) {
-      return false;
+      return null;
     }
 
-    if (decodedPayload.role !== "admin") {
-      return false;
+    if (!ALLOWED_ADMIN_ROLES.includes(decodedPayload.role)) {
+      return null;
     }
 
     const key = await getSecretKey();
@@ -107,9 +119,14 @@ export async function verifyAdminToken(token: string | undefined): Promise<boole
       encoder.encode(data)
     );
 
-    return isValid;
+    if (!isValid) return null;
+
+    return {
+      email: decodedPayload.email,
+      role: decodedPayload.role,
+    };
   } catch {
-    return false;
+    return null;
   }
 }
 

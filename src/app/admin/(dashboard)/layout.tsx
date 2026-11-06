@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -10,6 +10,23 @@ import { toast } from "react-toastify";
 export default function AdminDashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
+  const [userRole, setUserRole] = useState<string>("admin");
+  const [userEmail, setUserEmail] = useState<string>("admin@mewar.com");
+
+  useEffect(() => {
+    fetch("/api/admin/me")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data) {
+          setUserRole(data.role);
+          setUserEmail(data.email);
+          if (data.role === "spare_parts" && !pathname.startsWith("/admin/enquiries")) {
+            router.replace("/admin/enquiries");
+          }
+        }
+      })
+      .catch(() => {});
+  }, [pathname, router]);
 
   const handleLogout = async () => {
     try {
@@ -21,7 +38,7 @@ export default function AdminDashboardLayout({ children }: { children: React.Rea
     }
   };
 
-  const navItems = [
+  const allNavItems = [
     { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
     { label: "Enquiries", href: "/admin/enquiries", icon: MessageSquare },
     { label: "Careers", href: "/admin/careers", icon: Users },
@@ -29,6 +46,11 @@ export default function AdminDashboardLayout({ children }: { children: React.Rea
     { label: "Newsletters", href: "/admin/newsletters", icon: Mail },
     { label: "Blogs", href: "/admin/blogs", icon: FileText },
   ];
+
+  const navItems =
+    userRole === "spare_parts"
+      ? [{ label: "Enquiries", href: "/admin/enquiries", icon: MessageSquare }]
+      : allNavItems;
 
   return (
     <div className="min-h-screen bg-[#F4F7FE] flex text-[#2B3674] font-sans">
@@ -84,11 +106,15 @@ export default function AdminDashboardLayout({ children }: { children: React.Rea
           </div>
           <div className="flex items-center gap-4">
              <div className="text-sm text-right hidden sm:block">
-                <p className="font-bold leading-tight">Admin User</p>
-                <p className="text-xs text-gray-500">Super Admin</p>
+                <p className="font-bold leading-tight">
+                  {userRole === "spare_parts" ? "Spare Parts Team" : "Admin User"}
+                </p>
+                <p className="text-xs text-gray-500">
+                  {userRole === "spare_parts" ? "Spare Parts Dept" : "Super Admin"}
+                </p>
              </div>
              <div className="w-10 h-10 rounded-full bg-gray-100 border-2 border-[#0A1A3B] shadow-sm flex items-center justify-center font-bold text-[#0A1A3B]">
-                A
+                {userRole === "spare_parts" ? "S" : "A"}
              </div>
           </div>
         </header>
