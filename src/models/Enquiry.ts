@@ -8,6 +8,7 @@ export interface IEnquiry extends Document {
   address?: string;
   message: string;
   type: "Contact" | "Product" | "SparePart" | "Both";
+  status?: "Pending" | "Connected" | "In Discussion" | "Converted" | "Disqualified" | "Rejected";
   productName?: string;
   machineType?: string;
   partName?: string;
@@ -43,6 +44,11 @@ const EnquirySchema: Schema<IEnquiry> = new Schema({
     type: String,
     enum: ["Contact", "Product", "SparePart", "Both"],
     required: [true, "Type is required"],
+  },
+  status: {
+    type: String,
+    enum: ["Pending", "Connected", "In Discussion", "Converted", "Disqualified", "Rejected"],
+    default: "Pending",
   },
   productName: {
     type: String,

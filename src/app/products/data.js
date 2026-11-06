@@ -336,19 +336,19 @@ export const PRODUCTS_DATA = [
     name: "Single Toggle Grease Jaw Crusher",
     category: "Crushers",
     subCategory: "Jaw Crusher",
-    shortDescription: "High-efficiency primary jaw crusher engineered for lower power utilization.",
+    shortDescription: "A Single Toggle Grease Jaw Crusher designed for efficient crushing and smooth operation. Built to deliver reliable performance in demanding mining and quarrying applications.",
     heroImage: "/images/single-toggle-grease-jaw-crusher-hero.webp",
     mainImage: "/images/single-toggle-grease-jaw-crusher.webp",
     model3d: "/3d-model-proudct-images/single_toggle_greese_crusher.glb",
-    seoTitle: "Single Toggle Grease Jaw Crusher | Mewar Hi-Tech",
-    seoDescription: "Single toggle grease jaw crusher built for primary crushing of hard rock and aggregates. View details and request a quote from Mewar Hi-Tech.",
-    introText: "Mewar Hi-Tech's Single Toggle Grease Jaw Crusher is usually utilized where size conveyance isn't of fundamental significance, be that as it may, efficiency is to be increased with lower power utilization, in contrast with Double Toggle Grease Lubricated Jaw Crusher and hence working expense is lower. These do not require high operating skills and gap setting is easier and manageable. Additionally, the support necessity is much lower and it doesn't require high maintenance.",
+    seoTitle: "Single Toggle Grease Jaw Crusher Manufacturer | Mewar Hi-Tech",
+    seoDescription: "A Single Toggle Grease Jaw Crusher designed for efficient crushing and smooth operation. Built for demanding mining and quarrying applications. Request a quote.",
+    introText: "Mewar Hi-Tech's Single Toggle Grease Jaw Crusher is designed for efficient crushing with lower power consumption. It is easy to operate and adjust to suit different crushing requirements. Its simple design also helps reduce maintenance needs.",
     features: [
-      "Increased stroke for greater productivity, large eccentric shaft for strong stroke in the upper chamber.",
-      "High angle toggle plate increases stroke in the lower chamber.",
-      "The large precise counter balanced flywheel provides continuous crushing in toughest applications.",
-      "Stress relieved, robust, heavy duty crusher body and cast steel jaw plates for higher strength.",
-      "In case of use as primary crusher, a hydraulic cylinder is provided for easy adjustment of gap setting."
+      "Increased crushing stroke and an efficient eccentric shaft support higher productivity in crushing operations.",
+      "The high-angle toggle plate helps deliver an effective crushing stroke for improved material reduction.",
+      "A precisely balanced flywheel maintains steady crushing action during demanding operating conditions.",
+      "The heavy-duty crusher body and cast steel jaw plates provide strength for reliable performance.",
+      "Grease lubrication supports smooth movement of components and helps reduce wear during operation."
     ],
     gallery: [],
     video: "/videos/single-toggle-grease-jaw-crusher.mp4",
@@ -376,7 +376,112 @@ export const PRODUCTS_DATA = [
           ]
         }
       ]
-    }
+    },
+    faqs: [
+      {
+        question: "What is a Single Toggle Grease Jaw Crusher?",
+        answer: "A Single Toggle Grease Jaw Crusher is a primary crushing machine used to break large rocks and minerals into smaller pieces. It uses a single toggle mechanism to move the crushing jaw and apply pressure to the material. It is commonly used in mining, quarrying and aggregate production."
+      },
+      {
+        question: "How does a Single Toggle Jaw Crusher work?",
+        answer: "A Single Toggle Jaw Crusher works through compression. An eccentric shaft moves the swinging jaw through the toggle mechanism. The material gets crushed between the fixed and moving jaw plates and then exits through the discharge opening."
+      },
+      {
+        question: "What are the main applications of a Single Toggle Grease Jaw Crusher?",
+        answer: "It is commonly used in mining plants, stone quarries and aggregate production units. The machine helps crush materials such as granite, limestone and other suitable rocks before they move to secondary crushing or screening equipment."
+      },
+      {
+        question: "What is the capacity of a Single Toggle Jaw Crusher?",
+        answer: "The capacity depends on the machine model, feed size, material hardness and closed side setting (CSS). Mewar Hi-Tech offers different machine sizes with capacity specifications to help buyers select a suitable crusher for their production requirements."
+      },
+      {
+        question: "What factors affect the price of a Single Toggle Grease Jaw Crusher?",
+        answer: "The price depends on the crusher size, feed opening, production capacity, motor power and machine configuration. Material type and project requirements may also influence machine selection. Contact Mewar Hi-Tech with your crushing requirements to request suitable specifications and a quotation."
+      }
+    ],
+    articleContent: `<h2>Single Toggle Grease Jaw Crusher for Heavy-Duty Crushing Applications</h2>
+<p>A Single Toggle Grease Jaw Crusher is used to reduce large rocks and minerals into smaller sizes before further processing. It is commonly installed in mining plants, stone quarries and aggregate production units where reliable primary crushing is required. The machine uses a single toggle mechanism to move the jaw and apply pressure to the material inside the crushing chamber.</p>
+<p>Mewar Hi-Tech manufactures Single Toggle Grease <a href="https://www.mewarhitech.com/products/jaw-crusher">Jaw Crusher</a> models for different industrial crushing requirements. The machine is designed with features that support efficient crushing and easier operation. Its increased stroke and counterbalanced flywheel help maintain the movement needed during the crushing process.</p>
+<p>Choosing the right jaw crusher depends on the type of material, feed size and required production capacity. A machine selected according to these requirements can help maintain a steady flow of material through the plant.</p>
+<h2>How Does a Single Toggle Jaw Crusher Work?</h2>
+<p>The working principle of a Single Toggle Jaw Crusher is based on compression. Large rocks enter the crushing chamber through the feed opening. Inside the chamber, the material is pressed between a fixed jaw plate and a moving jaw plate. The pressure breaks the rocks into smaller pieces.</p>
+<p>The eccentric shaft creates the movement of the moving jaw. As the shaft rotates, the toggle mechanism transfers this movement to the jaw. The gap between the fixed and moving jaw plates changes during each cycle. Material is crushed when the gap becomes smaller and moves towards the discharge opening as the jaw moves back.</p>
+<p>The size of the discharged material depends on the crusher setting and the characteristics of the feed. Operators need to select a suitable setting according to the required output size and the next stage of processing.</p>
+<p>In a single toggle jaw crusher, the toggle plate is connected to the moving jaw mechanism. Its movement helps produce the crushing action. This arrangement is commonly used in primary crushing applications where large feed material needs to be reduced before further processing.</p>
+<h2>Key Features of Mewar Hi-Tech Single Toggle Grease Jaw Crusher</h2>
+<p>The Mewar Hi-Tech Single Toggle Grease Jaw Crusher is designed for industrial crushing applications where machine performance and ease of operation are important. Its construction includes several features that support the crushing process and help operators manage the machine.</p>
+<p>The increased stroke design helps create the jaw movement required for material reduction. A counterbalanced flywheel supports smooth operation by helping maintain the movement of the crushing mechanism. These features are useful in applications where the crusher needs to handle regular feeding and continuous crushing work.</p>
+<p>The machine also uses a high-angle toggle plate arrangement. This design helps increase the stroke in the lower part of the crushing chamber. It supports the movement required to reduce material as it passes through the jaw plates.</p>
+<p>Another useful feature is the hydraulic arrangement provided for gap adjustment. It allows the crusher setting to be adjusted according to the required discharge size. The correct setting should be selected based on the feed material and the output needed by the plant.</p>
+<p>The jaw plates are important wear components because they come into direct contact with the material being crushed. Their condition should be checked during routine maintenance. Regular inspection and timely replacement of worn parts help maintain the machine's crushing performance.</p>
+<h2>Advantages of Single Toggle Jaw Crusher for Crushing Operations</h2>
+<p>A Single Toggle Jaw Crusher is often considered for plants that need a practical crushing solution with a relatively simple operating arrangement. Its mechanism is designed to convert the rotation of the eccentric shaft into the movement of the crushing jaw.</p>
+<p>One advantage of this design is its suitability for applications where efficient material reduction and manageable power consumption are important. Mewar Hi-Tech's product information highlights the Single Toggle Grease Jaw Crusher for applications where efficiency needs to be improved with lower power utilisation compared with its Double Toggle Grease Jaw Crusher.</p>
+<p>The machine also offers easier gap adjustment and lower support requirements as described in the product information. These features can be useful for operators who need to manage regular crushing work without complicated adjustment procedures.</p>
+<p>However, the actual performance depends on the material being crushed, feed conditions and selected machine model. Buyers should compare the technical specifications before deciding whether a single toggle jaw crusher is suitable for their plant.</p>
+<h2>Single Toggle Jaw Crusher Applications in Mining and Quarrying</h2>
+<p>A Single Toggle Grease Jaw Crusher can be used in different industries where large rocks and minerals need to be reduced in size. It is generally selected for primary crushing before material moves to secondary crushers, screens or other processing equipment.</p>
+<p>In mining operations, jaw crushers are used to reduce extracted rock and ore into manageable sizes. The crushed material can then move to the next stage of mineral processing. The required machine depends on the hardness of the material and the production target.</p>
+<p>In stone quarries, a jaw crusher helps process large pieces of rock into smaller sizes. The output may be sent to a cone crusher or screening equipment depending on the final aggregate sizes required. Jaw crushers are also used in aggregate production plants that supply material for construction and infrastructure projects.</p>
+<p>Materials such as granite, limestone and other suitable rocks may be processed using jaw crushing equipment. The correct machine selection depends on material properties and the crusher's technical limits. Buyers should confirm the maximum feed size and capacity before using a particular model for a specific application.</p>
+<h2>Single Toggle Jaw Crusher Capacity and Technical Specifications</h2>
+<p>Capacity is one of the main factors to check when selecting a Single Toggle Jaw Crusher. Buyers generally compare machines based on their feed opening, maximum feed size, motor power and expected production in tonnes per hour (TPH).</p>
+<p>Mewar Hi-Tech provides different machine sizes with technical specifications and capacity information. These details help buyers compare available models according to their plant requirements. The capacity of a jaw crusher can also change with the closed side setting (CSS), material hardness and feeding conditions.</p>
+<p>The CSS refers to the minimum gap between the fixed and moving jaw plates at the discharge point. A change in this setting affects the size of the material leaving the crushing chamber. A smaller setting generally produces a finer output but can also affect the capacity of the machine.</p>
+<p>Actual production depends on more than the machine's rated capacity. Rock type, feed gradation, moisture, bulk density and the way material enters the crusher can all affect output. For an accurate recommendation, share the material type, maximum feed size and target TPH with the Mewar Hi-Tech team.</p>
+<p>Review the official capacity chart and technical specifications before finalising a model. This helps ensure that the selected crusher is suitable for the expected working conditions.</p>
+<h2>Understanding Jaw Crusher Parts and the Toggle Plate Mechanism</h2>
+<p>Knowing the main jaw crusher parts can help buyers understand how the machine works and what needs to be checked during maintenance. Each component has a role in transferring movement, applying crushing force or supporting the operation of the machine.</p>
+<p>The fixed jaw plate and moving jaw plate form the crushing surfaces. The eccentric shaft creates the movement of the jaw while the toggle plate transfers movement through the mechanism. The flywheel helps maintain the required motion during operation. The crushing chamber is the space where the feed material is reduced in size.</p>
+<p>Jaw plates are wear parts and may need replacement after regular use. The replacement interval depends on the material being crushed and the operating conditions. The toggle plate and other mechanical components should also be inspected according to the manufacturer's maintenance instructions.</p>
+<p>For plant operators, regular checks can help identify wear or changes in machine performance before they affect production. Always follow the recommended maintenance procedure and use suitable replacement parts for the machine model.</p>
+<h2>Single Toggle vs Double Toggle Jaw Crusher</h2>
+<p>Single toggle and double toggle jaw crushers are both used for crushing rocks and minerals. The main difference is the mechanism used to move the jaw and transfer the crushing force.</p>
+<p>A Single Toggle Jaw Crusher uses one toggle plate in its operating arrangement. The eccentric shaft drives the moving jaw through this mechanism. A Double Toggle Jaw Crusher uses two toggle plates to transfer movement to the swinging jaw.</p>
+<p>Mewar Hi-Tech offers the Single Toggle Grease Jaw Crusher as well as Double Toggle Grease and Double Toggle Oil Jaw Crusher models. Each type has its own design and operating arrangement. The right machine depends on the material, required capacity, operating conditions and project requirements.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Comparison Factor</th>
+      <th>Single Toggle Jaw Crusher</th>
+      <th>Double Toggle Jaw Crusher</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Toggle Arrangement</td>
+      <td>Uses one toggle plate.</td>
+      <td>Uses two toggle plates.</td>
+    </tr>
+    <tr>
+      <td>Jaw Movement</td>
+      <td>Movement is driven through a single toggle mechanism.</td>
+      <td>Movement is transferred through a double toggle arrangement.</td>
+    </tr>
+    <tr>
+      <td>Machine Selection</td>
+      <td>Depends on feed material, capacity and application.</td>
+      <td>Depends on feed material, capacity and application.</td>
+    </tr>
+    <tr>
+      <td>Mewar Hi-Tech Models</td>
+      <td>Single Toggle Grease Jaw Crusher.</td>
+      <td>Double Toggle Grease Jaw Crusher and Double Toggle Oil Jaw Crusher.</td>
+    </tr>
+  </tbody>
+</table>
+<p>Before choosing between the two designs, compare the specifications of the actual models. Machine capacity, feed opening, power requirements and maintenance needs are more useful for selection than the crusher type alone.</p>
+<h2>Single Toggle Jaw Crusher Price and Machine Selection</h2>
+<p>The price of a Single Toggle Jaw Crusher depends on the machine size, capacity, configuration and project requirements. A larger feed opening or a higher production requirement may call for a different model. Additional plant requirements can also affect the overall investment.</p>
+<p>When comparing the Single Toggle Jaw Crusher price in India, buyers should look beyond the initial purchase cost. Motor power, wear part replacement, maintenance requirements and expected production should also be considered. These factors help provide a clearer picture of the equipment's operating cost.</p>
+<p>Before requesting a quotation, prepare basic details about the application. These include the material type, maximum feed size, required output size and target production in TPH. Sharing this information helps the manufacturer understand the requirement and suggest a suitable machine.</p>
+<p>Avoid selecting a crusher based only on a general price estimate. Compare the technical specifications and confirm that the machine can handle the material and production target of your plant.</p>
+<h2>Why Choose Mewar Hi-Tech as Your Single Toggle Jaw Crusher Manufacturer?</h2>
+<p>Choosing a jaw crusher manufacturer involves checking the machine design, technical information and suitability for the intended application. Buyers should be able to review the specifications and understand how the equipment will fit into their crushing plant.</p>
+<p><a href="https://www.mewarhitech.com/">Mewar Hi-Tech</a> offers the Single Toggle Grease Jaw Crusher for industrial crushing requirements. Its product range also includes Double Toggle Grease and Double Toggle Oil Jaw Crusher models. This gives buyers different jaw crusher configurations to consider according to their application.</p>
+<p>The company manufactures crushing and screening equipment in Udaipur, Rajasthan. Its wider product range includes machines used at different stages of material processing. Buyers can review the available models and discuss their requirements before selecting equipment.</p>
+<p>If you are looking for a Single Toggle Jaw Crusher Manufacturer in India, consider the machine's capacity, feed opening, power requirements and available technical support. These details can help you make a more informed purchase decision.</p>
+<p>For information about the Single Toggle Grease Jaw Crusher, share your material type, feed size and required production capacity with Mewar Hi-Tech. The team can help you review the available specifications and discuss a suitable machine for your crushing application.</p>`
   },
   {
     slug: "double-toggle-grease-jaw-crusher",
