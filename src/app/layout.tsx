@@ -12,6 +12,7 @@ import "./globals.css";
 
 import { ExperienceProvider } from "@/components/3d/ExperienceManager";
 import FloatingButton from "@/components/3d/FloatingButton";
+import FloatingEnquiryWidget from "@/components/common/FloatingEnquiryWidget";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -173,6 +174,7 @@ export default function RootLayout({
             <main className="min-h-screen font-sans">
               {children}
               {/* <FloatingButton /> */}
+              <FloatingEnquiryWidget />
               <ToastContainer
                 position="top-right"
                 autoClose={3000}

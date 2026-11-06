@@ -16,6 +16,7 @@ export interface SelectionDropdownProps {
   className?: string;
   buttonClassName?: string;
   id?: string;
+  dropUp?: boolean;
 }
 
 export default function SelectionDropdown({
@@ -26,8 +27,10 @@ export default function SelectionDropdown({
   className = "",
   buttonClassName,
   id,
+  dropUp,
 }: SelectionDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [openUpward, setOpenUpward] = useState(Boolean(dropUp));
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Normalize options to DropdownOption[]
@@ -39,6 +42,24 @@ export default function SelectionDropdown({
   });
 
   const selectedOption = normalizedOptions.find((opt) => opt.value === value);
+
+  // Calculate direction when opened
+  useEffect(() => {
+    if (dropUp !== undefined) {
+      setOpenUpward(dropUp);
+      return;
+    }
+    if (isOpen && dropdownRef.current) {
+      const rect = dropdownRef.current.getBoundingClientRect();
+      const spaceBelow = window.innerHeight - rect.bottom;
+      // If less than 220px below and more room above, open upward
+      if (spaceBelow < 220 && rect.top > spaceBelow) {
+        setOpenUpward(true);
+      } else {
+        setOpenUpward(false);
+      }
+    }
+  }, [isOpen, dropUp]);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -77,45 +98,49 @@ export default function SelectionDropdown({
         </span>
         <ChevronDown
           size={16}
-          className={`text-muted-foreground transition-transform duration-200 ${
-            isOpen ? "rotate-180 text-primary" : ""
+          className={`text-muted-foreground transition-transform duration-200 shrink-0 ${
+            isOpen ? (openUpward ? "rotate-0 text-primary" : "rotate-180 text-primary") : ""
           }`}
         />
       </button>
 
       {isOpen && (
         <div
-          className="absolute z-50 w-full mt-2 bg-card border-2 border-border rounded-xl shadow-lg shadow-black/10 dark:shadow-black/40 overflow-hidden origin-top animate-in fade-in slide-in-from-top-2 duration-150"
+          className={`absolute z-50 w-full bg-card border-2 border-border rounded-xl shadow-2xl shadow-black/20 dark:shadow-black/60 overflow-hidden duration-150 ${
+            openUpward
+              ? "bottom-full mb-1.5 origin-bottom animate-in fade-in slide-in-from-bottom-2"
+              : "top-full mt-1.5 origin-top animate-in fade-in slide-in-from-top-2"
+          }`}
         >
-            <ul className="max-h-60 overflow-y-auto py-1 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
-              {normalizedOptions.length === 0 ? (
-                <li className="px-4 py-3 text-sm text-muted-foreground text-center">
-                  No options available
+          <ul className="max-h-52 overflow-y-auto py-1 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
+            {normalizedOptions.length === 0 ? (
+              <li className="px-4 py-3 text-sm text-muted-foreground text-center">
+                No options available
+              </li>
+            ) : (
+              normalizedOptions.map((option) => (
+                <li key={option.value}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onChange(option.value);
+                      setIsOpen(false);
+                    }}
+                    className={`w-full text-left px-4 py-2 text-xs sm:text-sm font-medium transition-colors flex items-center justify-between ${
+                      value === option.value
+                        ? "bg-primary/10 text-primary font-bold"
+                        : "text-foreground hover:bg-muted/50"
+                    }`}
+                  >
+                    <span className="truncate">{option.label}</span>
+                    {value === option.value && (
+                      <Check size={16} className="text-primary shrink-0 ml-2" />
+                    )}
+                  </button>
                 </li>
-              ) : (
-                normalizedOptions.map((option) => (
-                  <li key={option.value}>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        onChange(option.value);
-                        setIsOpen(false);
-                      }}
-                      className={`w-full text-left px-4 py-2.5 text-sm font-medium transition-colors flex items-center justify-between ${
-                        value === option.value
-                          ? "bg-primary/10 text-primary"
-                          : "text-foreground hover:bg-muted/50"
-                      }`}
-                    >
-                      <span>{option.label}</span>
-                      {value === option.value && (
-                        <Check size={16} className="text-primary shrink-0" />
-                      )}
-                    </button>
-                  </li>
-                ))
-              )}
-            </ul>
+              ))
+            )}
+          </ul>
         </div>
       )}
     </div>

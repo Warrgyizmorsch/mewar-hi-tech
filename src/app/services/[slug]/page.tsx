@@ -29,6 +29,7 @@ import Container from "@/components/ui/Container";
 import BlobButton from "@/components/ui/BlobButton";
 import StatsCounter from "@/components/shared/StatsCounter";
 import CTASection from "@/components/shared/CTASection";
+import EnquiryModal from "@/components/ui/EnquiryModal";
 
 // ─── Data Strategy for 3 Sub-pages ───
 
@@ -144,6 +145,7 @@ export default function ServiceSlugPage({ params }: PageProps) {
 
   const pageData = PAGES_DATA[slug] || PAGES_DATA["after-sales"];
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const [spareModalOpen, setSpareModalOpen] = useState(false);
 
   const trustStripRef = useRef<HTMLDivElement>(null);
   const sectionsCarouselRef = useRef<HTMLDivElement>(null);
@@ -450,12 +452,27 @@ export default function ServiceSlugPage({ params }: PageProps) {
                   Contact our support lines or write to us directly. We guarantee immediate dispatch of certified field engineers to troubleshoot your equipment.
                 </p>
               </div>
-              <Link href="/contact">
-                <BlobButton variant="primary" className="!py-3.5 !px-8 text-xs font-bold uppercase tracking-wider shrink-0 flex items-center gap-2">
-                  <span>Contact Service Manager</span>
-                  <ArrowRight size={15} />
-                </BlobButton>
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-3.5 shrink-0">
+                {slug === "spare-parts" && (
+                  <BlobButton
+                    onClick={() => setSpareModalOpen(true)}
+                    variant="primary"
+                    className="!py-3.5 !px-8 text-xs font-bold uppercase tracking-wider shrink-0 flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-primary/20"
+                  >
+                    <Wrench size={15} />
+                    <span>Enquire Spare Parts</span>
+                  </BlobButton>
+                )}
+                <Link href="/contact">
+                  <BlobButton
+                    variant={slug === "spare-parts" ? "secondary" : "primary"}
+                    className="!py-3.5 !px-8 text-xs font-bold uppercase tracking-wider shrink-0 flex items-center justify-center gap-2"
+                  >
+                    <span>Contact Service Manager</span>
+                    <ArrowRight size={15} />
+                  </BlobButton>
+                </Link>
+              </div>
             </div>
           </Container>
         </section>
@@ -463,6 +480,14 @@ export default function ServiceSlugPage({ params }: PageProps) {
         <StatsCounter />
         <CTASection />
       </main>
+
+      {/* Enquiry Modal */}
+      <EnquiryModal
+        isOpen={spareModalOpen}
+        onClose={() => setSpareModalOpen(false)}
+        defaultEnquiryType="SparePart"
+        defaultMachine="Crusher Spare Parts"
+      />
 
       {/* Lightbox Modal for Gallery Images */}
       <AnimatePresence>

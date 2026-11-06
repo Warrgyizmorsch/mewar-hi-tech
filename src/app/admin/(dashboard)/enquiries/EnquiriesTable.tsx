@@ -149,10 +149,26 @@ export default function EnquiriesTable({ enquiries }: { enquiries: any[] }) {
                   <p>{enq.phone}</p>
                 </td>
                 <td className="px-6 py-4">
-                  <span className={`px-2 py-1 rounded text-xs font-bold ${enq.type === 'Product' ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700'}`}>
-                    {enq.type}
+                  <span className={`px-2 py-1 rounded text-xs font-bold ${
+                    enq.type === 'SparePart'
+                      ? 'bg-amber-100 text-amber-800 border border-amber-300'
+                      : enq.type === 'Both'
+                      ? 'bg-purple-100 text-purple-800 border border-purple-300'
+                      : enq.type === 'Product'
+                      ? 'bg-blue-100 text-blue-700'
+                      : 'bg-green-100 text-green-700'
+                  }`}>
+                    {enq.type === 'SparePart'
+                      ? 'Spare Part'
+                      : enq.type === 'Both'
+                      ? 'Product & Spare Parts'
+                      : enq.type}
                   </span>
-                  {enq.productName && <p className="text-xs mt-1 truncate max-w-[150px]">{enq.productName}</p>}
+                  {enq.productName && (
+                    <p className="text-xs mt-1 font-bold text-gray-800 truncate max-w-[180px]" title={enq.productName}>
+                      <span className="text-gray-400 font-normal">Item:</span> {enq.productName}
+                    </p>
+                  )}
                 </td>
                 <td className="px-6 py-4 max-w-[200px] truncate" title={enq.message}>{enq.message}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{new Date(enq.createdAt).toLocaleDateString()}</td>
@@ -214,8 +230,8 @@ export default function EnquiriesTable({ enquiries }: { enquiries: any[] }) {
                 </div>
                 {selected.productName && (
                   <div className="col-span-2">
-                    <p className="text-xs font-bold text-gray-400 uppercase">Product</p>
-                    <p className="font-semibold text-gray-800">{selected.productName}</p>
+                    <p className="text-xs font-bold text-gray-400 uppercase">Product / Requested Brochure</p>
+                    <p className="font-semibold text-gray-800 bg-gray-50 p-2.5 rounded-lg border border-gray-100 mt-1">{selected.productName}</p>
                   </div>
                 )}
                 <div className="col-span-2">

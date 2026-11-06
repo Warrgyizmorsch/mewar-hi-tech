@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Box, Compass, Layers } from "lucide-react";
 import BlobButton from "@/components/ui/BlobButton";
 import Container from "@/components/ui/Container";
+import SparePartsBanner from "@/components/common/SparePartsBanner";
 
 const PROJECT_CATEGORIES = [
   {
@@ -123,6 +124,12 @@ export default function ProjectsLandingPage() {
             </div>
           </Container>
         </section>
+
+        {/* Spare Parts Enquiry Section */}
+        <SparePartsBanner
+          title="GENUINE CRUSHER SPARE PARTS & WEAR COMPONENTS"
+          subtitle="Keep your stationary and mobile crushing plants running at peak performance. Order direct OEM jaw plates, cone mantles, blow bars, conveyor belts, and wire screen mesh."
+        />
       </main>
 
       <Footer />

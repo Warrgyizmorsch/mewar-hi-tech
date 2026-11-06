@@ -104,79 +104,74 @@ export const PRODUCTS_DATA = [
       }
     ],
     articleContent: `<h2>Jaw Crusher Manufacturer for Mining and Quarrying</h2>
-<p>A high-performance jaw crusher is essential for reducing hard rock and minerals into manageable sizes for mining and quarrying operations. Mewar Hi-Tech offers crushing equipment solutions designed to support efficient material reduction and dependable performance in demanding industrial environments. Whether you need a jaw crusher machine for a quarry or a jaw crusher for mining, selecting the right equipment helps improve production efficiency and maintain consistent output.</p>
-
-<h3>Heavy-Duty Jaw Crusher Machine for Industrial Applications</h3>
-<p>A jaw crusher machine reduces large rocks into smaller pieces through compression. It is commonly installed at the primary crushing stage where raw material enters the processing plant. Its design makes it suitable for handling various types of hard and abrasive materials.</p>
-<p>Mewar Hi-Tech provides crushing equipment solutions for applications involving mining and quarrying and aggregate production. The appropriate machine depends on the feed material and required capacity and final product size.</p>
-<p>A properly selected jaw stone crusher can help maintain a steady material flow through the crushing plant. It can also work alongside feeders and conveyors and screening equipment to support an integrated crushing operation.</p>
-
-<h3>Jaw Crusher Working Principle</h3>
-<p>The jaw crusher working principle is based on compression between two crushing surfaces. One jaw remains fixed while the other moves to crush the material inside the chamber.</p>
-<p>Large rocks enter through the feed opening and move into the crushing chamber. The moving jaw applies pressure against the fixed jaw and breaks the material into smaller pieces. The crushed material then passes through the discharge opening.</p>
-<p>The final output size depends on the machine design and jaw plate condition and discharge setting and material characteristics. Correct feeding and suitable operating settings help maintain consistent crushing performance.</p>
-
-<h3>Types of Jaw Crusher and Their Applications</h3>
-<p>Different types of jaw crusher are available to meet different production requirements. The right choice depends on the application and material properties and expected output.</p>
-
-<h4>Single Toggle Jaw Crusher</h4>
-<p>A single toggle jaw crusher uses a toggle mechanism to move the crushing jaw. It is commonly selected for applications that require primary crushing of suitable rock and mineral materials. Its suitability depends on the required capacity and feed size and operating conditions.</p>
-
-<h4>Double Toggle Jaw Crusher</h4>
-<p>A double toggle jaw crusher uses two toggle plates within its mechanical arrangement. This configuration is used in certain heavy-duty crushing applications where machine design and operating requirements determine its suitability.</p>
-<p>Before selecting either type buyers should compare the technical specifications and maintenance requirements and expected production capacity.</p>
-
-<h3>Jaw Crusher for Mining and Quarrying</h3>
-<p>A jaw crusher for mining is used to reduce large pieces of ore and rock before further processing. Depending on the material and plant design the crushed output may move to a secondary crusher or screening system.</p>
-<p>Mining applications may involve iron ore and copper ore and manganese ore and other mineral-bearing materials. Hard and abrasive feed material requires suitable machine selection and appropriate wear-resistant components.</p>
-<p>In quarrying a jaw stone crusher can process suitable rocks such as granite and basalt and limestone. The crushed material may be used in road construction and concrete production and other infrastructure applications.</p>
-<p>Choosing the correct crusher helps maintain production flow. An undersized machine may restrict plant capacity while an unnecessarily large machine may increase the initial investment.</p>
-
-<h3>Understanding the Jaw Crusher Diagram and Parts</h3>
-<p>A jaw crusher diagram helps buyers and operators understand the machine's main components and how they work together. It is also useful when reviewing equipment specifications and planning maintenance.</p>
-<p>Common jaw crusher parts include the fixed jaw plate and movable jaw plate and toggle plate and eccentric shaft and bearings and flywheels. The exact arrangement depends on the crusher model.</p>
-<p>The crusher jaw plate is particularly important because it comes into direct contact with the material. Its design and condition influence crushing performance and wear life. Selecting compatible replacement plates helps maintain the intended operation of the machine.</p>
-<p>A toggle plate jaw crusher uses the toggle plate as part of its jaw movement mechanism. This component also plays a role in transmitting force through the mechanism. Operators should inspect wear components regularly and follow the manufacturer's maintenance instructions.</p>
-
-<h3>Jaw Crusher Capacity Calculation and Selection</h3>
-<p>Jaw crusher capacity depends on several factors including feed opening and material hardness and feed size and discharge setting and operating conditions. Actual production can vary between materials and machine configurations.</p>
-<p>A jaw crusher capacity calculation PDF may provide useful reference information when planning a crushing plant. However buyers should always use the manufacturer's specifications for the exact model rather than relying only on general calculations.</p>
-<p>Before choosing a machine determine the maximum feed size and target tonnes per hour and required output size. Also consider the downstream equipment and available installation space and operating schedule.</p>
-<p>These details help identify a jaw crusher machine that matches the production requirements without creating unnecessary capacity limitations.</p>
-
-<h3>Jaw Crusher Price and Investment Considerations</h3>
-<p>Jaw crusher price varies according to machine size and design and capacity and configuration. A small machine for a lower-capacity operation may have different costs from a heavy-duty crusher designed for demanding mining applications.</p>
-<p>The total investment may also include transportation and installation and electrical connections and feeders and conveyors and spare parts. Maintenance requirements and replacement jaw plates should also be considered when evaluating long-term operating costs.</p>
-<p>When comparing jaw crusher manufacturers buyers should review the machine specifications and warranty terms and availability of technical support. Comparing these factors provides a clearer picture of the equipment's suitability and overall value.</p>
-
-<h3>Choosing Reliable Jaw Crusher Manufacturers</h3>
-<p>Selecting among jaw crusher manufacturers requires more than comparing prices. Buyers should assess manufacturing quality and machine specifications and the suitability of the equipment for their material.</p>
-<p>Businesses searching for jaw crusher manufacturers in Ahmedabad may also consider suppliers from other industrial regions of India when evaluating available options. The important factors are whether the manufacturer can meet the project requirements and provide appropriate technical information and after-sales support.</p>
-<p>Mewar Hi-Tech offers crushing equipment solutions for industrial material processing. Sharing details about the feed material and capacity target and final product size helps the team understand the application and discuss suitable equipment options.</p>
-
-<h3>Contact Mewar Hi-Tech for Jaw Crusher Solutions</h3>
-<p>Selecting the right jaw crusher helps establish a reliable foundation for mining and quarrying operations. The machine should match the material characteristics and production targets while fitting the overall crushing plant design. Proper maintenance and suitable operating practices also contribute to consistent performance and longer service life.</p>
-<p>Mewar Hi-Tech provides crushing equipment solutions for businesses seeking dependable material processing machinery. Contact <a href="https://www.mewarhitech.com/">Mewar Hi-Tech</a> to discuss your application and explore jaw crusher options based on your feed material and capacity requirements.</p>`
+<p>Large rocks and mineral deposits need to be broken down before they can be used or sent for further processing. This is where a jaw crusher becomes an important part of a crushing plant. It handles the initial size reduction and prepares material for the next stage.</p>
+<p>Mewar Hi-Tech manufactures crushing equipment for mining and quarrying applications. Its jaw crusher range includes single toggle grease and double toggle grease and double toggle oil models. Each design serves different operating requirements. Choosing between them depends on the material being processed and the expected production capacity.</p>
+<h2>Heavy-Duty Jaw Crusher Machine for Industrial Applications</h2>
+<p>A jaw crusher machine is generally placed at the beginning of a crushing circuit. Large rocks enter through the feed opening and are reduced before moving towards secondary crushing or screening.</p>
+<p>At Mewar Hi-Tech the jaw crusher range is designed around different crushing requirements. The machines feature heavy-duty construction and are intended for demanding industrial environments. Buyers can explore different configurations rather than relying on one machine design for every application.</p>
+<p>A jaw crusher also needs to work properly with the rest of the plant. Feeders regulate the supply of material while conveyors carry crushed stone to the next processing stage. This arrangement is important when planning a complete crushing installation.</p>
+<h2>Jaw Crusher Working Principle</h2>
+<p>The jaw crusher working principle is based on compression. Inside the crushing chamber there are two jaw plates. One remains stationary while the other moves to apply pressure against the material.</p>
+<p>When large rocks enter the chamber the moving jaw pushes them against the fixed plate. The material breaks into smaller pieces and gradually moves towards the discharge opening.</p>
+<p>The final product size depends on the closed side setting and the type of material and the condition of the jaw plates. Feeding the machine evenly also makes a difference. Oversized material or irregular feeding can affect the crushing process and reduce production.</p>
+<h2>Types of Jaw Crusher and Their Applications</h2>
+<p>Mewar Hi-Tech offers different jaw crusher configurations to suit industrial crushing requirements. The main difference between these models lies in their toggle arrangement and lubrication system.</p>
+<h3>Single Toggle Jaw Crusher</h3>
+<p>The single toggle jaw crusher uses an eccentric shaft and a toggle mechanism to create jaw movement. Mewar Hi-Tech's <a href="https://www.mewarhitech.com/products/single-toggle-grease-jaw-crusher">Single Toggle Grease Jaw Crusher</a> is described as a suitable option where lower power utilisation is an important consideration.</p>
+<p>This type can be considered for quarrying and aggregate operations where the required feed size and production capacity match the machine specifications.</p>
+<p>Before selecting a model buyers should check the recommended feed size and available capacity settings. These details help determine whether the machine is suitable for the intended application.</p>
+<h3>Double Toggle Jaw Crusher</h3>
+<p>A double toggle jaw crusher uses two toggle plates as part of its mechanical arrangement. Mewar Hi-Tech offers both oil-lubricated and grease-lubricated versions.</p>
+<p>The <a href="https://www.mewarhitech.com/products/double-toggle-oil-jaw-crusher">Double Toggle Oil Jaw Crusher</a> features an enclosed operating mechanism and an automatic continuous spray lubrication arrangement. Its design also uses a toggle-pitman mechanism to support the crushing movement.</p>
+<p>The Double Toggle Grease Jaw Crusher provides another option for businesses comparing machine configurations. The right choice depends on the operating environment and material characteristics and maintenance preferences.</p>
+<p>Rather than choosing a machine based only on its name buyers should compare the technical specifications and expected production requirements.</p>
+<h2>Crushing Applications Across Mining and Quarrying Industries</h2>
+<p>Different crushing jobs place different demands on equipment. A jaw crusher for mining may receive hard mineral-bearing rock that needs to be reduced before further processing.</p>
+<p>Mewar Hi-Tech's jaw crusher applications include materials such as iron ore and copper and bauxite and gold-bearing rock. The equipment is also intended for hard rock quarrying involving granite and basalt and limestone and river gravel.</p>
+<p>The crushed material can be used in aggregate production and road construction and other infrastructure projects. Depending on the plant arrangement it may move to a cone crusher or screening equipment after primary crushing.</p>
+<p>For this reason the feed characteristics should be discussed before finalising a machine. Material hardness and maximum rock size can influence the selection considerably.</p>
+<h2>Understanding the Jaw Crusher Diagram and Parts</h2>
+<p>A jaw crusher diagram makes it easier to understand the arrangement of the crushing chamber and its mechanical components. It is particularly useful when reviewing machine specifications or discussing maintenance with a supplier.</p>
+<p>Common jaw crusher parts include the fixed jaw plate and movable jaw plate and toggle plate and eccentric shaft and bearings and flywheel.</p>
+<p>The crusher jaw plate receives direct contact from the material during crushing. It gradually wears with use and needs inspection at suitable intervals. The correct replacement plate should be selected according to the machine model.</p>
+<p>In a toggle plate jaw crusher the toggle assembly transfers movement through the crushing mechanism. Its condition is important for normal machine operation. Always refer to the relevant product manual before carrying out repairs or replacing components.</p>
+<h2>Jaw Crusher Capacity Calculation and Selection</h2>
+<p>Capacity is often the first specification buyers look at. However a machine's output cannot be judged by its size alone.</p>
+<p>Jaw crusher capacity depends on feed size and rock characteristics and closed side setting and feeding conditions. The type of jaw plate and operating speed can also influence production.</p>
+<p>A jaw crusher capacity calculation PDF can be useful when preparing an initial plant layout. For an actual purchase the manufacturer's tonnage chart is a better reference because it provides model-specific capacity information at different settings.</p>
+<p>Mewar Hi-Tech provides machine specifications and tonnage information for its jaw crusher range. Buyers should compare the recommended feed size and capacity options and power requirements before choosing a model.</p>
+<h2>Jaw Crusher Price and Investment Considerations</h2>
+<p>There is no single jaw crusher price that applies to every crushing requirement. A smaller machine and a high-capacity primary crusher have different construction and power requirements.</p>
+<p>The quotation should be reviewed along with the machine specifications. Transportation and installation and supporting equipment may also affect the total project cost.</p>
+<p>When comparing prices ask about the included components and replacement parts and technical assistance. A machine that suits the actual feed material is generally a better investment than one selected simply because its initial price is lower.</p>
+<h2>Choosing the Right Jaw Crusher Manufacturer</h2>
+<p>Finding suitable jaw crusher manufacturers takes more than comparing product photographs or advertised capacity. Buyers should look at the available models and technical documentation and manufacturing facilities.</p>
+<p>Mewar Hi-Tech Engineering Limited operates from Sukher Industrial Area in Udaipur Rajasthan. Its manufacturing capabilities include machinery fabrication and machining and assembly. The company also offers crushing and screening equipment for industrial applications.</p>
+<p>Businesses searching for jaw crusher manufacturers in Ahmedabad can compare suppliers from other manufacturing locations as well. What matters most is whether the manufacturer can supply a suitable machine and provide the necessary technical information and support.</p>
+<p>You can review the Mewar Hi-Tech crusher range to compare the available equipment.</p>
+<h2>Contact Mewar Hi-Tech for Jaw Crusher Solutions</h2>
+<p>Selecting a jaw crusher requires a clear understanding of the material and the production target. A machine used for granite quarrying may have different requirements from one processing mineral-bearing rock. Feed size and output requirements should therefore be considered before making a purchase.</p>
+<p>Mewar Hi-Tech offers single toggle and double toggle jaw crusher options for different industrial applications. Its product specifications and tonnage charts can help buyers compare the available models.</p>
+<p>If you are planning a new crushing plant or replacing existing equipment contact <a href="https://www.mewarhitech.com/">Mewar Hi-Tech</a> with your material details and expected production capacity. The team can help you explore the available machine options for your project.</p>`
   },
   {
     slug: "double-toggle-oil-jaw-crusher",
     name: "Double Toggle Oil Jaw Crusher",
     category: "Crushers",
     subCategory: "Jaw Crusher",
-    shortDescription: "Heavy-duty primary crushing for high-capacity ore and rock reduction.",
+    shortDescription: "The Double Toggle Oil Jaw Crusher delivers reliable primary crushing and consistent performance in demanding mining and quarrying operations.",
     heroImage: "/images/double-toggle-oil-jaw-crusher-hero.webp",
     mainImage: "/images/double-toggle-oil-jaw-crusher.webp",
     model3d: "/3d-model-proudct-images/double_toggle_oil_jaw_crusher.glb",
-    seoTitle: "Double Toggle Oil Jaw Crusher | Mewar Hi-Tech",
-    seoDescription: "Heavy-duty double toggle oil jaw crusher for primary crushing in quarries and mines. See features and request a quote from Mewar Hi-Tech.",
-    introText: "Mewar Hi-Tech is a credible and trustworthy brand known for its high quality and great manufacturing. We also acquired experience over the years in the manufacture of jaw crusher, which is commonly used in mining, quarry and material handling. Mewar Hi-Tech's Double Toggle Oil Lubricated Jaw Crusher has a longer life as compared to the jaw plates of other crushers, in light of the fact that Mewar Hi-Tech's Toggle Jaw Crusher operates on the 'Crushing without Rubbing' concept. Also, automatic continuous spray lubrication is provided by coupling pump / vertical oil pump on the basis of toggle-pitman mechanism which enables the crusher to run safely.",
+    seoTitle: "Double Toggle Oil Jaw Crusher Manufacturer | Mewar Hi-Tech",
+    seoDescription: "The Double Toggle Oil Jaw Crusher delivers reliable primary crushing and consistent performance in demanding mining and quarrying operations. Request a quote from Mewar Hi-Tech.",
+    introText: "Mewar Hi-Tech's Double Toggle Oil Jaw Crusher is built for long-lasting performance in tough crushing conditions.\nIts special crushing design helps reduce jaw plate wear and extend machine life.\nAutomatic oil lubrication keeps the crusher running smoothly and safely.",
     features: [
-      "The operating mechanism is totally enclosed for maximum life and minimum maintenance.",
-      "Double toggle provides maximum leverage to long stroke eccentric.",
-      "Pull-back and springs automatically compensate for wear.",
-      "Wide entry throat ensures easy feeding to the crushing chamber.",
-      "The cast steel swing jaw is balanced to avoid power losses through lifting on crushing.",
-      "Strong steel machine body and other parts are made from certified quality material."
+      "The enclosed oil lubrication system protects the operating mechanism and reduces maintenance requirements.",
+      "Double toggle design delivers strong crushing force through an efficient mechanical arrangement.",
+      "Continuous oil lubrication helps reduce friction and supports smooth operation of moving components.",
+      "The wide feed opening allows large material to enter the crushing chamber with ease.",
+      "The balanced cast steel swing jaw provides reliable crushing performance under heavy operating loads."
     ],
     gallery: [
       "/images/double-toggle-oil-jaw-crusher-1.jpg"
@@ -230,7 +225,111 @@ export const PRODUCTS_DATA = [
           ]
         }
       ]
-    }
+    },
+    faqs: [
+      {
+        question: "What is a Double Toggle Oil Jaw Crusher?",
+        answer: "A Double Toggle Oil Jaw Crusher is a primary crushing machine used to break large rocks and minerals into smaller pieces. It uses a two-toggle mechanism and an oil lubrication system for smooth and reliable operation."
+      },
+      {
+        question: "How does a Double Toggle Oil Jaw Crusher work?",
+        answer: "The crusher works through the movement of a fixed jaw and a moving jaw. The double toggle mechanism transfers force to the moving jaw, which compresses and breaks the material into smaller sizes."
+      },
+      {
+        question: "Where is a Double Toggle Oil Jaw Crusher used?",
+        answer: "It is commonly used in mining, quarrying and mineral processing. It is suitable for crushing hard rocks and ores such as granite, limestone, iron ore and other minerals."
+      },
+      {
+        question: "What is the capacity of a Double Toggle Oil Jaw Crusher?",
+        answer: "The capacity depends on the crusher model, feed material and closed side setting (CSS). Mewar Hi-Tech offers different machine sizes with capacity options listed in its technical tonnage chart."
+      },
+      {
+        question: "What factors affect the price of a Double Toggle Oil Jaw Crusher?",
+        answer: "The price depends on machine size, required capacity, motor power, feed material and project requirements. Contact Mewar Hi-Tech with your application details to get a suitable model recommendation and quotation."
+      }
+    ],
+    articleContent: `<h2>Double Toggle Oil Jaw Crusher for Heavy-Duty Crushing Applications</h2>
+<p>A Double Toggle Oil Jaw Crusher is designed to crush hard rocks and minerals in demanding industrial conditions. It is commonly used as a primary crushing machine in mining and quarrying plants where large feed material needs to be reduced before moving to the next stage of processing. Its double toggle mechanism provides the force required for crushing while the enclosed oil lubrication system supports smooth machine operation.</p>
+<p>Mewar Hi-Tech offers <a href="https://www.mewarhitech.com/products/jaw-crusher">jaw crusher</a> solutions for different mining and quarrying requirements. The Double Toggle Oil Jaw Crusher is developed for operations that need reliable crushing performance and consistent production. It can be used for processing materials such as iron ore and other hard rocks commonly found in mineral processing applications.</p>
+<p>Choosing the right crusher is important for maintaining the required production capacity and managing plant operations. Factors such as the type of material, feed size and required output should be considered before selecting a machine. A suitable crusher helps create a more efficient crushing process and supports the overall performance of the plant.</p>
+<h2>How Does a Double Toggle Oil Jaw Crusher Work?</h2>
+<p>The working principle of a double toggle jaw crusher is based on compression. Large rocks enter the crushing chamber through the feed opening. Inside the chamber, the material is crushed between a fixed jaw plate and a moving jaw plate as the machine operates. The repeated movement of the jaw plates breaks the material into smaller pieces.</p>
+<p>The eccentric shaft drives the toggle mechanism and creates the movement needed to apply crushing force. As the moving jaw approaches the fixed jaw, the space between the two jaw plates becomes smaller. This pressure breaks the material. When the moving jaw moves away, the crushed material travels further down through the chamber and exits through the discharge opening.</p>
+<p>The size of the discharged material depends on the crusher setting and the properties of the feed material. This makes the correct setting important when a plant needs a particular output size for the next stage of processing.</p>
+<p>The oil-lubricated design uses an enclosed operating mechanism with an automatic continuous spray lubrication arrangement. This helps lubricate the moving components during operation. The machine is designed around the crushing without rubbing concept which helps reduce unnecessary wear on the jaw plates. Together these features support reliable operation in demanding crushing conditions.</p>
+<h2>Key Features of Mewar Hi-Tech Double Toggle Oil Jaw Crusher</h2>
+<p>The Double Toggle Oil Jaw Crusher from Mewar Hi-Tech is developed for heavy-duty crushing work. Its enclosed operating mechanism helps protect important components and supports reliable machine operation. The double toggle arrangement provides leverage to the long-stroke eccentric and helps deliver the crushing force required to break hard material.</p>
+<p>The wide entry throat allows large feed material to enter the crushing chamber. This is useful in primary crushing applications where the machine receives material directly from the initial feeding stage. The cast steel swing jaw is balanced to help avoid power loss caused by lifting during the crushing stroke. Pull-back and spring arrangements also help compensate for wear during operation.</p>
+<p>Another important feature is the automatic continuous spray lubrication system. Lubrication is provided through a coupled pump or vertical oil pump arrangement based on the toggle-pitman mechanism. It helps supply oil to the operating mechanism while the crusher is running. Proper lubrication is important because it supports the movement of machine components and helps maintain safe operation.</p>
+<p>The machine is designed for industrial applications where equipment needs to work under demanding conditions. However, the correct model should always be selected according to the required feed size, production capacity and material characteristics. Reviewing the technical specifications before installation helps ensure that the crusher is suitable for the intended application.</p>
+<h2>Applications of Double Toggle Oil Jaw Crusher in Mining and Quarrying</h2>
+<p>A Double Toggle Oil Jaw Crusher is commonly selected for primary crushing in mining and quarrying operations. It reduces large pieces of hard material into smaller sizes before they move to secondary crushing and screening equipment. This makes it an important part of many mineral processing and aggregate production plants.</p>
+<p>In mining plants, the crusher can be used for the primary reduction of hard ores such as iron ore and other metallic minerals. The size of the feed material is reduced so that it can move through the remaining processing stages. The required crushing arrangement depends on the material being processed and the final product size.</p>
+<p>In stone quarries, the machine helps break large rock pieces into smaller sizes for further processing. The crushed material can then be transferred to cone crushers or other equipment depending on the required output size. This process helps prepare material for aggregate production and other construction-related applications.</p>
+<p>The machine can also form part of an aggregate production plant. The final plant arrangement depends on the type of rock, the required capacity and the finished product sizes. Mewar Hi-Tech can help assess the crushing requirement and identify suitable equipment for the application.</p>
+<p>Before choosing a crusher for a mining or quarrying project, buyers should consider the material hardness, maximum feed size and expected production rate. These details help determine whether a particular crusher model is suitable for the working conditions.</p>
+<h2>Double Toggle Jaw Crusher Capacity and Machine Selection</h2>
+<p>Choosing the right double toggle jaw crusher requires more than checking the machine size. Feed opening dimensions, maximum feed size, material hardness and the required output size all affect machine selection. The closed side setting or CSS is another important factor because it influences the size of the crushed material and the machine's production capacity.</p>
+<p>Mewar Hi-Tech provides a machine specification and tonnage chart for its Double Toggle Oil Jaw Crusher. The chart includes primary and secondary crusher models with details such as recommended feed size, capacity at different CSS settings, RPM, motor power and approximate machine weight. Buyers can use this information to compare available models and understand which machine may suit their production requirements.</p>
+<p>The required capacity should be considered before finalising a crusher. For example, a plant processing a high volume of hard rock may have different requirements from a smaller operation with a lower production target. The feed opening should also be suitable for the largest material entering the machine. If the feed size is not matched to the crusher, it can affect the feeding process and overall plant performance.</p>
+<p>Actual production can vary with rock gradation, compressive strength, moisture content, bulk density and feeding conditions. For this reason, the capacity chart should be used as a selection guide rather than a guaranteed production figure. Share your material type, maximum feed size and target tonnes per hour with the Mewar Hi-Tech team to discuss a suitable model.</p>
+<h2>Double Toggle Oil Jaw Crusher vs Double Toggle Grease Jaw Crusher</h2>
+<p>Both crushers use a double toggle arrangement for crushing. The main difference is their lubrication system. The oil-lubricated model uses an enclosed mechanism with automatic continuous spray lubrication, while the Double Toggle Grease Jaw Crusher uses a grease-based lubrication arrangement.</p>
+<p>The following table highlights the main points buyers should consider when comparing these two models.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Comparison Factor</th>
+      <th>Double Toggle Oil Jaw Crusher</th>
+      <th>Double Toggle Grease Jaw Crusher</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Crushing Mechanism</td>
+      <td>Uses a double toggle arrangement.</td>
+      <td>Uses a double toggle arrangement.</td>
+    </tr>
+    <tr>
+      <td>Lubrication System</td>
+      <td>Uses an enclosed mechanism with automatic continuous spray lubrication.</td>
+      <td>Uses a grease-based lubrication arrangement.</td>
+    </tr>
+    <tr>
+      <td>Operating Mechanism</td>
+      <td>Designed with an oil lubrication system for the operating mechanism.</td>
+      <td>Uses a grease lubrication system.</td>
+    </tr>
+    <tr>
+      <td>Machine Selection</td>
+      <td>Selection depends on application requirements and machine specifications.</td>
+      <td>Selection depends on application requirements and machine specifications.</td>
+    </tr>
+    <tr>
+      <td>Key Considerations</td>
+      <td>Operating conditions, maintenance requirements, capacity and technical specifications.</td>
+      <td>Operating conditions, maintenance requirements, capacity and technical specifications.</td>
+    </tr>
+  </tbody>
+</table>
+<p>The right crusher depends on your plant requirements and operating conditions. Before selecting a model, compare its technical specifications, capacity range and maintenance requirements. You should also consider the material being processed and the expected working hours of the plant.</p>
+<h2>What Is a Toggle Plate Jaw Crusher?</h2>
+<p>A toggle plate jaw crusher uses a toggle plate as part of the mechanism that transfers movement and force within the crushing assembly. The toggle arrangement supports the movement of the jaw and plays an important role in the crushing process. It helps transfer the movement generated by the drive mechanism to the moving jaw.</p>
+<p>The toggle plate is one of the components buyers may consider when comparing jaw crusher parts and machine designs. Other important components include the fixed jaw plate, the moving jaw plate, the eccentric shaft, the flywheel and the crushing chamber. Each component has a role in the operation of the machine.</p>
+<p>Jaw plates are particularly important because they come into direct contact with the material being crushed. Their condition can affect crushing performance and the quality of the output. Over time, jaw plates and other wear parts may need inspection or replacement depending on the material and operating conditions.</p>
+<p>Regular inspection of wear parts and following the manufacturer's maintenance instructions help keep the machine in suitable operating condition. Operators should also pay attention to unusual noise, changes in machine performance and signs of wear during routine checks.</p>
+<h2>Double Toggle Jaw Crusher Manufacturers and Industrial Equipment Selection</h2>
+<p>When comparing double toggle jaw crusher manufacturers, buyers should review the machine specifications and the manufacturer's experience with crushing equipment. The feed opening, capacity range, motor power, construction and maintenance support are important points to consider.</p>
+<p>A reliable manufacturer of double toggle oil jaw crusher equipment should also be able to explain the lubrication arrangement and provide technical information for selecting the right model. Buyers should ask for the capacity chart and clarify the expected output under their actual working conditions. This makes it easier to compare different machines based on practical requirements rather than price alone.</p>
+<p>The manufacturer's product range is another point worth checking. A company offering different types of crushing equipment can help buyers understand how machines may fit into different stages of a processing plant. It is also useful to review available technical specifications and ask about the support provided for installation and maintenance.</p>
+<p>Mewar Hi-Tech manufactures crushing and screening equipment in Udaipur, Rajasthan. Its product range includes the Double Toggle Oil Jaw Crusher, the Double Toggle Grease Jaw Crusher and the Single Toggle Grease Jaw Crusher. The company also offers other crushing equipment for different stages of material processing.</p>
+<p>Whether you are comparing double toggle jaw crusher manufacturers or looking for a specific machine configuration, make sure the selected model matches your material and production requirements.</p>
+<h2>Why Choose Mewar Hi-Tech for Jaw Crushing Equipment?</h2>
+<p>Selecting a crusher is an important decision because the machine needs to match the material and production requirements of the plant. The right equipment can help maintain a steady crushing process and reduce problems caused by unsuitable machine selection.</p>
+<p><a href="https://www.mewarhitech.com/">Mewar Hi-Tech</a> offers different jaw crusher configurations for industrial crushing applications. Buyers can review the available models and compare their feed sizes, capacity options and power requirements before making a decision. The product range includes oil-lubricated and grease-lubricated double toggle models as well as a single toggle option.</p>
+<p>For a Double Toggle Oil Jaw Crusher requirement, share the material to be crushed, the maximum feed size and the target production capacity with the Mewar Hi-Tech team. It is also useful to provide details about the required output size and the intended application. This information helps the team understand the project and recommend a suitable machine configuration.</p>
+<p>A crusher should be selected according to actual operating needs rather than choosing a model based only on its size or general capacity range. Reviewing the technical details and discussing the application before purchase can help buyers make a more suitable equipment decision.</p>
+<p>Contact Mewar Hi-Tech to discuss your jaw crusher requirement and request the relevant technical specifications, capacity details and quotation.</p>`
   },
   {
     slug: "single-toggle-grease-jaw-crusher",
