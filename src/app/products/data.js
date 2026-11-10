@@ -488,17 +488,19 @@ export const PRODUCTS_DATA = [
     name: "Double Toggle Grease Jaw Crusher",
     category: "Crushers",
     subCategory: "Jaw Crusher",
-    shortDescription: "Robust crushing units built for tough aggregate and mining applications.",
+    shortDescription: "The Double Toggle Grease Jaw Crusher is built for efficient crushing of hard rocks and minerals. Its reliable design supports smooth operation and consistent performance in mining and quarrying applications.",
     heroImage: "/images/double-toggle-grease-jaw-crusher-hero.webp",
     mainImage: "/images/double-toggle-grease-jaw-crusher.webp",
     model3d: "/3d-model-proudct-images/double_toggle_grease_jaw_crusher.glb",
-    seoTitle: "Double Toggle Grease Jaw Crusher | Mewar Hi-Tech",
-    seoDescription: "Double toggle grease jaw crusher for tough primary crushing duty. Check the features and ask Mewar Hi-Tech for a quote and technical details.",
-    introText: "Our organization has garnered a striking position in this industry as the Exporter, Manufacturer, Service Provider and Supplier of Double Toggle Grease Based Jaw Crusher in Udaipur, Rajasthan, India. It is precisely designed by using excellent material and hi-end technology and innovation. Besides, our customers can procure our products at effectively moderate costs. The capacities may vary depending upon the type of rock gradation, breaking characteristics, compressive strength, rate and method of feeding, bulk density of feed, percentage of moisture in feed, method of operation etc. The production capacity is affected by the type of jaw plates (plain/toothed) and RPM of the machine cast through lifting on crushing stroke.",
+    seoTitle: "Double Toggle Grease Jaw Crusher Manufacturer | Mewar Hi-Tech",
+    seoDescription: "The Double Toggle Grease Jaw Crusher is built for efficient crushing of hard rocks and minerals in mining and quarrying applications. Request a quote from Mewar Hi-Tech.",
+    introText: "The Double Toggle Grease Jaw Crusher is designed for crushing hard rocks and minerals in demanding conditions. Its strong construction supports reliable performance in mining and quarrying operations. The machine offers efficient crushing with a design suited for regular industrial use.",
     features: [
-      "Double Toggle provides maximum leverage to the long stroke eccentric.",
-      "Wide entry throat ensures easy feeding to the crushing chamber.",
-      "Strong steel structure and other parts are made from certified quality material only."
+      "Double toggle design delivers strong crushing force through an efficient long-stroke eccentric mechanism.",
+      "The wide entry throat allows easy feeding of material into the crushing chamber.",
+      "The heavy-duty steel structure is built using quality materials for dependable performance.",
+      "Grease lubrication helps maintain smooth movement of components and reduces friction during operation.",
+      "The robust jaw assembly supports reliable crushing performance in demanding industrial applications."
     ],
     gallery: [],
     video: null,
@@ -535,25 +537,146 @@ export const PRODUCTS_DATA = [
           ]
         }
       ]
-    }
+    },
+    faqs: [
+      {
+        question: "What is a Double Toggle Grease Jaw Crusher?",
+        answer: "A Double Toggle Grease Jaw Crusher is a primary crushing machine used to break large rocks and minerals into smaller sizes. It uses a double toggle mechanism and a grease-based lubrication system for crushing operations."
+      },
+      {
+        question: "How does a Double Toggle Grease Jaw Crusher work?",
+        answer: "The crusher works by compressing material between a fixed jaw plate and a moving jaw plate. The double toggle mechanism transfers movement to the swinging jaw. As the jaw moves towards the fixed plate, the material breaks into smaller pieces and moves towards the discharge opening."
+      },
+      {
+        question: "Where is a Double Toggle Grease Jaw Crusher used?",
+        answer: "It is commonly used in mining plants, stone quarries and aggregate production units. It helps crush hard rocks and minerals before the material moves to secondary crushing or screening equipment."
+      },
+      {
+        question: "What factors affect the capacity of a Double Toggle Grease Jaw Crusher?",
+        answer: "Capacity depends on the crusher model, feed size, rock gradation, compressive strength, moisture content, feeding method, jaw plate profile (plain or toothed) and machine RPM. Technical specifications help buyers select a model suitable for their application."
+      },
+      {
+        question: "What should I consider before buying a Double Toggle Grease Jaw Crusher?",
+        answer: "Check the required production capacity, maximum feed size, material hardness, motor power, machine dimensions and maintenance requirements. You should also verify the manufacturer's technical specifications and support services."
+      }
+    ],
+    articleContent: `<h2>Double Toggle Grease Jaw Crusher for Heavy-Duty Crushing Applications</h2>
+<p>A reliable crushing machine is important for industries that handle hard rocks, minerals and other heavy materials every day. The right equipment helps maintain a steady production process while reducing unnecessary interruptions. A Double Toggle Grease Jaw Crusher is designed for demanding crushing applications where strength, durability and consistent performance are important.</p>
+<p>Mewar Hi-Tech offers jaw crusher solutions for mining, quarrying and aggregate production. Its Double Toggle Grease Jaw Crusher is developed to handle tough materials and support regular industrial crushing operations. The machine is suitable for businesses looking for a dependable jaw crusher for primary crushing and size reduction.</p>
+<h2>What Is a Double Toggle Grease Jaw Crusher?</h2>
+<h3>Understanding the Double Toggle Mechanism</h3>
+<p>A Double Toggle Grease Jaw Crusher is a type of jaw crusher that uses a double toggle mechanism to produce the crushing action. It works by applying pressure between two jaw plates. One jaw remains fixed while the other moves to crush the material fed into the crushing chamber.</p>
+<h3>Role of Grease Lubrication</h3>
+<p>The double toggle arrangement transfers movement through the toggle mechanism and helps generate the force required to break hard materials into smaller pieces. Grease lubrication is used for the designated moving and bearing components to support smooth machine operation and reduce friction.</p>
+<p>This type of double toggle jaw crusher is commonly considered for industrial applications where the material requires strong and consistent crushing action. Its construction makes it suitable for mining, stone crushing and quarrying environments.</p>
+<h2>How Does a Double Toggle Jaw Crusher Work?</h2>
+<h3>Material Feeding and Crushing Process</h3>
+<p>The working principle of a double toggle <a href="https://www.mewarhitech.com/products/jaw-crusher">jaw crusher</a> is based on compression. Large rocks or minerals enter the crushing chamber through the feed opening. The moving jaw then applies pressure against the material as it moves towards the fixed jaw. This pressure breaks the material into smaller pieces.</p>
+<h3>Discharge and Lubrication Process</h3>
+<p>The toggle mechanism plays an important role in transferring the movement required for crushing. As the material becomes small enough to pass through the discharge opening, it leaves the crushing chamber and moves to the next stage of processing.</p>
+<p>In a grease-lubricated jaw crusher, suitable lubrication helps protect the relevant moving components during operation. Regular inspection and maintenance are also important for keeping the machine in good working condition.</p>
+<h2>Key Features of Mewar Hi-Tech Double Toggle Grease Jaw Crusher</h2>
+<h3>Strong Construction for Industrial Operations</h3>
+<p>A jaw crusher used in mining and quarrying must be strong enough to handle demanding working conditions. The Double Toggle Grease Jaw Crusher from Mewar Hi-Tech is designed with industrial crushing requirements in mind.</p>
+<h3>Double Toggle Mechanism and Grease Lubrication</h3>
+<p>Its sturdy construction supports regular operation in tough environments where rocks and minerals need to be reduced in size. The double toggle mechanism provides the crushing movement required for handling hard materials. Grease lubrication supports the operation of the relevant components and forms part of the machine's maintenance requirements.</p>
+<h3>Suitable for Regular Crushing Requirements</h3>
+<p>The machine is intended for industrial users who need dependable crushing equipment for their production plants. Proper machine selection, feeding practices and scheduled maintenance help maintain its performance over time.</p>
+<h2>Applications of Double Toggle Grease Jaw Crusher in Mining and Quarrying</h2>
+<h3>Mining and Mineral Processing</h3>
+<p>A Double Toggle Grease Jaw Crusher can be used in different industries where large pieces of material need to be crushed before further processing. Mining is one of its important application areas because extracted rocks and minerals often require primary size reduction before moving through the processing plant.</p>
+<h3>Stone Crushing and Quarrying</h3>
+<p>In quarrying operations, a jaw crusher helps break large stones into smaller sizes for further crushing and screening. The crushed material can then be processed to meet the requirements of aggregate production and construction projects.</p>
+<h3>Aggregate Production and Industrial Applications</h3>
+<p>Stone crushing plants also use jaw crushers as part of their material processing setup. Depending on the plant design and material requirements, the crushed output may be transferred to secondary crushing equipment such as a cone crusher or a roll crusher.</p>
+<p>The machine can also be considered for mineral processing and other industrial applications where the feed material and required output size are suitable for its design. The final selection should always be based on the material characteristics and the required production capacity.</p>
+<h2>Double Toggle Jaw Crusher Capacity and Machine Selection</h2>
+<h3>Factors Affecting Crusher Capacity</h3>
+<p>The capacity of a Double Toggle Jaw Crusher depends on several operating and material-related factors. Feed size, rock hardness, material density, moisture content and the required discharge size can all affect the amount of material processed by the machine.</p>
+<h3>Choosing the Right Crusher Model</h3>
+<p>Before choosing a jaw crusher machine, it is important to understand the expected feed size and the production requirement of the plant. The crusher should be selected according to the material that needs to be processed rather than capacity alone.</p>
+<p>Mewar Hi-Tech provides machine specifications and capacity information to help buyers understand the available options. Customers should refer to the relevant model's technical details and tonnage chart when comparing machines. Actual production can vary according to the material and operating conditions.</p>
+<h2>Double Toggle Grease Jaw Crusher vs Double Toggle Oil Jaw Crusher</h2>
+<h3>Difference in Lubrication Systems</h3>
+<p>Both grease-lubricated and oil-lubricated double toggle jaw crushers are used for crushing applications. However, their lubrication arrangements are different. Understanding this difference can help buyers select equipment according to their plant requirements and maintenance preferences.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Comparison</th>
+      <th>Double Toggle Grease Jaw Crusher</th>
+      <th>Double Toggle Oil Jaw Crusher</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Lubrication system</td>
+      <td>Uses grease lubrication for designated components</td>
+      <td>Uses an oil lubrication arrangement</td>
+    </tr>
+    <tr>
+      <td>Main purpose</td>
+      <td>Designed for industrial crushing applications</td>
+      <td>Designed for heavy-duty crushing applications</td>
+    </tr>
+    <tr>
+      <td>Machine selection</td>
+      <td>Depends on feed material, capacity and operating requirements</td>
+      <td>Depends on feed material, capacity and operating requirements</td>
+    </tr>
+    <tr>
+      <td>Maintenance</td>
+      <td>Requires inspection and maintenance of grease-lubricated components</td>
+      <td>Requires attention to the oil lubrication system and its operating requirements</td>
+    </tr>
+  </tbody>
+</table>
+<h3>Which Jaw Crusher Should You Choose?</h3>
+<p>The right option depends on the machine design, production needs and maintenance arrangements at the plant. Buyers should compare the technical specifications of both models before making a decision.</p>
+<h2>Important Jaw Crusher Parts and Their Functions</h2>
+<h3>Fixed Jaw Plate and Moving Jaw Plate</h3>
+<p>Understanding the main jaw crusher parts can make machine selection and maintenance easier. The fixed jaw plate and moving jaw plate form the crushing chamber where the material is compressed. These plates come into direct contact with the material and play an important role in the crushing process.</p>
+<h3>Toggle Mechanism and Eccentric Shaft</h3>
+<p>The toggle mechanism transfers the movement required for the crushing action. The eccentric shaft and other drive components support the movement of the jaw assembly. Bearings and lubrication arrangements help the relevant moving parts operate as intended.</p>
+<h3>Importance of Regular Component Inspection</h3>
+<p>Each component has a specific role in the overall performance of the jaw crusher machine. Regular inspection of jaw plates, toggle components, bearings and lubrication points can help identify wear or maintenance requirements before they affect plant operations.</p>
+<h2>Factors to Consider Before Buying a Double Toggle Grease Jaw Crusher</h2>
+<h3>Material Type and Feed Size</h3>
+<p>Choosing a Double Toggle Grease Jaw Crusher requires more than comparing the machine price. Buyers should first consider the type of material they need to crush and its hardness. The maximum feed size is also important because the crusher must be suitable for the material entering the crushing chamber.</p>
+<h3>Production Capacity and Output Requirements</h3>
+<p>Production capacity is another major consideration. A machine should match the expected plant requirement and work effectively with the other equipment in the crushing line. The required output size, available installation space and power requirements should also be reviewed before finalising the model.</p>
+<h3>Maintenance and Technical Support</h3>
+<p>Maintenance requirements and the availability of technical support are worth considering as well. A clear understanding of these factors helps buyers select a jaw crusher that fits their actual operating conditions.</p>
+<h2>Double Toggle Jaw Crusher Price and Cost Considerations</h2>
+<h3>Factors That Affect Jaw Crusher Price</h3>
+<p>The price of a Double Toggle Grease Jaw Crusher can vary according to its model, size, capacity and technical configuration. The required feed opening, production target and application can also influence the final machine selection and quotation.</p>
+<h3>What to Check Before Comparing Prices</h3>
+<p>A lower initial price should not be the only factor when comparing jaw crusher manufacturers. Buyers should also review the machine specifications, construction quality, maintenance requirements and suitability for their production process.</p>
+<p>For an accurate quotation, it is useful to share details about the material, feed size, required output and expected capacity. This information helps the manufacturer recommend a suitable jaw crusher machine for the application.</p>
+<h2>Why Choose Mewar Hi-Tech as Your Double Toggle Jaw Crusher Manufacturer?</h2>
+<h3>Industrial Crushing Equipment and Product Range</h3>
+<p>Selecting the right manufacturer is an important part of setting up a reliable crushing plant. Buyers need equipment that matches their material requirements and production goals. <a href="https://www.mewarhitech.com/">Mewar Hi-Tech</a> manufactures crushing and screening equipment for industrial applications, including mining, quarrying and aggregate processing.</p>
+<h3>Finding the Right Jaw Crusher for Your Requirements</h3>
+<p>Its product range includes different jaw crusher models designed for varying crushing requirements. Customers can review the available machine specifications and discuss their application needs before choosing a suitable model.</p>
+<p>Whether you are looking for a Double Toggle Grease Jaw Crusher, a Double Toggle Oil Jaw Crusher or another type of jaw crusher machine, selecting equipment based on actual operating conditions is essential. Mewar Hi-Tech aims to support customers with crushing equipment suited to their plant requirements.</p>`
   },
   {
     slug: "cone-crusher",
     name: "Cone Crusher",
     category: "Crushers",
     subCategory: "Cone Crusher",
-    shortDescription: "Precision secondary crushing engineered for consistent particle shape.",
+    shortDescription: "The Cone Crusher is designed for efficient secondary and tertiary crushing of hard rocks and minerals. It delivers consistent output and reliable performance in demanding mining and quarrying operations.",
     heroImage: "/images/cone-crusher-hero.webp",
     mainImage: "/images/cone-crusher.webp",
     model3d: "/3d-model-proudct-images/cone_crusher.glb",
-    seoTitle: "Cone Crusher for Secondary Crushing | Mewar Hi-Tech",
-    seoDescription: "Cone crusher for secondary and tertiary crushing with consistent product size. See features and request a quote from Mewar Hi-Tech.",
-    introText: "Mewar Hi-tech is proud to reveal that it is one of the top Cone Crusher manufacturers providing the highest grade machinery for the crushing of feed materials. We don't simply concentrate on helping our clients in getting their ideal outcomes yet additionally on making the procedure progressively solid, financially savvy, and flexible. Along these lines, we resolve to give you the most lucrative outcome.",
+    seoTitle: "Cone Crusher Manufacturer in India | Mewar Hi-Tech",
+    seoDescription: "The Cone Crusher is designed for efficient secondary and tertiary crushing of hard rocks and minerals in mining and quarrying operations. Request a quote.",
+    introText: "The Cone Crusher is designed for efficient secondary and tertiary crushing of hard rocks and minerals. It delivers consistent output and reliable performance in demanding mining and quarrying operations.",
     features: [
-      "Higher crushing ratio and production efficiency result in lower spare part consumption and lower operating cost.",
-      "Easy maintenance from top reduces downtime. Improved cavity architecture helps in feed opening maintenance.",
-      "The tangential and radial forces result in uniform pressure and product of uniform shape.",
-      "Thin oil lubrication increases the life of consumable parts."
+      "High crushing efficiency helps achieve consistent output while reducing wear on crusher components.",
+      "The improved cavity design supports smooth material feeding and makes maintenance easier.",
+      "The crushing action applies balanced pressure to produce uniform material size during operation.",
+      "The thin oil lubrication system helps protect moving parts and extends the service life of wear components.",
+      "The robust crusher structure is designed to handle demanding crushing operations with reliable performance."
     ],
     gallery: [
       "/images/cone-crusher-1.jpg"
@@ -588,24 +711,134 @@ export const PRODUCTS_DATA = [
           ]
         }
       ]
-    }
+    },
+    faqs: [
+      {
+        question: "What is a Cone Crusher used for?",
+        answer: "A Cone Crusher is mainly used for secondary and tertiary crushing of hard rocks and minerals. It reduces the size of material after primary crushing and is commonly used in mining, quarrying and aggregate production plants."
+      },
+      {
+        question: "How does a Cone Crusher work?",
+        answer: "A Cone Crusher works on the principle of compression crushing. Material enters the crushing chamber and gets compressed between the mantle and concave liner. This action breaks larger rocks into smaller pieces that pass through the discharge opening."
+      },
+      {
+        question: "What are the main parts of a Cone Crusher?",
+        answer: "The main cone crusher parts generally include the mantle, concave liner, main shaft, eccentric assembly, frame, drive system and lubrication arrangement. Hydraulic cone crusher models may also include hydraulic components for specific adjustment and protection functions."
+      },
+      {
+        question: "What factors affect the capacity of a Cone Crusher?",
+        answer: "Cone crusher capacity depends on feed size, material hardness, crushing chamber design, discharge setting and feeding conditions. A 100 TPH cone crusher should be selected according to the required production output and the manufacturer's capacity specifications."
+      },
+      {
+        question: "How do I choose the right Cone Crusher manufacturer in India?",
+        answer: "Look for a manufacturer with experience in industrial crushing equipment, clear technical specifications, reliable machine design and appropriate technical support. Comparing machine specifications and discussing your application requirements will help you make a more informed choice."
+      }
+    ],
+    articleContent: `<h2>Cone Crusher for Efficient Crushing in Mining and Quarrying</h2>
+<p>Choosing the right crushing equipment is important for maintaining a smooth production process in mining, quarrying and aggregate plants. A Cone Crusher is widely used when materials need to be reduced to smaller and more uniform sizes after primary crushing. It helps process hard rocks and minerals while supporting the production requirements of industrial crushing plants.</p>
+<p>Mewar Hi-Tech offers crushing equipment for different material processing applications. Its cone crusher is designed for industrial crushing requirements where consistent output and dependable operation are important. Whether it is used in a stone crushing plant, mining operation or aggregate production setup, selecting the right cone crusher machine can make a difference to overall plant performance.</p>
+<h2>What Is a Cone Crusher?</h2>
+<h3>Understanding the Basic Design of a Cone Crusher</h3>
+<p>A Cone Crusher is a crushing machine commonly used for secondary and tertiary crushing. It reduces the size of rocks and minerals by compressing material between a moving crushing surface and a fixed outer surface. The material enters through the top of the machine and moves into the crushing chamber, where pressure breaks it into smaller pieces.</p>
+<h3>Role of Cone Crusher in a Crushing Plant</h3>
+<p>Cone crushers are generally used after primary crushing equipment such as a<a href="https://www.mewarhitech.com/products/jaw-crusher"> </a><a href="https://www.mewarhitech.com/products/jaw-crusher">jaw crusher</a>. The jaw crusher handles larger feed material during the first stage, while the cone crusher further reduces the material to the required size. This combination is commonly used in crushing plants where different stages of size reduction are needed.</p>
+<p>The final output depends on the machine configuration, feed material and operating settings. A suitable cone crusher machine helps maintain the required product size for applications such as aggregate production, road construction and mineral processing.</p>
+<h2>How Does a Cone Crusher Work? Understanding Its Working Principle</h2>
+<h3>Material Feeding and Crushing Process</h3>
+<p>The cone crusher working principle is based on compression crushing. Material enters the crushing chamber from the top and moves into the space between the mantle and concave liner. The mantle moves in a circular or gyrating motion, creating pressure against the material inside the chamber.</p>
+<p>As the material is compressed, larger pieces break into smaller particles. The crushed material gradually moves down through the chamber and exits through the discharge opening when it reaches a size that can pass through the available gap.</p>
+<h3>Factors Affecting the Working Performance</h3>
+<p>The crusher's performance depends on factors such as feed size, material hardness, chamber design and discharge setting. Correct feeding and regular inspection are important for maintaining stable operation. Operators should follow the manufacturer's instructions when adjusting the machine or carrying out maintenance.</p>
+<h2>Key Features of a Cone Crusher Machine</h2>
+<h3>Crushing Chamber and Liner Arrangement</h3>
+<p>A cone crusher machine must handle continuous material flow and demanding working conditions. Its design and configuration play an important role in crushing performance, product size and machine reliability.</p>
+<p>The crushing chamber is one of the main parts of the machine because it determines how material is compressed during operation. The mantle and concave liners are exposed to regular contact with the feed material, so their condition can influence crushing performance.</p>
+<h3>Mechanical Components and Machine Performance</h3>
+<p>The drive arrangement and other mechanical components work together to produce the movement required for size reduction.</p>
+<p>A properly selected cone crusher can support the production needs of mining and quarrying plants. Its performance also depends on the material being processed, the feed arrangement and the operating conditions at the site.</p>
+<h2>Cone Crusher Hydraulic System and Its Importance</h2>
+<h3>How the Hydraulic System Works</h3>
+<p>The cone crusher hydraulic system is an important area to understand when selecting and operating certain hydraulic cone crusher models. Depending on the machine design, hydraulic arrangements may support functions such as adjustment of the discharge setting, clearing of the crushing chamber and protection against certain operating conditions.</p>
+<p>The hydraulic system uses controlled pressure to operate the components designed for these functions. Its condition can affect machine operation, so regular inspection of hydraulic lines, connections, filters and oil levels is important where these components are fitted.</p>
+<h3>Hydraulic System Inspection and Maintenance</h3>
+<p>Not every cone crusher uses an identical hydraulic arrangement. The functions and specifications depend on the particular model. Buyers should refer to the machine's technical documentation to understand the hydraulic features available in the selected cone crusher.</p>
+<h2>Cone Crusher Parts Name and Their Functions</h2>
+<h3>Main Crushing Components</h3>
+<p>Understanding the cone crusher parts name makes it easier to learn how the machine works and what needs attention during maintenance. The main crushing components generally include the mantle and concave liner. These components form the crushing surfaces and are responsible for compressing the material inside the chamber.</p>
+<h3>Supporting Mechanical Components</h3>
+<p>The main shaft supports the crushing assembly, while the eccentric mechanism helps create the movement needed for crushing. The frame provides structural support to the machine. Other components may include the drive system, bearings, lubrication arrangement, adjustment mechanism and discharge area.</p>
+<p>The exact parts and their arrangement can differ between cone crusher models. For this reason, operators and maintenance teams should use the parts information and technical drawings supplied for their specific machine.</p>
+<h2>Understanding a Cone Crusher Diagram</h2>
+<h3>Main Components Shown in a Cone Crusher Diagram</h3>
+<p>A cone crusher diagram helps users understand the internal arrangement of the machine. It can show the position of important components such as the mantle, concave liner, main shaft, eccentric assembly and crushing chamber.</p>
+<h3>Importance of Technical Drawings</h3>
+<p>Studying a diagram is useful when learning the cone crusher working principle because it shows how the different parts work together during crushing. It can also help maintenance teams identify components when inspecting the machine or discussing replacement requirements.</p>
+<p>A general cone crusher diagram may not match every model. Always refer to the manufacturer's drawing for the correct component arrangement and identification of parts.</p>
+<h2>Cone Crusher Applications in Mining, Quarrying and Aggregate Production</h2>
+<h3>Use of Cone Crushers in Mining</h3>
+<p>A Cone Crusher is used in industries where hard rocks and minerals need further size reduction after primary crushing. In mining operations, it can process material that has already passed through the initial crushing stage. The crushed material may then move to screening or other processing equipment depending on the plant layout.</p>
+<h3>Applications in Quarrying and Stone Crushing</h3>
+<p>Quarrying is another important application. Cone crushers help reduce the size of extracted rocks and produce material for different construction and infrastructure requirements. They are also used in aggregate plants where the required output size and material grading are important.</p>
+<h3>Role in Multi-Stage Crushing Plants</h3>
+<p>In a typical crushing plant, a jaw crusher may be used for primary crushing and a cone crusher for secondary or tertiary crushing. This arrangement allows the plant to process larger feed material through more than one stage. The actual equipment combination depends on the rock type, production target and final product requirements.</p>
+<h2>100 TPH Cone Crusher and Capacity Considerations</h2>
+<h3>Understanding the 100 TPH Production Requirement</h3>
+<p>Buyers searching for a 100 TPH cone crusher are generally looking for equipment that can support a production target of around 100 tonnes per hour. However, actual output is not determined by the machine name or capacity rating alone.</p>
+<h3>Factors That Influence Crusher Capacity</h3>
+<p>The production capacity of a cone crusher depends on several factors, including the size and hardness of the feed material, feed distribution, crushing chamber, discharge setting and operating conditions. The performance of the complete plant also depends on how the crusher works with feeders, conveyors, screens and other equipment.</p>
+<h3>Selecting the Right Capacity Model</h3>
+<p>Before selecting a 100 TPH cone crusher, it is important to discuss the required feed size, material type and final output. Buyers should check the manufacturer's capacity chart and technical specifications to confirm whether a particular model is suitable for their production target.</p>
+<h2>Cone Crusher Parts and Maintenance Requirements</h2>
+<h3>Inspection of Crushing Components</h3>
+<p>Regular maintenance helps keep a cone crusher in suitable working condition. The mantle and concave liners should be inspected for wear because their condition affects the crushing chamber and product size. Bearings, drive components and lubrication arrangements also require attention according to the manufacturer's maintenance schedule.</p>
+<h3>Hydraulic and Mechanical Maintenance</h3>
+<p>For models equipped with a hydraulic system, operators should check the relevant hydraulic components and follow the recommended inspection procedure. Any unusual noise, vibration, temperature change or variation in output should be investigated rather than ignored.</p>
+<h3>Importance of Using Suitable Replacement Parts</h3>
+<p>Using the correct replacement parts is equally important. Cone crusher parts should match the machine model and its technical requirements. Using the correct components helps avoid compatibility problems and supports reliable operation.</p>
+<h2>Cone Crusher Parts PDF and Technical Documentation</h2>
+<h3>Information Available in Cone Crusher Parts PDFs</h3>
+<p>A cone crusher parts PDF can be useful for operators, maintenance teams and buyers who need information about machine components. Depending on the manufacturer, technical documents may include parts identification, assembly drawings, machine specifications and maintenance instructions.</p>
+<h3>How Technical Documents Help Maintenance Teams</h3>
+<p>These documents help users understand the arrangement of the machine and identify the components required for inspection or replacement. They can also make communication between the plant team and manufacturer easier when discussing spare parts or servicing.</p>
+<p>Always use the documentation supplied for the exact cone crusher model. A parts diagram or PDF from another machine may show a different design and component arrangement.</p>
+<h2>Cone Crusher Price and Factors That Affect It</h2>
+<h3>Machine Configuration and Capacity</h3>
+<p>The cone crusher price depends on the model, machine configuration, capacity and technical requirements. The type of material being crushed and the expected production output can also influence the equipment selection.</p>
+<h3>Maintenance and Operating Costs</h3>
+<p>A buyer should not compare cone crusher prices based only on the initial cost. It is also important to consider the machine's suitability for the application, replacement part requirements, maintenance needs and compatibility with the existing plant.</p>
+<h3>Getting an Appropriate Machine Quotation</h3>
+<p>For a suitable quotation, buyers should share details about the material, feed size, required output size and expected production capacity. These details help the manufacturer understand the application and recommend an appropriate cone crusher machine.</p>
+<h2>Cone Crusher Manufacturer in India: Choosing the Right Supplier</h2>
+<h3>What to Check Before Selecting a Manufacturer</h3>
+<p>When searching for a cone crusher manufacturer in India, buyers should consider the manufacturer's product range, technical knowledge and ability to understand different crushing requirements. The machine should be selected according to the material, plant capacity and required output rather than price alone.</p>
+<p>It is also useful to review the manufacturer's technical specifications, available documentation and support for machine maintenance. A clear discussion about the application can help avoid selecting equipment that does not match the production requirement.</p>
+<h3>Mewar Hi-Tech as a Crushing Equipment Manufacturer</h3>
+<p>Mewar Hi-Tech manufactures crushing and screening equipment for mining, quarrying and aggregate processing applications. Its range includes jaw crushers, cone crushers and other machines used in material processing plants. Buyers can discuss their project requirements with the company to understand the available equipment options.</p>
+<h2>Why Choose Mewar Hi-Tech for Cone Crusher Requirements?</h2>
+<h3>Crushing Equipment for Different Industrial Applications</h3>
+<p>Choosing a suitable crusher is an important decision for any industrial crushing plant. The equipment must match the material being processed and the production target of the operation. <a href="https://www.mewarhitech.com/">Mewar Hi-Tech</a> provides crushing and screening equipment for customers involved in mining, quarrying and aggregate production.</p>
+<h3>Finding a Suitable Cone Crusher Configuration</h3>
+<p>Its product range includes cone crushers and jaw crushers for different stages of material reduction. Customers can review the available machine details and discuss their requirements before deciding on a suitable configuration.</p>
+<p>Whether you are planning a new crushing plant or looking to upgrade existing equipment, it is important to consider the complete production process. Mewar Hi-Tech can help you explore its crushing equipment range according to your application and plant requirements.</p>`
   },
   {
     slug: "roll-crusher",
     name: "Roll Crusher",
     category: "Crushers",
     subCategory: "Roll Crusher",
-    shortDescription: "Efficient compression crushing for medium-hard and soft materials.",
+    shortDescription: "The Roll Crusher is designed for efficient size reduction of rocks, minerals and other materials. It delivers consistent crushing performance for mining, quarrying and industrial applications.",
     heroImage: "/images/roll-crusher-hero.webp",
     mainImage: "/images/roll-crusher.webp",
     model3d: "/3d-model-proudct-images/roll_crusher.glb",
-    seoTitle: "Roll Crusher | Mewar Hi-Tech",
-    seoDescription: "Roll crusher for controlled size reduction of medium-hard and soft materials. View details and request a quote from Mewar Hi-Tech, Udaipur.",
-    introText: "Mewar Hi-Tech's Roll Crusher machine is widely used for the powder process of mineral products, including metal and non-metal ore, fireproof material, bauxite, diamond dust, glass raw materials, architectural materials, artificial sand and all kinds of metals and materials. The design is robust to cater to the customer need.",
+    seoTitle: "Roll Crusher Manufacturer in India | Mewar Hi-Tech",
+    seoDescription: "The Roll Crusher is designed for efficient size reduction of rocks, minerals and other materials in mining and industrial applications. Request a quote.",
+    introText: "The Roll Crusher is designed for efficient size reduction of rocks, minerals and other materials. It delivers consistent crushing performance for mining, quarrying and industrial applications.",
     features: [
-      "Adjustable rolling spacing to change output sizing instantly.",
-      "Heavy duty compression spring release protection against metal tramps.",
-      "Replaceable segmented alloy steel roll shells for quick field replacement."
+      "Adjustable roll spacing allows quick control over the output size for different crushing requirements.",
+      "Heavy-duty compression springs provide release protection when uncrushable metal enters the crushing chamber.",
+      "Replaceable segmented alloy steel roll shells make maintenance easier and reduce replacement time.",
+      "The strong crusher frame supports stable operation during continuous material size reduction.",
+      "The efficient roll crushing mechanism delivers uniform output with reduced fines in suitable materials."
     ],
     gallery: [],
     video: null,
@@ -629,7 +862,116 @@ export const PRODUCTS_DATA = [
           ]
         }
       ]
-    }
+    },
+    faqs: [
+      {
+        question: "How does a Roll Crusher reduce the size of materials?",
+        answer: "A Roll Crusher reduces material size by passing it between two rotating rolls. As the material enters the gap, the rolls apply pressure and break it into smaller pieces. The final output size depends on the roll gap, feed material and machine settings."
+      },
+      {
+        question: "What is the difference between a Double Roll Crusher and other crushers?",
+        answer: "A Double Roll Crusher uses two rotating rolls to crush material through compression. A jaw crusher uses a fixed jaw and a moving jaw, while a cone crusher compresses material between a mantle and a concave liner. The right crusher depends on the material, required output size and production requirements."
+      },
+      {
+        question: "Which materials can be processed in a Roll Crusher?",
+        answer: "A Roll Crusher can be used to process suitable rocks, minerals and other industrial materials that require controlled size reduction. The right machine depends on the material's hardness, feed size and required output. Before selecting a crusher, it is important to check whether the material is suitable for roll-based crushing."
+      },
+      {
+        question: "What factors determine the output size of a Roll Crusher?",
+        answer: "The output size of a Roll Crusher mainly depends on the gap between the rolls, the speed of rotation, the feed material and the surface profile of the roll shells. Proper machine adjustment helps maintain the required product size during operation."
+      },
+      {
+        question: "What should be checked during Roll Crusher maintenance?",
+        answer: "Regular maintenance involves checking roll shell wear, inspecting bearings and lubrication points, verifying drive belt condition and testing compression springs. Timely inspections help maintain crushing performance and reduce downtime."
+      }
+    ],
+    articleContent: `<h2>Roll Crusher for Efficient Material Size Reduction</h2>
+<p>Choosing the right crushing machine depends on the type of material, the required output size and the production needs of the plant. A Roll Crusher is used in material processing applications where controlled size reduction is important. It reduces material by passing it between rotating rolls that apply pressure to break larger pieces into smaller sizes.</p>
+<p>Mewar Hi-Tech offers crushing equipment for industries involved in mining, quarrying and material processing. A roll crusher can be considered for applications where the feed material and required product size are suitable for roll-based crushing. Understanding its working principle, roll arrangement and operating requirements helps buyers select the right machine for their plant.</p>
+<h2>What Is a Roll Crusher?</h2>
+<p>A Roll Crusher is a size-reduction machine that uses two rotating rolls to crush material. Depending on the machine design, the rolls may rotate towards each other and draw material into the gap between them. Pressure applied by the rolls breaks the material into smaller pieces before it leaves through the discharge area.</p>
+<p>Roll crushers are used in different industrial applications where controlled crushing is required. Their suitability depends on the material's hardness, size, moisture content and the required final output.</p>
+<p>In a multi-stage crushing plant, a roll crusher may be used alongside other machines. For example, a <a href="https://www.mewarhitech.com/products/jaw-crusher">jaw crusher</a> can handle larger material during primary crushing, while a roll crusher can be used for a later size-reduction stage when the material and plant requirements allow it.</p>
+<h2>How Does a Roll Crusher Work?</h2>
+<p>The working principle of a roll crusher is based on compression. Material enters the machine from the top and moves towards the space between the rotating rolls. As the rolls turn, they pull the material into the crushing gap and apply pressure to break it.</p>
+<p>The size of the crushed material is influenced by the gap between the rolls, the feed material and the operating conditions. Once the material has been reduced to a size that can pass through the gap, it moves out of the machine through the discharge section.</p>
+<p>Correct feeding is important for smooth operation. The material should be distributed properly across the working width of the rolls to support consistent crushing. Operators should also follow the manufacturer's recommendations for roll gap adjustment, inspection and maintenance.</p>
+<h2>What Is a Double Roll Crusher?</h2>
+<p>A Double Roll Crusher is a type of roll crusher that uses two cylindrical rolls to reduce material size. The rolls rotate towards each other, allowing the feed material to enter the crushing gap. Pressure between the rolls breaks the material into smaller pieces.</p>
+<p>The crushing process depends on the roll diameter, roll surface, gap setting and characteristics of the material. These factors influence how effectively the machine handles the feed and the size of the final product.</p>
+<p>Double roll crushers are used in industrial material processing where their crushing action is suitable for the application. Before selecting a machine, buyers should check the feed size, material hardness, required output and expected production capacity.</p>
+<h2>Understanding the Angle of Nip in Roll Crusher</h2>
+<p>The angle of nip in a roll crusher is an important concept in understanding how material enters the crushing gap. It refers to the angle formed between the contact points of the material and the two rolls during the crushing process.</p>
+<p>For successful crushing, the rolls must be able to grip the material and pull it into the gap. If the material cannot be gripped properly, it may slip instead of entering the crushing zone. The angle of nip therefore has a direct relationship with the ability of the rolls to capture the feed material.</p>
+<p>The angle of the nip is influenced by factors such as roll diameter, roll spacing and the size of the material being fed. Material characteristics also affect how easily it is gripped. Understanding this concept is useful when evaluating roll crusher design and deciding whether a particular machine is suitable for the required feed material.</p>
+<h2>Roll Crusher Diagram and Its Main Components</h2>
+<p>A roll crusher diagram helps explain the arrangement of the machine and the movement of material during crushing. It generally shows the two rolls, the feed opening, the crushing gap and the discharge area. These parts work together to reduce the size of the material.</p>
+<p>The rolls are the main crushing components. Their surface design and condition affect how material is gripped and crushed. The frame supports the machine assembly, while the drive arrangement provides the movement needed to rotate the rolls. The gap between the rolls determines the space through which crushed material can pass.</p>
+<p>Studying a roll crusher diagram can make it easier to understand the machine's working principle. However, component arrangements may vary between models. Buyers and maintenance teams should refer to the manufacturer's technical drawing for the exact machine design.</p>
+<h2>Applications of Roll Crusher in Industrial Crushing</h2>
+<p>A roll crusher can be used in industrial operations where material needs to be reduced to a more manageable size. Its suitability depends on the characteristics of the feed and the required product.</p>
+<p>In mining and mineral processing, roll crushers may be used for size reduction at different stages of a processing plant. They can also be considered in selected quarrying and aggregate applications where the material is appropriate for roll-based crushing.</p>
+<p>The machine may form part of a larger crushing setup that includes feeders, conveyors, screens and other crushers. The complete arrangement should be planned according to the required production capacity and final material size.</p>
+<h2>Roll Crusher vs Jaw Crusher: Understanding the Difference</h2>
+<p>A roll crusher and a jaw crusher both reduce material size, but they use different crushing mechanisms. The following table highlights their main differences.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Comparison Factor</th>
+      <th>Roll Crusher</th>
+      <th>Jaw Crusher</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Working Principle</td>
+      <td>Uses two rotating rolls to apply pressure and crush material.</td>
+      <td>Uses a fixed jaw and a moving jaw to compress and break material.</td>
+    </tr>
+    <tr>
+      <td>Crushing Mechanism</td>
+      <td>Reduces material through compression between rotating rolls.</td>
+      <td>Reduces material through compression between two jaw plates.</td>
+    </tr>
+    <tr>
+      <td>Main Application</td>
+      <td>Used for controlled size reduction where roll-based crushing is suitable.</td>
+      <td>Commonly used for primary crushing of large rocks and materials.</td>
+    </tr>
+    <tr>
+      <td>Feed Material</td>
+      <td>Suitable for materials that can be effectively gripped and crushed between the rolls.</td>
+      <td>Can handle larger feed material depending on the machine model.</td>
+    </tr>
+    <tr>
+      <td>Output Size</td>
+      <td>Depends on the gap between the rolls and material characteristics.</td>
+      <td>Depends on the jaw opening, discharge setting and material properties.</td>
+    </tr>
+    <tr>
+      <td>Plant Usage</td>
+      <td>Can be used at suitable stages of a material processing plant.</td>
+      <td>Commonly used at the primary crushing stage.</td>
+    </tr>
+  </tbody>
+</table>
+<p>The choice between a roll crusher and a jaw crusher depends on the feed material, required capacity, final product size and position of the machine in the processing line. In some crushing plants, both machines are used at different stages to achieve the required output.</p>
+<h2>Factors to Consider Before Choosing a Roll Crusher</h2>
+<p>Selecting a roll crusher requires a clear understanding of the material and production requirements. The feed size is one of the first things to consider because the machine must be suitable for the material entering the rolls. Material hardness and moisture content should also be reviewed because they can affect the crushing process.</p>
+<p>The required output size is another important factor. The roll gap and machine configuration should be suitable for the final product requirement. Buyers should also consider the expected production capacity and how the roll crusher will work with other equipment in the plant.</p>
+<p>Maintenance access, replacement components and manufacturer support are worth reviewing before making a purchase. Comparing these details helps buyers choose a crusher that matches their actual operating conditions.</p>
+<h2>Roll Crusher Capacity and Output Size</h2>
+<p>The capacity of a roll crusher depends on its design and the material being processed. Roll diameter, roll width, rotational speed and the gap between the rolls can influence the amount of material handled by the machine.</p>
+<p>Feed size, material hardness and moisture content also affect production. A machine that performs well with one type of material may produce a different output when the feed characteristics change.</p>
+<p>For this reason, buyers should not select a roll crusher based on capacity alone. The required feed size, final product size and expected production rate should be discussed with the manufacturer. The machine's technical specifications should be checked before confirming the model.</p>
+<h2>Roll Crusher Maintenance and Operating Considerations</h2>
+<p>Regular inspection is important for maintaining the performance of a roll crusher. The roll surfaces should be checked for wear and damage because their condition affects how material is gripped and crushed. The drive arrangement, bearings and other moving components should also be inspected according to the manufacturer's maintenance schedule.</p>
+<p>The roll gap should be checked to make sure it matches the required output setting. Feeding should remain consistent, and material that falls outside the machine's recommended operating range should be avoided.</p>
+<p>Following the correct operating and maintenance instructions can help reduce unexpected interruptions. Maintenance requirements may differ between models, so operators should always refer to the documentation provided for their machine.</p>
+<h2>Why Choose Mewar Hi-Tech for Roll Crusher Requirements?</h2>
+<p>Choosing a suitable crusher manufacturer is important when planning a new crushing plant or upgrading existing equipment. The machine should match the material characteristics, production target and required output size.</p>
+<p><a href="https://www.mewarhitech.com/">Mewar Hi-Tech</a> manufactures crushing and screening equipment for industrial applications. Its product range supports customers involved in mining, quarrying and material processing. Buyers can review the available equipment and discuss their application requirements before selecting a suitable crushing solution.</p>
+<p>Whether a project requires a roll crusher, jaw crusher or other crushing equipment, the selection should be based on the complete plant requirement. Understanding the feed material and production process helps identify the right machine for the job.</p>`
   },
   {
     slug: "horizontal-shaft-impactor",
