@@ -27,6 +27,16 @@ import BlobButton from "@/components/ui/BlobButton";
 import StatsCounter from "@/components/shared/StatsCounter";
 import CTASection from "@/components/shared/CTASection";
 import EnquiryModal from "@/components/ui/EnquiryModal";
+import { toast } from "react-toastify";
+import {
+  containsScriptOrCode,
+  inputBorderClass,
+  validateEmailAddress,
+  validateFields,
+  validateMobileNumber,
+  validatePersonName,
+  validateQueryText,
+} from "@/lib/validation";
 
 const SERVICE_STAGES = [
   {
@@ -159,9 +169,47 @@ export default function ServicesPage() {
   const [formMachine, setFormMachine] = useState("Jaw Crusher");
   const [formMessage, setFormMessage] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formErrors, setFormErrors] = useState<Record<string, string | undefined>>({});
+
+  const updateServiceField = (
+    field: "name" | "phone" | "email" | "message",
+    value: string,
+    setter: (v: string) => void,
+    validator: (v: string) => string | null
+  ) => {
+    setter(value);
+    const err = validator(value);
+    if (formErrors[field] || containsScriptOrCode(value) || (value.trim() && err)) {
+      setFormErrors((prev) => ({ ...prev, [field]: err || undefined }));
+    }
+  };
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    const validationErrors = validateFields(
+      {
+        name: formName,
+        phone: formPhone,
+        email: formEmail,
+        message: formMessage,
+      },
+      {
+        name: validatePersonName,
+        phone: validateMobileNumber,
+        email: validateEmailAddress,
+        message: (val) => validateQueryText(val, "Requirement", true),
+      }
+    );
+
+    if (Object.keys(validationErrors).length > 0) {
+      setFormErrors(validationErrors);
+      const firstErr = Object.values(validationErrors).find(Boolean);
+      if (firstErr) toast.error(firstErr);
+      return;
+    }
+
+    setFormErrors({});
     setFormSubmitted(true);
     setTimeout(() => {
       setFormName("");
@@ -541,9 +589,10 @@ export default function ServicesPage() {
                             required
                             placeholder="e.g. Rajesh Sharma"
                             value={formName}
-                            onChange={(e) => setFormName(e.target.value)}
-                            className="w-full border border-border bg-background px-4 py-3 text-xs rounded-xl focus:outline-none focus:border-primary text-foreground"
+                            onChange={(e) => updateServiceField("name", e.target.value, setFormName, validatePersonName)}
+                            className={`w-full border bg-background px-4 py-3 text-xs rounded-xl focus:outline-none text-foreground ${inputBorderClass(formErrors.name)}`}
                           />
+                          {formErrors.name && <p className="mt-1 text-[10px] font-medium text-red-500">{formErrors.name}</p>}
                         </div>
 
                         <div>
@@ -555,9 +604,10 @@ export default function ServicesPage() {
                             required
                             placeholder="e.g. +91 9876543210"
                             value={formPhone}
-                            onChange={(e) => setFormPhone(e.target.value)}
-                            className="w-full border border-border bg-background px-4 py-3 text-xs rounded-xl focus:outline-none focus:border-primary text-foreground"
+                            onChange={(e) => updateServiceField("phone", e.target.value, setFormPhone, validateMobileNumber)}
+                            className={`w-full border bg-background px-4 py-3 text-xs rounded-xl focus:outline-none text-foreground ${inputBorderClass(formErrors.phone)}`}
                           />
+                          {formErrors.phone && <p className="mt-1 text-[10px] font-medium text-red-500">{formErrors.phone}</p>}
                         </div>
                       </div>
 
@@ -570,9 +620,10 @@ export default function ServicesPage() {
                           required
                           placeholder="e.g. rajesh@miningcorp.com"
                           value={formEmail}
-                          onChange={(e) => setFormEmail(e.target.value)}
-                          className="w-full border border-border bg-background px-4 py-3 text-xs rounded-xl focus:outline-none focus:border-primary text-foreground"
+                          onChange={(e) => updateServiceField("email", e.target.value, setFormEmail, validateEmailAddress)}
+                          className={`w-full border bg-background px-4 py-3 text-xs rounded-xl focus:outline-none text-foreground ${inputBorderClass(formErrors.email)}`}
                         />
+                        {formErrors.email && <p className="mt-1 text-[10px] font-medium text-red-500">{formErrors.email}</p>}
                       </div>
 
                       <div>
@@ -584,9 +635,10 @@ export default function ServicesPage() {
                           required
                           placeholder="Describe your service requirement or spares needed..."
                           value={formMessage}
-                          onChange={(e) => setFormMessage(e.target.value)}
-                          className="w-full border border-border bg-background p-4 text-xs rounded-xl focus:outline-none focus:border-primary text-foreground resize-none"
+                          onChange={(e) => updateServiceField("message", e.target.value, setFormMessage, (v) => validateQueryText(v, "Requirement", true))}
+                          className={`w-full border bg-background p-4 text-xs rounded-xl focus:outline-none text-foreground resize-none ${inputBorderClass(formErrors.message)}`}
                         />
+                        {formErrors.message && <p className="mt-1 text-[10px] font-medium text-red-500">{formErrors.message}</p>}
                       </div>
 
                       <div className="pt-2">

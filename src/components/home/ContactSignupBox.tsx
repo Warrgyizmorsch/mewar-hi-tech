@@ -6,16 +6,71 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import BlobButton from "@/components/ui/BlobButton";
+import { toast } from "react-toastify";
+import {
+  containsScriptOrCode,
+  inputBorderClass,
+  validateEmailAddress,
+  validateFields,
+  validatePersonName,
+} from "@/lib/validation";
 
 const ContactSignupBox: React.FC = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string | undefined>>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const updateField = (
+    field: "name" | "email",
+    value: string,
+    setter: (v: string) => void,
+    validator: (v: string) => string | null
+  ) => {
+    setter(value);
+    const err = validator(value);
+    if (errors[field] || containsScriptOrCode(value) || (value.trim() && err)) {
+      setErrors((prev) => ({ ...prev, [field]: err || undefined }));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Thank you for subscribing, ${name || "friend"}!`);
-    setEmail("");
-    setName("");
+
+    const validationErrors = validateFields(
+      { name, email },
+      { name: validatePersonName, email: validateEmailAddress }
+    );
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      const firstErr = Object.values(validationErrors).find(Boolean);
+      if (firstErr) toast.error(firstErr);
+      return;
+    }
+
+    setErrors({});
+    setSubmitting(true);
+
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim() }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(data.message || "Failed to subscribe");
+      }
+
+      toast.success(`Thank you for subscribing, ${name.trim()}!`);
+      setEmail("");
+      setName("");
+    } catch (error: any) {
+      toast.error(error?.message || "Failed to subscribe. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -41,30 +96,37 @@ const ContactSignupBox: React.FC = () => {
 
           <form onSubmit={handleSubmit} className="space-y-4 font-semibold">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input
-                type="text"
-                placeholder="First & Last Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                className="w-full border border-border px-4 py-3 text-xs rounded-lg focus:outline-none focus:border-primary text-foreground bg-background"
-              />
-              <input
-                type="email"
-                placeholder="Email Address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="w-full border border-border px-4 py-3 text-xs rounded-lg focus:outline-none focus:border-primary text-foreground bg-background"
-              />
+              <div>
+                <input
+                  type="text"
+                  placeholder="First & Last Name *"
+                  value={name}
+                  onChange={(e) => updateField("name", e.target.value, setName, validatePersonName)}
+                  required
+                  className={`w-full border px-4 py-3 text-xs rounded-lg focus:outline-none text-foreground bg-background ${inputBorderClass(errors.name)}`}
+                />
+                {errors.name && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.name}</p>}
+              </div>
+              <div>
+                <input
+                  type="email"
+                  placeholder="Email Address *"
+                  value={email}
+                  onChange={(e) => updateField("email", e.target.value, setEmail, validateEmailAddress)}
+                  required
+                  className={`w-full border px-4 py-3 text-xs rounded-lg focus:outline-none text-foreground bg-background ${inputBorderClass(errors.email)}`}
+                />
+                {errors.email && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.email}</p>}
+              </div>
             </div>
             <div>
               <BlobButton
                 type="submit"
+                disabled={submitting}
                 variant="primary"
                 className="!px-6 !py-3 !text-xs !font-bold !uppercase !tracking-wider flex items-center justify-center gap-2"
               >
-                <span>Sign Up</span>
+                <span>{submitting ? "Signing Up..." : "Sign Up"}</span>
                 <ArrowRight size={14} />
               </BlobButton>
             </div>

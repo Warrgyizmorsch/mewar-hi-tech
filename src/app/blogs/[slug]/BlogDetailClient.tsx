@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Container from "@/components/ui/Container";
 import BlobButton from "@/components/ui/BlobButton";
+import { validateEmailAddress } from "@/lib/validation";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -274,7 +275,11 @@ export default function BlogDetailClient({
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!formData.email) return;
+        const emailErr = validateEmailAddress(formData.email);
+        if (emailErr) {
+          toast.error(emailErr);
+          return;
+        }
         setIsSubmitting(true);
     
         try {
@@ -283,7 +288,7 @@ export default function BlogDetailClient({
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ email: formData.email }),
+            body: JSON.stringify({ email: formData.email.trim() }),
           });
     
           const data = await res.json().catch(() => ({}));
@@ -640,7 +645,7 @@ export default function BlogDetailClient({
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
-                  placeholder="Enter email address..."
+                  placeholder="Enter email address *"
                   className="bg-background border border-border text-foreground placeholder:text-muted-foreground px-4 lg:px-5 py-3 lg:py-3.5 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition w-full sm:min-w-[220px] lg:min-w-[250px] shadow-sm text-[13px] lg:text-sm"
                 />
                 <BlobButton

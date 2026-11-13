@@ -3,6 +3,15 @@ import { writeFile } from "fs/promises";
 import path from "path";
 import connectToDatabase from "@/lib/mongodb";
 import Career from "@/models/Career";
+import {
+  containsScriptOrCode,
+  validateCompanyName,
+  validateEmailAddress,
+  validateExperience,
+  validateMobileNumber,
+  validatePersonName,
+  validateResumeFile,
+} from "@/lib/validation";
 
 export async function POST(req: NextRequest) {
   try {
@@ -24,23 +33,42 @@ export async function POST(req: NextRequest) {
       );
     }
     
-    const name = formData.get("name") as string;
-    const email = formData.get("email") as string;
-    const phone = formData.get("phone") as string;
-    const position = formData.get("position") as string;
-    const experience = formData.get("experience") as string;
-    const file = formData.get("resume") as File;
+    const name = String(formData.get("name") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const phone = String(formData.get("phone") || "").trim();
+    const position = String(formData.get("position") || "").trim();
+    const experience = String(formData.get("experience") || "").trim();
+    const file = formData.get("resume") as File | null;
 
-    if (!name || !email || !phone || !position || !file) {
-      return NextResponse.json({ message: "Missing required fields" }, { status: 400 });
+    if ([name, email, phone, position, experience].some((val) => containsScriptOrCode(val))) {
+      return NextResponse.json(
+        { message: "Script tags, script files, and HTML content are not allowed." },
+        { status: 400 }
+      );
+    }
+
+    const validationError =
+      validatePersonName(name) ||
+      validateEmailAddress(email) ||
+      validateMobileNumber(phone) ||
+      validateCompanyName(position, true) ||
+      validateExperience(experience, true) ||
+      validateResumeFile(file);
+
+    if (validationError || !file) {
+      return NextResponse.json(
+        { message: validationError || "Missing required fields" },
+        { status: 400 }
+      );
     }
 
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // Create unique filename
+    // Create sanitized unique filename
+    const safeBaseName = path.basename(file.name).replace(/[^A-Za-z0-9._-]/g, "_");
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    const filename = uniqueSuffix + "-" + file.name.replace(/\s/g, "_");
+    const filename = uniqueSuffix + "-" + safeBaseName;
     
     const uploadDir = path.join(process.cwd(), "public/uploads/resumes");
     const filepath = path.join(uploadDir, filename);
@@ -64,7 +92,7 @@ export async function POST(req: NextRequest) {
       email,
       phone,
       position,
-      experience: experience || undefined,
+      experience,
       resumeUrl,
     });
 

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectToDatabase from "@/lib/mongodb";
 import Newsletter from "@/models/Newsletter";
+import { validateEmailAddress } from "@/lib/validation";
 
 export async function POST(req: NextRequest) {
   try {
@@ -14,9 +15,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (!body || !body.email) {
-      return NextResponse.json({ message: "Email is required" }, { status: 400 });
+    const rawEmail = typeof body?.email === "string" ? body.email.trim() : "";
+    const emailError = validateEmailAddress(rawEmail);
+    if (emailError) {
+      return NextResponse.json({ message: emailError }, { status: 400 });
     }
+
+    const normalizedEmail = rawEmail.toLowerCase();
 
     const conn = await connectToDatabase();
     if (!conn) {
@@ -26,13 +31,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const existingSubscriber = await Newsletter.findOne({ email: body.email });
+    const existingSubscriber = await Newsletter.findOne({ email: normalizedEmail });
     if (existingSubscriber) {
       return NextResponse.json({ message: "Email is already subscribed" }, { status: 400 });
     }
 
     const subscriber = new Newsletter({
-      email: body.email,
+      email: normalizedEmail,
     });
 
     console.log("Saving newsletter subscriber to MongoDB...");

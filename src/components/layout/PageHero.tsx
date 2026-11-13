@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 interface PageHeroProps {
-  label: string;
+  label?: string;
   title: string;
   description: string;
   image?: string;
@@ -34,9 +34,11 @@ const PageHero: React.FC<PageHeroProps> = ({
       <div
         className="relative max-w-7xl mx-auto px-6 flex flex-col items-center text-center space-y-5"
       >
-        <span className="inline-block px-3 py-1 bg-primary text-primary-foreground font-bold text-[10px] uppercase tracking-widest border border-primary">
-          {label}
-        </span>
+        {label && (
+          <span className="inline-block px-3 py-1 bg-primary text-primary-foreground font-bold text-[10px] uppercase tracking-widest border border-primary">
+            {label}
+          </span>
+        )}
         <h1 className="common-heading text-4xl sm:text-5xl lg:text-7xl text-secondary-foreground leading-[1.1] font-bold uppercase max-w-4xl tracking-tight">
           {title}
         </h1>

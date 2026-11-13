@@ -20,10 +20,22 @@ import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import BlobButton from "@/components/ui/BlobButton";
 import Container from "@/components/ui/Container";
+import {
+  containsScriptOrCode,
+  inputBorderClass,
+  validateAddress,
+  validateCompanyName,
+  validateEmailAddress,
+  validateFields,
+  validateMobileNumber,
+  validatePersonName,
+  validateQueryText,
+} from "@/lib/validation";
 
 export default function Contact() {
   const [submitting, setSubmitting] = useState(false);
   const [enquiryType, setEnquiryType] = useState<"Product" | "SparePart" | "Both">("Product");
+  const [errors, setErrors] = useState<Record<string, string | undefined>>({});
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -33,14 +45,41 @@ export default function Contact() {
     message: "",
   });
 
+  const fieldValidators: Record<string, (val: string) => string | null> = {
+    name: validatePersonName,
+    email: validateEmailAddress,
+    phone: validateMobileNumber,
+    company: (val) => validateCompanyName(val, true),
+    address: (val) => validateAddress(val, true),
+    message: (val) => validateQueryText(val, "Requirement Details", true),
+  };
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    const validator = fieldValidators[name];
+    if (!validator) return;
+    const fieldErr = validator(value);
+    if (errors[name] || containsScriptOrCode(value) || (value.trim() && fieldErr)) {
+      setErrors((prev) => ({ ...prev, [name]: fieldErr || undefined }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const validationErrors = validateFields(formData, fieldValidators);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      const firstErr = Object.values(validationErrors).find(Boolean);
+      if (firstErr) toast.error(firstErr);
+      return;
+    }
+
+    setErrors({});
     setSubmitting(true);
     
     try {
@@ -50,8 +89,14 @@ export default function Contact() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          ...formData,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          company: formData.company.trim(),
+          address: formData.address.trim(),
+          message: formData.message.trim(),
           type: enquiryType,
+          source: "contact-page",
         }),
       });
 
@@ -333,8 +378,9 @@ export default function Contact() {
                           placeholder="Enter your name"
                           value={formData.name}
                           onChange={handleChange}
-                          className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
+                          className={`w-full rounded-xl border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold ${inputBorderClass(errors.name)}`}
                         />
+                        {errors.name && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.name}</p>}
                       </div>
 
                       {/* Email */}
@@ -350,8 +396,9 @@ export default function Contact() {
                           placeholder="Enter your email"
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
+                          className={`w-full rounded-xl border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold ${inputBorderClass(errors.email)}`}
                         />
+                        {errors.email && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.email}</p>}
                       </div>
                     </div>
 
@@ -369,41 +416,46 @@ export default function Contact() {
                           placeholder="Enter your mobile number"
                           value={formData.phone}
                           onChange={handleChange}
-                          className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
+                          className={`w-full rounded-xl border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold ${inputBorderClass(errors.phone)}`}
                         />
+                        {errors.phone && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.phone}</p>}
                       </div>
 
                       {/* Company */}
                       <div>
                         <label htmlFor="company" className="block text-[11px] font-bold uppercase tracking-wider text-muted-foreground mb-2">
-                          Company Name
+                          Company Name *
                         </label>
                         <input
                           id="company"
                           name="company"
                           type="text"
+                          required
                           placeholder="Enter your company name"
                           value={formData.company}
                           onChange={handleChange}
-                          className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
+                          className={`w-full rounded-xl border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold ${inputBorderClass(errors.company)}`}
                         />
+                        {errors.company && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.company}</p>}
                       </div>
                     </div>
 
                     {/* Address */}
                     <div>
                       <label htmlFor="address" className="block text-[11px] font-bold uppercase tracking-wider text-muted-foreground mb-2">
-                        Delivery / Plant Address
+                        Delivery / Plant Address *
                       </label>
                       <input
                         id="address"
                         name="address"
                         type="text"
+                        required
                         placeholder="Enter your address"
                         value={formData.address}
                         onChange={handleChange}
-                        className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
+                        className={`w-full rounded-xl border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold ${inputBorderClass(errors.address)}`}
                       />
+                      {errors.address && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.address}</p>}
                     </div>
 
                     {/* Message */}
@@ -419,8 +471,9 @@ export default function Contact() {
                         placeholder="Enter your requirement details or message..."
                         value={formData.message}
                         onChange={handleChange}
-                        className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold resize-none"
+                        className={`w-full rounded-xl border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold resize-none ${inputBorderClass(errors.message)}`}
                       />
+                      {errors.message && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.message}</p>}
                     </div>
 
                     {/* Disclaimer Note */}

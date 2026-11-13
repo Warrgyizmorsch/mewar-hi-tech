@@ -5,6 +5,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, ShieldCheck } from "lucide-react";
 import { toast } from "react-toastify";
 import BlobButton from "@/components/ui/BlobButton";
+import {
+  containsScriptOrCode,
+  inputBorderClass,
+  validateAddress,
+  validateCompanyName,
+  validateEmailAddress,
+  validateFields,
+  validateMobileNumber,
+  validatePersonName,
+  validateQueryText,
+} from "@/lib/validation";
 
 export type EnquiryTypeOption = "Product" | "SparePart" | "Both";
 
@@ -22,6 +33,7 @@ export default function EnquiryModal({
 }: EnquiryModalProps) {
   const [submitting, setSubmitting] = useState(false);
   const [enquiryType, setEnquiryType] = useState<EnquiryTypeOption>(defaultEnquiryType);
+  const [errors, setErrors] = useState<Record<string, string | undefined>>({});
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -35,6 +47,7 @@ export default function EnquiryModal({
     if (defaultEnquiryType) {
       setEnquiryType(defaultEnquiryType);
     }
+    setErrors({});
   }, [defaultEnquiryType, isOpen]);
 
   // Close on Escape key
@@ -52,14 +65,41 @@ export default function EnquiryModal({
     };
   }, [isOpen, onClose]);
 
+  const fieldValidators: Record<string, (val: string) => string | null> = {
+    name: validatePersonName,
+    email: validateEmailAddress,
+    phone: validateMobileNumber,
+    company: (val) => validateCompanyName(val, true),
+    address: (val) => validateAddress(val, true),
+    message: (val) => validateQueryText(val, "Requirement Details", true),
+  };
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    const validator = fieldValidators[name];
+    if (!validator) return;
+    const fieldErr = validator(value);
+    if (errors[name] || containsScriptOrCode(value) || (value.trim() && fieldErr)) {
+      setErrors((prev) => ({ ...prev, [name]: fieldErr || undefined }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const validationErrors = validateFields(formData, fieldValidators);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      const firstErr = Object.values(validationErrors).find(Boolean);
+      if (firstErr) toast.error(firstErr);
+      return;
+    }
+
+    setErrors({});
     setSubmitting(true);
 
     try {
@@ -67,13 +107,14 @@ export default function EnquiryModal({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          company: formData.company || undefined,
-          address: formData.address || undefined,
-          message: formData.message,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          company: formData.company.trim(),
+          address: formData.address.trim(),
+          message: formData.message.trim(),
           type: enquiryType,
+          source: "enquiry-modal",
         }),
       });
 
@@ -216,8 +257,9 @@ export default function EnquiryModal({
                     placeholder="Enter your name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-border px-3 py-1.5 sm:py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold text-foreground"
+                    className={`w-full rounded-lg border px-3 py-1.5 sm:py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold text-foreground ${inputBorderClass(errors.name)}`}
                   />
+                  {errors.name && <p className="mt-0.5 text-[10px] font-medium text-red-500">{errors.name}</p>}
                 </div>
 
                 <div>
@@ -231,8 +273,9 @@ export default function EnquiryModal({
                     placeholder="Enter your email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-border px-3 py-1.5 sm:py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold text-foreground"
+                    className={`w-full rounded-lg border px-3 py-1.5 sm:py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold text-foreground ${inputBorderClass(errors.email)}`}
                   />
+                  {errors.email && <p className="mt-0.5 text-[10px] font-medium text-red-500">{errors.email}</p>}
                 </div>
               </div>
 
@@ -249,38 +292,43 @@ export default function EnquiryModal({
                     placeholder="Enter your mobile number"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-border px-3 py-1.5 sm:py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold text-foreground"
+                    className={`w-full rounded-lg border px-3 py-1.5 sm:py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold text-foreground ${inputBorderClass(errors.phone)}`}
                   />
+                  {errors.phone && <p className="mt-0.5 text-[10px] font-medium text-red-500">{errors.phone}</p>}
                 </div>
 
                 <div>
                   <label className="block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-muted-foreground mb-0.5">
-                    COMPANY NAME
+                    COMPANY NAME *
                   </label>
                   <input
                     type="text"
                     name="company"
+                    required
                     placeholder="Enter your company name"
                     value={formData.company}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-border px-3 py-1.5 sm:py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold text-foreground"
+                    className={`w-full rounded-lg border px-3 py-1.5 sm:py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold text-foreground ${inputBorderClass(errors.company)}`}
                   />
+                  {errors.company && <p className="mt-0.5 text-[10px] font-medium text-red-500">{errors.company}</p>}
                 </div>
               </div>
 
               {/* Delivery / Plant Address */}
               <div>
                 <label className="block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-muted-foreground mb-0.5">
-                  DELIVERY / PLANT ADDRESS
+                  DELIVERY / PLANT ADDRESS *
                 </label>
                 <input
                   type="text"
                   name="address"
+                  required
                   placeholder="Enter your address"
                   value={formData.address}
                   onChange={handleChange}
-                  className="w-full rounded-lg border border-border px-3 py-1.5 sm:py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold text-foreground"
+                  className={`w-full rounded-lg border px-3 py-1.5 sm:py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold text-foreground ${inputBorderClass(errors.address)}`}
                 />
+                {errors.address && <p className="mt-0.5 text-[10px] font-medium text-red-500">{errors.address}</p>}
               </div>
 
               {/* Requirement Details / Message */}
@@ -295,8 +343,9 @@ export default function EnquiryModal({
                   placeholder="Enter your requirement details or message..."
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full rounded-lg border border-border px-3 py-1.5 sm:py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold resize-none text-foreground"
+                  className={`w-full rounded-lg border px-3 py-1.5 sm:py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold resize-none text-foreground ${inputBorderClass(errors.message)}`}
                 />
+                {errors.message && <p className="mt-0.5 text-[10px] font-medium text-red-500">{errors.message}</p>}
               </div>
 
               {/* Disclaimer Note */}
