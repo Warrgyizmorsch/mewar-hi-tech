@@ -21,6 +21,7 @@ import {
   Tag,
 } from "lucide-react";
 import BlobButton from "@/components/ui/BlobButton";
+import { inputBorderClass, validateEmailAddress } from "@/lib/validation";
 
 export interface BlogPost {
   _id: string;
@@ -148,7 +149,11 @@ export default function BlogsClient({
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newsletterEmail) return;
+    const emailErr = validateEmailAddress(newsletterEmail);
+    if (emailErr) {
+      toast.error(emailErr);
+      return;
+    }
     setSubscribing(true);
 
     try {
@@ -157,7 +162,7 @@ export default function BlogsClient({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email: newsletterEmail }),
+        body: JSON.stringify({ email: newsletterEmail.trim() }),
       });
 
       const data = await res.json().catch(() => ({}));
@@ -568,11 +573,11 @@ export default function BlogsClient({
               >
                 <input
                   type="email"
-                  placeholder="Enter your email address"
+                  placeholder="Enter your email address *"
                   value={newsletterEmail}
                   onChange={(e) => setNewsletterEmail(e.target.value)}
                   required
-                  className="flex-1 px-4 py-3.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/40 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+                  className={`flex-1 px-4 py-3.5 rounded-lg bg-white/10 border text-white placeholder:text-white/40 text-sm focus:outline-none focus:ring-1 focus:ring-primary ${inputBorderClass(undefined, "border-white/20 focus:border-primary")}`}
                 />
                 <BlobButton type="submit" disabled={subscribing}>
                   <Send size={14} />

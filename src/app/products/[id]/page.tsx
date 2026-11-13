@@ -44,6 +44,15 @@ import BlobButton from "@/components/ui/BlobButton";
 import Container from "@/components/ui/Container";
 import ModelViewer3D from "@/components/common/ModelViewer3D";
 import { PRODUCTS_DATA } from "../data";
+import {
+  containsScriptOrCode,
+  inputBorderClass,
+  validateEmailAddress,
+  validateFields,
+  validateMobileNumber,
+  validatePersonName,
+  validateQueryText,
+} from "@/lib/validation";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -59,6 +68,7 @@ export default function ProductDetailPage({ params }: PageProps) {
   // Form State
   const [submitting, setSubmitting] = useState(false);
   const [enquiryType, setEnquiryType] = useState<"Product" | "SparePart" | "Both">("Product");
+  const [errors, setErrors] = useState<Record<string, string | undefined>>({});
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -118,14 +128,39 @@ export default function ProductDetailPage({ params }: PageProps) {
     return () => clearInterval(interval);
   }, []);
 
+  const fieldValidators: Record<string, (val: string) => string | null> = {
+    name: validatePersonName,
+    email: validateEmailAddress,
+    phone: validateMobileNumber,
+    message: (val) => validateQueryText(val, "Requirement Details", true),
+  };
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    const validator = fieldValidators[name];
+    if (!validator) return;
+    const fieldErr = validator(value);
+    if (errors[name] || containsScriptOrCode(value) || (value.trim() && fieldErr)) {
+      setErrors((prev) => ({ ...prev, [name]: fieldErr || undefined }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const validationErrors = validateFields(formData, fieldValidators);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      const firstErr = Object.values(validationErrors).find(Boolean);
+      if (firstErr) toast.error(firstErr);
+      return;
+    }
+
+    setErrors({});
     setSubmitting(true);
     try {
       const res = await fetch("/api/enquiry", {
@@ -134,14 +169,19 @@ export default function ProductDetailPage({ params }: PageProps) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          ...formData,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          message: formData.message.trim(),
           type: enquiryType,
           productName: product?.name,
+          source: "product-page",
         }),
       });
 
       if (!res.ok) {
-        throw new Error("Failed to submit enquiry");
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.message || "Failed to submit enquiry");
       }
 
       toast.success("Engineering enquiry submitted! Our technical team will reach out within 24 hours.");
@@ -151,8 +191,8 @@ export default function ProductDetailPage({ params }: PageProps) {
         phone: "",
         message: `I am interested in the ${product?.name || "equipment"}. Please send me the technical specifications and a quote.`,
       });
-    } catch (error) {
-      toast.error("Failed to send enquiry. Please try again later.");
+    } catch (error: any) {
+      toast.error(error?.message || "Failed to send enquiry. Please try again later.");
     } finally {
       setSubmitting(false);
     }
@@ -192,7 +232,7 @@ export default function ProductDetailPage({ params }: PageProps) {
     );
   }
 
-  // Dynamic title split for dual-line typography
+  // Dynamic title split for dual-line typography (half black, half yellow)
   let firstHalf = product.name;
   let secondHalf = "";
   const lowerName = product.name.toLowerCase();
@@ -203,23 +243,66 @@ export default function ProductDetailPage({ params }: PageProps) {
     firstHalf = product.name.slice(0, parenIdx).trim();
     secondHalf = product.name.slice(parenIdx).trim();
   } else {
-    const splitKeywords = [
-      "jaw crusher", "cone crusher", "roll crusher",
-      "vibrating screen", "single shaft feeders",
-      "crusher", "screen", "washer", "feeder", "conveyor", "machine", "impactor"
+    // 1. Check for compound keywords (e.g., "jaw crusher") ONLY if they appear after prefix words (idx > 0)
+    const compoundKeywords = [
+      "jaw crusher",
+      "cone crusher",
+      "roll crusher",
+      "vibrating screen",
+      "single shaft feeders",
     ];
+    const matchedCompound = compoundKeywords.find((kw) => {
+      const idx = lowerName.indexOf(kw);
+      return idx > 0;
+    });
 
-    const matchedKeyword = splitKeywords.find((kw) => lowerName.includes(kw));
-
-    if (matchedKeyword) {
-      const idx = lowerName.indexOf(matchedKeyword);
+    if (matchedCompound) {
+      const idx = lowerName.indexOf(matchedCompound);
       firstHalf = product.name.slice(0, idx).trim();
       secondHalf = product.name.slice(idx).trim();
     } else {
-      const nameWords = product.name.split(" ");
+      // 2. Check for single category keywords where idx > 0 (e.g., "Roll Crusher" -> "Roll" + "Crusher")
+      const singleKeywords = [
+        "crusher",
+        "screen",
+        "feeders",
+        "feeder",
+        "washer",
+        "conveyor",
+        "machine",
+        "impactor",
+      ];
+      const matchedSingle = singleKeywords.find((kw) => {
+        const idx = lowerName.indexOf(kw);
+        return idx > 0;
+      });
+
+      if (matchedSingle) {
+        const idx = lowerName.indexOf(matchedSingle);
+        firstHalf = product.name.slice(0, idx).trim();
+        secondHalf = product.name.slice(idx).trim();
+      } else {
+        // 3. Fallback: split words roughly in half
+        const nameWords = product.name.trim().split(/\s+/);
+        if (nameWords.length > 1) {
+          const halfLength = Math.ceil(nameWords.length / 2);
+          firstHalf = nameWords.slice(0, halfLength).join(" ");
+          secondHalf = nameWords.slice(halfLength).join(" ");
+        }
+      }
+    }
+  }
+
+  // Safety fallback: ensure neither half is empty if product name has multiple words
+  if (!firstHalf.trim() || !secondHalf.trim()) {
+    const nameWords = product.name.trim().split(/\s+/);
+    if (nameWords.length > 1) {
       const halfLength = Math.ceil(nameWords.length / 2);
       firstHalf = nameWords.slice(0, halfLength).join(" ");
       secondHalf = nameWords.slice(halfLength).join(" ");
+    } else {
+      firstHalf = product.name;
+      secondHalf = "";
     }
   }
 
@@ -1190,8 +1273,9 @@ export default function ProductDetailPage({ params }: PageProps) {
                           placeholder="Enter your name"
                           value={formData.name}
                           onChange={handleChange}
-                          className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold text-foreground"
+                          className={`w-full rounded-xl border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold text-foreground ${inputBorderClass(errors.name)}`}
                         />
+                        {errors.name && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.name}</p>}
                       </div>
 
                       {/* Email */}
@@ -1207,8 +1291,9 @@ export default function ProductDetailPage({ params }: PageProps) {
                           placeholder="Enter your email"
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold text-foreground"
+                          className={`w-full rounded-xl border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold text-foreground ${inputBorderClass(errors.email)}`}
                         />
+                        {errors.email && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.email}</p>}
                       </div>
                     </div>
 
@@ -1225,8 +1310,9 @@ export default function ProductDetailPage({ params }: PageProps) {
                         placeholder="Enter your mobile number"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold text-foreground"
+                        className={`w-full rounded-xl border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold text-foreground ${inputBorderClass(errors.phone)}`}
                       />
+                      {errors.phone && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.phone}</p>}
                     </div>
 
                     {/* Message */}
@@ -1242,8 +1328,9 @@ export default function ProductDetailPage({ params }: PageProps) {
                         placeholder="Enter your requirement details..."
                         value={formData.message}
                         onChange={handleChange}
-                        className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold resize-none text-foreground"
+                        className={`w-full rounded-xl border px-4 py-3 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold resize-none text-foreground ${inputBorderClass(errors.message)}`}
                       />
+                      {errors.message && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.message}</p>}
                     </div>
 
                     {/* Disclaimer Note */}

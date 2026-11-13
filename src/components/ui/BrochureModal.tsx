@@ -7,6 +7,17 @@ import { toast } from "react-toastify";
 import BlobButton from "@/components/ui/BlobButton";
 import { useTheme } from "@/components/ui/ThemeContext";
 import SelectionDropdown from "@/components/ui/SelectionDropdown";
+import {
+  BrochureFormErrors,
+  containsScriptOrCode,
+  inputBorderClass,
+  validateBrochureForm,
+  validateCompanyName,
+  validateEmailAddress,
+  validateMobileNumber,
+  validatePersonName,
+  validateQueryText,
+} from "@/lib/validation";
 
 interface BrochureModalProps {
   isOpen: boolean;
@@ -42,6 +53,7 @@ export default function BrochureModal({
 }: BrochureModalProps) {
   const { theme } = useTheme();
   const [submitting, setSubmitting] = useState(false);
+  const [errors, setErrors] = useState<BrochureFormErrors>({});
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -55,6 +67,7 @@ export default function BrochureModal({
     if (defaultProduct) {
       setFormData((prev) => ({ ...prev, productName: defaultProduct }));
     }
+    setErrors({});
   }, [defaultProduct, isOpen]);
 
   // Close on Escape key
@@ -72,10 +85,27 @@ export default function BrochureModal({
     };
   }, [isOpen, onClose]);
 
+  const fieldValidators: Record<string, (val: string) => string | null> = {
+    name: validatePersonName,
+    email: validateEmailAddress,
+    mobile: validateMobileNumber,
+    company: (val) => validateCompanyName(val, true),
+    query: (val) => validateQueryText(val, "Query", true),
+  };
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    const validator = fieldValidators[name];
+    if (!validator) return;
+
+    const fieldErr = validator(value);
+    if (errors[name as keyof BrochureFormErrors] || containsScriptOrCode(value) || (value.trim() && fieldErr)) {
+      setErrors((prev) => ({ ...prev, [name]: fieldErr || undefined }));
+    }
   };
 
   const handleProductChange = (val: string) => {
@@ -84,12 +114,23 @@ export default function BrochureModal({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const validationErrors = validateBrochureForm(formData);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      const firstError = Object.values(validationErrors).find(Boolean);
+      if (firstError) toast.error(firstError);
+      return;
+    }
+
+    setErrors({});
     setSubmitting(true);
 
     try {
+      const trimmedQuery = formData.query.trim();
       const messageContent = [
         `Requested Brochure: ${formData.productName}`,
-        formData.query ? `User Query: ${formData.query}` : "",
+        trimmedQuery ? `User Query: ${trimmedQuery}` : "",
       ]
         .filter(Boolean)
         .join("\n");
@@ -100,18 +141,20 @@ export default function BrochureModal({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.mobile,
-          company: formData.company || undefined,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.mobile.trim(),
+          company: formData.company.trim(),
           message: messageContent,
           type: "Product",
           productName: formData.productName,
+          source: "brochure",
         }),
       });
 
       if (!res.ok) {
-        throw new Error("Failed to submit enquiry");
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.message || "Failed to submit enquiry");
       }
 
       toast.success(
@@ -125,9 +168,10 @@ export default function BrochureModal({
         productName: defaultProduct || "Complete Company Brochure (All Products)",
         query: "",
       });
+      setErrors({});
       onClose();
     } catch (error: any) {
-      toast.error("Failed to send enquiry. Please try again later.");
+      toast.error(error?.message || "Failed to send enquiry. Please try again later.");
     } finally {
       setSubmitting(false);
     }
@@ -199,8 +243,11 @@ export default function BrochureModal({
                   placeholder="Enter your name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-border px-3.5 py-1.5 sm:py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold text-foreground"
+                  className={`w-full rounded-xl border px-3.5 py-1.5 sm:py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold text-foreground ${inputBorderClass(errors.name)}`}
                 />
+                {errors.name && (
+                  <p className="mt-0.5 text-[10px] font-medium text-red-500">{errors.name}</p>
+                )}
               </div>
 
               {/* Email & Mobile Grid */}
@@ -221,8 +268,11 @@ export default function BrochureModal({
                     placeholder="Enter your email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-border px-3.5 py-1.5 sm:py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold text-foreground"
+                    className={`w-full rounded-xl border px-3.5 py-1.5 sm:py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold text-foreground ${inputBorderClass(errors.email)}`}
                   />
+                  {errors.email && (
+                    <p className="mt-0.5 text-[10px] font-medium text-red-500">{errors.email}</p>
+                  )}
                 </div>
 
                 {/* Mobile */}
@@ -241,8 +291,11 @@ export default function BrochureModal({
                     placeholder="Enter your mobile number"
                     value={formData.mobile}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-border px-3.5 py-1.5 sm:py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold text-foreground"
+                    className={`w-full rounded-xl border px-3.5 py-1.5 sm:py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold text-foreground ${inputBorderClass(errors.mobile)}`}
                   />
+                  {errors.mobile && (
+                    <p className="mt-0.5 text-[10px] font-medium text-red-500">{errors.mobile}</p>
+                  )}
                 </div>
               </div>
 
@@ -252,17 +305,21 @@ export default function BrochureModal({
                   htmlFor="brochure-company"
                   className="block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-muted-foreground mb-0.5"
                 >
-                  Company Name
+                  Company Name *
                 </label>
                 <input
                   id="brochure-company"
                   name="company"
                   type="text"
+                  required
                   placeholder="Enter your company name"
                   value={formData.company}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-border px-3.5 py-1.5 sm:py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold text-foreground"
+                  className={`w-full rounded-xl border px-3.5 py-1.5 sm:py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold text-foreground ${inputBorderClass(errors.company)}`}
                 />
+                {errors.company && (
+                  <p className="mt-0.5 text-[10px] font-medium text-red-500">{errors.company}</p>
+                )}
               </div>
 
               {/* Product Selection Field - Placed After Company Name with Upward Opening Custom Dropdown */}
@@ -291,17 +348,21 @@ export default function BrochureModal({
                   htmlFor="brochure-query"
                   className="block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-muted-foreground mb-0.5"
                 >
-                  Share your query
+                  Share your query *
                 </label>
                 <textarea
                   id="brochure-query"
                   name="query"
                   rows={2}
+                  required
                   placeholder="Enter your query or requirement..."
                   value={formData.query}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-border px-3.5 py-1.5 sm:py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold resize-none text-foreground"
+                  className={`w-full rounded-xl border px-3.5 py-1.5 sm:py-2 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold resize-none text-foreground ${inputBorderClass(errors.query)}`}
                 />
+                {errors.query && (
+                  <p className="mt-0.5 text-[10px] font-medium text-red-500">{errors.query}</p>
+                )}
               </div>
 
               {/* Disclaimer */}

@@ -5,6 +5,17 @@ import { X, Upload, Send } from "lucide-react";
 import { toast } from "react-toastify";
 import SelectionDropdown from "@/components/ui/SelectionDropdown";
 import BlobButton from "@/components/ui/BlobButton";
+import {
+  containsScriptOrCode,
+  inputBorderClass,
+  validateCompanyName,
+  validateEmailAddress,
+  validateExperience,
+  validateFields,
+  validateMobileNumber,
+  validatePersonName,
+  validateResumeFile,
+} from "@/lib/validation";
 
 export default function ApplicationModal({
   isOpen,
@@ -21,6 +32,7 @@ export default function ApplicationModal({
 }) {
   const [submitting, setSubmitting] = useState(false);
   const [fileName, setFileName] = useState<string>("");
+  const [errors, setErrors] = useState<Record<string, string | undefined>>({});
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -30,39 +42,77 @@ export default function ApplicationModal({
 
   if (!isOpen) return null;
 
+  const fieldValidators: Record<string, (val: string) => string | null> = {
+    name: validatePersonName,
+    email: validateEmailAddress,
+    phone: validateMobileNumber,
+    experience: (val) => validateExperience(val, true),
+  };
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    const validator = fieldValidators[name];
+    if (!validator) return;
+    const fieldErr = validator(value);
+    if (errors[name] || containsScriptOrCode(value) || (value.trim() && fieldErr)) {
+      setErrors((prev) => ({ ...prev, [name]: fieldErr || undefined }));
+    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFileName(e.target.files[0].name);
+    const file = e.target.files?.[0];
+    if (!file) {
+      setFileName("");
+      return;
     }
+    const fileErr = validateResumeFile(file);
+    if (fileErr) {
+      setErrors((prev) => ({ ...prev, resume: fileErr }));
+      setFileName("");
+      e.target.value = "";
+      toast.error(fileErr);
+      return;
+    }
+    setErrors((prev) => ({ ...prev, resume: undefined }));
+    setFileName(file.name);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const fileInput = (e.target as HTMLFormElement).querySelector('input[type="file"]') as HTMLInputElement;
+    const file = fileInput?.files?.[0];
+
+    const validationErrors: Record<string, string | undefined> = {
+      ...validateFields(formData, fieldValidators),
+    };
+    const positionErr = validateCompanyName(selectedJobTitle || "", true);
+    if (positionErr) validationErrors.position = "Please select a valid position.";
+    const resumeErr = validateResumeFile(file);
+    if (resumeErr) validationErrors.resume = resumeErr;
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      const firstErr = Object.values(validationErrors).find(Boolean);
+      if (firstErr) toast.error(firstErr);
+      return;
+    }
+
+    setErrors({});
     setSubmitting(true);
     
     try {
-      const fileInput = (e.target as HTMLFormElement).querySelector('input[type="file"]') as HTMLInputElement;
-      const file = fileInput?.files?.[0];
-
-      if (!file) {
-        toast.error("Please attach your resume.");
-        setSubmitting(false);
-        return;
-      }
-
       const submitData = new FormData();
-      submitData.append("name", formData.name);
-      submitData.append("email", formData.email);
-      submitData.append("phone", formData.phone);
-      submitData.append("position", selectedJobTitle);
-      submitData.append("experience", formData.experience);
-      submitData.append("resume", file);
+      submitData.append("name", formData.name.trim());
+      submitData.append("email", formData.email.trim());
+      submitData.append("phone", formData.phone.trim());
+      submitData.append("position", selectedJobTitle.trim());
+      submitData.append("experience", formData.experience.trim());
+      submitData.append("resume", file as File);
 
       const res = await fetch("/api/career", {
         method: "POST",
@@ -136,8 +186,9 @@ export default function ApplicationModal({
                   placeholder="Enter your name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-background focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
+                  className={`w-full rounded-xl border px-4 py-3 text-xs bg-background focus:bg-background focus:outline-none transition font-semibold ${inputBorderClass(errors.name)}`}
                 />
+                {errors.name && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.name}</p>}
               </div>
 
               {/* Email */}
@@ -153,8 +204,9 @@ export default function ApplicationModal({
                   placeholder="Enter your email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-background focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
+                  className={`w-full rounded-xl border px-4 py-3 text-xs bg-background focus:bg-background focus:outline-none transition font-semibold ${inputBorderClass(errors.email)}`}
                 />
+                {errors.email && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.email}</p>}
               </div>
             </div>
 
@@ -172,8 +224,9 @@ export default function ApplicationModal({
                   placeholder="Enter your mobile number"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-background focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
+                  className={`w-full rounded-xl border px-4 py-3 text-xs bg-background focus:bg-background focus:outline-none transition font-semibold ${inputBorderClass(errors.phone)}`}
                 />
+                {errors.phone && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.phone}</p>}
               </div>
 
               {/* Position */}
@@ -195,17 +248,19 @@ export default function ApplicationModal({
             {/* Experience */}
             <div>
               <label htmlFor="experience" className="block text-[11px] font-bold uppercase tracking-wider text-muted-foreground mb-1.5">
-                Total Experience &amp; Current Company
+                Total Experience &amp; Current Company *
               </label>
               <input
                 id="experience"
                 name="experience"
                 type="text"
+                required
                 placeholder="Enter years of experience"
                 value={formData.experience}
                 onChange={handleChange}
-                className="w-full rounded-xl border border-border px-4 py-3 text-xs bg-background focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
+                className={`w-full rounded-xl border px-4 py-3 text-xs bg-background focus:bg-background focus:outline-none transition font-semibold ${inputBorderClass(errors.experience)}`}
               />
+              {errors.experience && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.experience}</p>}
             </div>
 
             {/* Resume Upload Box */}
@@ -213,7 +268,7 @@ export default function ApplicationModal({
               <label className="block text-[11px] font-bold uppercase tracking-wider text-muted-foreground mb-1.5">
                 Attach Resume (PDF / DOCX) *
               </label>
-              <div className="border-2 border-dashed border-border hover:border-primary transition-colors rounded-xl p-6 text-center cursor-pointer relative bg-muted/30">
+              <div className={`border-2 border-dashed hover:border-primary transition-colors rounded-xl p-6 text-center cursor-pointer relative bg-muted/30 ${errors.resume ? "border-red-500" : "border-border"}`}>
                 <input
                   type="file"
                   accept=".pdf,.doc,.docx"
@@ -229,6 +284,7 @@ export default function ApplicationModal({
                   PDF, DOC, DOCX up to 10MB
                 </span>
               </div>
+              {errors.resume && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.resume}</p>}
             </div>
 
             {/* Submit Button */}

@@ -24,6 +24,7 @@ import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import BlobButton from "@/components/ui/BlobButton";
 import Container from "@/components/ui/Container";
+import { inputBorderClass, validateSearchQuery } from "@/lib/validation";
 
 // ─── Left Sidebar Menu Data ───
 const INVESTOR_MENU = [
@@ -174,6 +175,7 @@ function InvestorTabsContent() {
 
   const [activeTab, setActiveTab] = useState(initialTabFromQuery);
   const [searchTerm, setSearchTerm] = useState("");
+  const [searchError, setSearchError] = useState<string | null>(null);
 
   const assurancesRef = useRef<HTMLDivElement>(null);
 
@@ -333,15 +335,27 @@ function InvestorTabsContent() {
                 
                 {/* Search Bar */}
                 {activeTab !== "corporate-governance" && activeTab !== "investor-contacts" && activeTab !== "shareholder-information" && (
-                  <div className="relative">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={16} />
-                    <input
-                      type="text"
-                      placeholder="Search documents or filings..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="w-full border border-border bg-card pl-11 pr-4 py-3.5 text-xs rounded-xl focus:outline-none focus:border-primary text-foreground font-semibold"
-                    />
+                  <div className="space-y-1">
+                    <div className="relative">
+                      <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={16} />
+                      <input
+                        type="text"
+                        placeholder="Search documents or filings..."
+                        value={searchTerm}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          const err = validateSearchQuery(val);
+                          if (err) {
+                            setSearchError(err);
+                            return;
+                          }
+                          setSearchError(null);
+                          setSearchTerm(val);
+                        }}
+                        className={`w-full border bg-card pl-11 pr-4 py-3.5 text-xs rounded-xl focus:outline-none text-foreground font-semibold ${inputBorderClass(searchError || undefined)}`}
+                      />
+                    </div>
+                    {searchError && <p className="text-[11px] font-medium text-red-500">{searchError}</p>}
                   </div>
                 )}
 

@@ -32,6 +32,18 @@ import SelectionDropdown from "@/components/ui/SelectionDropdown";
 import { useTheme } from "@/components/ui/ThemeContext";
 import ApplicationModal from "@/components/ui/ApplicationModal";
 import JobFilterSlider from "@/components/ui/JobFilterSlider";
+import {
+  containsScriptOrCode,
+  inputBorderClass,
+  validateCompanyName,
+  validateEmailAddress,
+  validateExperience,
+  validateFields,
+  validateMobileNumber,
+  validatePersonName,
+  validateResumeFile,
+  validateSearchQuery,
+} from "@/lib/validation";
 
 // Slider Images Data
 const CULTURE_SLIDES = [
@@ -103,6 +115,7 @@ export default function CareersPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchError, setSearchError] = useState<string | null>(null);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const [filters, setFilters] = useState({
@@ -112,6 +125,7 @@ export default function CareersPage() {
   });
   const [submitting, setSubmitting] = useState(false);
   const [fileName, setFileName] = useState<string>("");
+  const [errors, setErrors] = useState<Record<string, string | undefined>>({});
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -153,39 +167,85 @@ export default function CareersPage() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const fieldValidators: Record<string, (val: string) => string | null> = {
+    name: validatePersonName,
+    email: validateEmailAddress,
+    phone: validateMobileNumber,
+    experience: (val) => validateExperience(val, true),
+  };
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    const validator = fieldValidators[name];
+    if (!validator) return;
+    const fieldErr = validator(value);
+    if (errors[name] || containsScriptOrCode(value) || (value.trim() && fieldErr)) {
+      setErrors((prev) => ({ ...prev, [name]: fieldErr || undefined }));
+    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFileName(e.target.files[0].name);
+    const file = e.target.files?.[0];
+    if (!file) {
+      setFileName("");
+      return;
     }
+    const fileErr = validateResumeFile(file);
+    if (fileErr) {
+      setErrors((prev) => ({ ...prev, resume: fileErr }));
+      setFileName("");
+      e.target.value = "";
+      toast.error(fileErr);
+      return;
+    }
+    setErrors((prev) => ({ ...prev, resume: undefined }));
+    setFileName(file.name);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const fileInput = (e.target as HTMLFormElement).querySelector('input[type="file"]') as HTMLInputElement;
+    const file = fileInput?.files?.[0];
+
+    const validationErrors: Record<string, string | undefined> = {
+      ...validateFields(
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          experience: formData.experience,
+        },
+        fieldValidators
+      ),
+    };
+    const positionErr = validateCompanyName(selectedJob || "", true);
+    if (positionErr) validationErrors.position = "Please select a valid position.";
+    const resumeErr = validateResumeFile(file);
+    if (resumeErr) validationErrors.resume = resumeErr;
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      const firstErr = Object.values(validationErrors).find(Boolean);
+      if (firstErr) toast.error(firstErr);
+      return;
+    }
+
+    setErrors({});
     setSubmitting(true);
     
     try {
-      const fileInput = (e.target as HTMLFormElement).querySelector('input[type="file"]') as HTMLInputElement;
-      const file = fileInput?.files?.[0];
-
-      if (!file) {
-        toast.error("Please attach your resume.");
-        setSubmitting(false);
-        return;
-      }
-
       const submitData = new FormData();
-      submitData.append("name", formData.name);
-      submitData.append("email", formData.email);
-      submitData.append("phone", formData.phone);
-      submitData.append("position", selectedJob);
-      submitData.append("experience", formData.experience);
-      submitData.append("resume", file);
+      submitData.append("name", formData.name.trim());
+      submitData.append("email", formData.email.trim());
+      submitData.append("phone", formData.phone.trim());
+      submitData.append("position", selectedJob.trim());
+      submitData.append("experience", formData.experience.trim());
+      submitData.append("resume", file as File);
 
       const res = await fetch("/api/career", {
         method: "POST",
@@ -443,12 +503,22 @@ export default function CareersPage() {
                     placeholder="Search jobs by title, department..."
                     value={searchQuery}
                     onChange={(e) => {
-                      setSearchQuery(e.target.value);
+                      const val = e.target.value;
+                      const err = validateSearchQuery(val);
+                      if (err) {
+                        setSearchError(err);
+                        return;
+                      }
+                      setSearchError(null);
+                      setSearchQuery(val);
                       setShowSuggestions(true);
                     }}
                     onFocus={() => setShowSuggestions(true)}
-                    className="w-full pl-9 pr-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:border-primary text-xs font-semibold transition-colors"
+                    className={`w-full pl-9 pr-4 py-3 rounded-xl border bg-background focus:outline-none text-xs font-semibold transition-colors ${inputBorderClass(searchError || undefined)}`}
                   />
+                  {searchError && (
+                    <p className="mt-1 text-[10px] font-medium text-red-500">{searchError}</p>
+                  )}
                   
                   {/* Suggestions Dropdown */}
                   <AnimatePresence>
@@ -713,8 +783,9 @@ export default function CareersPage() {
                           placeholder="Enter your name"
                           value={formData.name}
                           onChange={handleChange}
-                          className="w-full rounded-xl border border-border px-4 py-2.5 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
+                          className={`w-full rounded-xl border px-4 py-2.5 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold ${inputBorderClass(errors.name)}`}
                         />
+                        {errors.name && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.name}</p>}
                       </div>
 
                       {/* Email */}
@@ -730,8 +801,9 @@ export default function CareersPage() {
                           placeholder="Enter your email"
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full rounded-xl border border-border px-4 py-2.5 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
+                          className={`w-full rounded-xl border px-4 py-2.5 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold ${inputBorderClass(errors.email)}`}
                         />
+                        {errors.email && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.email}</p>}
                       </div>
                     </div>
 
@@ -749,8 +821,9 @@ export default function CareersPage() {
                           placeholder="Enter your mobile number"
                           value={formData.phone}
                           onChange={handleChange}
-                          className="w-full rounded-xl border border-border px-4 py-2.5 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
+                          className={`w-full rounded-xl border px-4 py-2.5 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold ${inputBorderClass(errors.phone)}`}
                         />
+                        {errors.phone && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.phone}</p>}
                       </div>
 
                       {/* Position */}
@@ -772,17 +845,19 @@ export default function CareersPage() {
                     {/* Experience */}
                     <div>
                       <label htmlFor="experience" className="block text-[11px] font-bold uppercase tracking-wider text-muted-foreground mb-1.5">
-                        Total Experience &amp; Current Company
+                        Total Experience &amp; Current Company *
                       </label>
                       <input
                         id="experience"
                         name="experience"
                         type="text"
+                        required
                         placeholder="Enter years of experience"
                         value={formData.experience}
                         onChange={handleChange}
-                        className="w-full rounded-xl border border-border px-4 py-2.5 text-xs bg-muted/40 focus:bg-background focus:outline-none focus:border-primary transition font-semibold"
+                        className={`w-full rounded-xl border px-4 py-2.5 text-xs bg-muted/40 focus:bg-background focus:outline-none transition font-semibold ${inputBorderClass(errors.experience)}`}
                       />
+                      {errors.experience && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.experience}</p>}
                     </div>
 
                     {/* Resume Upload Box */}
@@ -790,7 +865,7 @@ export default function CareersPage() {
                       <label className="block text-[11px] font-bold uppercase tracking-wider text-muted-foreground mb-1.5">
                         Attach Resume (PDF / DOCX) *
                       </label>
-                      <div className="border-2 border-dashed border-border hover:border-primary transition-colors rounded-xl p-4 text-center cursor-pointer relative bg-muted/30">
+                      <div className={`border-2 border-dashed hover:border-primary transition-colors rounded-xl p-4 text-center cursor-pointer relative bg-muted/30 ${errors.resume ? "border-red-500" : "border-border"}`}>
                         <input
                           type="file"
                           accept=".pdf,.doc,.docx"
@@ -806,6 +881,7 @@ export default function CareersPage() {
                           PDF, DOC, DOCX up to 10MB
                         </span>
                       </div>
+                      {errors.resume && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.resume}</p>}
                     </div>
 
                     {/* Submit Button */}

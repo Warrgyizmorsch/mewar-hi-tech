@@ -2,6 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import connectToDatabase from "@/lib/mongodb";
 import Enquiry from "@/models/Enquiry";
 import { isAdminAuthorized } from "@/lib/auth";
+import {
+  containsScriptOrCode,
+  validateAddress,
+  validateCompanyName,
+  validateEmailAddress,
+  validateMobileNumber,
+  validatePersonName,
+  validateQueryText,
+} from "@/lib/validation";
 
 export async function POST(req: NextRequest) {
   try {
@@ -30,6 +39,43 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const stringFields = [
+      body.name,
+      body.email,
+      body.phone,
+      body.company,
+      body.address,
+      body.message,
+      body.productName,
+      body.machineType,
+      body.partName,
+    ];
+    if (stringFields.some((val) => typeof val === "string" && containsScriptOrCode(val))) {
+      return NextResponse.json(
+        { message: "Script tags, script files, and HTML content are not allowed." },
+        { status: 400 }
+      );
+    }
+
+    const requireCompany =
+      body.source === "brochure" ||
+      body.source === "enquiry-modal" ||
+      body.source === "contact-page";
+    const requireAddress =
+      body.source === "enquiry-modal" || body.source === "contact-page";
+
+    const validationError =
+      validatePersonName(String(body.name || "")) ||
+      validateEmailAddress(String(body.email || "")) ||
+      validateMobileNumber(String(body.phone || "")) ||
+      validateCompanyName(String(body.company || ""), requireCompany) ||
+      validateAddress(String(body.address || ""), requireAddress) ||
+      validateQueryText(String(body.message || ""), "Message", true);
+
+    if (validationError) {
+      return NextResponse.json({ message: validationError }, { status: 400 });
+    }
+
     // Connect to database
     const conn = await connectToDatabase();
     if (!conn) {
@@ -40,12 +86,12 @@ export async function POST(req: NextRequest) {
     }
 
     const enquiry = new Enquiry({
-      name: body.name,
-      email: body.email,
-      phone: body.phone,
-      company: body.company || undefined,
-      address: body.address || undefined,
-      message: body.message,
+      name: String(body.name).trim(),
+      email: String(body.email).trim(),
+      phone: String(body.phone).trim(),
+      company: body.company ? String(body.company).trim() : undefined,
+      address: body.address ? String(body.address).trim() : undefined,
+      message: String(body.message).trim(),
       type: body.type,
       productName: body.productName || undefined,
       machineType: body.machineType || undefined,
