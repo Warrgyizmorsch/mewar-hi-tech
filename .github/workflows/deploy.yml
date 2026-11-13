@@ -25,6 +25,10 @@ jobs:
       - name: Build Next.js Application
         run: npm run build
 
+      - name: Normalize Server Paths in Manifests
+        run: |
+          sed -i "s|$(pwd)|/home/mewacjql/mewar|g" .next/required-server-files.json 2>/dev/null || true
+
       - name: Package Deployment Archive
         run: |
           tar -czf deploy.tar.gz \
@@ -51,10 +55,13 @@ jobs:
             rm -f /home/mewacjql/deploy.tar.gz
             chmod -R 755 /home/mewacjql/mewar/.next /home/mewacjql/mewar/public
             rm -rf /home/mewacjql/mewar/.next/cache
+            rm -rf /home/mewacjql/lscache/*
+            sed -i 's|/home/runner/work/mewar-hi-tech/mewar-hi-tech|/home/mewacjql/mewar|g' /home/mewacjql/mewar/.next/required-server-files.json 2>/dev/null || true
             source /home/mewacjql/nodevenv/mewar/22/bin/activate
-            npm install --omit=dev --legacy-peer-deps
-            pkill -u mewacjql -f node || true
-            pkill -u mewacjql -f lsnode || true
+            /usr/sbin/cloudlinux-selector install-modules --json --interpreter nodejs --app-root mewar 2>/dev/null || npm install --omit=dev --legacy-peer-deps || true
+            /usr/sbin/cloudlinux-selector restart --json --interpreter nodejs --app-root mewar || true
+            pkill -9 -u mewacjql -f lsnode || true
+            pkill -9 -u mewacjql -f node || true
             mkdir -p /home/mewacjql/mewar/tmp
             touch /home/mewacjql/mewar/tmp/restart.txt
             echo "=== Deployment Completed Successfully ==="
