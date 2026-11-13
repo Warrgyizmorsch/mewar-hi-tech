@@ -22,7 +22,10 @@ const nextConfig = {
   turbopack: {},
   experimental: {
     agentUpgrade: "security",
+    workerThreads: false,
+    cpus: 1,
   },
+  outputFileTracingRoot: process.cwd(),
   serverExternalPackages: ["mongoose"],
   reactStrictMode: true,
   distDir: process.env.NEXT_DIST_DIR || '.next',
