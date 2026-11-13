@@ -7,11 +7,16 @@ const nextConfig = {
   },
   compress: true,
   poweredByHeader: false,
-  webpack: (config) => {
+  cleanDistDir: true,
+  cacheMaxMemorySize: 52428800, // 50MB Server RAM cache limit for stable shared hosting
+  webpack: (config, { dev }) => {
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
       '@': path.resolve(process.cwd(), 'src'),
     };
+    if (!dev) {
+      config.cache = false; // Disable production disk cache to prevent stale chunk conflicts
+    }
     return config;
   },
   turbopack: {},
