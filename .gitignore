@@ -6,5 +6,3 @@ node_modules
 public/videos/*.mp4
 public/videos/*.webm
 .env*
-cypress/screenshots/
-cypress/videos/
