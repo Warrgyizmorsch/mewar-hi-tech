@@ -50,7 +50,7 @@ export default function CelebrationMeetBanner() {
               {/* Main Heading */}
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
                 Customer Meet 2026
-                
+
               </h2>
 
               {/* Tagline */}
@@ -58,7 +58,7 @@ export default function CelebrationMeetBanner() {
                 Celebrating 25 Years of Excellence, Innovation &amp; Partnership
               </p>
 
-        
+
             </div>
 
             {/* Right Action Button */}
