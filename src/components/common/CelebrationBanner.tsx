@@ -31,6 +31,18 @@ export default function CelebrationBanner() {
             <p className="text-base font-medium leading-relaxed sm:text-lg">
               Celebrating 25 Years of Excellence, Innovation &amp; Partnership
             </p>
+
+            <Link
+              href="https://docs.google.com/forms/d/e/1FAIpQLSc1gMvd2FC_WiY9Hx4gu8QkJ5a_Vj7qTz300U6A-snzNBblew/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="blob-btn w-full sm:w-auto xl:min-w-64"
+            >
+              <span className="relative z-10 inline-flex items-center justify-center gap-3">
+                Register Now
+                <ArrowUpRight size={20} aria-hidden="true" className="shrink-0" />
+              </span>
+            </Link>
           </div>
 
           <div className="relative flex min-h-[240px] min-w-0 flex-col items-start justify-between gap-8 p-6 sm:min-h-[280px] sm:gap-10 sm:p-8 lg:gap-12">
@@ -53,18 +65,6 @@ export default function CelebrationBanner() {
               sizes="(max-width: 639px) 112px, (max-width: 1279px) 144px, 176px"
               className="relative h-auto w-28 shrink-0 object-contain sm:w-36 xl:w-44"
             />
-
-            <Link
-              href="https://docs.google.com/forms/d/e/1FAIpQLSc1gMvd2FC_WiY9Hx4gu8QkJ5a_Vj7qTz300U6A-snzNBblew/viewform"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="blob-btn relative w-full self-end sm:w-auto lg:min-w-0 xl:min-w-64"
-            >
-              <span className="relative z-10 inline-flex items-center justify-center gap-3">
-                Register Now
-                <ArrowUpRight size={20} aria-hidden="true" className="shrink-0" />
-              </span>
-            </Link>
           </div>
         </div>
       </Container>
