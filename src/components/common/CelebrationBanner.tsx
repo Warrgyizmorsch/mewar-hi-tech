@@ -33,7 +33,7 @@ export default function CelebrationBanner() {
             </p>
 
             <Link
-              href="https://docs.google.com/forms/d/e/1FAIpQLSc1gMvd2FC_WiY9Hx4gu8QkJ5a_Vj7qTz300U6A-snzNBblew/viewform"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               className="blob-btn w-full sm:w-auto xl:min-w-64"
