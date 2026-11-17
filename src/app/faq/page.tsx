@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import { ChevronDown, MessageSquare, Wrench, PackageSearch, Truck } from "lucide-react";
 import BlobButton from "@/components/ui/BlobButton";
@@ -222,8 +221,6 @@ export default function FAQPage() {
           </Container>
         </section>
       </main>
-
-      <Footer />
     </div>
   );
 }

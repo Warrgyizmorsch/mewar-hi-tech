@@ -1,0 +1,238 @@
+{
+  "version": 1,
+  "project": {
+    "name": "mewar-hi-tech-industrial-website",
+    "productType": null,
+    "stack": [
+      "nextjs",
+      "react",
+      "tailwind-v3"
+    ]
+  },
+  "sources": {
+    "tokens": [
+      "src/app/globals.css"
+    ],
+    "components": [
+      "src/components/ui"
+    ],
+    "assets": [
+      "public/images"
+    ],
+    "instructions": [
+      "AGENTS.md"
+    ]
+  },
+  "design": {
+    "colorMode": "light",
+    "colors": {
+      "--background": {
+        "value": "228 17% 6%",
+        "source": "src/app/globals.css"
+      },
+      "--foreground": {
+        "value": "220 14% 96%",
+        "source": "src/app/globals.css"
+      },
+      "--card-foreground": {
+        "value": "220 14% 96%",
+        "source": "src/app/globals.css"
+      },
+      "--popover-foreground": {
+        "value": "224 71.4% 10.8%",
+        "source": "src/app/globals.css"
+      },
+      "--primary": {
+        "value": "44 100% 48%",
+        "source": "src/app/globals.css"
+      },
+      "--primary-foreground": {
+        "value": "228 17% 6%",
+        "source": "src/app/globals.css"
+      },
+      "--secondary": {
+        "value": "215 28% 17%",
+        "source": "src/app/globals.css"
+      },
+      "--secondary-foreground": {
+        "value": "0 0% 100%",
+        "source": "src/app/globals.css"
+      },
+      "--muted": {
+        "value": "215 28% 17%",
+        "source": "src/app/globals.css"
+      },
+      "--muted-foreground": {
+        "value": "218 11% 75%",
+        "source": "src/app/globals.css"
+      },
+      "--accent": {
+        "value": "44 100% 48%",
+        "source": "src/app/globals.css"
+      },
+      "--accent-foreground": {
+        "value": "216 56% 14%",
+        "source": "src/app/globals.css"
+      },
+      "--border": {
+        "value": "220 11% 20%",
+        "source": "src/app/globals.css"
+      },
+      "--ring": {
+        "value": "44 100% 48%",
+        "source": "src/app/globals.css"
+      },
+      "--destructive": {
+        "value": "4 74% 50%",
+        "source": "src/app/globals.css"
+      },
+      "--destructive-foreground": {
+        "value": "0 0% 100%",
+        "source": "src/app/globals.css"
+      },
+      "--sidebar-background": {
+        "value": "0 0% 97%",
+        "source": "src/app/globals.css"
+      },
+      "--sidebar-foreground": {
+        "value": "0 0% 8.6%",
+        "source": "src/app/globals.css"
+      },
+      "--sidebar-primary": {
+        "value": "43 100% 48%",
+        "source": "src/app/globals.css"
+      },
+      "--sidebar-primary-foreground": {
+        "value": "0 0% 6.7%",
+        "source": "src/app/globals.css"
+      },
+      "--sidebar-accent": {
+        "value": "0 0% 97%",
+        "source": "src/app/globals.css"
+      },
+      "--sidebar-accent-foreground": {
+        "value": "0 0% 8.6%",
+        "source": "src/app/globals.css"
+      },
+      "--sidebar-border": {
+        "value": "0 0% 89%",
+        "source": "src/app/globals.css"
+      },
+      "--sidebar-ring": {
+        "value": "43 100% 48%",
+        "source": "src/app/globals.css"
+      },
+      "--btn-color": {
+        "value": "transparent",
+        "source": "src/app/globals.css"
+      }
+    },
+    "typography": {
+      "--btn-text": {
+        "value": "#ffffff",
+        "source": "src/app/globals.css"
+      }
+    },
+    "spacing": {},
+    "radius": {
+      "--radius": {
+        "value": "0.75rem",
+        "source": "src/app/globals.css"
+      }
+    },
+    "shadows": {
+      "--shadow-2xs": {
+        "value": "0 1px 3px 0px hsl(0 0% 0% / 0.05)",
+        "source": "src/app/globals.css"
+      },
+      "--shadow-xs": {
+        "value": "0 1px 3px 0px hsl(0 0% 0% / 0.05)",
+        "source": "src/app/globals.css"
+      },
+      "--shadow-sm": {
+        "value": "0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)",
+        "source": "src/app/globals.css"
+      },
+      "--shadow": {
+        "value": "0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)",
+        "source": "src/app/globals.css"
+      },
+      "--shadow-md": {
+        "value": "0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1)",
+        "source": "src/app/globals.css"
+      },
+      "--shadow-lg": {
+        "value": "0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1)",
+        "source": "src/app/globals.css"
+      },
+      "--shadow-xl": {
+        "value": "0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1)",
+        "source": "src/app/globals.css"
+      },
+      "--shadow-2xl": {
+        "value": "0 1px 3px 0px hsl(0 0% 0% / 0.25)",
+        "source": "src/app/globals.css"
+      }
+    },
+    "motion": {},
+    "density": "unknown"
+  },
+  "components": {
+    "installed": [
+      "ApplicationModal",
+      "BlobButton",
+      "BrochureModal",
+      "Container",
+      "EnquiryModal",
+      "JobFilterSlider",
+      "MobileCarousel",
+      "MultiCardCarousel",
+      "ProductCard",
+      "SelectionDropdown",
+      "ThemeContext"
+    ],
+    "preferredPrimitives": [],
+    "patterns": []
+  },
+  "constraints": {
+    "must": [],
+    "avoid": []
+  },
+  "decisions": [
+    {
+      "scope": "shared celebration banner",
+      "decision": "Use two separately generated assets (transparent 25-year emblem and high-resolution quarry plant scene) with component-local Tailwind classes, existing typography and default button styles. Render once in root layout above Footer. Google Form registration opens in a new tab. Preserve footer links and order."
+    }
+  ],
+  "evidence": [
+    {
+      "fact": "components.installed",
+      "source": "src/components/ui"
+    },
+    {
+      "fact": "design.colorMode:light",
+      "source": "src/app/globals.css"
+    },
+    {
+      "fact": "design.tokens",
+      "source": "src/app/globals.css"
+    },
+    {
+      "fact": "project.instructions",
+      "source": "AGENTS.md"
+    },
+    {
+      "fact": "project.stack:nextjs",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:react",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:tailwind-v3",
+      "source": "package.json"
+    }
+  ],
+  "generatedAt": "2026-11-17T04:47:40.154Z"
+}

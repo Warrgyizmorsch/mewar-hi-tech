@@ -21,7 +21,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import StatsCounter from "@/components/shared/StatsCounter";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
@@ -536,7 +535,7 @@ export default function About() {
         </section>
 
         {/* ── 7. Our Mission & Team Photo Celebration Section ── */}
-        <section className="section-padding bg-background border-b border-border">
+        <section className="section-padding overflow-x-clip bg-background border-b border-border">
           <div className="max-w-[1720px] mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               
@@ -618,8 +617,6 @@ export default function About() {
         {/* ── 10. Call to Action ── */}
         <CTASection />
       </main>
-
-      <Footer />
     </div>
   );
 

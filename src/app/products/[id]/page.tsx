@@ -39,7 +39,6 @@ import {
 } from "lucide-react";
 import { toast } from "react-toastify";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import BlobButton from "@/components/ui/BlobButton";
 import Container from "@/components/ui/Container";
 import ModelViewer3D from "@/components/common/ModelViewer3D";
@@ -227,7 +226,6 @@ export default function ProductDetailPage({ params }: PageProps) {
             </div>
           </div>
         </main>
-        <Footer />
       </div>
     );
   }
@@ -1623,8 +1621,6 @@ export default function ProductDetailPage({ params }: PageProps) {
           </motion.div>
         )}
       </AnimatePresence>
-
-      <Footer />
     </div>
   );
 }

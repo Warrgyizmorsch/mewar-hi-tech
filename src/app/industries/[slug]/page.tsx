@@ -18,7 +18,6 @@ import {
   FileCheck,
 } from "lucide-react";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import Container from "@/components/ui/Container";
 import CTASection from "@/components/shared/CTASection";
 import BlobButton from "@/components/ui/BlobButton";
@@ -445,8 +444,6 @@ export default async function IndustryDetailPage({ params }: Props) {
         {/* CTA Section */}
         <CTASection />
       </main>
-
-      <Footer />
     </div>
   );
 }

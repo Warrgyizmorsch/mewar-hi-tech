@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import ProductsSection from "@/components/shared/ProductsSection";
 import CTASection from "@/components/shared/CTASection";
@@ -36,7 +35,6 @@ export default function Products() {
         <ProductsSection title="Complete Product Catalog" />
         <CTASection />
       </main>
-      <Footer />
     </div>
   );
 }

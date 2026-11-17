@@ -4,7 +4,6 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import { motion } from "framer-motion";
 import { ArrowRight, Box, Compass, Layers } from "lucide-react";
@@ -131,8 +130,6 @@ export default function ProjectsLandingPage() {
           subtitle="Keep your stationary and mobile crushing plants running at peak performance. Order direct OEM jaw plates, cone mantles, blow bars, conveyor belts, and wire screen mesh."
         />
       </main>
-
-      <Footer />
     </div>
   );
 }

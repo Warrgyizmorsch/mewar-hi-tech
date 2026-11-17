@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 
 
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/home/HeroSection";
 import ClientLogosMarquee from "@/components/home/ClientLogosMarquee";
 import VerifiedTrustStrip from "@/components/home/VerifiedTrustStrip";
@@ -98,7 +97,7 @@ export default function Home() {
         {/* 16. Technical Downloads Center & Video Popup */}
         <FlagshipProductsGrid />
       </main>
-      <Footer />
+
     </div>
   );
 }

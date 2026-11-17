@@ -17,7 +17,6 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import Container from "@/components/ui/Container";
 import BlobButton from "@/components/ui/BlobButton";
@@ -500,8 +499,6 @@ export default function EventsPage() {
           </div>
         )}
       </AnimatePresence>
-
-      <Footer />
     </div>
   );
 }

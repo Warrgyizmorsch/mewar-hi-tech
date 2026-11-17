@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import PlaceholderSection from "@/components/shared/PlaceholderSection";
 
@@ -35,7 +34,6 @@ export default function Gallery() {
         />
         <PlaceholderSection pageName="Gallery" />
       </main>
-      <Footer />
     </div>
   );
 }
