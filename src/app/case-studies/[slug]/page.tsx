@@ -2,7 +2,6 @@ import React from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import { CASE_STUDIES, getCaseStudyBySlug } from "@/data/case-studies-data";
 import CaseStudyHero from "@/components/case-studies/CaseStudyHero";
 import CaseStudyOverview from "@/components/case-studies/CaseStudyOverview";
@@ -135,8 +134,6 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
         {/* SECTION 9: DUAL CTA BANNERS */}
         <CaseStudyCTA study={study} />
       </main>
-
-      <Footer />
     </div>
   );
 }

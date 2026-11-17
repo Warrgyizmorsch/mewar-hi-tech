@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import Container from "@/components/ui/Container";
 import CTASection from "@/components/shared/CTASection";
 
@@ -227,8 +226,6 @@ export default function CategoryHubView({
         {/* CTA */}
         <CTASection />
       </main>
-
-      <Footer />
     </div>
   );
 }

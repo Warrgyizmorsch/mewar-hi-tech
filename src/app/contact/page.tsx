@@ -16,7 +16,6 @@ import {
   ExternalLink,
 } from "lucide-react";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import BlobButton from "@/components/ui/BlobButton";
 import Container from "@/components/ui/Container";
@@ -565,8 +564,6 @@ export default function Contact() {
           </Container>
         </section>
       </main>
-
-      <Footer />
     </div>
   );
 }

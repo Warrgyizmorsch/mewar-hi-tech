@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import Container from "@/components/ui/Container";
 import SelectionDropdown from "@/components/ui/SelectionDropdown";
 import { CASE_STUDIES, CaseStudy } from "@/data/case-studies-data";
@@ -343,8 +342,6 @@ export default function CaseStudiesPage() {
           </motion.div>
         )}
       </AnimatePresence>
-
-      <Footer />
     </div>
   );
 }

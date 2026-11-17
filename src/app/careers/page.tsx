@@ -23,7 +23,6 @@ import {
   Search,
 } from "lucide-react";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import MultiCardCarousel from "@/components/ui/MultiCardCarousel";
 import BlobButton from "@/components/ui/BlobButton";
@@ -376,7 +375,7 @@ export default function CareersPage() {
         </section>
 
         {/* ── 3. Intro & Theme-Aware Career Illustration Section ── */}
-        <section className="section-padding bg-background border-b border-border">
+        <section className="section-padding overflow-x-clip bg-background border-b border-border">
           <Container className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             {/* Left Column: Vision & Culture */}
@@ -455,15 +454,15 @@ export default function CareersPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-5 flex justify-center"
+              className="min-w-0 lg:col-span-5 flex justify-center"
             >
-              <div className="relative -rotate-12 w-full flex items-center justify-center group">
+              <div className="relative w-full flex items-center justify-center group">
                 <Image
                   src={careerIllustration}
                   alt="Career at Mewar Hi-Tech Illustration"
                   width={600}
                   height={500}
-                  className="max-h-[380px] w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                  className="h-auto max-h-[380px] w-full max-w-[456px] object-contain transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
             </motion.div>
@@ -666,7 +665,7 @@ export default function CareersPage() {
         </section>
 
         {/* ── 5. Resume Application Form & Direct Contact Section ── */}
-        <section id="career-apply" className="section-padding bg-background border-b border-border">
+        <section id="career-apply" className="section-padding overflow-x-clip bg-background border-b border-border">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
               
@@ -922,8 +921,6 @@ export default function CareersPage() {
         filters={filters}
         setFilters={setFilters}
       />
-
-      <Footer />
     </div>
   );
 }

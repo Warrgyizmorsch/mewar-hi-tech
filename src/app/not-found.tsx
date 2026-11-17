@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 
 export default function NotFound() {
   return (
@@ -26,7 +25,6 @@ export default function NotFound() {
           </Link>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

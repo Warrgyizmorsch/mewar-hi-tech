@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import Container from "@/components/ui/Container";
 import Link from "next/link";
@@ -588,8 +587,6 @@ export default function BlogsClient({
           </Container>
         </section>
       </main>
-
-      <Footer />
     </div>
   );
 }

@@ -23,7 +23,6 @@ import {
   FileText,
 } from "lucide-react";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import Container from "@/components/ui/Container";
 import BlobButton from "@/components/ui/BlobButton";
@@ -443,8 +442,8 @@ export default function ServiceSlugPage({ params }: PageProps) {
         {/* 6. Form Section */}
         <section className="section-padding bg-background border-b border-border/60">
           <Container className="text-left">
-            <div className="p-8 lg:p-12 rounded-xl bg-card border border-border/80 flex flex-col md:flex-row md:items-center justify-between gap-8 shadow-sm">
-              <div className="space-y-3">
+            <div className="p-6 sm:p-8 lg:p-12 rounded-xl bg-card border border-border/80 flex flex-col xl:flex-row xl:items-center justify-between gap-8 shadow-sm">
+              <div className="min-w-0 space-y-3">
                 <h3 className="common-heading text-2xl font-bold text-foreground">
                   Need Help or Urgent Callback?
                 </h3>
@@ -452,21 +451,21 @@ export default function ServiceSlugPage({ params }: PageProps) {
                   Contact our support lines or write to us directly. We guarantee immediate dispatch of certified field engineers to troubleshoot your equipment.
                 </p>
               </div>
-              <div className="flex flex-col sm:flex-row gap-3.5 shrink-0">
+              <div className="flex min-w-0 flex-col sm:flex-row sm:flex-wrap gap-3.5 xl:shrink-0">
                 {slug === "spare-parts" && (
                   <BlobButton
                     onClick={() => setSpareModalOpen(true)}
                     variant="primary"
-                    className="!py-3.5 !px-8 text-xs font-bold uppercase tracking-wider shrink-0 flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-primary/20"
+                    className="w-full sm:w-auto !py-3.5 !px-5 xl:!px-8 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-primary/20"
                   >
                     <Wrench size={15} />
                     <span>Enquire Spare Parts</span>
                   </BlobButton>
                 )}
-                <Link href="/contact">
+                <Link href="/contact" className="min-w-0">
                   <BlobButton
                     variant={slug === "spare-parts" ? "secondary" : "primary"}
-                    className="!py-3.5 !px-8 text-xs font-bold uppercase tracking-wider shrink-0 flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto !py-3.5 !px-5 xl:!px-8 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2"
                   >
                     <span>Contact Service Manager</span>
                     <ArrowRight size={15} />
@@ -525,8 +524,6 @@ export default function ServiceSlugPage({ params }: PageProps) {
           </motion.div>
         )}
       </AnimatePresence>
-
-      <Footer />
     </div>
   );
 }

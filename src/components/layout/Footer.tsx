@@ -161,7 +161,7 @@ const Footer: React.FC = () => {
       <CelebrationMeetBanner />
 
       {/* Upper Footer */}
-      <div className="max-w-[1720px] mx-auto px-6 lg:px-8 py-12 flex flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap justify-between items-start gap-8 text-left">
+      <div className="max-w-[1720px] mx-auto px-6 lg:px-8 py-12 flex flex-col sm:flex-row sm:flex-wrap min-[1400px]:flex-nowrap justify-between items-start gap-8 text-left">
         {/* Column 1: Logo, Brand & Contact Info */}
         <div className="w-full sm:w-[45%] lg:w-[220px] space-y-5 shrink-0">
           <Link href="/" className="flex items-center gap-2">
@@ -264,7 +264,7 @@ const Footer: React.FC = () => {
                 placeholder="Enter your email *"
                 required
                 disabled={submitting}
-                className={`flex-1 px-4 py-2 text-xs bg-white/5 border rounded-l text-secondary-foreground placeholder:text-secondary-foreground/30 outline-none transition-colors ${inputBorderClass(emailError || undefined, "border-secondary-foreground/10 focus:border-primary")}`}
+                className={`min-w-0 flex-1 px-4 py-2 text-xs bg-white/5 border rounded-l text-secondary-foreground placeholder:text-secondary-foreground/30 outline-none transition-colors ${inputBorderClass(emailError || undefined, "border-secondary-foreground/10 focus:border-primary")}`}
               />
               <button
                 type="submit"

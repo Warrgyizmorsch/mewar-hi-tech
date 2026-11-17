@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import Container from "@/components/ui/Container";
 
 export default function CaseStudiesLoading() {
@@ -46,8 +45,6 @@ export default function CaseStudiesLoading() {
           </Container>
         </section>
       </main>
-
-      <Footer />
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import IndustriesGrid from "@/components/shared/IndustriesGrid";
 import PlaceholderSection from "@/components/shared/PlaceholderSection";
@@ -37,7 +36,6 @@ export default function Industries() {
         <IndustriesGrid />
         <PlaceholderSection pageName="Industries" />
       </main>
-      <Footer />
     </div>
   );
 }

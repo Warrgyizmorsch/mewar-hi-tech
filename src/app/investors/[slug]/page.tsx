@@ -25,7 +25,6 @@ import {
   Award,
 } from "lucide-react";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import BlobButton from "@/components/ui/BlobButton";
 import Container from "@/components/ui/Container";
@@ -314,7 +313,7 @@ export default function InvestorPage({ params }: PageProps) {
 
                 {/* CORPORATE GOVERNANCE PANEL */}
                 {activeSlug === "corporate-governance" && (
-                  <div className="bg-card border border-border/80 p-8 rounded-xl space-y-6 shadow-sm">
+                  <div className="bg-card border border-border/80 p-4 sm:p-8 rounded-xl space-y-6 shadow-sm">
                     <h3 className="common-heading text-xl sm:text-2xl font-bold text-foreground uppercase tracking-tight">
                       Corporate Governance Policies
                     </h3>
@@ -325,7 +324,7 @@ export default function InvestorPage({ params }: PageProps) {
                       {CORPORATE_GOVERNANCE_DATA.map((item, idx) => (
                         <div
                           key={idx}
-                          className="flex items-center justify-between p-4 bg-background border border-border/60 rounded-xl hover:border-primary/45 transition-colors"
+                          className="flex min-w-0 flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between p-4 bg-background border border-border/60 rounded-xl hover:border-primary/45 transition-colors"
                         >
                           <div className="flex items-center gap-3">
                             <CheckCircle2 size={16} className="text-primary shrink-0 stroke-[2.5]" />
@@ -348,7 +347,7 @@ export default function InvestorPage({ params }: PageProps) {
 
                 {/* SHAREHOLDING PATTERN PANEL */}
                 {activeSlug === "shareholding-pattern" && (
-                  <div className="bg-card border border-border/80 p-8 rounded-xl space-y-6 shadow-sm">
+                  <div className="bg-card border border-border/80 p-4 sm:p-8 rounded-xl space-y-6 shadow-sm">
                     <h3 className="common-heading text-xl sm:text-2xl font-bold text-foreground uppercase tracking-tight">
                       Shareholding Patterns
                     </h3>
@@ -356,7 +355,7 @@ export default function InvestorPage({ params }: PageProps) {
                       {filterList(SHAREHOLDING_DATA).map((item, idx) => (
                         <div
                           key={idx}
-                          className="flex items-center justify-between p-4 bg-background border border-border/60 rounded-xl"
+                          className="flex min-w-0 flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between p-4 bg-background border border-border/60 rounded-xl"
                         >
                           <span className="text-xs font-bold text-foreground">{item.quarter}</span>
                           <BlobButton href={item.link}
@@ -376,7 +375,7 @@ export default function InvestorPage({ params }: PageProps) {
 
                 {/* SHAREHOLDERS MEETINGS PANEL */}
                 {activeSlug === "shareholders-meetings" && (
-                  <div className="bg-card border border-border/80 p-8 rounded-xl space-y-6 shadow-sm">
+                  <div className="bg-card border border-border/80 p-4 sm:p-8 rounded-xl space-y-6 shadow-sm">
                     <h3 className="common-heading text-xl sm:text-2xl font-bold text-foreground uppercase tracking-tight">
                       Shareholders Meetings &amp; Resolutions
                     </h3>
@@ -384,9 +383,9 @@ export default function InvestorPage({ params }: PageProps) {
                       {filterList(SHAREHOLDERS_MEETINGS_DATA).map((item, idx) => (
                         <div
                           key={idx}
-                          className="flex items-center justify-between p-4 bg-background border border-border/60 rounded-xl"
+                          className="flex min-w-0 flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between p-4 bg-background border border-border/60 rounded-xl"
                         >
-                          <span className="text-xs font-bold text-foreground leading-snug">{item.title}</span>
+                          <span className="text-xs font-bold min-w-0 break-words [overflow-wrap:anywhere] text-foreground leading-snug">{item.title}</span>
                           <BlobButton href={item.link}
                             variant="secondary"
                             className="!py-2 !px-4 !text-[9px] !font-medium uppercase tracking-wider whitespace-nowrap"
@@ -404,7 +403,7 @@ export default function InvestorPage({ params }: PageProps) {
 
                 {/* BOARD MEETINGS PANEL */}
                 {activeSlug === "board-meeting" && (
-                  <div className="bg-card border border-border/80 p-8 rounded-xl space-y-6 shadow-sm">
+                  <div className="bg-card border border-border/80 p-4 sm:p-8 rounded-xl space-y-6 shadow-sm">
                     <h3 className="common-heading text-xl sm:text-2xl font-bold text-foreground uppercase tracking-tight">
                       Board Meetings Notices &amp; Outcomes
                     </h3>
@@ -412,9 +411,9 @@ export default function InvestorPage({ params }: PageProps) {
                       {filterList(BOARD_MEETINGS_DATA).map((item, idx) => (
                         <div
                           key={idx}
-                          className="flex items-center justify-between p-4 bg-background border border-border/60 rounded-xl"
+                          className="flex min-w-0 flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between p-4 bg-background border border-border/60 rounded-xl"
                         >
-                          <span className="text-xs font-bold text-foreground leading-snug">{item.title}</span>
+                          <span className="text-xs font-bold min-w-0 break-words [overflow-wrap:anywhere] text-foreground leading-snug">{item.title}</span>
                           <BlobButton href={item.link}
                             variant="secondary"
                             className="!py-2 !px-4 !text-[9px] !font-medium uppercase tracking-wider whitespace-nowrap"
@@ -432,7 +431,7 @@ export default function InvestorPage({ params }: PageProps) {
 
                 {/* FINANCIAL RESULTS PANEL */}
                 {activeSlug === "financial-results" && (
-                  <div className="bg-card border border-border/80 p-8 rounded-xl space-y-6 shadow-sm">
+                  <div className="bg-card border border-border/80 p-4 sm:p-8 rounded-xl space-y-6 shadow-sm">
                     <h3 className="common-heading text-xl sm:text-2xl font-bold text-foreground uppercase tracking-tight">
                       Financial Performance Results
                     </h3>
@@ -440,7 +439,7 @@ export default function InvestorPage({ params }: PageProps) {
                       {filterList(FINANCIAL_RESULTS_DATA).map((item, idx) => (
                         <div
                           key={idx}
-                          className="flex items-center justify-between p-4 bg-background border border-border/60 rounded-xl"
+                          className="flex min-w-0 flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between p-4 bg-background border border-border/60 rounded-xl"
                         >
                           <span className="text-xs font-bold text-foreground leading-relaxed">{item.title}</span>
                           <BlobButton href={item.link}
@@ -460,7 +459,7 @@ export default function InvestorPage({ params }: PageProps) {
 
                 {/* ANNUAL REPORTS PANEL */}
                 {activeSlug === "annual-reports" && (
-                  <div className="bg-card border border-border/80 p-8 rounded-xl space-y-6 shadow-sm">
+                  <div className="bg-card border border-border/80 p-4 sm:p-8 rounded-xl space-y-6 shadow-sm">
                     <h3 className="common-heading text-xl sm:text-2xl font-bold text-foreground uppercase tracking-tight">
                       Annual Reports Directory
                     </h3>
@@ -493,7 +492,7 @@ export default function InvestorPage({ params }: PageProps) {
 
                 {/* ANNUAL RETURNS PANEL */}
                 {activeSlug === "annual-returns" && (
-                  <div className="bg-card border border-border/80 p-8 rounded-xl space-y-6 shadow-sm">
+                  <div className="bg-card border border-border/80 p-4 sm:p-8 rounded-xl space-y-6 shadow-sm">
                     <h3 className="common-heading text-xl sm:text-2xl font-bold text-foreground uppercase tracking-tight">
                       Annual Returns (MGT-7) Filings
                     </h3>
@@ -526,14 +525,14 @@ export default function InvestorPage({ params }: PageProps) {
 
                 {/* SHAREHOLDER INFORMATION PANEL */}
                 {activeSlug === "shareholder-information" && (
-                  <div className="bg-card border border-border/80 p-8 rounded-xl space-y-6 shadow-sm">
+                  <div className="bg-card border border-border/80 p-4 sm:p-8 rounded-xl space-y-6 shadow-sm">
                     <h3 className="common-heading text-xl sm:text-2xl font-bold text-foreground uppercase tracking-tight">
                       Shareholder Information &amp; Scrutinizer Reports
                     </h3>
                     
                     <div className="space-y-6">
                       {/* Section 1: Disclosure and Information */}
-                      <div className="p-6 rounded-xl bg-background border border-border/60 space-y-4">
+                      <div className="p-4 sm:p-6 rounded-xl bg-background border border-border/60 space-y-4">
                         <h4 className="text-sm font-bold text-primary uppercase font-heading">
                           1. Disclosure and Information
                         </h4>
@@ -549,8 +548,8 @@ export default function InvestorPage({ params }: PageProps) {
                               { title: "Mewar_Disclosure Under reg 30_Appointment of CS", link: "/investors-data/shareholders_information_files/2024-25/Mewar_Disclosure Under reg 30_Appointment of CS.pdf" },
                               { title: "Mewar_Disclosure Under reg 30_Appointment of Internal Auditor", link: "/investors-data/shareholders_information_files/2024-25/Mewar_Disclosure Under reg 30_Appointment of Internal Auditor.pdf" },
                             ].map((doc, idx) => (
-                              <div key={idx} className="flex items-center justify-between text-xs font-bold py-1">
-                                <span className="text-foreground leading-snug">{doc.title}</span>
+                              <div key={idx} className="flex min-w-0 flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between text-xs font-bold py-1">
+                                <span className="min-w-0 break-words [overflow-wrap:anywhere] text-foreground leading-snug">{doc.title}</span>
                                 <BlobButton href={doc.link} variant="secondary" className="!py-1 !px-2.5 !text-[9px] !font-medium uppercase tracking-wider whitespace-nowrap shrink-0">
                                   <span>Open File</span>
                                 </BlobButton>
@@ -570,8 +569,8 @@ export default function InvestorPage({ params }: PageProps) {
                               { title: "Mewar_Consolidated Scrutinizer's Report along with Voting Results_17th AGM 2023", link: "/investors-data/shareholders_information_files/2023-24/Mewar_Consolidated Scrutinizer's Report along with Voting Results_17th AGM 2023.pdf" },
                               { title: "Disclosure under reg 30 of SEBI(LODR) Reg 2015", link: "/investors-data/shareholders_information_files/2023-24/Disclosure under reg 30 of SEBI(LODR) Reg 2015.pdf" },
                             ].map((doc, idx) => (
-                              <div key={idx} className="flex items-center justify-between text-xs font-bold py-1">
-                                <span className="text-foreground leading-snug">{doc.title}</span>
+                              <div key={idx} className="flex min-w-0 flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between text-xs font-bold py-1">
+                                <span className="min-w-0 break-words [overflow-wrap:anywhere] text-foreground leading-snug">{doc.title}</span>
                                 <BlobButton href={doc.link} variant="secondary" className="!py-1 !px-2.5 !text-[9px] !font-medium uppercase tracking-wider whitespace-nowrap shrink-0">
                                   <span>Open File</span>
                                 </BlobButton>
@@ -602,12 +601,12 @@ export default function InvestorPage({ params }: PageProps) {
 
                 {/* INVESTOR CONTACTS PANEL */}
                 {activeSlug === "investor-contacts" && (
-                  <div className="bg-card border border-border/80 p-8 rounded-xl space-y-6 shadow-sm">
+                  <div className="bg-card border border-border/80 p-4 sm:p-8 rounded-xl space-y-6 shadow-sm">
                     <h3 className="common-heading text-xl sm:text-2xl font-bold text-foreground uppercase tracking-tight">
                       Investor Contacts &amp; Redressal
                     </h3>
                     <div className="space-y-4">
-                      <div className="flex items-center justify-between p-4 bg-background border border-border/60 rounded-xl hover:border-primary/45 transition-colors">
+                      <div className="flex min-w-0 flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between p-4 bg-background border border-border/60 rounded-xl hover:border-primary/45 transition-colors">
                         <div className="flex items-center gap-3">
                           <CheckCircle2 size={16} className="text-primary shrink-0 stroke-[2.5]" />
                           <span className="text-xs font-bold text-foreground leading-tight">Investor Contact &amp; Compliance Cell</span>
@@ -629,7 +628,7 @@ export default function InvestorPage({ params }: PageProps) {
 
                 {/* DISCLOSURE REGULATION 46 PANEL */}
                 {activeSlug === "disclosure-regulation-46" && (
-                  <div className="bg-card border border-border/80 p-8 rounded-xl space-y-6 shadow-sm">
+                  <div className="bg-card border border-border/80 p-4 sm:p-8 rounded-xl space-y-6 shadow-sm">
                     <h3 className="common-heading text-xl sm:text-2xl font-bold text-foreground uppercase tracking-tight">
                       SEBI LODR Regulation 46 Disclosures
                     </h3>
@@ -681,8 +680,6 @@ export default function InvestorPage({ params }: PageProps) {
         </section>
 
       </main>
-
-      <Footer />
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import Container from "@/components/ui/Container";
 
 export default function BlogDetailLoading() {
@@ -64,8 +63,6 @@ export default function BlogDetailLoading() {
           </div>
         </Container>
       </main>
-
-      <Footer />
     </div>
   );
 }

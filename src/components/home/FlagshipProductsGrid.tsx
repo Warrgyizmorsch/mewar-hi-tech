@@ -131,10 +131,10 @@ const FlagshipProductsGrid: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.1 }}
-                className="bg-card rounded-[20px] p-6 border border-border/80 shadow-sm hover:shadow-xl transition duration-300 flex items-center gap-5 group min-h-[250px]"
+                className="min-w-0 bg-card rounded-[20px] p-6 border border-border/80 shadow-sm hover:shadow-xl transition duration-300 flex flex-col xl:flex-row items-center gap-5 group min-h-[250px]"
               >
                 {/* Left Side: 3D Standing Cover Image standing tall */}
-                <div className="w-[45%] shrink-0 flex items-center justify-center relative overflow-hidden">
+                <div className="w-full max-w-[160px] xl:w-[35%] shrink-0 flex items-center justify-center relative overflow-hidden">
                   <Image src={card.image}
                     alt={card.title}
                     className="w-full h-auto max-h-[210px] object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-500"
@@ -142,7 +142,7 @@ const FlagshipProductsGrid: React.FC = () => {
                 </div>
 
                 {/* Right Side: Details & Action */}
-                <div className="flex-1 min-w-0 flex flex-col justify-between h-full py-1">
+                <div className="w-full flex-1 min-w-0 flex flex-col justify-between h-full py-1">
                   <div>
                     {/* Orange Outline Icon */}
                     <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0 mb-3">
@@ -168,10 +168,10 @@ const FlagshipProductsGrid: React.FC = () => {
                     <Link
                       href="/contact"
                       onClick={handleDownloadClick}
-                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-primary text-primary hover:bg-primary hover:text-primary-foreground text-[11px] font-bold uppercase tracking-wider transition-colors duration-200 cursor-pointer shadow-xs whitespace-nowrap"
+                      className="inline-flex max-w-full items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-primary text-primary hover:bg-primary hover:text-primary-foreground text-[11px] font-bold uppercase tracking-wider transition-colors duration-200 cursor-pointer shadow-xs text-center"
                     >
                       <span>DOWNLOAD PDF</span>
-                      <Download size={12} className="stroke-[2.5]" />
+                      <Download size={12} className="shrink-0 stroke-[2.5]" />
                     </Link>
                   </div>
                 </div>

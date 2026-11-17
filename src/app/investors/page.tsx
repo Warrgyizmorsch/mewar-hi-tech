@@ -20,7 +20,6 @@ import {
   Award,
 } from "lucide-react";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import BlobButton from "@/components/ui/BlobButton";
 import Container from "@/components/ui/Container";
@@ -728,8 +727,6 @@ function InvestorTabsContent() {
         </section>
 
       </main>
-
-      <Footer />
     </div>
   );
 }

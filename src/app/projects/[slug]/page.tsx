@@ -4,7 +4,6 @@ import React, { use, useState, useEffect } from "react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, Eye, LayoutGrid } from "lucide-react";
@@ -232,8 +231,6 @@ export default function ProjectDetailPage({ params }: PageProps) {
           </motion.div>
         )}
       </AnimatePresence>
-
-      <Footer />
     </div>
   );
 }

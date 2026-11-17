@@ -21,7 +21,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/layout/PageHero";
 import BlobButton from "@/components/ui/BlobButton";
 import StatsCounter from "@/components/shared/StatsCounter";
@@ -525,7 +524,7 @@ export default function ServicesPage() {
                     <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center shrink-0">
                       <Phone size={20} className="stroke-[2.2]" />
                     </div>
-                    <div className="space-y-0.5">
+                    <div className="min-w-0 space-y-0.5">
                       <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">
                         Mobile Service Hotline
                       </span>
@@ -539,11 +538,11 @@ export default function ServicesPage() {
                     <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center shrink-0">
                       <Mail size={20} className="stroke-[2.2]" />
                     </div>
-                    <div className="space-y-0.5">
+                    <div className="min-w-0 space-y-0.5">
                       <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">
                         Service Desk Email
                       </span>
-                      <a href="mailto:aftersales@kingsoncrusher.com" className="text-xs font-bold text-foreground hover:text-primary transition-colors block">
+                      <a href="mailto:aftersales@kingsoncrusher.com" className="break-words text-xs font-bold text-foreground hover:text-primary transition-colors block">
                         aftersales@kingsoncrusher.com
                       </a>
                     </div>
@@ -707,8 +706,6 @@ export default function ServicesPage() {
         defaultEnquiryType="SparePart"
         defaultMachine="Crusher Spare Parts"
       />
-
-      <Footer />
     </div>
   );
 }

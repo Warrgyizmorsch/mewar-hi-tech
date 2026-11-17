@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import Container from "@/components/ui/Container";
 import BlobButton from "@/components/ui/BlobButton";
 import { validateEmailAddress } from "@/lib/validation";
@@ -318,7 +317,6 @@ export default function BlogDetailClient({
             </Link>
           </div>
         </main>
-        <Footer />
       </div>
     );
   }
@@ -661,8 +659,6 @@ export default function BlogDetailClient({
           </div>
         </Container>
       </section>
-
-      <Footer />
     </div>
   );
 }
