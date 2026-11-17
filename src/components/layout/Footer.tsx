@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useTheme } from "@/components/ui/ThemeContext";
 import { toast } from "react-toastify";
 import { inputBorderClass, validateEmailAddress } from "@/lib/validation";
-import CelebrationMeetBanner from "@/components/common/CelebrationMeetBanner";
+
 
 /* ─── Footer Column Data ─── */
 const footerColumns = [
@@ -158,7 +158,6 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-secondary text-secondary-foreground select-none">
       {/* 25 Years Celebration & Customer Meet Showcase Banner */}
-      <CelebrationMeetBanner />
 
       {/* Upper Footer */}
       <div className="max-w-[1720px] mx-auto px-6 lg:px-8 py-12 flex flex-col sm:flex-row sm:flex-wrap min-[1400px]:flex-nowrap justify-between items-start gap-8 text-left">
