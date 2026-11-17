@@ -13,7 +13,7 @@ import "./globals.css";
 import { ExperienceProvider } from "@/components/3d/ExperienceManager";
 import FloatingButton from "@/components/3d/FloatingButton";
 import FloatingEnquiryWidget from "@/components/common/FloatingEnquiryWidget";
-import CelebrationBanner from "@/components/common/CelebrationBanner";
+// import CelebrationBanner from "@/components/common/CelebrationBanner";
 import Footer from "@/components/layout/Footer";
 import PublicFooterBoundary from "@/components/layout/PublicFooterBoundary";
 
@@ -177,7 +177,7 @@ export default function RootLayout({
             <main className="min-h-screen font-sans">
               {children}
               <PublicFooterBoundary>
-                <CelebrationBanner />
+                {/* <CelebrationBanner /> */}
                 <Footer />
               </PublicFooterBoundary>
               {/* <FloatingButton /> */}
