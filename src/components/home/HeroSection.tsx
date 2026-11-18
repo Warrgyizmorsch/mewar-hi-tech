@@ -19,7 +19,7 @@ const Separator = () => (
 const highlights = [
   {
     title: "India's Leading",
-    subtitle: "Crusher Manufacturer",
+    subtitle: "Stone Crusher Manufacturer",
   },
   {
     title: "35+ Years of Trust in",
