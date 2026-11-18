@@ -18,16 +18,17 @@ import TeamSection from "@/components/home/TeamSection";
 import AboutTeaser from "@/components/home/AboutTeaser";
 
 import FlagshipProductsGrid from "@/components/home/FlagshipProductsGrid";
+import HomeFaqAndArticle from "@/components/home/HomeFaqAndArticle";
 
 export const metadata = {
-  title: "Crusher Manufacturer in India | Mewar Hi-Tech",
-  description: "Mewar Hi-Tech makes jaw crushers, cone crushers, screens, feeders and sand making machines in Udaipur, Rajasthan. Request a quote today.",
+  title: "Stone Crusher Manufacturer in India | Mewar Hi-Tech",
+  description: "Mewar Hi-Tech is a leading stone crusher manufacturer in India, offering jaw crushers, cone crushers, impact crushers, screening equipment and complete crushing plant solutions.",
   alternates: {
     canonical: "https://www.mewarhitech.com/",
   },
   openGraph: {
-    title: "Crusher Manufacturer in India | Mewar Hi-Tech",
-    description: "Mewar Hi-Tech makes jaw crushers, cone crushers, screens, feeders and sand making machines in Udaipur, Rajasthan. Request a quote today.",
+    title: "Stone Crusher Manufacturer in India | Mewar Hi-Tech",
+    description: "Mewar Hi-Tech is a leading stone crusher manufacturer in India, offering jaw crushers, cone crushers, impact crushers, screening equipment and complete crushing plant solutions.",
     url: "https://www.mewarhitech.com/",
     siteName: "Mewar Hi-Tech",
     type: "website",
@@ -43,8 +44,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Crusher Manufacturer in India | Mewar Hi-Tech",
-    description: "Mewar Hi-Tech makes jaw crushers, cone crushers, screens, feeders and sand making machines in Udaipur, Rajasthan. Request a quote today.",
+    title: "Stone Crusher Manufacturer in India | Mewar Hi-Tech",
+    description: "Mewar Hi-Tech is a leading stone crusher manufacturer in India, offering jaw crushers, cone crushers, impact crushers, screening equipment and complete crushing plant solutions.",
     images: ["/images/slider/about-mewar-hi-tech1.jpg"],
   },
 };
@@ -96,6 +97,9 @@ export default function Home() {
 
         {/* 16. Technical Downloads Center & Video Popup */}
         <FlagshipProductsGrid />
+
+        {/* 17. FAQs & Editorial SEO Article */}
+        <HomeFaqAndArticle />
       </main>
 
     </div>
