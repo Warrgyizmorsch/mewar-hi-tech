@@ -31,17 +31,17 @@ jobs:
 
       - name: Package Deployment Archive
         run: |
+          rm -rf .next/cache
           tar -czf deploy.tar.gz \
             --exclude=.next/node_modules \
-            --exclude=.next/cache \
-            --exclude='public/investors-data' \
-            --exclude='public/3dmodel' \
-            --exclude='public/3d-model-proudct-images' \
-            --exclude='public/mobile_plant_3dmodel' \
-            --exclude='public/videos' \
-            --exclude='public/herovideo' \
-            --exclude='public/*.mp4' \
-            --exclude='public/*.pdf' \
+            --exclude='public/investors-data*' \
+            --exclude='public/3dmodel*' \
+            --exclude='public/3d-model-proudct-images*' \
+            --exclude='public/mobile_plant_3dmodel*' \
+            --exclude='public/videos*' \
+            --exclude='public/herovideo*' \
+            --exclude='*.mp4' \
+            --exclude='*.pdf' \
             .next src public package.json next.config.js server.js tsconfig.json postcss.config.cjs tailwind.config.cjs
 
       - name: Setup SSH
@@ -49,21 +49,13 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          cat > ~/.ssh/config << 'EOF'
-          Host *
-            StrictHostKeyChecking no
-            UserKnownHostsFile /dev/null
-            ServerAliveInterval 30
-            ServerAliveCountMax 5
-            LogLevel ERROR
-          EOF
+          printf "Host *\n  StrictHostKeyChecking no\n  UserKnownHostsFile /dev/null\n  ServerAliveInterval 30\n  ServerAliveCountMax 5\n  LogLevel ERROR\n" > ~/.ssh/config
           chmod 600 ~/.ssh/config
-          ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
 
       - name: Deploy to Remote Server
         run: |
-          scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P ${{ secrets.SSH_PORT }} -i ~/.ssh/id_rsa deploy.tar.gz ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/${{ secrets.SSH_USER }}/deploy.tar.gz
-          ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p ${{ secrets.SSH_PORT }} -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+          scp -P ${{ secrets.SSH_PORT }} -i ~/.ssh/id_rsa deploy.tar.gz ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/${{ secrets.SSH_USER }}/deploy.tar.gz
+          ssh -p ${{ secrets.SSH_PORT }} -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} '
             set -e
             cd /home/mewacjql/mewar
             tar -xzf /home/mewacjql/deploy.tar.gz -C /home/mewacjql/mewar/ --overwrite
@@ -72,11 +64,11 @@ jobs:
             rm -rf /home/mewacjql/mewar/.next/cache
             rm -rf /home/mewacjql/mewar/.next/server/route-cache
             rm -rf /home/mewacjql/lscache/*
-            sed -i 's|/home/runner/work/mewar-hi-tech/mewar-hi-tech|/home/mewacjql/mewar|g' /home/mewacjql/mewar/.next/required-server-files.json 2>/dev/null || true
+            sed -i "s|/home/runner/work/mewar-hi-tech/mewar-hi-tech|/home/mewacjql/mewar|g" /home/mewacjql/mewar/.next/required-server-files.json 2>/dev/null || true
             /usr/sbin/cloudlinux-selector restart --json --interpreter nodejs --app-root mewar || true
             pkill -9 -u mewacjql -f lsnode || true
             pkill -9 -u mewacjql -f node || true
             mkdir -p /home/mewacjql/mewar/tmp
             touch /home/mewacjql/mewar/tmp/restart.txt
             echo "=== Deployment Completed Successfully ==="
-          EOF
+          '
