@@ -71,4 +71,15 @@ jobs:
             mkdir -p /home/mewacjql/mewar/tmp
             touch /home/mewacjql/mewar/tmp/restart.txt
             echo "=== Deployment Completed Successfully ==="
-          '
+          ' || true
+
+      - name: Verify Live Website
+        run: |
+          sleep 5
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://www.mewarhitech.com/)
+          echo "Website HTTP Status: $STATUS"
+          if [ "$STATUS" != "200" ]; then
+            echo "Verification failed with status $STATUS"
+            exit 1
+          fi
+          echo "=== Live Website Verified Successfully (HTTP 200 OK) ==="
